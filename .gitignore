@@ -1,0 +1,14 @@
+openapitools.json
+clients/**/.openapi-generator-ignore
+clients/**/.openapi-generator
+clients/**/.github
+clients/**/test/**/*
+clients/**/.gitlab-ci.yml
+clients/**/.travis.yml
+clients/**/git_push.sh
+clients/**/requirements.txt
+clients/**/setup.py
+clients/**/setup.cfg
+clients/**/test-requirements.txt
+clients/**/tox.ini
+

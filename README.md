@@ -1,1 +1,1 @@
-# vectorize-client-generator
+# Vectorize Clients
