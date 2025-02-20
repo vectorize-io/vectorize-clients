@@ -34,6 +34,7 @@ jobs:
           cd src/python
           poetry install
           poetry build
+          cat pyproject.toml
           ls -la dist
 
       - name: Publish package to TestPyPI
