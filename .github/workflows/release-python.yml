@@ -38,7 +38,7 @@ jobs:
       - name: Publish package to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: src/python/dist
+          packages-dir: src/python
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
