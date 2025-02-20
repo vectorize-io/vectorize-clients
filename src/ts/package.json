@@ -1,6 +1,6 @@
 {
   "name": "@vectorize-io/vectorize-client",
-  "version": "0.0.0-SNAPSHOT.202502201402",
+  "version": "0.0.1",
   "description": "OpenAPI client for @vectorize-io/vectorize-client",
   "author": "OpenAPI-Generator",
   "repository": {
