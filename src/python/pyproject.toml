@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vectorize-client"
-version = "0.0.7"
+version = "0.0.8"
 description = "Python client for the Vectorize API"
 authors = [ "Vectorize <contact@vectorize.io>" ]
 license = "MIT"

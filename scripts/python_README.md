@@ -21,15 +21,14 @@ import vectorize_client
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
+import vectorize_client as v
 
-import vectorize_client
-from vectorize_client.rest import ApiException
+TOKEN = '<your-token>'
+ORG = '<your-org-id>'
 
-with vectorize_client.ApiClient() as api:
-    pipelines = vectorize_client.PipelinesApi(api)
-    organization = '<your-org-id>'
-
-    response = pipelines.get_pipelines(organization)
+with v.ApiClient(v.Configuration(access_token=TOKEN)) as api:
+    pipelines = v.PipelinesApi(api)
+    response = pipelines.get_pipelines(ORG)
     print("Found" + str(len(response.data)) + " pipelines")
 ```
 
