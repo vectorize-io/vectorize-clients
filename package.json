@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "generate:python": "./scripts/generate-python.sh",
+    "release:python": "./scripts/release-python.sh",
     "edit-toml": "node scripts/editToml.js",
     "read-toml": "node scripts/readToml.js"
   },
