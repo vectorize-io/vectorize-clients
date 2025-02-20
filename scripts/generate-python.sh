@@ -13,8 +13,6 @@ openapi-generator-cli generate -i $ROOT_DIR/vectorize_api.json -g python -o $SRC
 
 
 
-echo "PYPROJECT: $PYPROJECT"
-# modify pypr
 npm run edit-toml $PYPROJECT tool.poetry version $current_version
 npm run edit-toml $PYPROJECT tool.poetry name vectorize-client
 npm run edit-toml $PYPROJECT tool.poetry description "Python client for the Vectorize API"

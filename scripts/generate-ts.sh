@@ -14,7 +14,18 @@ openapi-generator-cli generate -i $ROOT_DIR/vectorize_api.json -g typescript-fet
   --additional-properties=snapshot=true \
   --additional-properties=generateSourceCodeOnly=false
 
+edit_field() {
+  local field=$1
+  local value=$2
+  npm pkg set "$field"="$value" --prefix $SRC_DIR/ts
 
+}
+set -x
+
+edit_field description "Python client for the Vectorize API"
+edit_field author "Vectorize <contact@vectorize.io>"
+edit_field repository.url "https://github.com/vectorize-io/vectorize-clients"
+edit_field repository.url "https://github.com/vectorize-io/vectorize-clients"
 
 cp $ROOT_DIR/scripts/ts_README.md $SRC_DIR/ts/README.md
 

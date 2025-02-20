@@ -1,11 +1,11 @@
 {
   "name": "@vectorize-io/vectorize-client",
-  "version": "0.0.1",
-  "description": "OpenAPI client for @vectorize-io/vectorize-client",
-  "author": "OpenAPI-Generator",
+  "version": "0.0.2",
+  "description": "Python client for the Vectorize API",
+  "author": "Vectorize <contact@vectorize.io>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    "url": "https://github.com/vectorize-io/vectorize-clients"
   },
   "license": "MIT",
   "main": "./dist/index.js",

@@ -11,7 +11,6 @@ if [[ ! $version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
 fi
 ROOT_DIR=$(git rev-parse --show-toplevel)
 SRC_DIR=$ROOT_DIR/src
-# set package version
 npm version $version --prefix $SRC_DIR/ts
 git commit -am "Release ts client $version"
 git tag -a "ts-$version" -m "Release ts client $version"
