@@ -1,6 +1,6 @@
 {
   "name": "@vectorize-io/vectorize-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Python client for the Vectorize API",
   "author": "Vectorize <contact@vectorize.io>",
   "repository": {

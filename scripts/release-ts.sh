@@ -13,6 +13,7 @@ ROOT_DIR=$(git rev-parse --show-toplevel)
 SRC_DIR=$ROOT_DIR/src
 npm version $version --prefix $SRC_DIR/ts
 git commit -am "Release ts client $version"
+git push origin main
 git tag -a "ts-$version" -m "Release ts client $version"
 git push origin "ts-$version"
 echo "Release ts client $version committed and tagged"

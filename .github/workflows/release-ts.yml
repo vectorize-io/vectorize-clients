@@ -30,10 +30,10 @@ jobs:
           npm run build
       - name: "Release package"
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd src/ts
-          npm publish
+          npm publish --access public
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1

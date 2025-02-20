@@ -13,6 +13,7 @@ ROOT_DIR=$(git rev-parse --show-toplevel)
 SRC_DIR=$ROOT_DIR/src
 npm run edit-toml $SRC_DIR/python/pyproject.toml tool.poetry version $version
 git commit -am "Release python client $version"
+git push origin main
 git tag -a "python-$version" -m "Release python client $version"
 git push origin "python-$version"
 echo "Release python client $version committed and tagged"
