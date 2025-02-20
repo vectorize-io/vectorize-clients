@@ -34,7 +34,7 @@ jobs:
           cd src/python
           poetry install
           poetry build
-          ls -la src/python/dist
+          ls -la dist
 
       - name: Publish package to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
