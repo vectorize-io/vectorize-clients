@@ -6,6 +6,8 @@
   "scripts": {
     "generate:python": "./scripts/generate-python.sh",
     "release:python": "./scripts/release-python.sh",
+    "generate:ts": "./scripts/generate-ts.sh",
+    "release:ts": "./scripts/release-ts.sh",
     "edit-toml": "node scripts/editToml.js",
     "read-toml": "node scripts/readToml.js"
   },

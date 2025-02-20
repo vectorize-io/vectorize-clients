@@ -1,0 +1,43 @@
+name: TS Release
+on:
+  workflow_dispatch: {}
+  push:
+    tags:
+      - "ts-*"
+
+concurrency:
+  group: release-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+
+      - name: "Install"
+        run: |
+          cd src/ts
+          npm install
+          npm run build
+      - name: "Release package"
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd src/ts
+          npm publish
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          prerelease: false
