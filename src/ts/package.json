@@ -1,0 +1,23 @@
+{
+  "name": "@vectorize-io/vectorize-client",
+  "version": "0.0.0-SNAPSHOT.202502201402",
+  "description": "OpenAPI client for @vectorize-io/vectorize-client",
+  "author": "OpenAPI-Generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+  },
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0 || ^5.0"
+  },
+  "publishConfig": {
+    "registry": "https://github.com/vectorize-io/vectorize-clients"
+  }
+}
