@@ -25,7 +25,7 @@ set -x
 edit_field description "Python client for the Vectorize API"
 edit_field author "Vectorize <contact@vectorize.io>"
 edit_field repository.url "https://github.com/vectorize-io/vectorize-clients"
-edit_field repository.url "https://github.com/vectorize-io/vectorize-clients"
+edit_field scripts.preinstall "npm install typescript"
 
 cp $ROOT_DIR/scripts/ts_README.md $SRC_DIR/ts/README.md
 
