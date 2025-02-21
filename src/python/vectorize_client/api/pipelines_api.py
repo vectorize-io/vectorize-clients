@@ -930,6 +930,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -950,6 +951,8 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -975,6 +978,7 @@ class PipelinesApi:
         _param = self._get_pipeline_events_serialize(
             organization=organization,
             pipeline=pipeline,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1005,6 +1009,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1025,6 +1030,8 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1050,6 +1057,7 @@ class PipelinesApi:
         _param = self._get_pipeline_events_serialize(
             organization=organization,
             pipeline=pipeline,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1080,6 +1088,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1100,6 +1109,8 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1125,6 +1136,7 @@ class PipelinesApi:
         _param = self._get_pipeline_events_serialize(
             organization=organization,
             pipeline=pipeline,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1150,6 +1162,7 @@ class PipelinesApi:
         self,
         organization,
         pipeline,
+        next_token,
         _request_auth,
         _content_type,
         _headers,
@@ -1176,6 +1189,10 @@ class PipelinesApi:
         if pipeline is not None:
             _path_params['pipeline'] = pipeline
         # process the query parameters
+        if next_token is not None:
+            
+            _query_params.append(('nextToken', next_token))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

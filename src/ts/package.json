@@ -1,6 +1,6 @@
 {
   "name": "@vectorize-io/vectorize-client",
-  "version": "0.0.1-SNAPSHOT.202502211345",
+  "version": "0.0.1-SNAPSHOT.202502211421",
   "description": "Python client for the Vectorize API",
   "author": "Vectorize <contact@vectorize.io>",
   "repository": {
@@ -16,7 +16,7 @@
     "preinstall": "npm install typescript"
   },
   "devDependencies": {
-    "typescript": "^5.7.3"
+    "typescript": "^4.0 || ^5.0"
   },
   "publishConfig": {
     "registry": "https://github.com/vectorize-io/vectorize-clients"

@@ -11,8 +11,16 @@ npm install @vectorize-io/vectorize-client
 
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
-```javascript
-TODO
+```typescript
+
+import {Configuration, PipelinesApi} from "@vectorize-io/vectorize-client";
+const connectorsApi = new ConnectorsApi(new Configuration({
+        accessToken: "token",
+    }));
+const pipelines = connectorsApi.getPipelines({
+    organization: "your-org"
+})
+console.log(pipelines)
 ```
 
 ## Documentation for API Endpoints

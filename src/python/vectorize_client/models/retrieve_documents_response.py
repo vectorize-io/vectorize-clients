@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Union
-from vectorize_client.models.retrieve_documents_response_documents_inner import RetrieveDocumentsResponseDocumentsInner
+from vectorize_client.models.document import Document
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class RetrieveDocumentsResponse(BaseModel):
     RetrieveDocumentsResponse
     """ # noqa: E501
     question: StrictStr
-    documents: List[RetrieveDocumentsResponseDocumentsInner]
+    documents: List[Document]
     average_relevancy: Union[StrictFloat, StrictInt]
     ndcg: Union[StrictFloat, StrictInt]
     __properties: ClassVar[List[str]] = ["question", "documents", "average_relevancy", "ndcg"]
@@ -92,7 +92,7 @@ class RetrieveDocumentsResponse(BaseModel):
 
         _obj = cls.model_validate({
             "question": obj.get("question"),
-            "documents": [RetrieveDocumentsResponseDocumentsInner.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
+            "documents": [Document.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "average_relevancy": obj.get("average_relevancy"),
             "ndcg": obj.get("ndcg")
         })

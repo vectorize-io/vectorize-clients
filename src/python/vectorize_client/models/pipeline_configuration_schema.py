@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from vectorize_client.models.ai_platform_schema import AIPlatformSchema
 from vectorize_client.models.destination_connector_schema import DestinationConnectorSchema
+from vectorize_client.models.schedule_schema import ScheduleSchema
 from vectorize_client.models.source_connector_schema import SourceConnectorSchema
 from typing import Optional, Set
 from typing_extensions import Self
@@ -34,7 +35,7 @@ class PipelineConfigurationSchema(BaseModel):
     destination_connector: DestinationConnectorSchema = Field(alias="destinationConnector")
     ai_platform: AIPlatformSchema = Field(alias="aiPlatform")
     pipeline_name: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="pipelineName")
-    schedule: Dict[str, Any]
+    schedule: ScheduleSchema
     __properties: ClassVar[List[str]] = ["sourceConnectors", "destinationConnector", "aiPlatform", "pipelineName", "schedule"]
 
     model_config = ConfigDict(
@@ -89,6 +90,9 @@ class PipelineConfigurationSchema(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of ai_platform
         if self.ai_platform:
             _dict['aiPlatform'] = self.ai_platform.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of schedule
+        if self.schedule:
+            _dict['schedule'] = self.schedule.to_dict()
         return _dict
 
     @classmethod
@@ -105,7 +109,7 @@ class PipelineConfigurationSchema(BaseModel):
             "destinationConnector": DestinationConnectorSchema.from_dict(obj["destinationConnector"]) if obj.get("destinationConnector") is not None else None,
             "aiPlatform": AIPlatformSchema.from_dict(obj["aiPlatform"]) if obj.get("aiPlatform") is not None else None,
             "pipelineName": obj.get("pipelineName"),
-            "schedule": obj.get("schedule")
+            "schedule": ScheduleSchema.from_dict(obj["schedule"]) if obj.get("schedule") is not None else None
         })
         return _obj
 

@@ -32,6 +32,72 @@ export interface Document {
      * @memberof Document
      */
     id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    text: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    chunkId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    totalChunks: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    origin: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    originId: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Document
+     */
+    similarity: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    source: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    uniqueSource: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    sourceDisplayName: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    pipelineId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Document
+     */
+    orgId?: string;
 }
 
 /**
@@ -40,6 +106,15 @@ export interface Document {
 export function instanceOfDocument(value: object): value is Document {
     if (!('relevancy' in value) || value['relevancy'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('text' in value) || value['text'] === undefined) return false;
+    if (!('chunkId' in value) || value['chunkId'] === undefined) return false;
+    if (!('totalChunks' in value) || value['totalChunks'] === undefined) return false;
+    if (!('origin' in value) || value['origin'] === undefined) return false;
+    if (!('originId' in value) || value['originId'] === undefined) return false;
+    if (!('similarity' in value) || value['similarity'] === undefined) return false;
+    if (!('source' in value) || value['source'] === undefined) return false;
+    if (!('uniqueSource' in value) || value['uniqueSource'] === undefined) return false;
+    if (!('sourceDisplayName' in value) || value['sourceDisplayName'] === undefined) return false;
     return true;
 }
 
@@ -56,6 +131,17 @@ export function DocumentFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
             ...json,
         'relevancy': json['relevancy'],
         'id': json['id'],
+        'text': json['text'],
+        'chunkId': json['chunk_id'],
+        'totalChunks': json['total_chunks'],
+        'origin': json['origin'],
+        'originId': json['origin_id'],
+        'similarity': json['similarity'],
+        'source': json['source'],
+        'uniqueSource': json['unique_source'],
+        'sourceDisplayName': json['source_display_name'],
+        'pipelineId': json['pipeline_id'] == null ? undefined : json['pipeline_id'],
+        'orgId': json['org_id'] == null ? undefined : json['org_id'],
     };
 }
 
@@ -73,6 +159,17 @@ export function DocumentToJSONTyped(value?: Document | null, ignoreDiscriminator
             ...value,
         'relevancy': value['relevancy'],
         'id': value['id'],
+        'text': value['text'],
+        'chunk_id': value['chunkId'],
+        'total_chunks': value['totalChunks'],
+        'origin': value['origin'],
+        'origin_id': value['originId'],
+        'similarity': value['similarity'],
+        'source': value['source'],
+        'unique_source': value['uniqueSource'],
+        'source_display_name': value['sourceDisplayName'],
+        'pipeline_id': value['pipelineId'],
+        'org_id': value['orgId'],
     };
 }
 

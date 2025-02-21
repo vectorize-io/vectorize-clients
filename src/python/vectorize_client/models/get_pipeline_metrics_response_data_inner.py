@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Union
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,11 +26,11 @@ class GetPipelineMetricsResponseDataInner(BaseModel):
     """
     GetPipelineMetricsResponseDataInner
     """ # noqa: E501
-    period: StrictStr
-    objects_new: Union[StrictFloat, StrictInt]
-    objects_changed: Union[StrictFloat, StrictInt]
-    objects_deleted: Union[StrictFloat, StrictInt]
-    __properties: ClassVar[List[str]] = ["period", "objects_new", "objects_changed", "objects_deleted"]
+    timestamp: Optional[StrictStr]
+    new_objects: Union[StrictFloat, StrictInt] = Field(alias="newObjects")
+    changed_objects: Union[StrictFloat, StrictInt] = Field(alias="changedObjects")
+    deleted_objects: Union[StrictFloat, StrictInt] = Field(alias="deletedObjects")
+    __properties: ClassVar[List[str]] = ["timestamp", "newObjects", "changedObjects", "deletedObjects"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +71,11 @@ class GetPipelineMetricsResponseDataInner(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if timestamp (nullable) is None
+        # and model_fields_set contains the field
+        if self.timestamp is None and "timestamp" in self.model_fields_set:
+            _dict['timestamp'] = None
+
         return _dict
 
     @classmethod
@@ -83,10 +88,10 @@ class GetPipelineMetricsResponseDataInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "period": obj.get("period"),
-            "objects_new": obj.get("objects_new"),
-            "objects_changed": obj.get("objects_changed"),
-            "objects_deleted": obj.get("objects_deleted")
+            "timestamp": obj.get("timestamp"),
+            "newObjects": obj.get("newObjects"),
+            "changedObjects": obj.get("changedObjects"),
+            "deletedObjects": obj.get("deletedObjects")
         })
         return _obj
 
