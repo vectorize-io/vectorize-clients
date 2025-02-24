@@ -5,7 +5,7 @@ on:
       - main
 
 concurrency:
-  group: release-${{ github.workflow }}
+  group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
