@@ -7,7 +7,6 @@ rm -rf $OUTPUT_DIR
 mkdir -p $OUTPUT_DIR
 cd $ROOT_DIR/src/ts
 npx typedoc --out $OUTPUT_DIR/ts
-python -m pip install pdoc
 cd ../python
-python -m pdoc vectorize_client --output-dir $OUTPUT_DIR/python
+poetry run pdoc vectorize_client --output-dir $OUTPUT_DIR/python
 
