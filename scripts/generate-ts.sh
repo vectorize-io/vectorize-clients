@@ -32,6 +32,8 @@ edit_field publishConfig.access "public"
 
 cp $ROOT_DIR/scripts/ts_README.md $SRC_DIR/ts/README.md
 
+npm run typedoc
+
 
 
 

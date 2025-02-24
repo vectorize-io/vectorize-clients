@@ -27,6 +27,7 @@ jobs:
           cd src/ts
           npm install
           npm run build
+
       - name: "Run tests"
         env:
             VECTORIZE_TOKEN: ${{ secrets.VECTORIZE_TOKEN }}

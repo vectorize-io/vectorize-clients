@@ -8,6 +8,7 @@
     "release:python": "./scripts/release-python.sh",
     "generate:ts": "./scripts/generate-ts.sh",
     "release:ts": "./scripts/release-ts.sh",
+    "generate:docs": "./scripts/generate-docs.sh",
     "edit-toml": "node scripts/editToml.js",
     "read-toml": "node scripts/readToml.js"
   },
@@ -16,5 +17,8 @@
   "dependencies": {
     "@iarna/toml": "^2.2.5",
     "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "typedoc": "^0.27.8"
   }
 }
