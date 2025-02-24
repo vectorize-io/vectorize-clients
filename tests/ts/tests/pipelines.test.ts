@@ -3,6 +3,7 @@ import {createTestContext, TestContext} from "./testContext";
 import {ConnectorsApi, PipelinesApi, ResponseError} from "@vectorize-io/vectorize-client";
 import {pipeline} from "stream";
 import * as os from "node:os";
+import exp from "node:constants";
 
 export let testContext: TestContext;
 
@@ -102,10 +103,26 @@ describe("pipelines", () => {
             let response = await pipelinesApi.getPipelines({
                 organization: testContext.orgId
             });
+            console.log(response.data);
             const pipelines = response.data;
+            let found = false
             for (let pipeline of pipelines) {
-                console.log(pipeline)
+                if (pipelineId == pipeline.id) {
+                    found = true;
+                    break;
+                }
             }
+            expect(found).toBe(true)
+
+            let docs = await pipelinesApi.retrieveDocuments({
+                organization: testContext.orgId,
+                pipeline: pipelineId,
+                retrieveDocumentsRequest: {
+                    question: "what is vectorize?",
+                    numResults: 5,
+                }
+            });
+            console.log(docs)
         } catch (error: any) {
             console.error(error?.response);
             console.error(await error?.response.text());
@@ -125,29 +142,5 @@ describe("pipelines", () => {
 
         }
     }, 120000);
-
-    it("verify pipeline retrieval", async () => {
-        const pipelineId = process.env.PIPELINE_ID;
-        if (!pipelineId) {
-            throw new Error("pipelineId is required")
-        }
-        let pipelinesApi = new PipelinesApi(testContext.configuration);
-        try {
-            let docs = await pipelinesApi.retrieveDocuments({
-                organization: testContext.orgId,
-                pipeline: pipelineId,
-                retrieveDocumentsRequest: {
-                    question: "what is vectorize?",
-                    numResults: 5,
-                }
-            });
-            console.log(docs)
-        } catch (error: any) {
-            console.error(error?.response);
-            console.error(await error?.response.text());
-            throw error
-        }
-    }, 120000);
-
 
 });
