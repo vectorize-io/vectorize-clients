@@ -14,4 +14,4 @@ src/**/tox.ini
 src/**/docs
 node_modules
 
-
+**/*.pyc
