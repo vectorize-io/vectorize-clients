@@ -16,48 +16,48 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface RequestError
+ * @interface GetPipelines400Response
  */
-export interface RequestError {
+export interface GetPipelines400Response {
     /**
      * 
      * @type {string}
-     * @memberof RequestError
+     * @memberof GetPipelines400Response
      */
     error: string;
     /**
      * 
      * @type {string}
-     * @memberof RequestError
+     * @memberof GetPipelines400Response
      */
     details?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof RequestError
+     * @memberof GetPipelines400Response
      */
     failedUpdates?: Array<string>;
     /**
      * 
      * @type {Array<string>}
-     * @memberof RequestError
+     * @memberof GetPipelines400Response
      */
     successfulUpdates?: Array<string>;
 }
 
 /**
- * Check if a given object implements the RequestError interface.
+ * Check if a given object implements the GetPipelines400Response interface.
  */
-export function instanceOfRequestError(value: object): value is RequestError {
+export function instanceOfGetPipelines400Response(value: object): value is GetPipelines400Response {
     if (!('error' in value) || value['error'] === undefined) return false;
     return true;
 }
 
-export function RequestErrorFromJSON(json: any): RequestError {
-    return RequestErrorFromJSONTyped(json, false);
+export function GetPipelines400ResponseFromJSON(json: any): GetPipelines400Response {
+    return GetPipelines400ResponseFromJSONTyped(json, false);
 }
 
-export function RequestErrorFromJSONTyped(json: any, ignoreDiscriminator: boolean): RequestError {
+export function GetPipelines400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetPipelines400Response {
     if (json == null) {
         return json;
     }
@@ -70,11 +70,11 @@ export function RequestErrorFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function RequestErrorToJSON(json: any): RequestError {
-    return RequestErrorToJSONTyped(json, false);
+export function GetPipelines400ResponseToJSON(json: any): GetPipelines400Response {
+    return GetPipelines400ResponseToJSONTyped(json, false);
 }
 
-export function RequestErrorToJSONTyped(value?: RequestError | null, ignoreDiscriminator: boolean = false): any {
+export function GetPipelines400ResponseToJSONTyped(value?: GetPipelines400Response | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -16,17 +16,17 @@
 import * as runtime from '../runtime';
 import type {
   DeleteFileResponse,
+  GetPipelines400Response,
   GetUploadFilesResponse,
-  RequestError,
   UploadFileResponse,
 } from '../models/index';
 import {
     DeleteFileResponseFromJSON,
     DeleteFileResponseToJSON,
+    GetPipelines400ResponseFromJSON,
+    GetPipelines400ResponseToJSON,
     GetUploadFilesResponseFromJSON,
     GetUploadFilesResponseToJSON,
-    RequestErrorFromJSON,
-    RequestErrorToJSON,
     UploadFileResponseFromJSON,
     UploadFileResponseToJSON,
 } from '../models/index';

@@ -18,6 +18,7 @@ __version__ = "1.0.0"
 
 # import apis into sdk package
 from vectorize_client.api.connectors_api import ConnectorsApi
+from vectorize_client.api.extraction_api import ExtractionApi
 from vectorize_client.api.pipelines_api import PipelinesApi
 from vectorize_client.api.uploads_api import UploadsApi
 
@@ -49,6 +50,8 @@ from vectorize_client.models.delete_source_connector_response import DeleteSourc
 from vectorize_client.models.destination_connector import DestinationConnector
 from vectorize_client.models.destination_connector_schema import DestinationConnectorSchema
 from vectorize_client.models.document import Document
+from vectorize_client.models.extraction_result_response import ExtractionResultResponse
+from vectorize_client.models.extraction_result_response_data import ExtractionResultResponseData
 from vectorize_client.models.get_ai_platform_connectors200_response import GetAIPlatformConnectors200Response
 from vectorize_client.models.get_destination_connectors200_response import GetDestinationConnectors200Response
 from vectorize_client.models.get_pipeline_events_response import GetPipelineEventsResponse
@@ -56,6 +59,7 @@ from vectorize_client.models.get_pipeline_events_response_data_inner import GetP
 from vectorize_client.models.get_pipeline_metrics_response import GetPipelineMetricsResponse
 from vectorize_client.models.get_pipeline_metrics_response_data_inner import GetPipelineMetricsResponseDataInner
 from vectorize_client.models.get_pipeline_response import GetPipelineResponse
+from vectorize_client.models.get_pipelines400_response import GetPipelines400Response
 from vectorize_client.models.get_pipelines_response import GetPipelinesResponse
 from vectorize_client.models.get_source_connectors200_response import GetSourceConnectors200Response
 from vectorize_client.models.get_upload_files_response import GetUploadFilesResponse
@@ -63,7 +67,6 @@ from vectorize_client.models.get_upload_files_response_files_inner import GetUpl
 from vectorize_client.models.pipeline_configuration_schema import PipelineConfigurationSchema
 from vectorize_client.models.pipeline_list_summary import PipelineListSummary
 from vectorize_client.models.pipeline_summary import PipelineSummary
-from vectorize_client.models.request_error import RequestError
 from vectorize_client.models.retrieve_documents_request import RetrieveDocumentsRequest
 from vectorize_client.models.retrieve_documents_request_context import RetrieveDocumentsRequestContext
 from vectorize_client.models.retrieve_documents_request_context_messages_inner import RetrieveDocumentsRequestContextMessagesInner
@@ -71,6 +74,7 @@ from vectorize_client.models.retrieve_documents_response import RetrieveDocument
 from vectorize_client.models.schedule_schema import ScheduleSchema
 from vectorize_client.models.source_connector import SourceConnector
 from vectorize_client.models.source_connector_schema import SourceConnectorSchema
+from vectorize_client.models.start_extraction_response import StartExtractionResponse
 from vectorize_client.models.start_pipeline_response import StartPipelineResponse
 from vectorize_client.models.stop_pipeline_response import StopPipelineResponse
 from vectorize_client.models.update_ai_platform_connector_request import UpdateAIPlatformConnectorRequest
