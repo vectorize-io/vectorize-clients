@@ -111,11 +111,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateAIPlatformConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -186,11 +186,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateAIPlatformConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -261,11 +261,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateAIPlatformConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -413,11 +413,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateDestinationConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -488,11 +488,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateDestinationConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -563,11 +563,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateDestinationConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -715,11 +715,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateSourceConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -790,11 +790,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateSourceConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -865,11 +865,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateSourceConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1017,11 +1017,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteAIPlatformConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1092,11 +1092,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteAIPlatformConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1167,11 +1167,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteAIPlatformConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1305,11 +1305,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteDestinationConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1380,11 +1380,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteDestinationConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1455,11 +1455,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteDestinationConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1593,11 +1593,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteSourceConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1668,11 +1668,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteSourceConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1743,11 +1743,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteSourceConnectorResponse",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1881,11 +1881,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AIPlatform",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1956,11 +1956,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AIPlatform",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2031,11 +2031,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AIPlatform",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2165,11 +2165,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAIPlatformConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2236,11 +2236,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAIPlatformConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2307,11 +2307,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAIPlatformConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2442,11 +2442,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DestinationConnector",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2517,11 +2517,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DestinationConnector",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2592,11 +2592,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DestinationConnector",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2726,11 +2726,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetDestinationConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2797,11 +2797,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetDestinationConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2868,11 +2868,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetDestinationConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3003,11 +3003,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SourceConnector",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3078,11 +3078,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SourceConnector",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3153,11 +3153,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SourceConnector",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3287,11 +3287,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetSourceConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3358,11 +3358,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetSourceConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3429,11 +3429,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetSourceConnectors200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3568,11 +3568,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateAIPlatformConnectorRequest",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3647,11 +3647,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateAIPlatformConnectorRequest",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3726,11 +3726,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateAIPlatformConnectorRequest",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3884,11 +3884,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateDestinationConnector200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3963,11 +3963,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateDestinationConnector200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4042,11 +4042,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateDestinationConnector200Response",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4200,11 +4200,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateSourceConnectorRequest",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4279,11 +4279,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateSourceConnectorRequest",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4358,11 +4358,11 @@ class ConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateSourceConnectorRequest",
-            '400': "RequestError",
-            '401': "RequestError",
-            '403': "RequestError",
-            '404': "RequestError",
-            '500': "RequestError",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
         }
         response_data = self.api_client.call_api(
             *_param,

@@ -37,4 +37,20 @@ def test_get_pipelines(ctx: TestContext):
     for pipeline in response.data:
         logging.info(pipeline.id)
 
+pytest.mark.timeout(60)
+def test_extraction(ctx: TestContext):
+    extraction_api = v.ExtractionApi(ctx.api_client)
+
+    response = extraction_api.start_extraction(ctx.org_id, "Some text to embed".encode("utf-8"))
+    extraction_id = response.extraction_id
+    while True:
+        response = extraction_api.get_extraction_result(ctx.org_id, extraction_id)
+        if response.ready:
+            assert response.data.success
+            assert response.data.text
+            assert len(response.data.chunks) > 0
+            break
+        logging.info(f"not ready {response}")
+
+
 

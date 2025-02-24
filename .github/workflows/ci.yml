@@ -33,7 +33,41 @@ jobs:
             VECTORIZE_ORG: ${{ secrets.VECTORIZE_ORG }}
             VECTORIZE_ENV: dev
         run: |
-          cd src/ts
+          cd tests/ts
+          npm i
           npm run test
           
-          
+
+  build-python:
+    name: Tests (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: "Setup: Python 3.11"
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install poetry==1.8.3
+
+      - name: Build
+        run: |
+          cd src/python
+          poetry install
+          poetry build
+
+      - name: Tests
+        env:
+          VECTORIZE_TOKEN: ${{ secrets.VECTORIZE_TOKEN }}
+          VECTORIZE_ORG: ${{ secrets.VECTORIZE_ORG }}
+          VECTORIZE_ENV: dev
+        run: |
+          cd tests/python
+          poetry install
+          poetry run pytest
