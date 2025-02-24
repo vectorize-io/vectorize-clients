@@ -8,5 +8,6 @@ mkdir -p $OUTPUT_DIR
 cd $ROOT_DIR/src/ts
 npx typedoc --out $OUTPUT_DIR/ts
 cd ../python
+poetry run pip install pdoc
 poetry run pdoc vectorize_client --output-dir $OUTPUT_DIR/python
 
