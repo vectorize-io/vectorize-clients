@@ -1,30 +1,46 @@
-# Vectorize Client
-Typescript Api Client for Vectorize
-For more information, please visit [https://vectorize.io](https://vectorize.io)
+## @vectorize-io/vectorize-client@0.0.1-SNAPSHOT.202502251812
 
-## Installation & Usage
-```sh
-npm install @vectorize-io/vectorize-client
+This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
+
+Environment
+* Node.js
+* Webpack
+* Browserify
+
+Language level
+* ES5 - you must have a Promises/A+ library installed
+* ES6
+
+Module system
+* CommonJS
+* ES6 module system
+
+It can be used in both TypeScript and JavaScript. In TypeScript, the definition will be automatically resolved via `package.json`. ([Reference](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html))
+
+### Building
+
+To build and compile the typescript sources to javascript use:
+```
+npm install
+npm run build
 ```
 
-## Getting Started
+### Publishing
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+First build the package then run `npm publish`
 
-```typescript
+### Consuming
 
-import {Configuration, PipelinesApi} from "@vectorize-io/vectorize-client";
-const connectorsApi = new ConnectorsApi(new Configuration({
-        accessToken: "token",
-    }));
-const pipelines = connectorsApi.getPipelines({
-    organization: "your-org"
-})
-console.log(pipelines)
+navigate to the folder of your consuming project and run one of the following commands.
+
+_published:_
+
+```
+npm install @vectorize-io/vectorize-client@0.0.1-SNAPSHOT.202502251812 --save
 ```
 
-## Documentation for API Endpoints
+_unPublished (not recommended):_
 
-All URIs are relative to *https://api.vectorize.io/v1*
-
-See the full [reference](https://vectorize.readme.io/reference) for more information.
+```
+npm install PATH_TO_GENERATED_PACKAGE --save
+```

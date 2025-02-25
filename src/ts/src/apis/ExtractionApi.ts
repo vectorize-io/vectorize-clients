@@ -193,9 +193,6 @@ export type StartExtractionTypeEnum = typeof StartExtractionTypeEnum[keyof typeo
  * @export
  */
 export const StartExtractionChunkingStrategyEnum = {
-    Sentence: 'Sentence',
-    Paragraph: 'Paragraph',
-    Fixed: 'Fixed',
-    Markdown: 'Markdown'
+    Markdown: 'markdown'
 } as const;
 export type StartExtractionChunkingStrategyEnum = typeof StartExtractionChunkingStrategyEnum[keyof typeof StartExtractionChunkingStrategyEnum];
