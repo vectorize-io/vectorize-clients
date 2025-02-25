@@ -186,8 +186,7 @@ export class ExtractionApi extends runtime.BaseAPI {
  * @export
  */
 export const StartExtractionTypeEnum = {
-    Iris: 'iris',
-    Fast: 'fast'
+    Iris: 'iris'
 } as const;
 export type StartExtractionTypeEnum = typeof StartExtractionTypeEnum[keyof typeof StartExtractionTypeEnum];
 /**
