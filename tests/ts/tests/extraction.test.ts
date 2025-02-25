@@ -18,9 +18,7 @@ describe("extraction", () => {
             const response = await extractionApi.startExtraction({
                 organization: testContext.orgId,
                 file: blob,
-                type: "iris",
                 chunkSize: 512,
-                chunkingStrategy: "Markdown"
             })
             await pollExtraction(extractionApi, response.extractionId)
 
@@ -49,24 +47,5 @@ describe("extraction", () => {
                 }
             }
     }
-
-    it("verify fast extraction", async () => {
-        let extractionApi = new ExtractionApi(testContext.configuration)
-        try {
-            const text = "Hello, this is a test blob!";
-            const blob = new Blob([text], { type: "text/plain" });
-
-            const response = await extractionApi.startExtraction({
-                organization: testContext.orgId,
-                file: blob
-            })
-            await pollExtraction(extractionApi, response.extractionId)
-
-        } catch (error: any) {
-            console.error(error?.response);
-            console.error(await error?.response?.text());
-            throw error
-        }
-    }, 120000);
 
 });
