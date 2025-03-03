@@ -4,7 +4,9 @@ ROOT_DIR=$(git rev-parse --show-toplevel)
 SRC_DIR=$ROOT_DIR/src
 
 PACKAGE_JSON=$SRC_DIR/ts/package.json
-#current_version=$(npm run read-toml $PYPROJECT tool.poetry version | tail -n 1 | tr -d '[:space:]')
+cd $SRC_DIR/ts
+current_version=$(npm pkg get version | tr -d '"')
+cd ../../
 
 rm -rf $SRC_DIR/ts
 openapi-generator-cli generate -i $ROOT_DIR/vectorize_api.json -g typescript-fetch -o $SRC_DIR/ts \
@@ -28,6 +30,9 @@ edit_field repository.url "https://github.com/vectorize-io/vectorize-clients"
 edit_field scripts.preinstall "npm install typescript"
 edit_field publishConfig.registry "https://registry.npmjs.org"
 edit_field publishConfig.access "public"
+edit_field license "MIT"
+edit_field keywords "vectorize, vectorize.io, generative-ai, embeddings, rag"
+edit_field version $current_version
 
 
 cp $ROOT_DIR/scripts/ts_README.md $SRC_DIR/ts/README.md

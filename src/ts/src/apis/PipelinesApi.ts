@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   CreatePipelineResponse,
   DeletePipelineResponse,
+  GetDeepResearchResponse,
   GetPipelineEventsResponse,
   GetPipelineMetricsResponse,
   GetPipelineResponse,
@@ -25,6 +26,7 @@ import type {
   PipelineConfigurationSchema,
   RetrieveDocumentsRequest,
   RetrieveDocumentsResponse,
+  StartDeepResearchResponse,
   StartPipelineResponse,
   StopPipelineResponse,
 } from '../models/index';
@@ -33,6 +35,8 @@ import {
     CreatePipelineResponseToJSON,
     DeletePipelineResponseFromJSON,
     DeletePipelineResponseToJSON,
+    GetDeepResearchResponseFromJSON,
+    GetDeepResearchResponseToJSON,
     GetPipelineEventsResponseFromJSON,
     GetPipelineEventsResponseToJSON,
     GetPipelineMetricsResponseFromJSON,
@@ -49,6 +53,8 @@ import {
     RetrieveDocumentsRequestToJSON,
     RetrieveDocumentsResponseFromJSON,
     RetrieveDocumentsResponseToJSON,
+    StartDeepResearchResponseFromJSON,
+    StartDeepResearchResponseToJSON,
     StartPipelineResponseFromJSON,
     StartPipelineResponseToJSON,
     StopPipelineResponseFromJSON,
@@ -63,6 +69,12 @@ export interface CreatePipelineRequest {
 export interface DeletePipelineRequest {
     organization: string;
     pipeline: string;
+}
+
+export interface GetDeepResearchResultRequest {
+    organization: string;
+    pipeline: string;
+    researchId: string;
 }
 
 export interface GetPipelineRequest {
@@ -89,6 +101,11 @@ export interface RetrieveDocumentsOperationRequest {
     organization: string;
     pipeline: string;
     retrieveDocumentsRequest?: RetrieveDocumentsRequest;
+}
+
+export interface StartDeepResearchRequest {
+    organization: string;
+    pipeline: string;
 }
 
 export interface StartPipelineRequest {
@@ -195,6 +212,61 @@ export class PipelinesApi extends runtime.BaseAPI {
      */
     async deletePipeline(requestParameters: DeletePipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePipelineResponse> {
         const response = await this.deletePipelineRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get deep research result
+     */
+    async getDeepResearchResultRaw(requestParameters: GetDeepResearchResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDeepResearchResponse>> {
+        if (requestParameters['organization'] == null) {
+            throw new runtime.RequiredError(
+                'organization',
+                'Required parameter "organization" was null or undefined when calling getDeepResearchResult().'
+            );
+        }
+
+        if (requestParameters['pipeline'] == null) {
+            throw new runtime.RequiredError(
+                'pipeline',
+                'Required parameter "pipeline" was null or undefined when calling getDeepResearchResult().'
+            );
+        }
+
+        if (requestParameters['researchId'] == null) {
+            throw new runtime.RequiredError(
+                'researchId',
+                'Required parameter "researchId" was null or undefined when calling getDeepResearchResult().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/org/{organization}/pipelines/{pipeline}/deep-research/{researchId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))).replace(`{${"researchId"}}`, encodeURIComponent(String(requestParameters['researchId']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetDeepResearchResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get deep research result
+     */
+    async getDeepResearchResult(requestParameters: GetDeepResearchResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetDeepResearchResponse> {
+        const response = await this.getDeepResearchResultRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -435,6 +507,54 @@ export class PipelinesApi extends runtime.BaseAPI {
      */
     async retrieveDocuments(requestParameters: RetrieveDocumentsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RetrieveDocumentsResponse> {
         const response = await this.retrieveDocumentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Start a deep research
+     */
+    async startDeepResearchRaw(requestParameters: StartDeepResearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartDeepResearchResponse>> {
+        if (requestParameters['organization'] == null) {
+            throw new runtime.RequiredError(
+                'organization',
+                'Required parameter "organization" was null or undefined when calling startDeepResearch().'
+            );
+        }
+
+        if (requestParameters['pipeline'] == null) {
+            throw new runtime.RequiredError(
+                'pipeline',
+                'Required parameter "pipeline" was null or undefined when calling startDeepResearch().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/org/{organization}/pipelines/{pipeline}/deep-research`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => StartDeepResearchResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Start a deep research
+     */
+    async startDeepResearch(requestParameters: StartDeepResearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartDeepResearchResponse> {
+        const response = await this.startDeepResearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

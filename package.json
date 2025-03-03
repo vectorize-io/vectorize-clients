@@ -1,6 +1,6 @@
 {
   "name": "vectorize-clients",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,12 @@
     "release:ts": "./scripts/release-ts.sh",
     "generate:docs": "./scripts/generate-docs.sh",
     "edit-toml": "node scripts/editToml.js",
-    "read-toml": "node scripts/readToml.js"
+    "read-toml": "node scripts/readToml.js",
+    "generate:all": "npm run generate:python && npm run generate:ts",
+    "release:patch:all": "npm run release:python patch && npm run release:ts patch",
+    "release:minor:all": "npm run release:python minor && npm run release:ts minor",
+    "release:major:all": "npm run release:python major && npm run release:ts major",
+    "download-spec":  "curl -o ./vectorize_api.json http://localhost:3000/api/openapi"
   },
   "author": "",
   "license": "ISC",
