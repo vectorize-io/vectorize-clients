@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Vectorize API (Beta)
- * API documentation for Vectorize services
+ * API for Vectorize services
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -17,6 +17,7 @@ import * as runtime from '../runtime';
 import type {
   ExtractionResultResponse,
   GetPipelines400Response,
+  StartExtractionRequest,
   StartExtractionResponse,
 } from '../models/index';
 import {
@@ -24,6 +25,8 @@ import {
     ExtractionResultResponseToJSON,
     GetPipelines400ResponseFromJSON,
     GetPipelines400ResponseToJSON,
+    StartExtractionRequestFromJSON,
+    StartExtractionRequestToJSON,
     StartExtractionResponseFromJSON,
     StartExtractionResponseToJSON,
 } from '../models/index';
@@ -33,13 +36,9 @@ export interface GetExtractionResultRequest {
     extractionId: string;
 }
 
-export interface StartExtractionRequest {
+export interface StartExtractionOperationRequest {
     organization: string;
-    file: Blob;
-    type?: StartExtractionTypeEnum;
-    chunkingStrategy?: StartExtractionChunkingStrategyEnum;
-    chunkSize?: number;
-    chunkOverlap?: number;
+    startExtractionRequest?: StartExtractionRequest;
 }
 
 /**
@@ -98,7 +97,7 @@ export class ExtractionApi extends runtime.BaseAPI {
     /**
      * Start content extraction from a file
      */
-    async startExtractionRaw(requestParameters: StartExtractionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartExtractionResponse>> {
+    async startExtractionRaw(requestParameters: StartExtractionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartExtractionResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
@@ -106,16 +105,11 @@ export class ExtractionApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['file'] == null) {
-            throw new runtime.RequiredError(
-                'file',
-                'Required parameter "file" was null or undefined when calling startExtraction().'
-            );
-        }
-
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -125,48 +119,12 @@ export class ExtractionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-        const consumes: runtime.Consume[] = [
-            { contentType: 'multipart/form-data' },
-        ];
-        // @ts-ignore: canConsumeForm may be unused
-        const canConsumeForm = runtime.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): any };
-        let useForm = false;
-        // use FormData to transmit files using content-type "multipart/form-data"
-        useForm = canConsumeForm;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new URLSearchParams();
-        }
-
-        if (requestParameters['file'] != null) {
-            formParams.append('file', requestParameters['file'] as any);
-        }
-
-        if (requestParameters['type'] != null) {
-            formParams.append('type', requestParameters['type'] as any);
-        }
-
-        if (requestParameters['chunkingStrategy'] != null) {
-            formParams.append('chunkingStrategy', requestParameters['chunkingStrategy'] as any);
-        }
-
-        if (requestParameters['chunkSize'] != null) {
-            formParams.append('chunkSize', requestParameters['chunkSize'] as any);
-        }
-
-        if (requestParameters['chunkOverlap'] != null) {
-            formParams.append('chunkOverlap', requestParameters['chunkOverlap'] as any);
-        }
-
         const response = await this.request({
             path: `/org/{organization}/extraction`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: formParams,
+            body: StartExtractionRequestToJSON(requestParameters['startExtractionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => StartExtractionResponseFromJSON(jsonValue));
@@ -175,24 +133,9 @@ export class ExtractionApi extends runtime.BaseAPI {
     /**
      * Start content extraction from a file
      */
-    async startExtraction(requestParameters: StartExtractionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartExtractionResponse> {
+    async startExtraction(requestParameters: StartExtractionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartExtractionResponse> {
         const response = await this.startExtractionRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
 }
-
-/**
- * @export
- */
-export const StartExtractionTypeEnum = {
-    Iris: 'iris'
-} as const;
-export type StartExtractionTypeEnum = typeof StartExtractionTypeEnum[keyof typeof StartExtractionTypeEnum];
-/**
- * @export
- */
-export const StartExtractionChunkingStrategyEnum = {
-    Markdown: 'markdown'
-} as const;
-export type StartExtractionChunkingStrategyEnum = typeof StartExtractionChunkingStrategyEnum[keyof typeof StartExtractionChunkingStrategyEnum];

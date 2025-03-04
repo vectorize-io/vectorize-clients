@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Vectorize API (Beta)
- * API documentation for Vectorize services
+ * API for Vectorize services
  *
  * The version of the OpenAPI document: 0.0.1
  * 
