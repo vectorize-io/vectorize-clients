@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Vectorize API (Beta)
- * API documentation for Vectorize services
+ * API for Vectorize services
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -18,7 +18,8 @@ import type {
   DeleteFileResponse,
   GetPipelines400Response,
   GetUploadFilesResponse,
-  UploadFileResponse,
+  StartFileUploadToConnectorRequest,
+  StartFileUploadToConnectorResponse,
 } from '../models/index';
 import {
     DeleteFileResponseFromJSON,
@@ -27,25 +28,26 @@ import {
     GetPipelines400ResponseToJSON,
     GetUploadFilesResponseFromJSON,
     GetUploadFilesResponseToJSON,
-    UploadFileResponseFromJSON,
-    UploadFileResponseToJSON,
+    StartFileUploadToConnectorRequestFromJSON,
+    StartFileUploadToConnectorRequestToJSON,
+    StartFileUploadToConnectorResponseFromJSON,
+    StartFileUploadToConnectorResponseToJSON,
 } from '../models/index';
 
-export interface DeleteFileRequest {
+export interface DeleteFileFromConnectorRequest {
     organization: string;
     connectorId: string;
 }
 
-export interface GetUploadFilesRequest {
+export interface GetUploadFilesFromConnectorRequest {
     organization: string;
     connectorId: string;
 }
 
-export interface UploadFileRequest {
+export interface StartFileUploadToConnectorOperationRequest {
     organization: string;
     connectorId: string;
-    file: Blob;
-    metadata?: string;
+    startFileUploadToConnectorRequest?: StartFileUploadToConnectorRequest;
 }
 
 /**
@@ -56,18 +58,18 @@ export class UploadsApi extends runtime.BaseAPI {
     /**
      * Delete a file from a file upload connector
      */
-    async deleteFileRaw(requestParameters: DeleteFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFileResponse>> {
+    async deleteFileFromConnectorRaw(requestParameters: DeleteFileFromConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFileResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
-                'Required parameter "organization" was null or undefined when calling deleteFile().'
+                'Required parameter "organization" was null or undefined when calling deleteFileFromConnector().'
             );
         }
 
         if (requestParameters['connectorId'] == null) {
             throw new runtime.RequiredError(
                 'connectorId',
-                'Required parameter "connectorId" was null or undefined when calling deleteFile().'
+                'Required parameter "connectorId" was null or undefined when calling deleteFileFromConnector().'
             );
         }
 
@@ -96,26 +98,26 @@ export class UploadsApi extends runtime.BaseAPI {
     /**
      * Delete a file from a file upload connector
      */
-    async deleteFile(requestParameters: DeleteFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFileResponse> {
-        const response = await this.deleteFileRaw(requestParameters, initOverrides);
+    async deleteFileFromConnector(requestParameters: DeleteFileFromConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteFileResponse> {
+        const response = await this.deleteFileFromConnectorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * Get uploaded files from a file upload connector
      */
-    async getUploadFilesRaw(requestParameters: GetUploadFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUploadFilesResponse>> {
+    async getUploadFilesFromConnectorRaw(requestParameters: GetUploadFilesFromConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUploadFilesResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
-                'Required parameter "organization" was null or undefined when calling getUploadFiles().'
+                'Required parameter "organization" was null or undefined when calling getUploadFilesFromConnector().'
             );
         }
 
         if (requestParameters['connectorId'] == null) {
             throw new runtime.RequiredError(
                 'connectorId',
-                'Required parameter "connectorId" was null or undefined when calling getUploadFiles().'
+                'Required parameter "connectorId" was null or undefined when calling getUploadFilesFromConnector().'
             );
         }
 
@@ -144,39 +146,34 @@ export class UploadsApi extends runtime.BaseAPI {
     /**
      * Get uploaded files from a file upload connector
      */
-    async getUploadFiles(requestParameters: GetUploadFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUploadFilesResponse> {
-        const response = await this.getUploadFilesRaw(requestParameters, initOverrides);
+    async getUploadFilesFromConnector(requestParameters: GetUploadFilesFromConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUploadFilesResponse> {
+        const response = await this.getUploadFilesFromConnectorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * Upload a file to a file upload connector
      */
-    async uploadFileRaw(requestParameters: UploadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFileResponse>> {
+    async startFileUploadToConnectorRaw(requestParameters: StartFileUploadToConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartFileUploadToConnectorResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
-                'Required parameter "organization" was null or undefined when calling uploadFile().'
+                'Required parameter "organization" was null or undefined when calling startFileUploadToConnector().'
             );
         }
 
         if (requestParameters['connectorId'] == null) {
             throw new runtime.RequiredError(
                 'connectorId',
-                'Required parameter "connectorId" was null or undefined when calling uploadFile().'
-            );
-        }
-
-        if (requestParameters['file'] == null) {
-            throw new runtime.RequiredError(
-                'file',
-                'Required parameter "file" was null or undefined when calling uploadFile().'
+                'Required parameter "connectorId" was null or undefined when calling startFileUploadToConnector().'
             );
         }
 
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -186,46 +183,22 @@ export class UploadsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-        const consumes: runtime.Consume[] = [
-            { contentType: 'multipart/form-data' },
-        ];
-        // @ts-ignore: canConsumeForm may be unused
-        const canConsumeForm = runtime.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): any };
-        let useForm = false;
-        // use FormData to transmit files using content-type "multipart/form-data"
-        useForm = canConsumeForm;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new URLSearchParams();
-        }
-
-        if (requestParameters['file'] != null) {
-            formParams.append('file', requestParameters['file'] as any);
-        }
-
-        if (requestParameters['metadata'] != null) {
-            formParams.append('metadata', requestParameters['metadata'] as any);
-        }
-
         const response = await this.request({
             path: `/org/{organization}/uploads/{connectorId}/files`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"connectorId"}}`, encodeURIComponent(String(requestParameters['connectorId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: formParams,
+            body: StartFileUploadToConnectorRequestToJSON(requestParameters['startFileUploadToConnectorRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UploadFileResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => StartFileUploadToConnectorResponseFromJSON(jsonValue));
     }
 
     /**
      * Upload a file to a file upload connector
      */
-    async uploadFile(requestParameters: UploadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadFileResponse> {
-        const response = await this.uploadFileRaw(requestParameters, initOverrides);
+    async startFileUploadToConnector(requestParameters: StartFileUploadToConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartFileUploadToConnectorResponse> {
+        const response = await this.startFileUploadToConnectorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

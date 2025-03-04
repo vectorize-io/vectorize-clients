@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Vectorize API (Beta)
- * API documentation for Vectorize services
+ * API for Vectorize services
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -26,6 +26,7 @@ import type {
   PipelineConfigurationSchema,
   RetrieveDocumentsRequest,
   RetrieveDocumentsResponse,
+  StartDeepResearchRequest,
   StartDeepResearchResponse,
   StartPipelineResponse,
   StopPipelineResponse,
@@ -53,6 +54,8 @@ import {
     RetrieveDocumentsRequestToJSON,
     RetrieveDocumentsResponseFromJSON,
     RetrieveDocumentsResponseToJSON,
+    StartDeepResearchRequestFromJSON,
+    StartDeepResearchRequestToJSON,
     StartDeepResearchResponseFromJSON,
     StartDeepResearchResponseToJSON,
     StartPipelineResponseFromJSON,
@@ -103,9 +106,10 @@ export interface RetrieveDocumentsOperationRequest {
     retrieveDocumentsRequest?: RetrieveDocumentsRequest;
 }
 
-export interface StartDeepResearchRequest {
+export interface StartDeepResearchOperationRequest {
     organization: string;
     pipeline: string;
+    startDeepResearchRequest?: StartDeepResearchRequest;
 }
 
 export interface StartPipelineRequest {
@@ -513,7 +517,7 @@ export class PipelinesApi extends runtime.BaseAPI {
     /**
      * Start a deep research
      */
-    async startDeepResearchRaw(requestParameters: StartDeepResearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartDeepResearchResponse>> {
+    async startDeepResearchRaw(requestParameters: StartDeepResearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartDeepResearchResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
@@ -532,6 +536,8 @@ export class PipelinesApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        headerParameters['Content-Type'] = 'application/json';
+
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
             const tokenString = await token("bearerAuth", []);
@@ -545,6 +551,7 @@ export class PipelinesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
+            body: StartDeepResearchRequestToJSON(requestParameters['startDeepResearchRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => StartDeepResearchResponseFromJSON(jsonValue));
@@ -553,7 +560,7 @@ export class PipelinesApi extends runtime.BaseAPI {
     /**
      * Start a deep research
      */
-    async startDeepResearch(requestParameters: StartDeepResearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartDeepResearchResponse> {
+    async startDeepResearch(requestParameters: StartDeepResearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartDeepResearchResponse> {
         const response = await this.startDeepResearchRaw(requestParameters, initOverrides);
         return await response.value();
     }

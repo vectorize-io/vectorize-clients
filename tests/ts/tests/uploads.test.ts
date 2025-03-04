@@ -3,6 +3,7 @@ import {createTestContext, TestContext} from "./testContext";
 import {ConnectorsApi, PipelinesApi, ResponseError, UploadsApi} from "@vectorize-io/vectorize-client";
 import {pipeline} from "stream";
 import * as os from "node:os";
+import fs from "node:fs";
 
 export let testContext: TestContext;
 
@@ -30,16 +31,30 @@ describe("uploads", () => {
             const sourceConnectorId = await createFileUploadSource(connectorsApi);
             console.log("created source", sourceConnectorId);
 
-            const text = "Hello, this is a test blob!";
-            const blob = new Blob([text], { type: "text/plain" });
-            await uploadsApi.uploadFile({
+            const fileBuffer = fs.readFileSync("tests/research.pdf");
+
+            const uploadResponse = await uploadsApi.startFileUploadToConnector({
                 organization: testContext.orgId,
                 connectorId: sourceConnectorId,
-                file: blob,
-                metadata: JSON.stringify({"mymeta": true})
+                startFileUploadToConnectorRequest: {
+                    name: "research.pdf",
+                    contentType: "application/pdf",
+                    metadata: JSON.stringify({"mymeta": true})
+                }
             })
 
-            let files = await uploadsApi.getUploadFiles({
+            const fetchResponse = await fetch(uploadResponse.uploadUrl, {
+                method: 'PUT',
+                body: fileBuffer,
+                headers: {
+                    'Content-Type': 'application/pdf'
+                },
+            });
+            if (!fetchResponse.ok) {
+                throw new Error(`Failed to upload file: ${fetchResponse.statusText}`);
+            }
+
+            let files = await uploadsApi.getUploadFilesFromConnector({
                 organization: testContext.orgId,
                 connectorId: sourceConnectorId
             });
