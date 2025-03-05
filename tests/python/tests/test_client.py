@@ -74,7 +74,7 @@ def test_upload_create_pipeline(ctx: TestContext):
     if response.status != 200:
         raise ValueError(f"Upload failed:")
     else:
-        print("Upload successful")
+        logging.info("Upload successful")
 
     ai_platforms = connectors_api.get_ai_platform_connectors(ctx.org_id)
     builtin_ai_platform = [c.id for c in ai_platforms.ai_platform_connectors if c.type == "VECTORIZE"][0]
@@ -84,32 +84,44 @@ def test_upload_create_pipeline(ctx: TestContext):
     builtin_vector_db = [c.id for c in vector_databases.destination_connectors if c.type == "VECTORIZE"][0]
     logging.info(f"Using destination connector {builtin_vector_db}")
 
-    response = pipelines.create_pipeline(ctx.org_id, v.PipelineConfigurationSchema(
-        source_connectors=[v.SourceConnectorSchema(id=source_connector_id, type="FILE_UPLOAD", config={})],
-        destination_connector=v.DestinationConnectorSchema(id=builtin_vector_db, type="VECTORIZE", config={}),
-        ai_platform=v.AIPlatformSchema(id=builtin_ai_platform, type="VECTORIZE", config={}),
-        pipeline_name="Test pipeline",
-        schedule=v.ScheduleSchema(type="manual")
-        )
-    )
-    logging.info(f"Created pipeline {response.data.id}")
-    pipeline_id = response.data.id
-    _test_retrieval(ctx, response.data.id)
+    created_pipeline_id = None
+    try:
 
-    response = pipelines.start_deep_research(ctx.org_id, response.data.id, v.StartDeepResearchRequest(
-        query="What is the meaning of life?",
-        web_search=False,
-    ))
-    research_id = response.research_id
-    while True:
-        response = pipelines.get_deep_research_result(ctx.org_id, pipeline_id, research_id)
-        if response.ready:
-            if response.data.success:
-                logging.info(response.data.markdown)
-            else:
-                logging.error(response.data.error)
-            break
-        logging.info(f"not ready {response}")
+        response = pipelines.create_pipeline(ctx.org_id, v.PipelineConfigurationSchema(
+            source_connectors=[v.SourceConnectorSchema(id=source_connector_id, type="FILE_UPLOAD", config={})],
+            destination_connector=v.DestinationConnectorSchema(id=builtin_vector_db, type="VECTORIZE", config={}),
+            ai_platform=v.AIPlatformSchema(id=builtin_ai_platform, type="VECTORIZE", config={}),
+            pipeline_name="Test pipeline",
+            schedule=v.ScheduleSchema(type="manual")
+            )
+        )
+        logging.info(f"Created pipeline {response.data.id}")
+        created_pipeline_id = response.data.id
+        pipeline_id = response.data.id
+        _test_retrieval(ctx, response.data.id)
+
+        response = pipelines.start_deep_research(ctx.org_id, response.data.id, v.StartDeepResearchRequest(
+            query="What is the meaning of life?",
+            web_search=False,
+        ))
+        research_id = response.research_id
+        while True:
+            response = pipelines.get_deep_research_result(ctx.org_id, pipeline_id, research_id)
+            if response.ready:
+                if response.data.success:
+                    assert response.data.markdown
+                    logging.info(response.data.markdown)
+                else:
+                    raise ValueError(f"Research failed: {response.data.error}")
+                break
+            logging.info(f"research not ready {response}")
+    finally:
+        if created_pipeline_id:
+            try:
+                pipelines.delete_pipeline(ctx.org_id, created_pipeline_id)
+            except Exception as e:
+                logging.error(f"Failed to delete pipeline {created_pipeline_id}: {e}")
+
 
 
 def _test_retrieval(ctx: TestContext, pipeline_id: str):

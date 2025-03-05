@@ -185,7 +185,7 @@ export class UploadsApi extends runtime.BaseAPI {
         }
         const response = await this.request({
             path: `/org/{organization}/uploads/{connectorId}/files`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"connectorId"}}`, encodeURIComponent(String(requestParameters['connectorId']))),
-            method: 'POST',
+            method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
             body: StartFileUploadToConnectorRequestToJSON(requestParameters['startFileUploadToConnectorRequest']),
