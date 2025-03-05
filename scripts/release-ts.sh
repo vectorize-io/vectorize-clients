@@ -8,9 +8,10 @@ fi
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
 SRC_DIR=$ROOT_DIR/src
-current_version=$(npm pkg get version | tr -d '"')
+current_version=$(npm pkg get version --prefix $SRC_DIR/ts | tr -d '"')
 
 IFS='.' read -r major minor patch <<< "$current_version"
+echo "Current version: $current_version"
 if [[ $version == "minor" ]]; then
   version="$major.$((minor+1)).0"
 elif [[ $version == "major" ]]; then
@@ -18,6 +19,7 @@ elif [[ $version == "major" ]]; then
 elif [[ $version == "patch" ]]; then
   version="$major.$minor.$((patch+1))"
 fi
+echo "New version: $version"
 if [[ ! $version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   echo "Version must be in the format x.y.z"
   exit 1
