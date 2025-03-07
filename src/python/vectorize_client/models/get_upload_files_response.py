@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.get_upload_files_response_files_inner import GetUploadFilesResponseFilesInner
+from vectorize_client.models.upload_file import UploadFile
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class GetUploadFilesResponse(BaseModel):
     GetUploadFilesResponse
     """ # noqa: E501
     message: StrictStr
-    files: List[GetUploadFilesResponseFilesInner]
+    files: List[UploadFile]
     __properties: ClassVar[List[str]] = ["message", "files"]
 
     model_config = ConfigDict(
@@ -90,7 +90,7 @@ class GetUploadFilesResponse(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "files": [GetUploadFilesResponseFilesInner.from_dict(_item) for _item in obj["files"]] if obj.get("files") is not None else None
+            "files": [UploadFile.from_dict(_item) for _item in obj["files"]] if obj.get("files") is not None else None
         })
         return _obj
 

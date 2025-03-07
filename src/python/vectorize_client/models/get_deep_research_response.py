@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.get_deep_research_response_data import GetDeepResearchResponseData
+from vectorize_client.models.deep_research_result import DeepResearchResult
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class GetDeepResearchResponse(BaseModel):
     GetDeepResearchResponse
     """ # noqa: E501
     ready: StrictBool
-    data: Optional[GetDeepResearchResponseData] = None
+    data: Optional[DeepResearchResult] = None
     __properties: ClassVar[List[str]] = ["ready", "data"]
 
     model_config = ConfigDict(
@@ -86,7 +86,7 @@ class GetDeepResearchResponse(BaseModel):
 
         _obj = cls.model_validate({
             "ready": obj.get("ready"),
-            "data": GetDeepResearchResponseData.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "data": DeepResearchResult.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

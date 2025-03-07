@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ExtractionResultResponseData } from './ExtractionResultResponseData';
+import type { ExtractionResult } from './ExtractionResult';
 import {
-    ExtractionResultResponseDataFromJSON,
-    ExtractionResultResponseDataFromJSONTyped,
-    ExtractionResultResponseDataToJSON,
-    ExtractionResultResponseDataToJSONTyped,
-} from './ExtractionResultResponseData';
+    ExtractionResultFromJSON,
+    ExtractionResultFromJSONTyped,
+    ExtractionResultToJSON,
+    ExtractionResultToJSONTyped,
+} from './ExtractionResult';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface ExtractionResultResponse {
     ready: boolean;
     /**
      * 
-     * @type {ExtractionResultResponseData}
+     * @type {ExtractionResult}
      * @memberof ExtractionResultResponse
      */
-    data?: ExtractionResultResponseData;
+    data?: ExtractionResult;
 }
 
 /**
@@ -60,7 +60,7 @@ export function ExtractionResultResponseFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'ready': json['ready'],
-        'data': json['data'] == null ? undefined : ExtractionResultResponseDataFromJSON(json['data']),
+        'data': json['data'] == null ? undefined : ExtractionResultFromJSON(json['data']),
     };
 }
 
@@ -76,7 +76,7 @@ export function ExtractionResultResponseToJSONTyped(value?: ExtractionResultResp
     return {
         
         'ready': value['ready'],
-        'data': ExtractionResultResponseDataToJSON(value['data']),
+        'data': ExtractionResultToJSON(value['data']),
     };
 }
 

@@ -38,7 +38,7 @@ export interface GetExtractionResultRequest {
 
 export interface StartExtractionOperationRequest {
     organization: string;
-    startExtractionRequest?: StartExtractionRequest;
+    startExtractionRequest: StartExtractionRequest;
 }
 
 /**
@@ -102,6 +102,13 @@ export class ExtractionApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'organization',
                 'Required parameter "organization" was null or undefined when calling startExtraction().'
+            );
+        }
+
+        if (requestParameters['startExtractionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'startExtractionRequest',
+                'Required parameter "startExtractionRequest" was null or undefined when calling startExtraction().'
             );
         }
 

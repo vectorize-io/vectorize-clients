@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { DestinationConnectorType } from './DestinationConnectorType';
+import {
+    DestinationConnectorTypeFromJSON,
+    DestinationConnectorTypeFromJSONTyped,
+    DestinationConnectorTypeToJSON,
+    DestinationConnectorTypeToJSONTyped,
+} from './DestinationConnectorType';
+
 /**
  * 
  * @export
@@ -27,17 +35,19 @@ export interface DestinationConnectorSchema {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {DestinationConnectorType}
      * @memberof DestinationConnectorSchema
      */
-    type: string;
+    type: DestinationConnectorType;
     /**
      * 
-     * @type {object}
+     * @type {{ [key: string]: any | null; }}
      * @memberof DestinationConnectorSchema
      */
-    config: object;
+    config?: { [key: string]: any | null; };
 }
+
+
 
 /**
  * Check if a given object implements the DestinationConnectorSchema interface.
@@ -45,7 +55,6 @@ export interface DestinationConnectorSchema {
 export function instanceOfDestinationConnectorSchema(value: object): value is DestinationConnectorSchema {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('config' in value) || value['config'] === undefined) return false;
     return true;
 }
 
@@ -60,8 +69,8 @@ export function DestinationConnectorSchemaFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'id': json['id'],
-        'type': json['type'],
-        'config': json['config'],
+        'type': DestinationConnectorTypeFromJSON(json['type']),
+        'config': json['config'] == null ? undefined : json['config'],
     };
 }
 
@@ -77,7 +86,7 @@ export function DestinationConnectorSchemaToJSONTyped(value?: DestinationConnect
     return {
         
         'id': value['id'],
-        'type': value['type'],
+        'type': DestinationConnectorTypeToJSON(value['type']),
         'config': value['config'],
     };
 }

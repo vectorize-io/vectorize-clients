@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from vectorize_client.models.schedule_schema_type import ScheduleSchemaType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,15 +27,8 @@ class ScheduleSchema(BaseModel):
     """
     ScheduleSchema
     """ # noqa: E501
-    type: StrictStr
+    type: ScheduleSchemaType
     __properties: ClassVar[List[str]] = ["type"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['manual', 'realtime', 'custom']):
-            raise ValueError("must be one of enum values ('manual', 'realtime', 'custom')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

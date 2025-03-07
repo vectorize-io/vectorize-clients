@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CreateSourceConnectorResponseConnectorsInner } from './CreateSourceConnectorResponseConnectorsInner';
+import type { CreatedSourceConnector } from './CreatedSourceConnector';
 import {
-    CreateSourceConnectorResponseConnectorsInnerFromJSON,
-    CreateSourceConnectorResponseConnectorsInnerFromJSONTyped,
-    CreateSourceConnectorResponseConnectorsInnerToJSON,
-    CreateSourceConnectorResponseConnectorsInnerToJSONTyped,
-} from './CreateSourceConnectorResponseConnectorsInner';
+    CreatedSourceConnectorFromJSON,
+    CreatedSourceConnectorFromJSONTyped,
+    CreatedSourceConnectorToJSON,
+    CreatedSourceConnectorToJSONTyped,
+} from './CreatedSourceConnector';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface CreateSourceConnectorResponse {
     message: string;
     /**
      * 
-     * @type {Array<CreateSourceConnectorResponseConnectorsInner>}
+     * @type {Array<CreatedSourceConnector>}
      * @memberof CreateSourceConnectorResponse
      */
-    connectors: Array<CreateSourceConnectorResponseConnectorsInner>;
+    connectors: Array<CreatedSourceConnector>;
 }
 
 /**
@@ -61,7 +61,7 @@ export function CreateSourceConnectorResponseFromJSONTyped(json: any, ignoreDisc
     return {
         
         'message': json['message'],
-        'connectors': ((json['connectors'] as Array<any>).map(CreateSourceConnectorResponseConnectorsInnerFromJSON)),
+        'connectors': ((json['connectors'] as Array<any>).map(CreatedSourceConnectorFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function CreateSourceConnectorResponseToJSONTyped(value?: CreateSourceCon
     return {
         
         'message': value['message'],
-        'connectors': ((value['connectors'] as Array<any>).map(CreateSourceConnectorResponseConnectorsInnerToJSON)),
+        'connectors': ((value['connectors'] as Array<any>).map(CreatedSourceConnectorToJSON)),
     };
 }
 

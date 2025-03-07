@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GetDeepResearchResponseData } from './GetDeepResearchResponseData';
+import type { DeepResearchResult } from './DeepResearchResult';
 import {
-    GetDeepResearchResponseDataFromJSON,
-    GetDeepResearchResponseDataFromJSONTyped,
-    GetDeepResearchResponseDataToJSON,
-    GetDeepResearchResponseDataToJSONTyped,
-} from './GetDeepResearchResponseData';
+    DeepResearchResultFromJSON,
+    DeepResearchResultFromJSONTyped,
+    DeepResearchResultToJSON,
+    DeepResearchResultToJSONTyped,
+} from './DeepResearchResult';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface GetDeepResearchResponse {
     ready: boolean;
     /**
      * 
-     * @type {GetDeepResearchResponseData}
+     * @type {DeepResearchResult}
      * @memberof GetDeepResearchResponse
      */
-    data?: GetDeepResearchResponseData;
+    data?: DeepResearchResult;
 }
 
 /**
@@ -60,7 +60,7 @@ export function GetDeepResearchResponseFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'ready': json['ready'],
-        'data': json['data'] == null ? undefined : GetDeepResearchResponseDataFromJSON(json['data']),
+        'data': json['data'] == null ? undefined : DeepResearchResultFromJSON(json['data']),
     };
 }
 
@@ -76,7 +76,7 @@ export function GetDeepResearchResponseToJSONTyped(value?: GetDeepResearchRespon
     return {
         
         'ready': value['ready'],
-        'data': GetDeepResearchResponseDataToJSON(value['data']),
+        'data': DeepResearchResultToJSON(value['data']),
     };
 }
 

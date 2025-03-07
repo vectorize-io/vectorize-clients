@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UpdateAIPlatformConnectorRequestData } from './UpdateAIPlatformConnectorRequestData';
-import {
-    UpdateAIPlatformConnectorRequestDataFromJSON,
-    UpdateAIPlatformConnectorRequestDataFromJSONTyped,
-    UpdateAIPlatformConnectorRequestDataToJSON,
-    UpdateAIPlatformConnectorRequestDataToJSONTyped,
-} from './UpdateAIPlatformConnectorRequestData';
-
 /**
  * 
  * @export
@@ -29,24 +21,17 @@ import {
 export interface UpdateAIPlatformConnectorRequest {
     /**
      * 
-     * @type {string}
+     * @type {{ [key: string]: any | null; }}
      * @memberof UpdateAIPlatformConnectorRequest
      */
-    message: string;
-    /**
-     * 
-     * @type {UpdateAIPlatformConnectorRequestData}
-     * @memberof UpdateAIPlatformConnectorRequest
-     */
-    data: UpdateAIPlatformConnectorRequestData;
+    config: { [key: string]: any | null; };
 }
 
 /**
  * Check if a given object implements the UpdateAIPlatformConnectorRequest interface.
  */
 export function instanceOfUpdateAIPlatformConnectorRequest(value: object): value is UpdateAIPlatformConnectorRequest {
-    if (!('message' in value) || value['message'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('config' in value) || value['config'] === undefined) return false;
     return true;
 }
 
@@ -60,8 +45,7 @@ export function UpdateAIPlatformConnectorRequestFromJSONTyped(json: any, ignoreD
     }
     return {
         
-        'message': json['message'],
-        'data': UpdateAIPlatformConnectorRequestDataFromJSON(json['data']),
+        'config': json['config'],
     };
 }
 
@@ -76,8 +60,7 @@ export function UpdateAIPlatformConnectorRequestToJSONTyped(value?: UpdateAIPlat
 
     return {
         
-        'message': value['message'],
-        'data': UpdateAIPlatformConnectorRequestDataToJSON(value['data']),
+        'config': value['config'],
     };
 }
 

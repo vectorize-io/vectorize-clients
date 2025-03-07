@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.create_source_connector_response_connectors_inner import CreateSourceConnectorResponseConnectorsInner
+from vectorize_client.models.created_ai_platform_connector import CreatedAIPlatformConnector
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class CreateAIPlatformConnectorResponse(BaseModel):
     CreateAIPlatformConnectorResponse
     """ # noqa: E501
     message: StrictStr
-    connectors: List[CreateSourceConnectorResponseConnectorsInner]
+    connectors: List[CreatedAIPlatformConnector]
     __properties: ClassVar[List[str]] = ["message", "connectors"]
 
     model_config = ConfigDict(
@@ -90,7 +90,7 @@ class CreateAIPlatformConnectorResponse(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "connectors": [CreateSourceConnectorResponseConnectorsInner.from_dict(_item) for _item in obj["connectors"]] if obj.get("connectors") is not None else None
+            "connectors": [CreatedAIPlatformConnector.from_dict(_item) for _item in obj["connectors"]] if obj.get("connectors") is not None else None
         })
         return _obj
 

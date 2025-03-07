@@ -13,6 +13,21 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ExtractionType } from './ExtractionType';
+import {
+    ExtractionTypeFromJSON,
+    ExtractionTypeFromJSONTyped,
+    ExtractionTypeToJSON,
+    ExtractionTypeToJSONTyped,
+} from './ExtractionType';
+import type { ExtractionChunkingStrategy } from './ExtractionChunkingStrategy';
+import {
+    ExtractionChunkingStrategyFromJSON,
+    ExtractionChunkingStrategyFromJSONTyped,
+    ExtractionChunkingStrategyToJSON,
+    ExtractionChunkingStrategyToJSONTyped,
+} from './ExtractionChunkingStrategy';
+
 /**
  * 
  * @export
@@ -27,16 +42,16 @@ export interface StartExtractionRequest {
     fileId: string;
     /**
      * 
-     * @type {string}
+     * @type {ExtractionType}
      * @memberof StartExtractionRequest
      */
-    type?: StartExtractionRequestTypeEnum;
+    type?: ExtractionType;
     /**
      * 
-     * @type {string}
+     * @type {ExtractionChunkingStrategy}
      * @memberof StartExtractionRequest
      */
-    chunkingStrategy?: StartExtractionRequestChunkingStrategyEnum;
+    chunkingStrategy?: ExtractionChunkingStrategy;
     /**
      * 
      * @type {number}
@@ -45,22 +60,6 @@ export interface StartExtractionRequest {
     chunkSize?: number;
 }
 
-
-/**
- * @export
- */
-export const StartExtractionRequestTypeEnum = {
-    Iris: 'iris'
-} as const;
-export type StartExtractionRequestTypeEnum = typeof StartExtractionRequestTypeEnum[keyof typeof StartExtractionRequestTypeEnum];
-
-/**
- * @export
- */
-export const StartExtractionRequestChunkingStrategyEnum = {
-    Markdown: 'markdown'
-} as const;
-export type StartExtractionRequestChunkingStrategyEnum = typeof StartExtractionRequestChunkingStrategyEnum[keyof typeof StartExtractionRequestChunkingStrategyEnum];
 
 
 /**
@@ -82,8 +81,8 @@ export function StartExtractionRequestFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'fileId': json['fileId'],
-        'type': json['type'] == null ? undefined : json['type'],
-        'chunkingStrategy': json['chunkingStrategy'] == null ? undefined : json['chunkingStrategy'],
+        'type': json['type'] == null ? undefined : ExtractionTypeFromJSON(json['type']),
+        'chunkingStrategy': json['chunkingStrategy'] == null ? undefined : ExtractionChunkingStrategyFromJSON(json['chunkingStrategy']),
         'chunkSize': json['chunkSize'] == null ? undefined : json['chunkSize'],
     };
 }
@@ -100,8 +99,8 @@ export function StartExtractionRequestToJSONTyped(value?: StartExtractionRequest
     return {
         
         'fileId': value['fileId'],
-        'type': value['type'],
-        'chunkingStrategy': value['chunkingStrategy'],
+        'type': ExtractionTypeToJSON(value['type']),
+        'chunkingStrategy': ExtractionChunkingStrategyToJSON(value['chunkingStrategy']),
         'chunkSize': value['chunkSize'],
     };
 }

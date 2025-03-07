@@ -17,9 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.update_source_connector_request_data import UpdateSourceConnectorRequestData
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,9 +26,8 @@ class UpdateSourceConnectorRequest(BaseModel):
     """
     UpdateSourceConnectorRequest
     """ # noqa: E501
-    message: StrictStr
-    data: UpdateSourceConnectorRequestData
-    __properties: ClassVar[List[str]] = ["message", "data"]
+    config: Dict[str, Any]
+    __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,9 +68,6 @@ class UpdateSourceConnectorRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of data
-        if self.data:
-            _dict['data'] = self.data.to_dict()
         return _dict
 
     @classmethod
@@ -85,8 +80,7 @@ class UpdateSourceConnectorRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "message": obj.get("message"),
-            "data": UpdateSourceConnectorRequestData.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "config": obj.get("config")
         })
         return _obj
 

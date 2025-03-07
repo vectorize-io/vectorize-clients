@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
-from vectorize_client.models.retrieve_documents_request_context import RetrieveDocumentsRequestContext
+from vectorize_client.models.retrieve_context import RetrieveContext
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +32,7 @@ class RetrieveDocumentsRequest(BaseModel):
     num_results: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]] = Field(alias="numResults")
     rerank: Optional[StrictBool] = True
     metadata_filters: Optional[List[Dict[str, Any]]] = Field(default=None, alias="metadata-filters")
-    context: Optional[RetrieveDocumentsRequestContext] = None
+    context: Optional[RetrieveContext] = None
     __properties: ClassVar[List[str]] = ["question", "numResults", "rerank", "metadata-filters", "context"]
 
     model_config = ConfigDict(
@@ -93,7 +93,7 @@ class RetrieveDocumentsRequest(BaseModel):
             "numResults": obj.get("numResults"),
             "rerank": obj.get("rerank") if obj.get("rerank") is not None else True,
             "metadata-filters": obj.get("metadata-filters"),
-            "context": RetrieveDocumentsRequestContext.from_dict(obj["context"]) if obj.get("context") is not None else None
+            "context": RetrieveContext.from_dict(obj["context"]) if obj.get("context") is not None else None
         })
         return _obj
 

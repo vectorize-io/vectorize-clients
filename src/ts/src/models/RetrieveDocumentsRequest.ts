@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RetrieveDocumentsRequestContext } from './RetrieveDocumentsRequestContext';
+import type { RetrieveContext } from './RetrieveContext';
 import {
-    RetrieveDocumentsRequestContextFromJSON,
-    RetrieveDocumentsRequestContextFromJSONTyped,
-    RetrieveDocumentsRequestContextToJSON,
-    RetrieveDocumentsRequestContextToJSONTyped,
-} from './RetrieveDocumentsRequestContext';
+    RetrieveContextFromJSON,
+    RetrieveContextFromJSONTyped,
+    RetrieveContextToJSON,
+    RetrieveContextToJSONTyped,
+} from './RetrieveContext';
 
 /**
  * 
@@ -53,10 +53,10 @@ export interface RetrieveDocumentsRequest {
     metadataFilters?: Array<{ [key: string]: any | null; }>;
     /**
      * 
-     * @type {RetrieveDocumentsRequestContext}
+     * @type {RetrieveContext}
      * @memberof RetrieveDocumentsRequest
      */
-    context?: RetrieveDocumentsRequestContext;
+    context?: RetrieveContext;
 }
 
 /**
@@ -82,7 +82,7 @@ export function RetrieveDocumentsRequestFromJSONTyped(json: any, ignoreDiscrimin
         'numResults': json['numResults'],
         'rerank': json['rerank'] == null ? undefined : json['rerank'],
         'metadataFilters': json['metadata-filters'] == null ? undefined : json['metadata-filters'],
-        'context': json['context'] == null ? undefined : RetrieveDocumentsRequestContextFromJSON(json['context']),
+        'context': json['context'] == null ? undefined : RetrieveContextFromJSON(json['context']),
     };
 }
 
@@ -101,7 +101,7 @@ export function RetrieveDocumentsRequestToJSONTyped(value?: RetrieveDocumentsReq
         'numResults': value['numResults'],
         'rerank': value['rerank'],
         'metadata-filters': value['metadataFilters'],
-        'context': RetrieveDocumentsRequestContextToJSON(value['context']),
+        'context': RetrieveContextToJSON(value['context']),
     };
 }
 

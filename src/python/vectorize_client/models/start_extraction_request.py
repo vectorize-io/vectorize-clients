@@ -17,8 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from vectorize_client.models.extraction_chunking_strategy import ExtractionChunkingStrategy
+from vectorize_client.models.extraction_type import ExtractionType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,30 +29,10 @@ class StartExtractionRequest(BaseModel):
     StartExtractionRequest
     """ # noqa: E501
     file_id: StrictStr = Field(alias="fileId")
-    type: Optional[StrictStr] = 'iris'
-    chunking_strategy: Optional[StrictStr] = Field(default='markdown', alias="chunkingStrategy")
+    type: Optional[ExtractionType] = ExtractionType.IRIS
+    chunking_strategy: Optional[ExtractionChunkingStrategy] = Field(default=ExtractionChunkingStrategy.MARKDOWN, alias="chunkingStrategy")
     chunk_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=256, alias="chunkSize")
     __properties: ClassVar[List[str]] = ["fileId", "type", "chunkingStrategy", "chunkSize"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['iris']):
-            raise ValueError("must be one of enum values ('iris')")
-        return value
-
-    @field_validator('chunking_strategy')
-    def chunking_strategy_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['markdown']):
-            raise ValueError("must be one of enum values ('markdown')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -104,8 +86,8 @@ class StartExtractionRequest(BaseModel):
 
         _obj = cls.model_validate({
             "fileId": obj.get("fileId"),
-            "type": obj.get("type") if obj.get("type") is not None else 'iris',
-            "chunkingStrategy": obj.get("chunkingStrategy") if obj.get("chunkingStrategy") is not None else 'markdown',
+            "type": obj.get("type") if obj.get("type") is not None else ExtractionType.IRIS,
+            "chunkingStrategy": obj.get("chunkingStrategy") if obj.get("chunkingStrategy") is not None else ExtractionChunkingStrategy.MARKDOWN,
             "chunkSize": obj.get("chunkSize") if obj.get("chunkSize") is not None else 256
         })
         return _obj

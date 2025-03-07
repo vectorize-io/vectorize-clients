@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GetPipelineEventsResponseDataInner } from './GetPipelineEventsResponseDataInner';
+import type { PipelineEvents } from './PipelineEvents';
 import {
-    GetPipelineEventsResponseDataInnerFromJSON,
-    GetPipelineEventsResponseDataInnerFromJSONTyped,
-    GetPipelineEventsResponseDataInnerToJSON,
-    GetPipelineEventsResponseDataInnerToJSONTyped,
-} from './GetPipelineEventsResponseDataInner';
+    PipelineEventsFromJSON,
+    PipelineEventsFromJSONTyped,
+    PipelineEventsToJSON,
+    PipelineEventsToJSONTyped,
+} from './PipelineEvents';
 
 /**
  * 
@@ -41,10 +41,10 @@ export interface GetPipelineEventsResponse {
     nextToken?: string;
     /**
      * 
-     * @type {Array<GetPipelineEventsResponseDataInner>}
+     * @type {Array<PipelineEvents>}
      * @memberof GetPipelineEventsResponse
      */
-    data: Array<GetPipelineEventsResponseDataInner>;
+    data: Array<PipelineEvents>;
 }
 
 /**
@@ -68,7 +68,7 @@ export function GetPipelineEventsResponseFromJSONTyped(json: any, ignoreDiscrimi
         
         'message': json['message'],
         'nextToken': json['nextToken'] == null ? undefined : json['nextToken'],
-        'data': ((json['data'] as Array<any>).map(GetPipelineEventsResponseDataInnerFromJSON)),
+        'data': ((json['data'] as Array<any>).map(PipelineEventsFromJSON)),
     };
 }
 
@@ -85,7 +85,7 @@ export function GetPipelineEventsResponseToJSONTyped(value?: GetPipelineEventsRe
         
         'message': value['message'],
         'nextToken': value['nextToken'],
-        'data': ((value['data'] as Array<any>).map(GetPipelineEventsResponseDataInnerToJSON)),
+        'data': ((value['data'] as Array<any>).map(PipelineEventsToJSON)),
     };
 }
 

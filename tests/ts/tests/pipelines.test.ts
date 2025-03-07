@@ -1,9 +1,16 @@
 import {beforeEach, describe, it, expect} from "vitest";
 import {createTestContext, TestContext} from "./testContext";
-import {ConnectorsApi, PipelinesApi, ResponseError} from "@vectorize-io/vectorize-client";
+import {
+    ConnectorsApi,
+    type CreateSourceConnector,
+    PipelinesApi,
+    ResponseError,
+    SourceConnectorType
+} from "@vectorize-io/vectorize-client";
 import {pipeline} from "stream";
 import * as os from "node:os";
 import exp from "node:constants";
+import {AIPlatformType, DestinationConnectorType} from "@vectorize-io/vectorize-client/src";
 
 export let testContext: TestContext;
 
@@ -30,11 +37,19 @@ async function findAIPlatformVectorizeConnector(connectorsApi: ConnectorsApi) {
 async function createWebCrawlerSource(connectorsApi: ConnectorsApi) {
     let sourceResponse = await connectorsApi.createSourceConnector({
         organization: testContext.orgId,
-        requestBody: [
-            {type: "WEB_CRAWLER", name: "from api", "seed-urls": ["https://docs.vectorize.io"]}
+        createSourceConnector: [
+            {type: SourceConnectorType.WebCrawler, name: "from api", config: {"seed-urls": ["https://docs.vectorize.io"]}}
         ]
     });
     const sourceConnectorId = sourceResponse.connectors[0].id;
+    await connectorsApi.updateSourceConnector({
+            organization: testContext.orgId,
+        sourceConnectorId,
+            updateSourceConnectorRequest: {
+                config: {"seed-urls": ["https://docs.vectorize.io", "https://vectorize.io"]}
+            }
+        }
+    );
     return sourceConnectorId;
 }
 
@@ -43,15 +58,15 @@ async function deployPipeline(pipelinesApi: PipelinesApi, sourceConnectorId: str
         organization: testContext.orgId,
         pipelineConfigurationSchema: {
             pipelineName: "from api",
-            sourceConnectors: [{id: sourceConnectorId, type: "WEB_CRAWLER", config: {}}],
+            sourceConnectors: [{id: sourceConnectorId, type: SourceConnectorType.WebCrawler, config: {}}],
             destinationConnector: {
                 id: destinationConnectorId,
-                type: "VECTORIZE",
+                type: DestinationConnectorType.Vectorize,
                 config: {}
             },
             aiPlatform: {
                 id: aiPlatformId,
-                type: "VECTORIZE",
+                type: AIPlatformType.Vectorize,
                 config: {}
             },
             schedule: {type: "manual"}

@@ -17,11 +17,16 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-from typing import Any, Dict, List, Optional
+from typing import List
 from typing_extensions import Annotated
 from vectorize_client.models.ai_platform import AIPlatform
+from vectorize_client.models.add_user_from_source_connector_response import AddUserFromSourceConnectorResponse
+from vectorize_client.models.add_user_to_source_connector_request import AddUserToSourceConnectorRequest
+from vectorize_client.models.create_ai_platform_connector import CreateAIPlatformConnector
 from vectorize_client.models.create_ai_platform_connector_response import CreateAIPlatformConnectorResponse
+from vectorize_client.models.create_destination_connector import CreateDestinationConnector
 from vectorize_client.models.create_destination_connector_response import CreateDestinationConnectorResponse
+from vectorize_client.models.create_source_connector import CreateSourceConnector
 from vectorize_client.models.create_source_connector_response import CreateSourceConnectorResponse
 from vectorize_client.models.delete_ai_platform_connector_response import DeleteAIPlatformConnectorResponse
 from vectorize_client.models.delete_destination_connector_response import DeleteDestinationConnectorResponse
@@ -30,10 +35,17 @@ from vectorize_client.models.destination_connector import DestinationConnector
 from vectorize_client.models.get_ai_platform_connectors200_response import GetAIPlatformConnectors200Response
 from vectorize_client.models.get_destination_connectors200_response import GetDestinationConnectors200Response
 from vectorize_client.models.get_source_connectors200_response import GetSourceConnectors200Response
+from vectorize_client.models.remove_user_from_source_connector_request import RemoveUserFromSourceConnectorRequest
+from vectorize_client.models.remove_user_from_source_connector_response import RemoveUserFromSourceConnectorResponse
 from vectorize_client.models.source_connector import SourceConnector
 from vectorize_client.models.update_ai_platform_connector_request import UpdateAIPlatformConnectorRequest
-from vectorize_client.models.update_destination_connector200_response import UpdateDestinationConnector200Response
+from vectorize_client.models.update_ai_platform_connector_response import UpdateAIPlatformConnectorResponse
+from vectorize_client.models.update_destination_connector_request import UpdateDestinationConnectorRequest
+from vectorize_client.models.update_destination_connector_response import UpdateDestinationConnectorResponse
 from vectorize_client.models.update_source_connector_request import UpdateSourceConnectorRequest
+from vectorize_client.models.update_source_connector_response import UpdateSourceConnectorResponse
+from vectorize_client.models.update_user_in_source_connector_request import UpdateUserInSourceConnectorRequest
+from vectorize_client.models.update_user_in_source_connector_response import UpdateUserInSourceConnectorResponse
 
 from vectorize_client.api_client import ApiClient, RequestSerialized
 from vectorize_client.api_response import ApiResponse
@@ -54,10 +66,326 @@ class ConnectorsApi:
 
 
     @validate_call
+    def add_user_to_source_connector(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        add_user_to_source_connector_request: AddUserToSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AddUserFromSourceConnectorResponse:
+        """Add a user to a source connector
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param add_user_to_source_connector_request: (required)
+        :type add_user_to_source_connector_request: AddUserToSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._add_user_to_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            add_user_to_source_connector_request=add_user_to_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AddUserFromSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def add_user_to_source_connector_with_http_info(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        add_user_to_source_connector_request: AddUserToSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AddUserFromSourceConnectorResponse]:
+        """Add a user to a source connector
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param add_user_to_source_connector_request: (required)
+        :type add_user_to_source_connector_request: AddUserToSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._add_user_to_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            add_user_to_source_connector_request=add_user_to_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AddUserFromSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def add_user_to_source_connector_without_preload_content(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        add_user_to_source_connector_request: AddUserToSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Add a user to a source connector
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param add_user_to_source_connector_request: (required)
+        :type add_user_to_source_connector_request: AddUserToSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._add_user_to_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            add_user_to_source_connector_request=add_user_to_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AddUserFromSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _add_user_to_source_connector_serialize(
+        self,
+        organization,
+        source_connector_id,
+        add_user_to_source_connector_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization is not None:
+            _path_params['organization'] = organization
+        if source_connector_id is not None:
+            _path_params['sourceConnectorId'] = source_connector_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if add_user_to_source_connector_request is not None:
+            _body_params = add_user_to_source_connector_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/org/{organization}/connectors/sources/{sourceConnectorId}/users',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_ai_platform_connector(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_ai_platform_connector: Annotated[List[CreateAIPlatformConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -71,13 +399,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreateAIPlatformConnectorResponse:
-        """Create a new AI Platform connector
+        """Create a new AI Platform connector. Config values: Amazon Bedrock (BEDROCK):  Name (name): text, Access Key (access-key): text, Secret Key (key): text) | Google Vertex AI (VERTEX):  Name (name): text, Service Account Json (key): textarea, Region (region): text) | OpenAI (OPENAI):  Name (name): text, API Key (key): text) | Voyage AI (VOYAGE):  Name (name): text, API Key (key): text) | Built-in (VECTORIZE):  )
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_ai_platform_connector: (required)
+        :type create_ai_platform_connector: List[CreateAIPlatformConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -102,7 +430,7 @@ class ConnectorsApi:
 
         _param = self._create_ai_platform_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_ai_platform_connector=create_ai_platform_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -132,7 +460,7 @@ class ConnectorsApi:
     def create_ai_platform_connector_with_http_info(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_ai_platform_connector: Annotated[List[CreateAIPlatformConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -146,13 +474,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreateAIPlatformConnectorResponse]:
-        """Create a new AI Platform connector
+        """Create a new AI Platform connector. Config values: Amazon Bedrock (BEDROCK):  Name (name): text, Access Key (access-key): text, Secret Key (key): text) | Google Vertex AI (VERTEX):  Name (name): text, Service Account Json (key): textarea, Region (region): text) | OpenAI (OPENAI):  Name (name): text, API Key (key): text) | Voyage AI (VOYAGE):  Name (name): text, API Key (key): text) | Built-in (VECTORIZE):  )
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_ai_platform_connector: (required)
+        :type create_ai_platform_connector: List[CreateAIPlatformConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -177,7 +505,7 @@ class ConnectorsApi:
 
         _param = self._create_ai_platform_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_ai_platform_connector=create_ai_platform_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -207,7 +535,7 @@ class ConnectorsApi:
     def create_ai_platform_connector_without_preload_content(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_ai_platform_connector: Annotated[List[CreateAIPlatformConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -221,13 +549,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create a new AI Platform connector
+        """Create a new AI Platform connector. Config values: Amazon Bedrock (BEDROCK):  Name (name): text, Access Key (access-key): text, Secret Key (key): text) | Google Vertex AI (VERTEX):  Name (name): text, Service Account Json (key): textarea, Region (region): text) | OpenAI (OPENAI):  Name (name): text, API Key (key): text) | Voyage AI (VOYAGE):  Name (name): text, API Key (key): text) | Built-in (VECTORIZE):  )
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_ai_platform_connector: (required)
+        :type create_ai_platform_connector: List[CreateAIPlatformConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -252,7 +580,7 @@ class ConnectorsApi:
 
         _param = self._create_ai_platform_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_ai_platform_connector=create_ai_platform_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -277,7 +605,7 @@ class ConnectorsApi:
     def _create_ai_platform_connector_serialize(
         self,
         organization,
-        request_body,
+        create_ai_platform_connector,
         _request_auth,
         _content_type,
         _headers,
@@ -287,7 +615,7 @@ class ConnectorsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            'request_body': '',
+            'CreateAIPlatformConnector': '',
         }
 
         _path_params: Dict[str, str] = {}
@@ -306,8 +634,8 @@ class ConnectorsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if request_body is not None:
-            _body_params = request_body
+        if create_ai_platform_connector is not None:
+            _body_params = create_ai_platform_connector
 
 
         # set the HTTP header `Accept`
@@ -359,7 +687,7 @@ class ConnectorsApi:
     def create_destination_connector(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_destination_connector: Annotated[List[CreateDestinationConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -373,13 +701,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreateDestinationConnectorResponse:
-        """Create a new destination connector
+        """Create a new destination connector. Config values: Couchbase Capella (CAPELLA):  Name (name): text, Cluster Access Name (username): text, Cluster Access Password (password): text, Connection String (connection-string): text) | DataStax Astra (DATASTAX):  Name (name): text, API Endpoint (endpoint_secret): text, Application Token (token): text) | Elasticsearch (ELASTIC):  Name (name): text, Host (host): text, Port (port): text, API Key (api-key): text) | Pinecone (PINECONE):  Name (name): text, API Key (api-key): text) | SingleStore (SINGLESTORE):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Milvus (MILVUS):  Name (name): text, Public Endpoint (url): text, Token (token): text, Username (username): text, Password (password): text) | PostgreSQL (POSTGRESQL):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Qdrant (QDRANT):  Name (name): text, Host (host): text, API Key (api-key): text) | Weaviate (WEAVIATE):  Name (name): text, Endpoint (host): text, API Key (api-key): text) | Azure AI Search (AZUREAISEARCH):  Name (name): text, Azure AI Search Service Name (service-name): text, API Key (api-key): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Name (name): text, API Key (apiKey): text) | MongoDB (MONGODB):  Name (name): text, API Key (apiKey): text)
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_destination_connector: (required)
+        :type create_destination_connector: List[CreateDestinationConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -404,7 +732,7 @@ class ConnectorsApi:
 
         _param = self._create_destination_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_destination_connector=create_destination_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -434,7 +762,7 @@ class ConnectorsApi:
     def create_destination_connector_with_http_info(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_destination_connector: Annotated[List[CreateDestinationConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -448,13 +776,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreateDestinationConnectorResponse]:
-        """Create a new destination connector
+        """Create a new destination connector. Config values: Couchbase Capella (CAPELLA):  Name (name): text, Cluster Access Name (username): text, Cluster Access Password (password): text, Connection String (connection-string): text) | DataStax Astra (DATASTAX):  Name (name): text, API Endpoint (endpoint_secret): text, Application Token (token): text) | Elasticsearch (ELASTIC):  Name (name): text, Host (host): text, Port (port): text, API Key (api-key): text) | Pinecone (PINECONE):  Name (name): text, API Key (api-key): text) | SingleStore (SINGLESTORE):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Milvus (MILVUS):  Name (name): text, Public Endpoint (url): text, Token (token): text, Username (username): text, Password (password): text) | PostgreSQL (POSTGRESQL):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Qdrant (QDRANT):  Name (name): text, Host (host): text, API Key (api-key): text) | Weaviate (WEAVIATE):  Name (name): text, Endpoint (host): text, API Key (api-key): text) | Azure AI Search (AZUREAISEARCH):  Name (name): text, Azure AI Search Service Name (service-name): text, API Key (api-key): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Name (name): text, API Key (apiKey): text) | MongoDB (MONGODB):  Name (name): text, API Key (apiKey): text)
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_destination_connector: (required)
+        :type create_destination_connector: List[CreateDestinationConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -479,7 +807,7 @@ class ConnectorsApi:
 
         _param = self._create_destination_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_destination_connector=create_destination_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -509,7 +837,7 @@ class ConnectorsApi:
     def create_destination_connector_without_preload_content(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_destination_connector: Annotated[List[CreateDestinationConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -523,13 +851,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create a new destination connector
+        """Create a new destination connector. Config values: Couchbase Capella (CAPELLA):  Name (name): text, Cluster Access Name (username): text, Cluster Access Password (password): text, Connection String (connection-string): text) | DataStax Astra (DATASTAX):  Name (name): text, API Endpoint (endpoint_secret): text, Application Token (token): text) | Elasticsearch (ELASTIC):  Name (name): text, Host (host): text, Port (port): text, API Key (api-key): text) | Pinecone (PINECONE):  Name (name): text, API Key (api-key): text) | SingleStore (SINGLESTORE):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Milvus (MILVUS):  Name (name): text, Public Endpoint (url): text, Token (token): text, Username (username): text, Password (password): text) | PostgreSQL (POSTGRESQL):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Qdrant (QDRANT):  Name (name): text, Host (host): text, API Key (api-key): text) | Weaviate (WEAVIATE):  Name (name): text, Endpoint (host): text, API Key (api-key): text) | Azure AI Search (AZUREAISEARCH):  Name (name): text, Azure AI Search Service Name (service-name): text, API Key (api-key): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Name (name): text, API Key (apiKey): text) | MongoDB (MONGODB):  Name (name): text, API Key (apiKey): text)
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_destination_connector: (required)
+        :type create_destination_connector: List[CreateDestinationConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -554,7 +882,7 @@ class ConnectorsApi:
 
         _param = self._create_destination_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_destination_connector=create_destination_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -579,7 +907,7 @@ class ConnectorsApi:
     def _create_destination_connector_serialize(
         self,
         organization,
-        request_body,
+        create_destination_connector,
         _request_auth,
         _content_type,
         _headers,
@@ -589,7 +917,7 @@ class ConnectorsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            'request_body': '',
+            'CreateDestinationConnector': '',
         }
 
         _path_params: Dict[str, str] = {}
@@ -608,8 +936,8 @@ class ConnectorsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if request_body is not None:
-            _body_params = request_body
+        if create_destination_connector is not None:
+            _body_params = create_destination_connector
 
 
         # set the HTTP header `Accept`
@@ -661,7 +989,7 @@ class ConnectorsApi:
     def create_source_connector(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_source_connector: Annotated[List[CreateSourceConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -675,13 +1003,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreateSourceConnectorResponse:
-        """Create a new source connector
+        """Create a new source connector. Config values: Amazon S3 (AWS_S3):  Name (name): text, Access Key (access-key): text, Secret Key (secret-key): text, Bucket Name (bucket-name): text, Endpoint (endpoint): url, Region (region): text, Allow as archive destination (archiver): boolean) | Azure Blob Storage (AZURE_BLOB):  Name (name): text, Storage Account Name (storage-account-name): text, Storage Account Key (storage-account-key): text, Container (container): text, Endpoint (endpoint): url) | Confluence (CONFLUENCE):  Name (name): text, Username (username): text, API Token (api-token): text, Domain (domain): text) | Discord (DISCORD):  Name (name): text, Server ID (guild-id): text, Bot token (bot-token): text, Channel ID (channel-ids): array oftext) | Dropbox (DROPBOX):  Name (name): text) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Name (name): text) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Name (name): text) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Name (name): text, OAuth2 Client Id (oauth2-client-id): text, OAuth2 Client Secret (oauth2-client-secret): text) | Firecrawl (FIRECRAWL):  Name (name): text, API Key (api-key): text) | GCP Cloud Storage (GCS):  Name (name): text, Service Account JSON (service-account-json): textarea, Bucket (bucket-name): text) | Google Drive (GOOGLE_DRIVE):  Name (name): text, Service Account JSON (service-account-json): textarea) | Intercom (INTERCOM):  Name (name): text, Access Token (intercomAccessToken): text) | OneDrive (ONE_DRIVE):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text, Users (users): array oftext) | SharePoint (SHAREPOINT):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text) | Web Crawler (WEB_CRAWLER):  Name (name): text, Seed URL(s) (seed-urls): array ofurl) | File Upload (FILE_UPLOAD):  Name (name): text)
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_source_connector: (required)
+        :type create_source_connector: List[CreateSourceConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -706,7 +1034,7 @@ class ConnectorsApi:
 
         _param = self._create_source_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_source_connector=create_source_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -736,7 +1064,7 @@ class ConnectorsApi:
     def create_source_connector_with_http_info(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_source_connector: Annotated[List[CreateSourceConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -750,13 +1078,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreateSourceConnectorResponse]:
-        """Create a new source connector
+        """Create a new source connector. Config values: Amazon S3 (AWS_S3):  Name (name): text, Access Key (access-key): text, Secret Key (secret-key): text, Bucket Name (bucket-name): text, Endpoint (endpoint): url, Region (region): text, Allow as archive destination (archiver): boolean) | Azure Blob Storage (AZURE_BLOB):  Name (name): text, Storage Account Name (storage-account-name): text, Storage Account Key (storage-account-key): text, Container (container): text, Endpoint (endpoint): url) | Confluence (CONFLUENCE):  Name (name): text, Username (username): text, API Token (api-token): text, Domain (domain): text) | Discord (DISCORD):  Name (name): text, Server ID (guild-id): text, Bot token (bot-token): text, Channel ID (channel-ids): array oftext) | Dropbox (DROPBOX):  Name (name): text) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Name (name): text) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Name (name): text) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Name (name): text, OAuth2 Client Id (oauth2-client-id): text, OAuth2 Client Secret (oauth2-client-secret): text) | Firecrawl (FIRECRAWL):  Name (name): text, API Key (api-key): text) | GCP Cloud Storage (GCS):  Name (name): text, Service Account JSON (service-account-json): textarea, Bucket (bucket-name): text) | Google Drive (GOOGLE_DRIVE):  Name (name): text, Service Account JSON (service-account-json): textarea) | Intercom (INTERCOM):  Name (name): text, Access Token (intercomAccessToken): text) | OneDrive (ONE_DRIVE):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text, Users (users): array oftext) | SharePoint (SHAREPOINT):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text) | Web Crawler (WEB_CRAWLER):  Name (name): text, Seed URL(s) (seed-urls): array ofurl) | File Upload (FILE_UPLOAD):  Name (name): text)
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_source_connector: (required)
+        :type create_source_connector: List[CreateSourceConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -781,7 +1109,7 @@ class ConnectorsApi:
 
         _param = self._create_source_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_source_connector=create_source_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -811,7 +1139,7 @@ class ConnectorsApi:
     def create_source_connector_without_preload_content(
         self,
         organization: StrictStr,
-        request_body: Optional[Annotated[List[Dict[str, Any]], Field(min_length=1)]] = None,
+        create_source_connector: Annotated[List[CreateSourceConnector], Field(min_length=1)],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -825,13 +1153,13 @@ class ConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create a new source connector
+        """Create a new source connector. Config values: Amazon S3 (AWS_S3):  Name (name): text, Access Key (access-key): text, Secret Key (secret-key): text, Bucket Name (bucket-name): text, Endpoint (endpoint): url, Region (region): text, Allow as archive destination (archiver): boolean) | Azure Blob Storage (AZURE_BLOB):  Name (name): text, Storage Account Name (storage-account-name): text, Storage Account Key (storage-account-key): text, Container (container): text, Endpoint (endpoint): url) | Confluence (CONFLUENCE):  Name (name): text, Username (username): text, API Token (api-token): text, Domain (domain): text) | Discord (DISCORD):  Name (name): text, Server ID (guild-id): text, Bot token (bot-token): text, Channel ID (channel-ids): array oftext) | Dropbox (DROPBOX):  Name (name): text) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Name (name): text) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Name (name): text) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Name (name): text, OAuth2 Client Id (oauth2-client-id): text, OAuth2 Client Secret (oauth2-client-secret): text) | Firecrawl (FIRECRAWL):  Name (name): text, API Key (api-key): text) | GCP Cloud Storage (GCS):  Name (name): text, Service Account JSON (service-account-json): textarea, Bucket (bucket-name): text) | Google Drive (GOOGLE_DRIVE):  Name (name): text, Service Account JSON (service-account-json): textarea) | Intercom (INTERCOM):  Name (name): text, Access Token (intercomAccessToken): text) | OneDrive (ONE_DRIVE):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text, Users (users): array oftext) | SharePoint (SHAREPOINT):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text) | Web Crawler (WEB_CRAWLER):  Name (name): text, Seed URL(s) (seed-urls): array ofurl) | File Upload (FILE_UPLOAD):  Name (name): text)
 
 
         :param organization: (required)
         :type organization: str
-        :param request_body:
-        :type request_body: List[object]
+        :param create_source_connector: (required)
+        :type create_source_connector: List[CreateSourceConnector]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -856,7 +1184,7 @@ class ConnectorsApi:
 
         _param = self._create_source_connector_serialize(
             organization=organization,
-            request_body=request_body,
+            create_source_connector=create_source_connector,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -881,7 +1209,7 @@ class ConnectorsApi:
     def _create_source_connector_serialize(
         self,
         organization,
-        request_body,
+        create_source_connector,
         _request_auth,
         _content_type,
         _headers,
@@ -891,7 +1219,7 @@ class ConnectorsApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
-            'request_body': '',
+            'CreateSourceConnector': '',
         }
 
         _path_params: Dict[str, str] = {}
@@ -910,8 +1238,8 @@ class ConnectorsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if request_body is not None:
-            _body_params = request_body
+        if create_source_connector is not None:
+            _body_params = create_source_connector
 
 
         # set the HTTP header `Accept`
@@ -1808,6 +2136,322 @@ class ConnectorsApi:
         return self.api_client.param_serialize(
             method='DELETE',
             resource_path='/org/{organization}/connectors/sources/{sourceConnectorId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_user_from_source_connector(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        remove_user_from_source_connector_request: RemoveUserFromSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RemoveUserFromSourceConnectorResponse:
+        """Delete a source connector user
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param remove_user_from_source_connector_request: (required)
+        :type remove_user_from_source_connector_request: RemoveUserFromSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_user_from_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            remove_user_from_source_connector_request=remove_user_from_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RemoveUserFromSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_user_from_source_connector_with_http_info(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        remove_user_from_source_connector_request: RemoveUserFromSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[RemoveUserFromSourceConnectorResponse]:
+        """Delete a source connector user
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param remove_user_from_source_connector_request: (required)
+        :type remove_user_from_source_connector_request: RemoveUserFromSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_user_from_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            remove_user_from_source_connector_request=remove_user_from_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RemoveUserFromSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_user_from_source_connector_without_preload_content(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        remove_user_from_source_connector_request: RemoveUserFromSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a source connector user
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param remove_user_from_source_connector_request: (required)
+        :type remove_user_from_source_connector_request: RemoveUserFromSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_user_from_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            remove_user_from_source_connector_request=remove_user_from_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "RemoveUserFromSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_user_from_source_connector_serialize(
+        self,
+        organization,
+        source_connector_id,
+        remove_user_from_source_connector_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization is not None:
+            _path_params['organization'] = organization
+        if source_connector_id is not None:
+            _path_params['sourceConnectorId'] = source_connector_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if remove_user_from_source_connector_request is not None:
+            _body_params = remove_user_from_source_connector_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/org/{organization}/connectors/sources/{sourceConnectorId}/users',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -3511,7 +4155,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         aiplatform_id: StrictStr,
-        update_ai_platform_connector_request: Optional[UpdateAIPlatformConnectorRequest] = None,
+        update_ai_platform_connector_request: UpdateAIPlatformConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3524,7 +4168,7 @@ class ConnectorsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UpdateAIPlatformConnectorRequest:
+    ) -> UpdateAIPlatformConnectorResponse:
         """Update an AI Platform connector
 
 
@@ -3532,7 +4176,7 @@ class ConnectorsApi:
         :type organization: str
         :param aiplatform_id: (required)
         :type aiplatform_id: str
-        :param update_ai_platform_connector_request:
+        :param update_ai_platform_connector_request: (required)
         :type update_ai_platform_connector_request: UpdateAIPlatformConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3567,7 +4211,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateAIPlatformConnectorRequest",
+            '200': "UpdateAIPlatformConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -3590,7 +4234,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         aiplatform_id: StrictStr,
-        update_ai_platform_connector_request: Optional[UpdateAIPlatformConnectorRequest] = None,
+        update_ai_platform_connector_request: UpdateAIPlatformConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3603,7 +4247,7 @@ class ConnectorsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UpdateAIPlatformConnectorRequest]:
+    ) -> ApiResponse[UpdateAIPlatformConnectorResponse]:
         """Update an AI Platform connector
 
 
@@ -3611,7 +4255,7 @@ class ConnectorsApi:
         :type organization: str
         :param aiplatform_id: (required)
         :type aiplatform_id: str
-        :param update_ai_platform_connector_request:
+        :param update_ai_platform_connector_request: (required)
         :type update_ai_platform_connector_request: UpdateAIPlatformConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3646,7 +4290,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateAIPlatformConnectorRequest",
+            '200': "UpdateAIPlatformConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -3669,7 +4313,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         aiplatform_id: StrictStr,
-        update_ai_platform_connector_request: Optional[UpdateAIPlatformConnectorRequest] = None,
+        update_ai_platform_connector_request: UpdateAIPlatformConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3690,7 +4334,7 @@ class ConnectorsApi:
         :type organization: str
         :param aiplatform_id: (required)
         :type aiplatform_id: str
-        :param update_ai_platform_connector_request:
+        :param update_ai_platform_connector_request: (required)
         :type update_ai_platform_connector_request: UpdateAIPlatformConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3725,7 +4369,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateAIPlatformConnectorRequest",
+            '200': "UpdateAIPlatformConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -3827,7 +4471,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         destination_connector_id: StrictStr,
-        update_source_connector_request: Optional[UpdateSourceConnectorRequest] = None,
+        update_destination_connector_request: UpdateDestinationConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3840,7 +4484,7 @@ class ConnectorsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UpdateDestinationConnector200Response:
+    ) -> UpdateDestinationConnectorResponse:
         """Update a destination connector
 
 
@@ -3848,8 +4492,8 @@ class ConnectorsApi:
         :type organization: str
         :param destination_connector_id: (required)
         :type destination_connector_id: str
-        :param update_source_connector_request:
-        :type update_source_connector_request: UpdateSourceConnectorRequest
+        :param update_destination_connector_request: (required)
+        :type update_destination_connector_request: UpdateDestinationConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3875,7 +4519,7 @@ class ConnectorsApi:
         _param = self._update_destination_connector_serialize(
             organization=organization,
             destination_connector_id=destination_connector_id,
-            update_source_connector_request=update_source_connector_request,
+            update_destination_connector_request=update_destination_connector_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3883,7 +4527,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateDestinationConnector200Response",
+            '200': "UpdateDestinationConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -3906,7 +4550,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         destination_connector_id: StrictStr,
-        update_source_connector_request: Optional[UpdateSourceConnectorRequest] = None,
+        update_destination_connector_request: UpdateDestinationConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3919,7 +4563,7 @@ class ConnectorsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UpdateDestinationConnector200Response]:
+    ) -> ApiResponse[UpdateDestinationConnectorResponse]:
         """Update a destination connector
 
 
@@ -3927,8 +4571,8 @@ class ConnectorsApi:
         :type organization: str
         :param destination_connector_id: (required)
         :type destination_connector_id: str
-        :param update_source_connector_request:
-        :type update_source_connector_request: UpdateSourceConnectorRequest
+        :param update_destination_connector_request: (required)
+        :type update_destination_connector_request: UpdateDestinationConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -3954,7 +4598,7 @@ class ConnectorsApi:
         _param = self._update_destination_connector_serialize(
             organization=organization,
             destination_connector_id=destination_connector_id,
-            update_source_connector_request=update_source_connector_request,
+            update_destination_connector_request=update_destination_connector_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -3962,7 +4606,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateDestinationConnector200Response",
+            '200': "UpdateDestinationConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -3985,7 +4629,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         destination_connector_id: StrictStr,
-        update_source_connector_request: Optional[UpdateSourceConnectorRequest] = None,
+        update_destination_connector_request: UpdateDestinationConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4006,8 +4650,8 @@ class ConnectorsApi:
         :type organization: str
         :param destination_connector_id: (required)
         :type destination_connector_id: str
-        :param update_source_connector_request:
-        :type update_source_connector_request: UpdateSourceConnectorRequest
+        :param update_destination_connector_request: (required)
+        :type update_destination_connector_request: UpdateDestinationConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -4033,7 +4677,7 @@ class ConnectorsApi:
         _param = self._update_destination_connector_serialize(
             organization=organization,
             destination_connector_id=destination_connector_id,
-            update_source_connector_request=update_source_connector_request,
+            update_destination_connector_request=update_destination_connector_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -4041,7 +4685,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateDestinationConnector200Response",
+            '200': "UpdateDestinationConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -4059,7 +4703,7 @@ class ConnectorsApi:
         self,
         organization,
         destination_connector_id,
-        update_source_connector_request,
+        update_destination_connector_request,
         _request_auth,
         _content_type,
         _headers,
@@ -4089,8 +4733,8 @@ class ConnectorsApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if update_source_connector_request is not None:
-            _body_params = update_source_connector_request
+        if update_destination_connector_request is not None:
+            _body_params = update_destination_connector_request
 
 
         # set the HTTP header `Accept`
@@ -4143,7 +4787,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         source_connector_id: StrictStr,
-        update_source_connector_request: Optional[UpdateSourceConnectorRequest] = None,
+        update_source_connector_request: UpdateSourceConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4156,7 +4800,7 @@ class ConnectorsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UpdateSourceConnectorRequest:
+    ) -> UpdateSourceConnectorResponse:
         """Update a source connector
 
 
@@ -4164,7 +4808,7 @@ class ConnectorsApi:
         :type organization: str
         :param source_connector_id: (required)
         :type source_connector_id: str
-        :param update_source_connector_request:
+        :param update_source_connector_request: (required)
         :type update_source_connector_request: UpdateSourceConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4199,7 +4843,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateSourceConnectorRequest",
+            '200': "UpdateSourceConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -4222,7 +4866,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         source_connector_id: StrictStr,
-        update_source_connector_request: Optional[UpdateSourceConnectorRequest] = None,
+        update_source_connector_request: UpdateSourceConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4235,7 +4879,7 @@ class ConnectorsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UpdateSourceConnectorRequest]:
+    ) -> ApiResponse[UpdateSourceConnectorResponse]:
         """Update a source connector
 
 
@@ -4243,7 +4887,7 @@ class ConnectorsApi:
         :type organization: str
         :param source_connector_id: (required)
         :type source_connector_id: str
-        :param update_source_connector_request:
+        :param update_source_connector_request: (required)
         :type update_source_connector_request: UpdateSourceConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4278,7 +4922,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateSourceConnectorRequest",
+            '200': "UpdateSourceConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -4301,7 +4945,7 @@ class ConnectorsApi:
         self,
         organization: StrictStr,
         source_connector_id: StrictStr,
-        update_source_connector_request: Optional[UpdateSourceConnectorRequest] = None,
+        update_source_connector_request: UpdateSourceConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4322,7 +4966,7 @@ class ConnectorsApi:
         :type organization: str
         :param source_connector_id: (required)
         :type source_connector_id: str
-        :param update_source_connector_request:
+        :param update_source_connector_request: (required)
         :type update_source_connector_request: UpdateSourceConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -4357,7 +5001,7 @@ class ConnectorsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateSourceConnectorRequest",
+            '200': "UpdateSourceConnectorResponse",
             '400': "GetPipelines400Response",
             '401': "GetPipelines400Response",
             '403': "GetPipelines400Response",
@@ -4439,6 +5083,322 @@ class ConnectorsApi:
         return self.api_client.param_serialize(
             method='PATCH',
             resource_path='/org/{organization}/connectors/sources/{sourceConnectorId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_user_in_source_connector(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        update_user_in_source_connector_request: UpdateUserInSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> UpdateUserInSourceConnectorResponse:
+        """Update a source connector user
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param update_user_in_source_connector_request: (required)
+        :type update_user_in_source_connector_request: UpdateUserInSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_user_in_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            update_user_in_source_connector_request=update_user_in_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UpdateUserInSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_user_in_source_connector_with_http_info(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        update_user_in_source_connector_request: UpdateUserInSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[UpdateUserInSourceConnectorResponse]:
+        """Update a source connector user
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param update_user_in_source_connector_request: (required)
+        :type update_user_in_source_connector_request: UpdateUserInSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_user_in_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            update_user_in_source_connector_request=update_user_in_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UpdateUserInSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_user_in_source_connector_without_preload_content(
+        self,
+        organization: StrictStr,
+        source_connector_id: StrictStr,
+        update_user_in_source_connector_request: UpdateUserInSourceConnectorRequest,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update a source connector user
+
+
+        :param organization: (required)
+        :type organization: str
+        :param source_connector_id: (required)
+        :type source_connector_id: str
+        :param update_user_in_source_connector_request: (required)
+        :type update_user_in_source_connector_request: UpdateUserInSourceConnectorRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_user_in_source_connector_serialize(
+            organization=organization,
+            source_connector_id=source_connector_id,
+            update_user_in_source_connector_request=update_user_in_source_connector_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "UpdateUserInSourceConnectorResponse",
+            '400': "GetPipelines400Response",
+            '401': "GetPipelines400Response",
+            '403': "GetPipelines400Response",
+            '404': "GetPipelines400Response",
+            '500': "GetPipelines400Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_user_in_source_connector_serialize(
+        self,
+        organization,
+        source_connector_id,
+        update_user_in_source_connector_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if organization is not None:
+            _path_params['organization'] = organization
+        if source_connector_id is not None:
+            _path_params['sourceConnectorId'] = source_connector_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_user_in_source_connector_request is not None:
+            _body_params = update_user_in_source_connector_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='PATCH',
+            resource_path='/org/{organization}/connectors/sources/{sourceConnectorId}/users',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

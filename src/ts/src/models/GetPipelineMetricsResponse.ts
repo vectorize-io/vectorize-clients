@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GetPipelineMetricsResponseDataInner } from './GetPipelineMetricsResponseDataInner';
+import type { PipelineMetrics } from './PipelineMetrics';
 import {
-    GetPipelineMetricsResponseDataInnerFromJSON,
-    GetPipelineMetricsResponseDataInnerFromJSONTyped,
-    GetPipelineMetricsResponseDataInnerToJSON,
-    GetPipelineMetricsResponseDataInnerToJSONTyped,
-} from './GetPipelineMetricsResponseDataInner';
+    PipelineMetricsFromJSON,
+    PipelineMetricsFromJSONTyped,
+    PipelineMetricsToJSON,
+    PipelineMetricsToJSONTyped,
+} from './PipelineMetrics';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface GetPipelineMetricsResponse {
     message: string;
     /**
      * 
-     * @type {Array<GetPipelineMetricsResponseDataInner>}
+     * @type {Array<PipelineMetrics>}
      * @memberof GetPipelineMetricsResponse
      */
-    data: Array<GetPipelineMetricsResponseDataInner>;
+    data: Array<PipelineMetrics>;
 }
 
 /**
@@ -61,7 +61,7 @@ export function GetPipelineMetricsResponseFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'message': json['message'],
-        'data': ((json['data'] as Array<any>).map(GetPipelineMetricsResponseDataInnerFromJSON)),
+        'data': ((json['data'] as Array<any>).map(PipelineMetricsFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function GetPipelineMetricsResponseToJSONTyped(value?: GetPipelineMetrics
     return {
         
         'message': value['message'],
-        'data': ((value['data'] as Array<any>).map(GetPipelineMetricsResponseDataInnerToJSON)),
+        'data': ((value['data'] as Array<any>).map(PipelineMetricsToJSON)),
     };
 }
 

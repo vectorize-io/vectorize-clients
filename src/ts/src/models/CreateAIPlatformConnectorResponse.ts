@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CreateSourceConnectorResponseConnectorsInner } from './CreateSourceConnectorResponseConnectorsInner';
+import type { CreatedAIPlatformConnector } from './CreatedAIPlatformConnector';
 import {
-    CreateSourceConnectorResponseConnectorsInnerFromJSON,
-    CreateSourceConnectorResponseConnectorsInnerFromJSONTyped,
-    CreateSourceConnectorResponseConnectorsInnerToJSON,
-    CreateSourceConnectorResponseConnectorsInnerToJSONTyped,
-} from './CreateSourceConnectorResponseConnectorsInner';
+    CreatedAIPlatformConnectorFromJSON,
+    CreatedAIPlatformConnectorFromJSONTyped,
+    CreatedAIPlatformConnectorToJSON,
+    CreatedAIPlatformConnectorToJSONTyped,
+} from './CreatedAIPlatformConnector';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface CreateAIPlatformConnectorResponse {
     message: string;
     /**
      * 
-     * @type {Array<CreateSourceConnectorResponseConnectorsInner>}
+     * @type {Array<CreatedAIPlatformConnector>}
      * @memberof CreateAIPlatformConnectorResponse
      */
-    connectors: Array<CreateSourceConnectorResponseConnectorsInner>;
+    connectors: Array<CreatedAIPlatformConnector>;
 }
 
 /**
@@ -61,7 +61,7 @@ export function CreateAIPlatformConnectorResponseFromJSONTyped(json: any, ignore
     return {
         
         'message': json['message'],
-        'connectors': ((json['connectors'] as Array<any>).map(CreateSourceConnectorResponseConnectorsInnerFromJSON)),
+        'connectors': ((json['connectors'] as Array<any>).map(CreatedAIPlatformConnectorFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function CreateAIPlatformConnectorResponseToJSONTyped(value?: CreateAIPla
     return {
         
         'message': value['message'],
-        'connectors': ((value['connectors'] as Array<any>).map(CreateSourceConnectorResponseConnectorsInnerToJSON)),
+        'connectors': ((value['connectors'] as Array<any>).map(CreatedAIPlatformConnectorToJSON)),
     };
 }
 

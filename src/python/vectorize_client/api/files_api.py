@@ -17,7 +17,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictStr
-from typing import Optional
 from vectorize_client.models.start_file_upload_request import StartFileUploadRequest
 from vectorize_client.models.start_file_upload_response import StartFileUploadResponse
 
@@ -43,7 +42,7 @@ class FilesApi:
     def start_file_upload(
         self,
         organization: StrictStr,
-        start_file_upload_request: Optional[StartFileUploadRequest] = None,
+        start_file_upload_request: StartFileUploadRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -62,7 +61,7 @@ class FilesApi:
 
         :param organization: (required)
         :type organization: str
-        :param start_file_upload_request:
+        :param start_file_upload_request: (required)
         :type start_file_upload_request: StartFileUploadRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -118,7 +117,7 @@ class FilesApi:
     def start_file_upload_with_http_info(
         self,
         organization: StrictStr,
-        start_file_upload_request: Optional[StartFileUploadRequest] = None,
+        start_file_upload_request: StartFileUploadRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -137,7 +136,7 @@ class FilesApi:
 
         :param organization: (required)
         :type organization: str
-        :param start_file_upload_request:
+        :param start_file_upload_request: (required)
         :type start_file_upload_request: StartFileUploadRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -193,7 +192,7 @@ class FilesApi:
     def start_file_upload_without_preload_content(
         self,
         organization: StrictStr,
-        start_file_upload_request: Optional[StartFileUploadRequest] = None,
+        start_file_upload_request: StartFileUploadRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -212,7 +211,7 @@ class FilesApi:
 
         :param organization: (required)
         :type organization: str
-        :param start_file_upload_request:
+        :param start_file_upload_request: (required)
         :type start_file_upload_request: StartFileUploadRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
