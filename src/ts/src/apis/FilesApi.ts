@@ -30,7 +30,7 @@ import {
 
 export interface StartFileUploadOperationRequest {
     organization: string;
-    startFileUploadRequest?: StartFileUploadRequest;
+    startFileUploadRequest: StartFileUploadRequest;
 }
 
 /**
@@ -46,6 +46,13 @@ export class FilesApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'organization',
                 'Required parameter "organization" was null or undefined when calling startFileUpload().'
+            );
+        }
+
+        if (requestParameters['startFileUploadRequest'] == null) {
+            throw new runtime.RequiredError(
+                'startFileUploadRequest',
+                'Required parameter "startFileUploadRequest" was null or undefined when calling startFileUpload().'
             );
         }
 

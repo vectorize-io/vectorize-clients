@@ -13,14 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UpdateSourceConnectorRequestData } from './UpdateSourceConnectorRequestData';
-import {
-    UpdateSourceConnectorRequestDataFromJSON,
-    UpdateSourceConnectorRequestDataFromJSONTyped,
-    UpdateSourceConnectorRequestDataToJSON,
-    UpdateSourceConnectorRequestDataToJSONTyped,
-} from './UpdateSourceConnectorRequestData';
-
 /**
  * 
  * @export
@@ -29,24 +21,17 @@ import {
 export interface UpdateSourceConnectorRequest {
     /**
      * 
-     * @type {string}
+     * @type {{ [key: string]: any | null; }}
      * @memberof UpdateSourceConnectorRequest
      */
-    message: string;
-    /**
-     * 
-     * @type {UpdateSourceConnectorRequestData}
-     * @memberof UpdateSourceConnectorRequest
-     */
-    data: UpdateSourceConnectorRequestData;
+    config: { [key: string]: any | null; };
 }
 
 /**
  * Check if a given object implements the UpdateSourceConnectorRequest interface.
  */
 export function instanceOfUpdateSourceConnectorRequest(value: object): value is UpdateSourceConnectorRequest {
-    if (!('message' in value) || value['message'] === undefined) return false;
-    if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('config' in value) || value['config'] === undefined) return false;
     return true;
 }
 
@@ -60,8 +45,7 @@ export function UpdateSourceConnectorRequestFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
-        'message': json['message'],
-        'data': UpdateSourceConnectorRequestDataFromJSON(json['data']),
+        'config': json['config'],
     };
 }
 
@@ -76,8 +60,7 @@ export function UpdateSourceConnectorRequestToJSONTyped(value?: UpdateSourceConn
 
     return {
         
-        'message': value['message'],
-        'data': UpdateSourceConnectorRequestDataToJSON(value['data']),
+        'config': value['config'],
     };
 }
 

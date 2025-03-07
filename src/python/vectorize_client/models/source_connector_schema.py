@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from vectorize_client.models.source_connector_type import SourceConnectorType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,16 +28,9 @@ class SourceConnectorSchema(BaseModel):
     SourceConnectorSchema
     """ # noqa: E501
     id: StrictStr
-    type: StrictStr
-    config: Dict[str, Any]
+    type: SourceConnectorType
+    config: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = ["id", "type", "config"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['AWS_S3', 'AZURE_BLOB', 'CONFLUENCE', 'DISCORD', 'DROPBOX', 'FIRECRAWL', 'GCS', 'GOOGLE_DRIVE', 'INTERCOM', 'ONE_DRIVE', 'SHAREPOINT', 'WEB_CRAWLER', 'FILE_UPLOAD', 'SALESFORCE', 'ZENDESK']):
-            raise ValueError("must be one of enum values ('AWS_S3', 'AZURE_BLOB', 'CONFLUENCE', 'DISCORD', 'DROPBOX', 'FIRECRAWL', 'GCS', 'GOOGLE_DRIVE', 'INTERCOM', 'ONE_DRIVE', 'SHAREPOINT', 'WEB_CRAWLER', 'FILE_UPLOAD', 'SALESFORCE', 'ZENDESK')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

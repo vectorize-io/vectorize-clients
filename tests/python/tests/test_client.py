@@ -50,10 +50,10 @@ def test_upload_create_pipeline(ctx: TestContext):
     pipelines = v.PipelinesApi(ctx.api_client)
 
     connectors_api = v.ConnectorsApi(ctx.api_client)
-    response = connectors_api.create_source_connector(ctx.org_id, [{
-        "type": "FILE_UPLOAD",
-        "name": "From API"
-    }])
+    response = connectors_api.create_source_connector(ctx.org_id, [v.CreateSourceConnector(
+        name="from api",
+        type=v.SourceConnectorType.FILE_UPLOAD)]
+    )
     source_connector_id = response.connectors[0].id
     logging.info(f"Created source connector {source_connector_id}")
 

@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { SourceConnectorType } from './SourceConnectorType';
+import {
+    SourceConnectorTypeFromJSON,
+    SourceConnectorTypeFromJSONTyped,
+    SourceConnectorTypeToJSON,
+    SourceConnectorTypeToJSONTyped,
+} from './SourceConnectorType';
+
 /**
  * 
  * @export
@@ -27,40 +35,18 @@ export interface SourceConnectorSchema {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {SourceConnectorType}
      * @memberof SourceConnectorSchema
      */
-    type: SourceConnectorSchemaTypeEnum;
+    type: SourceConnectorType;
     /**
      * 
-     * @type {object}
+     * @type {{ [key: string]: any | null; }}
      * @memberof SourceConnectorSchema
      */
-    config: object;
+    config?: { [key: string]: any | null; };
 }
 
-
-/**
- * @export
- */
-export const SourceConnectorSchemaTypeEnum = {
-    AwsS3: 'AWS_S3',
-    AzureBlob: 'AZURE_BLOB',
-    Confluence: 'CONFLUENCE',
-    Discord: 'DISCORD',
-    Dropbox: 'DROPBOX',
-    Firecrawl: 'FIRECRAWL',
-    Gcs: 'GCS',
-    GoogleDrive: 'GOOGLE_DRIVE',
-    Intercom: 'INTERCOM',
-    OneDrive: 'ONE_DRIVE',
-    Sharepoint: 'SHAREPOINT',
-    WebCrawler: 'WEB_CRAWLER',
-    FileUpload: 'FILE_UPLOAD',
-    Salesforce: 'SALESFORCE',
-    Zendesk: 'ZENDESK'
-} as const;
-export type SourceConnectorSchemaTypeEnum = typeof SourceConnectorSchemaTypeEnum[keyof typeof SourceConnectorSchemaTypeEnum];
 
 
 /**
@@ -69,7 +55,6 @@ export type SourceConnectorSchemaTypeEnum = typeof SourceConnectorSchemaTypeEnum
 export function instanceOfSourceConnectorSchema(value: object): value is SourceConnectorSchema {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('config' in value) || value['config'] === undefined) return false;
     return true;
 }
 
@@ -84,8 +69,8 @@ export function SourceConnectorSchemaFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'id': json['id'],
-        'type': json['type'],
-        'config': json['config'],
+        'type': SourceConnectorTypeFromJSON(json['type']),
+        'config': json['config'] == null ? undefined : json['config'],
     };
 }
 
@@ -101,7 +86,7 @@ export function SourceConnectorSchemaToJSONTyped(value?: SourceConnectorSchema |
     return {
         
         'id': value['id'],
-        'type': value['type'],
+        'type': SourceConnectorTypeToJSON(value['type']),
         'config': value['config'],
     };
 }

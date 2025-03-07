@@ -17,7 +17,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictStr
-from typing import Optional
 from vectorize_client.models.delete_file_response import DeleteFileResponse
 from vectorize_client.models.get_upload_files_response import GetUploadFilesResponse
 from vectorize_client.models.start_file_upload_to_connector_request import StartFileUploadToConnectorRequest
@@ -622,7 +621,7 @@ class UploadsApi:
         self,
         organization: StrictStr,
         connector_id: StrictStr,
-        start_file_upload_to_connector_request: Optional[StartFileUploadToConnectorRequest] = None,
+        start_file_upload_to_connector_request: StartFileUploadToConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -643,7 +642,7 @@ class UploadsApi:
         :type organization: str
         :param connector_id: (required)
         :type connector_id: str
-        :param start_file_upload_to_connector_request:
+        :param start_file_upload_to_connector_request: (required)
         :type start_file_upload_to_connector_request: StartFileUploadToConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -701,7 +700,7 @@ class UploadsApi:
         self,
         organization: StrictStr,
         connector_id: StrictStr,
-        start_file_upload_to_connector_request: Optional[StartFileUploadToConnectorRequest] = None,
+        start_file_upload_to_connector_request: StartFileUploadToConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -722,7 +721,7 @@ class UploadsApi:
         :type organization: str
         :param connector_id: (required)
         :type connector_id: str
-        :param start_file_upload_to_connector_request:
+        :param start_file_upload_to_connector_request: (required)
         :type start_file_upload_to_connector_request: StartFileUploadToConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -780,7 +779,7 @@ class UploadsApi:
         self,
         organization: StrictStr,
         connector_id: StrictStr,
-        start_file_upload_to_connector_request: Optional[StartFileUploadToConnectorRequest] = None,
+        start_file_upload_to_connector_request: StartFileUploadToConnectorRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -801,7 +800,7 @@ class UploadsApi:
         :type organization: str
         :param connector_id: (required)
         :type connector_id: str
-        :param start_file_upload_to_connector_request:
+        :param start_file_upload_to_connector_request: (required)
         :type start_file_upload_to_connector_request: StartFileUploadToConnectorRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

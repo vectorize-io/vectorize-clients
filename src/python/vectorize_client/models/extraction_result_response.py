@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.extraction_result_response_data import ExtractionResultResponseData
+from vectorize_client.models.extraction_result import ExtractionResult
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class ExtractionResultResponse(BaseModel):
     ExtractionResultResponse
     """ # noqa: E501
     ready: StrictBool
-    data: Optional[ExtractionResultResponseData] = None
+    data: Optional[ExtractionResult] = None
     __properties: ClassVar[List[str]] = ["ready", "data"]
 
     model_config = ConfigDict(
@@ -86,7 +86,7 @@ class ExtractionResultResponse(BaseModel):
 
         _obj = cls.model_validate({
             "ready": obj.get("ready"),
-            "data": ExtractionResultResponseData.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "data": ExtractionResult.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

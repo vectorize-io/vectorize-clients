@@ -18,7 +18,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from vectorize_client.models.destination_connector_type import DestinationConnectorType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +28,8 @@ class DestinationConnectorSchema(BaseModel):
     DestinationConnectorSchema
     """ # noqa: E501
     id: StrictStr
-    type: StrictStr
-    config: Dict[str, Any]
+    type: DestinationConnectorType
+    config: Optional[Dict[str, Any]] = None
     __properties: ClassVar[List[str]] = ["id", "type", "config"]
 
     model_config = ConfigDict(

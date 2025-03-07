@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GetUploadFilesResponseFilesInner } from './GetUploadFilesResponseFilesInner';
+import type { UploadFile } from './UploadFile';
 import {
-    GetUploadFilesResponseFilesInnerFromJSON,
-    GetUploadFilesResponseFilesInnerFromJSONTyped,
-    GetUploadFilesResponseFilesInnerToJSON,
-    GetUploadFilesResponseFilesInnerToJSONTyped,
-} from './GetUploadFilesResponseFilesInner';
+    UploadFileFromJSON,
+    UploadFileFromJSONTyped,
+    UploadFileToJSON,
+    UploadFileToJSONTyped,
+} from './UploadFile';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface GetUploadFilesResponse {
     message: string;
     /**
      * 
-     * @type {Array<GetUploadFilesResponseFilesInner>}
+     * @type {Array<UploadFile>}
      * @memberof GetUploadFilesResponse
      */
-    files: Array<GetUploadFilesResponseFilesInner>;
+    files: Array<UploadFile>;
 }
 
 /**
@@ -61,7 +61,7 @@ export function GetUploadFilesResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'message': json['message'],
-        'files': ((json['files'] as Array<any>).map(GetUploadFilesResponseFilesInnerFromJSON)),
+        'files': ((json['files'] as Array<any>).map(UploadFileFromJSON)),
     };
 }
 
@@ -77,7 +77,7 @@ export function GetUploadFilesResponseToJSONTyped(value?: GetUploadFilesResponse
     return {
         
         'message': value['message'],
-        'files': ((value['files'] as Array<any>).map(GetUploadFilesResponseFilesInnerToJSON)),
+        'files': ((value['files'] as Array<any>).map(UploadFileToJSON)),
     };
 }
 

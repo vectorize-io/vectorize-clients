@@ -66,7 +66,7 @@ import {
 
 export interface CreatePipelineRequest {
     organization: string;
-    pipelineConfigurationSchema?: PipelineConfigurationSchema;
+    pipelineConfigurationSchema: PipelineConfigurationSchema;
 }
 
 export interface DeletePipelineRequest {
@@ -103,13 +103,13 @@ export interface GetPipelinesRequest {
 export interface RetrieveDocumentsOperationRequest {
     organization: string;
     pipeline: string;
-    retrieveDocumentsRequest?: RetrieveDocumentsRequest;
+    retrieveDocumentsRequest: RetrieveDocumentsRequest;
 }
 
 export interface StartDeepResearchOperationRequest {
     organization: string;
     pipeline: string;
-    startDeepResearchRequest?: StartDeepResearchRequest;
+    startDeepResearchRequest: StartDeepResearchRequest;
 }
 
 export interface StartPipelineRequest {
@@ -128,13 +128,20 @@ export interface StopPipelineRequest {
 export class PipelinesApi extends runtime.BaseAPI {
 
     /**
-     * Create a new pipeline
+     * Create a new source pipeline. Config fields for sources: Amazon S3 (AWS_S3):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Azure Blob Storage (AZURE_BLOB):  Polling Interval (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Confluence (CONFLUENCE):  Spaces (spaces): array oftext, Root Parents (root-parents): array oftext) | Discord (DISCORD):  Emoji Filter (emoji): array oftext, Author Filter (author): array oftext, Ignore Author Filter (ignore-author): array oftext, Limit (limit): number) | Dropbox (DROPBOX):  Read starting from these folders (optional) (path-prefix): array oftext) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Polling Interval (seconds) (idle-time): number) | Firecrawl (FIRECRAWL):  ) | GCP Cloud Storage (GCS):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Google Drive (GOOGLE_DRIVE):  Restrict ingest to these folder URLs (optional) (root-parents): array oftext, Polling Interval (seconds) (idle-time): number) | Intercom (INTERCOM):  Reindex Interval (seconds) (reindexIntervalSeconds): number, Limit (limit): number, Tags (tags): array oftext) | OneDrive (ONE_DRIVE):  Read starting from this folder (optional) (path-prefix): text) | SharePoint (SHAREPOINT):  Site Name(s) (sites): array oftext) | Web Crawler (WEB_CRAWLER):  Additional Allowed URLs or prefix(es) (allowed-domains-opt): array ofurl, Forbidden Paths (forbidden-paths): array oftext, Throttle (ms) (min-time-between-requests): number, Max Error Count (max-error-count): number, Max URLs (max-urls): number, Max Depth (max-depth): number, Reindex Interval (seconds) (reindex-interval-seconds): number) | File Upload (FILE_UPLOAD):  ). Config fields for destinations: Couchbase Capella (CAPELLA):  Bucket Name (bucket): text, Scope Name (scope): text, Collection Name (collection): text, Search Index Name (index): text) | DataStax Astra (DATASTAX):  Collection Name (collection): text) | Elasticsearch (ELASTIC):  Index Name (index): text) | Pinecone (PINECONE):  Index Name (index): text, Namespace (namespace): text) | SingleStore (SINGLESTORE):  Table Name (table): text) | Milvus (MILVUS):  Collection Name (collection): text) | PostgreSQL (POSTGRESQL):  Table Name (table): text) | Qdrant (QDRANT):  Collection Name (collection): text) | Weaviate (WEAVIATE):  Collection Name (collection): text) | Azure AI Search (AZUREAISEARCH):  Index Name (index): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Index Name (index): text) | MongoDB (MONGODB):  Index Name (index): text). Config fields for AI platforms: 
      */
     async createPipelineRaw(requestParameters: CreatePipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePipelineResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
                 'Required parameter "organization" was null or undefined when calling createPipeline().'
+            );
+        }
+
+        if (requestParameters['pipelineConfigurationSchema'] == null) {
+            throw new runtime.RequiredError(
+                'pipelineConfigurationSchema',
+                'Required parameter "pipelineConfigurationSchema" was null or undefined when calling createPipeline().'
             );
         }
 
@@ -164,7 +171,7 @@ export class PipelinesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new pipeline
+     * Create a new source pipeline. Config fields for sources: Amazon S3 (AWS_S3):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Azure Blob Storage (AZURE_BLOB):  Polling Interval (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Confluence (CONFLUENCE):  Spaces (spaces): array oftext, Root Parents (root-parents): array oftext) | Discord (DISCORD):  Emoji Filter (emoji): array oftext, Author Filter (author): array oftext, Ignore Author Filter (ignore-author): array oftext, Limit (limit): number) | Dropbox (DROPBOX):  Read starting from these folders (optional) (path-prefix): array oftext) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Polling Interval (seconds) (idle-time): number) | Firecrawl (FIRECRAWL):  ) | GCP Cloud Storage (GCS):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Google Drive (GOOGLE_DRIVE):  Restrict ingest to these folder URLs (optional) (root-parents): array oftext, Polling Interval (seconds) (idle-time): number) | Intercom (INTERCOM):  Reindex Interval (seconds) (reindexIntervalSeconds): number, Limit (limit): number, Tags (tags): array oftext) | OneDrive (ONE_DRIVE):  Read starting from this folder (optional) (path-prefix): text) | SharePoint (SHAREPOINT):  Site Name(s) (sites): array oftext) | Web Crawler (WEB_CRAWLER):  Additional Allowed URLs or prefix(es) (allowed-domains-opt): array ofurl, Forbidden Paths (forbidden-paths): array oftext, Throttle (ms) (min-time-between-requests): number, Max Error Count (max-error-count): number, Max URLs (max-urls): number, Max Depth (max-depth): number, Reindex Interval (seconds) (reindex-interval-seconds): number) | File Upload (FILE_UPLOAD):  ). Config fields for destinations: Couchbase Capella (CAPELLA):  Bucket Name (bucket): text, Scope Name (scope): text, Collection Name (collection): text, Search Index Name (index): text) | DataStax Astra (DATASTAX):  Collection Name (collection): text) | Elasticsearch (ELASTIC):  Index Name (index): text) | Pinecone (PINECONE):  Index Name (index): text, Namespace (namespace): text) | SingleStore (SINGLESTORE):  Table Name (table): text) | Milvus (MILVUS):  Collection Name (collection): text) | PostgreSQL (POSTGRESQL):  Table Name (table): text) | Qdrant (QDRANT):  Collection Name (collection): text) | Weaviate (WEAVIATE):  Collection Name (collection): text) | Azure AI Search (AZUREAISEARCH):  Index Name (index): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Index Name (index): text) | MongoDB (MONGODB):  Index Name (index): text). Config fields for AI platforms: 
      */
     async createPipeline(requestParameters: CreatePipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePipelineResponse> {
         const response = await this.createPipelineRaw(requestParameters, initOverrides);
@@ -481,6 +488,13 @@ export class PipelinesApi extends runtime.BaseAPI {
             );
         }
 
+        if (requestParameters['retrieveDocumentsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'retrieveDocumentsRequest',
+                'Required parameter "retrieveDocumentsRequest" was null or undefined when calling retrieveDocuments().'
+            );
+        }
+
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -529,6 +543,13 @@ export class PipelinesApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'pipeline',
                 'Required parameter "pipeline" was null or undefined when calling startDeepResearch().'
+            );
+        }
+
+        if (requestParameters['startDeepResearchRequest'] == null) {
+            throw new runtime.RequiredError(
+                'startDeepResearchRequest',
+                'Required parameter "startDeepResearchRequest" was null or undefined when calling startDeepResearch().'
             );
         }
 

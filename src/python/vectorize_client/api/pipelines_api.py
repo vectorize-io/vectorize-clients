@@ -55,7 +55,7 @@ class PipelinesApi:
     def create_pipeline(
         self,
         organization: StrictStr,
-        pipeline_configuration_schema: Optional[PipelineConfigurationSchema] = None,
+        pipeline_configuration_schema: PipelineConfigurationSchema,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -69,12 +69,12 @@ class PipelinesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> CreatePipelineResponse:
-        """Create a new pipeline
+        """Create a new source pipeline. Config fields for sources: Amazon S3 (AWS_S3):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Azure Blob Storage (AZURE_BLOB):  Polling Interval (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Confluence (CONFLUENCE):  Spaces (spaces): array oftext, Root Parents (root-parents): array oftext) | Discord (DISCORD):  Emoji Filter (emoji): array oftext, Author Filter (author): array oftext, Ignore Author Filter (ignore-author): array oftext, Limit (limit): number) | Dropbox (DROPBOX):  Read starting from these folders (optional) (path-prefix): array oftext) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Polling Interval (seconds) (idle-time): number) | Firecrawl (FIRECRAWL):  ) | GCP Cloud Storage (GCS):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Google Drive (GOOGLE_DRIVE):  Restrict ingest to these folder URLs (optional) (root-parents): array oftext, Polling Interval (seconds) (idle-time): number) | Intercom (INTERCOM):  Reindex Interval (seconds) (reindexIntervalSeconds): number, Limit (limit): number, Tags (tags): array oftext) | OneDrive (ONE_DRIVE):  Read starting from this folder (optional) (path-prefix): text) | SharePoint (SHAREPOINT):  Site Name(s) (sites): array oftext) | Web Crawler (WEB_CRAWLER):  Additional Allowed URLs or prefix(es) (allowed-domains-opt): array ofurl, Forbidden Paths (forbidden-paths): array oftext, Throttle (ms) (min-time-between-requests): number, Max Error Count (max-error-count): number, Max URLs (max-urls): number, Max Depth (max-depth): number, Reindex Interval (seconds) (reindex-interval-seconds): number) | File Upload (FILE_UPLOAD):  ). Config fields for destinations: Couchbase Capella (CAPELLA):  Bucket Name (bucket): text, Scope Name (scope): text, Collection Name (collection): text, Search Index Name (index): text) | DataStax Astra (DATASTAX):  Collection Name (collection): text) | Elasticsearch (ELASTIC):  Index Name (index): text) | Pinecone (PINECONE):  Index Name (index): text, Namespace (namespace): text) | SingleStore (SINGLESTORE):  Table Name (table): text) | Milvus (MILVUS):  Collection Name (collection): text) | PostgreSQL (POSTGRESQL):  Table Name (table): text) | Qdrant (QDRANT):  Collection Name (collection): text) | Weaviate (WEAVIATE):  Collection Name (collection): text) | Azure AI Search (AZUREAISEARCH):  Index Name (index): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Index Name (index): text) | MongoDB (MONGODB):  Index Name (index): text). Config fields for AI platforms: 
 
 
         :param organization: (required)
         :type organization: str
-        :param pipeline_configuration_schema:
+        :param pipeline_configuration_schema: (required)
         :type pipeline_configuration_schema: PipelineConfigurationSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -130,7 +130,7 @@ class PipelinesApi:
     def create_pipeline_with_http_info(
         self,
         organization: StrictStr,
-        pipeline_configuration_schema: Optional[PipelineConfigurationSchema] = None,
+        pipeline_configuration_schema: PipelineConfigurationSchema,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -144,12 +144,12 @@ class PipelinesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[CreatePipelineResponse]:
-        """Create a new pipeline
+        """Create a new source pipeline. Config fields for sources: Amazon S3 (AWS_S3):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Azure Blob Storage (AZURE_BLOB):  Polling Interval (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Confluence (CONFLUENCE):  Spaces (spaces): array oftext, Root Parents (root-parents): array oftext) | Discord (DISCORD):  Emoji Filter (emoji): array oftext, Author Filter (author): array oftext, Ignore Author Filter (ignore-author): array oftext, Limit (limit): number) | Dropbox (DROPBOX):  Read starting from these folders (optional) (path-prefix): array oftext) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Polling Interval (seconds) (idle-time): number) | Firecrawl (FIRECRAWL):  ) | GCP Cloud Storage (GCS):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Google Drive (GOOGLE_DRIVE):  Restrict ingest to these folder URLs (optional) (root-parents): array oftext, Polling Interval (seconds) (idle-time): number) | Intercom (INTERCOM):  Reindex Interval (seconds) (reindexIntervalSeconds): number, Limit (limit): number, Tags (tags): array oftext) | OneDrive (ONE_DRIVE):  Read starting from this folder (optional) (path-prefix): text) | SharePoint (SHAREPOINT):  Site Name(s) (sites): array oftext) | Web Crawler (WEB_CRAWLER):  Additional Allowed URLs or prefix(es) (allowed-domains-opt): array ofurl, Forbidden Paths (forbidden-paths): array oftext, Throttle (ms) (min-time-between-requests): number, Max Error Count (max-error-count): number, Max URLs (max-urls): number, Max Depth (max-depth): number, Reindex Interval (seconds) (reindex-interval-seconds): number) | File Upload (FILE_UPLOAD):  ). Config fields for destinations: Couchbase Capella (CAPELLA):  Bucket Name (bucket): text, Scope Name (scope): text, Collection Name (collection): text, Search Index Name (index): text) | DataStax Astra (DATASTAX):  Collection Name (collection): text) | Elasticsearch (ELASTIC):  Index Name (index): text) | Pinecone (PINECONE):  Index Name (index): text, Namespace (namespace): text) | SingleStore (SINGLESTORE):  Table Name (table): text) | Milvus (MILVUS):  Collection Name (collection): text) | PostgreSQL (POSTGRESQL):  Table Name (table): text) | Qdrant (QDRANT):  Collection Name (collection): text) | Weaviate (WEAVIATE):  Collection Name (collection): text) | Azure AI Search (AZUREAISEARCH):  Index Name (index): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Index Name (index): text) | MongoDB (MONGODB):  Index Name (index): text). Config fields for AI platforms: 
 
 
         :param organization: (required)
         :type organization: str
-        :param pipeline_configuration_schema:
+        :param pipeline_configuration_schema: (required)
         :type pipeline_configuration_schema: PipelineConfigurationSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -205,7 +205,7 @@ class PipelinesApi:
     def create_pipeline_without_preload_content(
         self,
         organization: StrictStr,
-        pipeline_configuration_schema: Optional[PipelineConfigurationSchema] = None,
+        pipeline_configuration_schema: PipelineConfigurationSchema,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -219,12 +219,12 @@ class PipelinesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Create a new pipeline
+        """Create a new source pipeline. Config fields for sources: Amazon S3 (AWS_S3):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Azure Blob Storage (AZURE_BLOB):  Polling Interval (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Confluence (CONFLUENCE):  Spaces (spaces): array oftext, Root Parents (root-parents): array oftext) | Discord (DISCORD):  Emoji Filter (emoji): array oftext, Author Filter (author): array oftext, Ignore Author Filter (ignore-author): array oftext, Limit (limit): number) | Dropbox (DROPBOX):  Read starting from these folders (optional) (path-prefix): array oftext) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Polling Interval (seconds) (idle-time): number) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Polling Interval (seconds) (idle-time): number) | Firecrawl (FIRECRAWL):  ) | GCP Cloud Storage (GCS):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Google Drive (GOOGLE_DRIVE):  Restrict ingest to these folder URLs (optional) (root-parents): array oftext, Polling Interval (seconds) (idle-time): number) | Intercom (INTERCOM):  Reindex Interval (seconds) (reindexIntervalSeconds): number, Limit (limit): number, Tags (tags): array oftext) | OneDrive (ONE_DRIVE):  Read starting from this folder (optional) (path-prefix): text) | SharePoint (SHAREPOINT):  Site Name(s) (sites): array oftext) | Web Crawler (WEB_CRAWLER):  Additional Allowed URLs or prefix(es) (allowed-domains-opt): array ofurl, Forbidden Paths (forbidden-paths): array oftext, Throttle (ms) (min-time-between-requests): number, Max Error Count (max-error-count): number, Max URLs (max-urls): number, Max Depth (max-depth): number, Reindex Interval (seconds) (reindex-interval-seconds): number) | File Upload (FILE_UPLOAD):  ). Config fields for destinations: Couchbase Capella (CAPELLA):  Bucket Name (bucket): text, Scope Name (scope): text, Collection Name (collection): text, Search Index Name (index): text) | DataStax Astra (DATASTAX):  Collection Name (collection): text) | Elasticsearch (ELASTIC):  Index Name (index): text) | Pinecone (PINECONE):  Index Name (index): text, Namespace (namespace): text) | SingleStore (SINGLESTORE):  Table Name (table): text) | Milvus (MILVUS):  Collection Name (collection): text) | PostgreSQL (POSTGRESQL):  Table Name (table): text) | Qdrant (QDRANT):  Collection Name (collection): text) | Weaviate (WEAVIATE):  Collection Name (collection): text) | Azure AI Search (AZUREAISEARCH):  Index Name (index): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Index Name (index): text) | MongoDB (MONGODB):  Index Name (index): text). Config fields for AI platforms: 
 
 
         :param organization: (required)
         :type organization: str
-        :param pipeline_configuration_schema:
+        :param pipeline_configuration_schema: (required)
         :type pipeline_configuration_schema: PipelineConfigurationSchema
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2102,7 +2102,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
-        retrieve_documents_request: Optional[RetrieveDocumentsRequest] = None,
+        retrieve_documents_request: RetrieveDocumentsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2123,7 +2123,7 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
-        :param retrieve_documents_request:
+        :param retrieve_documents_request: (required)
         :type retrieve_documents_request: RetrieveDocumentsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2181,7 +2181,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
-        retrieve_documents_request: Optional[RetrieveDocumentsRequest] = None,
+        retrieve_documents_request: RetrieveDocumentsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2202,7 +2202,7 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
-        :param retrieve_documents_request:
+        :param retrieve_documents_request: (required)
         :type retrieve_documents_request: RetrieveDocumentsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2260,7 +2260,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
-        retrieve_documents_request: Optional[RetrieveDocumentsRequest] = None,
+        retrieve_documents_request: RetrieveDocumentsRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2281,7 +2281,7 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
-        :param retrieve_documents_request:
+        :param retrieve_documents_request: (required)
         :type retrieve_documents_request: RetrieveDocumentsRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2418,7 +2418,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
-        start_deep_research_request: Optional[StartDeepResearchRequest] = None,
+        start_deep_research_request: StartDeepResearchRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2439,7 +2439,7 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
-        :param start_deep_research_request:
+        :param start_deep_research_request: (required)
         :type start_deep_research_request: StartDeepResearchRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2497,7 +2497,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
-        start_deep_research_request: Optional[StartDeepResearchRequest] = None,
+        start_deep_research_request: StartDeepResearchRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2518,7 +2518,7 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
-        :param start_deep_research_request:
+        :param start_deep_research_request: (required)
         :type start_deep_research_request: StartDeepResearchRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2576,7 +2576,7 @@ class PipelinesApi:
         self,
         organization: StrictStr,
         pipeline: StrictStr,
-        start_deep_research_request: Optional[StartDeepResearchRequest] = None,
+        start_deep_research_request: StartDeepResearchRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2597,7 +2597,7 @@ class PipelinesApi:
         :type organization: str
         :param pipeline: (required)
         :type pipeline: str
-        :param start_deep_research_request:
+        :param start_deep_research_request: (required)
         :type start_deep_research_request: StartDeepResearchRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

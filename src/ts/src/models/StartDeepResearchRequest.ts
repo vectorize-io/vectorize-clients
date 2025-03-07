@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { StartDeepResearchRequestN8n } from './StartDeepResearchRequestN8n';
+import type { N8NConfig } from './N8NConfig';
 import {
-    StartDeepResearchRequestN8nFromJSON,
-    StartDeepResearchRequestN8nFromJSONTyped,
-    StartDeepResearchRequestN8nToJSON,
-    StartDeepResearchRequestN8nToJSONTyped,
-} from './StartDeepResearchRequestN8n';
+    N8NConfigFromJSON,
+    N8NConfigFromJSONTyped,
+    N8NConfigToJSON,
+    N8NConfigToJSONTyped,
+} from './N8NConfig';
 
 /**
  * 
@@ -47,10 +47,10 @@ export interface StartDeepResearchRequest {
     schema?: string;
     /**
      * 
-     * @type {StartDeepResearchRequestN8n}
+     * @type {N8NConfig}
      * @memberof StartDeepResearchRequest
      */
-    n8n?: StartDeepResearchRequestN8n;
+    n8n?: N8NConfig;
 }
 
 /**
@@ -74,7 +74,7 @@ export function StartDeepResearchRequestFromJSONTyped(json: any, ignoreDiscrimin
         'query': json['query'],
         'webSearch': json['webSearch'] == null ? undefined : json['webSearch'],
         'schema': json['schema'] == null ? undefined : json['schema'],
-        'n8n': json['n8n'] == null ? undefined : StartDeepResearchRequestN8nFromJSON(json['n8n']),
+        'n8n': json['n8n'] == null ? undefined : N8NConfigFromJSON(json['n8n']),
     };
 }
 
@@ -92,7 +92,7 @@ export function StartDeepResearchRequestToJSONTyped(value?: StartDeepResearchReq
         'query': value['query'],
         'webSearch': value['webSearch'],
         'schema': value['schema'],
-        'n8n': StartDeepResearchRequestN8nToJSON(value['n8n']),
+        'n8n': N8NConfigToJSON(value['n8n']),
     };
 }
 

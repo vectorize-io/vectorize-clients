@@ -19,6 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
+from vectorize_client.models.ai_platform_config_schema import AIPlatformConfigSchema
+from vectorize_client.models.ai_platform_type import AIPlatformType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +29,8 @@ class AIPlatformSchema(BaseModel):
     AIPlatformSchema
     """ # noqa: E501
     id: StrictStr
-    type: StrictStr
-    config: Dict[str, Any]
+    type: AIPlatformType
+    config: AIPlatformConfigSchema
     __properties: ClassVar[List[str]] = ["id", "type", "config"]
 
     model_config = ConfigDict(
@@ -70,6 +72,9 @@ class AIPlatformSchema(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of config
+        if self.config:
+            _dict['config'] = self.config.to_dict()
         return _dict
 
     @classmethod
@@ -84,7 +89,7 @@ class AIPlatformSchema(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "type": obj.get("type"),
-            "config": obj.get("config")
+            "config": AIPlatformConfigSchema.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.start_deep_research_request_n8n import StartDeepResearchRequestN8n
+from vectorize_client.models.n8_n_config import N8NConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +30,7 @@ class StartDeepResearchRequest(BaseModel):
     query: StrictStr
     web_search: Optional[StrictBool] = Field(default=False, alias="webSearch")
     var_schema: Optional[StrictStr] = Field(default=None, alias="schema")
-    n8n: Optional[StartDeepResearchRequestN8n] = None
+    n8n: Optional[N8NConfig] = None
     __properties: ClassVar[List[str]] = ["query", "webSearch", "schema", "n8n"]
 
     model_config = ConfigDict(
@@ -90,7 +90,7 @@ class StartDeepResearchRequest(BaseModel):
             "query": obj.get("query"),
             "webSearch": obj.get("webSearch") if obj.get("webSearch") is not None else False,
             "schema": obj.get("schema"),
-            "n8n": StartDeepResearchRequestN8n.from_dict(obj["n8n"]) if obj.get("n8n") is not None else None
+            "n8n": N8NConfig.from_dict(obj["n8n"]) if obj.get("n8n") is not None else None
         })
         return _obj
 

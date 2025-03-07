@@ -16,8 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   AIPlatform,
+  AddUserFromSourceConnectorResponse,
+  AddUserToSourceConnectorRequest,
+  CreateAIPlatformConnector,
   CreateAIPlatformConnectorResponse,
+  CreateDestinationConnector,
   CreateDestinationConnectorResponse,
+  CreateSourceConnector,
   CreateSourceConnectorResponse,
   DeleteAIPlatformConnectorResponse,
   DeleteDestinationConnectorResponse,
@@ -27,18 +32,35 @@ import type {
   GetDestinationConnectors200Response,
   GetPipelines400Response,
   GetSourceConnectors200Response,
+  RemoveUserFromSourceConnectorRequest,
+  RemoveUserFromSourceConnectorResponse,
   SourceConnector,
   UpdateAIPlatformConnectorRequest,
-  UpdateDestinationConnector200Response,
+  UpdateAIPlatformConnectorResponse,
+  UpdateDestinationConnectorRequest,
+  UpdateDestinationConnectorResponse,
   UpdateSourceConnectorRequest,
+  UpdateSourceConnectorResponse,
+  UpdateUserInSourceConnectorRequest,
+  UpdateUserInSourceConnectorResponse,
 } from '../models/index';
 import {
     AIPlatformFromJSON,
     AIPlatformToJSON,
+    AddUserFromSourceConnectorResponseFromJSON,
+    AddUserFromSourceConnectorResponseToJSON,
+    AddUserToSourceConnectorRequestFromJSON,
+    AddUserToSourceConnectorRequestToJSON,
+    CreateAIPlatformConnectorFromJSON,
+    CreateAIPlatformConnectorToJSON,
     CreateAIPlatformConnectorResponseFromJSON,
     CreateAIPlatformConnectorResponseToJSON,
+    CreateDestinationConnectorFromJSON,
+    CreateDestinationConnectorToJSON,
     CreateDestinationConnectorResponseFromJSON,
     CreateDestinationConnectorResponseToJSON,
+    CreateSourceConnectorFromJSON,
+    CreateSourceConnectorToJSON,
     CreateSourceConnectorResponseFromJSON,
     CreateSourceConnectorResponseToJSON,
     DeleteAIPlatformConnectorResponseFromJSON,
@@ -57,29 +79,49 @@ import {
     GetPipelines400ResponseToJSON,
     GetSourceConnectors200ResponseFromJSON,
     GetSourceConnectors200ResponseToJSON,
+    RemoveUserFromSourceConnectorRequestFromJSON,
+    RemoveUserFromSourceConnectorRequestToJSON,
+    RemoveUserFromSourceConnectorResponseFromJSON,
+    RemoveUserFromSourceConnectorResponseToJSON,
     SourceConnectorFromJSON,
     SourceConnectorToJSON,
     UpdateAIPlatformConnectorRequestFromJSON,
     UpdateAIPlatformConnectorRequestToJSON,
-    UpdateDestinationConnector200ResponseFromJSON,
-    UpdateDestinationConnector200ResponseToJSON,
+    UpdateAIPlatformConnectorResponseFromJSON,
+    UpdateAIPlatformConnectorResponseToJSON,
+    UpdateDestinationConnectorRequestFromJSON,
+    UpdateDestinationConnectorRequestToJSON,
+    UpdateDestinationConnectorResponseFromJSON,
+    UpdateDestinationConnectorResponseToJSON,
     UpdateSourceConnectorRequestFromJSON,
     UpdateSourceConnectorRequestToJSON,
+    UpdateSourceConnectorResponseFromJSON,
+    UpdateSourceConnectorResponseToJSON,
+    UpdateUserInSourceConnectorRequestFromJSON,
+    UpdateUserInSourceConnectorRequestToJSON,
+    UpdateUserInSourceConnectorResponseFromJSON,
+    UpdateUserInSourceConnectorResponseToJSON,
 } from '../models/index';
+
+export interface AddUserToSourceConnectorOperationRequest {
+    organization: string;
+    sourceConnectorId: string;
+    addUserToSourceConnectorRequest: AddUserToSourceConnectorRequest;
+}
 
 export interface CreateAIPlatformConnectorRequest {
     organization: string;
-    requestBody?: Array<object>;
+    createAIPlatformConnector: Array<CreateAIPlatformConnector>;
 }
 
 export interface CreateDestinationConnectorRequest {
     organization: string;
-    requestBody?: Array<object>;
+    createDestinationConnector: Array<CreateDestinationConnector>;
 }
 
 export interface CreateSourceConnectorRequest {
     organization: string;
-    requestBody?: Array<object>;
+    createSourceConnector: Array<CreateSourceConnector>;
 }
 
 export interface DeleteAIPlatformRequest {
@@ -95,6 +137,12 @@ export interface DeleteDestinationConnectorRequest {
 export interface DeleteSourceConnectorRequest {
     organization: string;
     sourceConnectorId: string;
+}
+
+export interface DeleteUserFromSourceConnectorRequest {
+    organization: string;
+    sourceConnectorId: string;
+    removeUserFromSourceConnectorRequest: RemoveUserFromSourceConnectorRequest;
 }
 
 export interface GetAIPlatformConnectorRequest {
@@ -127,19 +175,25 @@ export interface GetSourceConnectorsRequest {
 export interface UpdateAIPlatformConnectorOperationRequest {
     organization: string;
     aiplatformId: string;
-    updateAIPlatformConnectorRequest?: UpdateAIPlatformConnectorRequest;
+    updateAIPlatformConnectorRequest: UpdateAIPlatformConnectorRequest;
 }
 
-export interface UpdateDestinationConnectorRequest {
+export interface UpdateDestinationConnectorOperationRequest {
     organization: string;
     destinationConnectorId: string;
-    updateSourceConnectorRequest?: UpdateSourceConnectorRequest;
+    updateDestinationConnectorRequest: UpdateDestinationConnectorRequest;
 }
 
 export interface UpdateSourceConnectorOperationRequest {
     organization: string;
     sourceConnectorId: string;
-    updateSourceConnectorRequest?: UpdateSourceConnectorRequest;
+    updateSourceConnectorRequest: UpdateSourceConnectorRequest;
+}
+
+export interface UpdateUserInSourceConnectorOperationRequest {
+    organization: string;
+    sourceConnectorId: string;
+    updateUserInSourceConnectorRequest: UpdateUserInSourceConnectorRequest;
 }
 
 /**
@@ -148,13 +202,78 @@ export interface UpdateSourceConnectorOperationRequest {
 export class ConnectorsApi extends runtime.BaseAPI {
 
     /**
-     * Create a new AI Platform connector
+     * Add a user to a source connector
+     */
+    async addUserToSourceConnectorRaw(requestParameters: AddUserToSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddUserFromSourceConnectorResponse>> {
+        if (requestParameters['organization'] == null) {
+            throw new runtime.RequiredError(
+                'organization',
+                'Required parameter "organization" was null or undefined when calling addUserToSourceConnector().'
+            );
+        }
+
+        if (requestParameters['sourceConnectorId'] == null) {
+            throw new runtime.RequiredError(
+                'sourceConnectorId',
+                'Required parameter "sourceConnectorId" was null or undefined when calling addUserToSourceConnector().'
+            );
+        }
+
+        if (requestParameters['addUserToSourceConnectorRequest'] == null) {
+            throw new runtime.RequiredError(
+                'addUserToSourceConnectorRequest',
+                'Required parameter "addUserToSourceConnectorRequest" was null or undefined when calling addUserToSourceConnector().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/org/{organization}/connectors/sources/{sourceConnectorId}/users`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AddUserToSourceConnectorRequestToJSON(requestParameters['addUserToSourceConnectorRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddUserFromSourceConnectorResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Add a user to a source connector
+     */
+    async addUserToSourceConnector(requestParameters: AddUserToSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddUserFromSourceConnectorResponse> {
+        const response = await this.addUserToSourceConnectorRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create a new AI Platform connector. Config values: Amazon Bedrock (BEDROCK):  Name (name): text, Access Key (access-key): text, Secret Key (key): text) | Google Vertex AI (VERTEX):  Name (name): text, Region (region): text) | OpenAI (OPENAI):  Name (name): text, API Key (key): text) | Voyage AI (VOYAGE):  Name (name): text, API Key (key): text) | Built-in (VECTORIZE):  )
      */
     async createAIPlatformConnectorRaw(requestParameters: CreateAIPlatformConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateAIPlatformConnectorResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
                 'Required parameter "organization" was null or undefined when calling createAIPlatformConnector().'
+            );
+        }
+
+        if (requestParameters['createAIPlatformConnector'] == null) {
+            throw new runtime.RequiredError(
+                'createAIPlatformConnector',
+                'Required parameter "createAIPlatformConnector" was null or undefined when calling createAIPlatformConnector().'
             );
         }
 
@@ -177,14 +296,14 @@ export class ConnectorsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['requestBody'],
+            body: requestParameters['createAIPlatformConnector']!.map(CreateAIPlatformConnectorToJSON),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateAIPlatformConnectorResponseFromJSON(jsonValue));
     }
 
     /**
-     * Create a new AI Platform connector
+     * Create a new AI Platform connector. Config values: Amazon Bedrock (BEDROCK):  Name (name): text, Access Key (access-key): text, Secret Key (key): text) | Google Vertex AI (VERTEX):  Name (name): text, Region (region): text) | OpenAI (OPENAI):  Name (name): text, API Key (key): text) | Voyage AI (VOYAGE):  Name (name): text, API Key (key): text) | Built-in (VECTORIZE):  )
      */
     async createAIPlatformConnector(requestParameters: CreateAIPlatformConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateAIPlatformConnectorResponse> {
         const response = await this.createAIPlatformConnectorRaw(requestParameters, initOverrides);
@@ -192,13 +311,20 @@ export class ConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new destination connector
+     * Create a new destination connector. Config values: Couchbase Capella (CAPELLA):  Name (name): text, Cluster Access Name (username): text, Cluster Access Password (password): text, Connection String (connection-string): text) | DataStax Astra (DATASTAX):  Name (name): text, API Endpoint (endpoint_secret): text, Application Token (token): text) | Elasticsearch (ELASTIC):  Name (name): text, Host (host): text, Port (port): text, API Key (api-key): text) | Pinecone (PINECONE):  Name (name): text, API Key (api-key): text) | SingleStore (SINGLESTORE):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Milvus (MILVUS):  Name (name): text, Public Endpoint (url): text, Token (token): text, Username (username): text, Password (password): text) | PostgreSQL (POSTGRESQL):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Qdrant (QDRANT):  Name (name): text, Host (host): text, API Key (api-key): text) | Weaviate (WEAVIATE):  Name (name): text, Endpoint (host): text, API Key (api-key): text) | Azure AI Search (AZUREAISEARCH):  Name (name): text, Azure AI Search Service Name (service-name): text, API Key (api-key): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Name (name): text, API Key (apiKey): text) | MongoDB (MONGODB):  Name (name): text, API Key (apiKey): text)
      */
     async createDestinationConnectorRaw(requestParameters: CreateDestinationConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateDestinationConnectorResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
                 'Required parameter "organization" was null or undefined when calling createDestinationConnector().'
+            );
+        }
+
+        if (requestParameters['createDestinationConnector'] == null) {
+            throw new runtime.RequiredError(
+                'createDestinationConnector',
+                'Required parameter "createDestinationConnector" was null or undefined when calling createDestinationConnector().'
             );
         }
 
@@ -221,14 +347,14 @@ export class ConnectorsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['requestBody'],
+            body: requestParameters['createDestinationConnector']!.map(CreateDestinationConnectorToJSON),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateDestinationConnectorResponseFromJSON(jsonValue));
     }
 
     /**
-     * Create a new destination connector
+     * Create a new destination connector. Config values: Couchbase Capella (CAPELLA):  Name (name): text, Cluster Access Name (username): text, Cluster Access Password (password): text, Connection String (connection-string): text) | DataStax Astra (DATASTAX):  Name (name): text, API Endpoint (endpoint_secret): text, Application Token (token): text) | Elasticsearch (ELASTIC):  Name (name): text, Host (host): text, Port (port): text, API Key (api-key): text) | Pinecone (PINECONE):  Name (name): text, API Key (api-key): text) | SingleStore (SINGLESTORE):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Milvus (MILVUS):  Name (name): text, Public Endpoint (url): text, Token (token): text, Username (username): text, Password (password): text) | PostgreSQL (POSTGRESQL):  Name (name): text, Host (host): text, Port (port): number, Database (database): text, Username (username): text, Password (password): text) | Qdrant (QDRANT):  Name (name): text, Host (host): text, API Key (api-key): text) | Weaviate (WEAVIATE):  Name (name): text, Endpoint (host): text, API Key (api-key): text) | Azure AI Search (AZUREAISEARCH):  Name (name): text, Azure AI Search Service Name (service-name): text, API Key (api-key): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Name (name): text, API Key (apiKey): text) | MongoDB (MONGODB):  Name (name): text, API Key (apiKey): text)
      */
     async createDestinationConnector(requestParameters: CreateDestinationConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateDestinationConnectorResponse> {
         const response = await this.createDestinationConnectorRaw(requestParameters, initOverrides);
@@ -236,13 +362,20 @@ export class ConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new source connector
+     * Create a new source connector. Config values: Amazon S3 (AWS_S3):  Name (name): text, Access Key (access-key): text, Secret Key (secret-key): text, Bucket Name (bucket-name): text, Endpoint (endpoint): url, Region (region): text, Allow as archive destination (archiver): boolean) | Azure Blob Storage (AZURE_BLOB):  Name (name): text, Storage Account Name (storage-account-name): text, Storage Account Key (storage-account-key): text, Container (container): text, Endpoint (endpoint): url) | Confluence (CONFLUENCE):  Name (name): text, Username (username): text, API Token (api-token): text, Domain (domain): text) | Discord (DISCORD):  Name (name): text, Server ID (guild-id): text, Bot token (bot-token): text, Channel ID (channel-ids): array oftext) | Dropbox (DROPBOX):  Name (name): text) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Name (name): text) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Name (name): text) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Name (name): text, OAuth2 Client Id (oauth2-client-id): text, OAuth2 Client Secret (oauth2-client-secret): text) | Firecrawl (FIRECRAWL):  Name (name): text, API Key (api-key): text) | GCP Cloud Storage (GCS):  Name (name): text, Bucket (bucket-name): text) | Google Drive (GOOGLE_DRIVE):  Name (name): text) | Intercom (INTERCOM):  Name (name): text, Access Token (intercomAccessToken): text) | OneDrive (ONE_DRIVE):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text, Users (users): array oftext) | SharePoint (SHAREPOINT):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text) | Web Crawler (WEB_CRAWLER):  Name (name): text, Seed URL(s) (seed-urls): array ofurl) | File Upload (FILE_UPLOAD):  Name (name): text)
      */
     async createSourceConnectorRaw(requestParameters: CreateSourceConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSourceConnectorResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
                 'Required parameter "organization" was null or undefined when calling createSourceConnector().'
+            );
+        }
+
+        if (requestParameters['createSourceConnector'] == null) {
+            throw new runtime.RequiredError(
+                'createSourceConnector',
+                'Required parameter "createSourceConnector" was null or undefined when calling createSourceConnector().'
             );
         }
 
@@ -265,14 +398,14 @@ export class ConnectorsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters['requestBody'],
+            body: requestParameters['createSourceConnector']!.map(CreateSourceConnectorToJSON),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateSourceConnectorResponseFromJSON(jsonValue));
     }
 
     /**
-     * Create a new source connector
+     * Create a new source connector. Config values: Amazon S3 (AWS_S3):  Name (name): text, Access Key (access-key): text, Secret Key (secret-key): text, Bucket Name (bucket-name): text, Endpoint (endpoint): url, Region (region): text, Allow as archive destination (archiver): boolean) | Azure Blob Storage (AZURE_BLOB):  Name (name): text, Storage Account Name (storage-account-name): text, Storage Account Key (storage-account-key): text, Container (container): text, Endpoint (endpoint): url) | Confluence (CONFLUENCE):  Name (name): text, Username (username): text, API Token (api-token): text, Domain (domain): text) | Discord (DISCORD):  Name (name): text, Server ID (guild-id): text, Bot token (bot-token): text, Channel ID (channel-ids): array oftext) | Dropbox (DROPBOX):  Name (name): text) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Name (name): text) | Google Drive OAuth (Multi-user) (GOOGLE_DRIVE_OAUTH_MULTI):  Name (name): text) | Google Drive OAuth (Multi-user with white label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Name (name): text, OAuth2 Client Id (oauth2-client-id): text, OAuth2 Client Secret (oauth2-client-secret): text) | Firecrawl (FIRECRAWL):  Name (name): text, API Key (api-key): text) | GCP Cloud Storage (GCS):  Name (name): text, Bucket (bucket-name): text) | Google Drive (GOOGLE_DRIVE):  Name (name): text) | Intercom (INTERCOM):  Name (name): text, Access Token (intercomAccessToken): text) | OneDrive (ONE_DRIVE):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text, Users (users): array oftext) | SharePoint (SHAREPOINT):  Name (name): text, Client Id (ms-client-id): text, Tenant Id (ms-tenant-id): text, Client Secret (ms-client-secret): text) | Web Crawler (WEB_CRAWLER):  Name (name): text, Seed URL(s) (seed-urls): array ofurl) | File Upload (FILE_UPLOAD):  Name (name): text)
      */
     async createSourceConnector(requestParameters: CreateSourceConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSourceConnectorResponse> {
         const response = await this.createSourceConnectorRaw(requestParameters, initOverrides);
@@ -420,6 +553,64 @@ export class ConnectorsApi extends runtime.BaseAPI {
      */
     async deleteSourceConnector(requestParameters: DeleteSourceConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteSourceConnectorResponse> {
         const response = await this.deleteSourceConnectorRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a source connector user
+     */
+    async deleteUserFromSourceConnectorRaw(requestParameters: DeleteUserFromSourceConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RemoveUserFromSourceConnectorResponse>> {
+        if (requestParameters['organization'] == null) {
+            throw new runtime.RequiredError(
+                'organization',
+                'Required parameter "organization" was null or undefined when calling deleteUserFromSourceConnector().'
+            );
+        }
+
+        if (requestParameters['sourceConnectorId'] == null) {
+            throw new runtime.RequiredError(
+                'sourceConnectorId',
+                'Required parameter "sourceConnectorId" was null or undefined when calling deleteUserFromSourceConnector().'
+            );
+        }
+
+        if (requestParameters['removeUserFromSourceConnectorRequest'] == null) {
+            throw new runtime.RequiredError(
+                'removeUserFromSourceConnectorRequest',
+                'Required parameter "removeUserFromSourceConnectorRequest" was null or undefined when calling deleteUserFromSourceConnector().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/org/{organization}/connectors/sources/{sourceConnectorId}/users`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RemoveUserFromSourceConnectorRequestToJSON(requestParameters['removeUserFromSourceConnectorRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RemoveUserFromSourceConnectorResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a source connector user
+     */
+    async deleteUserFromSourceConnector(requestParameters: DeleteUserFromSourceConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RemoveUserFromSourceConnectorResponse> {
+        const response = await this.deleteUserFromSourceConnectorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -693,7 +884,7 @@ export class ConnectorsApi extends runtime.BaseAPI {
     /**
      * Update an AI Platform connector
      */
-    async updateAIPlatformConnectorRaw(requestParameters: UpdateAIPlatformConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateAIPlatformConnectorRequest>> {
+    async updateAIPlatformConnectorRaw(requestParameters: UpdateAIPlatformConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateAIPlatformConnectorResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
@@ -705,6 +896,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'aiplatformId',
                 'Required parameter "aiplatformId" was null or undefined when calling updateAIPlatformConnector().'
+            );
+        }
+
+        if (requestParameters['updateAIPlatformConnectorRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateAIPlatformConnectorRequest',
+                'Required parameter "updateAIPlatformConnectorRequest" was null or undefined when calling updateAIPlatformConnector().'
             );
         }
 
@@ -730,13 +928,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
             body: UpdateAIPlatformConnectorRequestToJSON(requestParameters['updateAIPlatformConnectorRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateAIPlatformConnectorRequestFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateAIPlatformConnectorResponseFromJSON(jsonValue));
     }
 
     /**
      * Update an AI Platform connector
      */
-    async updateAIPlatformConnector(requestParameters: UpdateAIPlatformConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateAIPlatformConnectorRequest> {
+    async updateAIPlatformConnector(requestParameters: UpdateAIPlatformConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateAIPlatformConnectorResponse> {
         const response = await this.updateAIPlatformConnectorRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -744,7 +942,7 @@ export class ConnectorsApi extends runtime.BaseAPI {
     /**
      * Update a destination connector
      */
-    async updateDestinationConnectorRaw(requestParameters: UpdateDestinationConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateDestinationConnector200Response>> {
+    async updateDestinationConnectorRaw(requestParameters: UpdateDestinationConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateDestinationConnectorResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
@@ -756,6 +954,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'destinationConnectorId',
                 'Required parameter "destinationConnectorId" was null or undefined when calling updateDestinationConnector().'
+            );
+        }
+
+        if (requestParameters['updateDestinationConnectorRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateDestinationConnectorRequest',
+                'Required parameter "updateDestinationConnectorRequest" was null or undefined when calling updateDestinationConnector().'
             );
         }
 
@@ -778,16 +983,16 @@ export class ConnectorsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateSourceConnectorRequestToJSON(requestParameters['updateSourceConnectorRequest']),
+            body: UpdateDestinationConnectorRequestToJSON(requestParameters['updateDestinationConnectorRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateDestinationConnector200ResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateDestinationConnectorResponseFromJSON(jsonValue));
     }
 
     /**
      * Update a destination connector
      */
-    async updateDestinationConnector(requestParameters: UpdateDestinationConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateDestinationConnector200Response> {
+    async updateDestinationConnector(requestParameters: UpdateDestinationConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateDestinationConnectorResponse> {
         const response = await this.updateDestinationConnectorRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -795,7 +1000,7 @@ export class ConnectorsApi extends runtime.BaseAPI {
     /**
      * Update a source connector
      */
-    async updateSourceConnectorRaw(requestParameters: UpdateSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateSourceConnectorRequest>> {
+    async updateSourceConnectorRaw(requestParameters: UpdateSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateSourceConnectorResponse>> {
         if (requestParameters['organization'] == null) {
             throw new runtime.RequiredError(
                 'organization',
@@ -807,6 +1012,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'sourceConnectorId',
                 'Required parameter "sourceConnectorId" was null or undefined when calling updateSourceConnector().'
+            );
+        }
+
+        if (requestParameters['updateSourceConnectorRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateSourceConnectorRequest',
+                'Required parameter "updateSourceConnectorRequest" was null or undefined when calling updateSourceConnector().'
             );
         }
 
@@ -832,14 +1044,72 @@ export class ConnectorsApi extends runtime.BaseAPI {
             body: UpdateSourceConnectorRequestToJSON(requestParameters['updateSourceConnectorRequest']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateSourceConnectorRequestFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateSourceConnectorResponseFromJSON(jsonValue));
     }
 
     /**
      * Update a source connector
      */
-    async updateSourceConnector(requestParameters: UpdateSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateSourceConnectorRequest> {
+    async updateSourceConnector(requestParameters: UpdateSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateSourceConnectorResponse> {
         const response = await this.updateSourceConnectorRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a source connector user
+     */
+    async updateUserInSourceConnectorRaw(requestParameters: UpdateUserInSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUserInSourceConnectorResponse>> {
+        if (requestParameters['organization'] == null) {
+            throw new runtime.RequiredError(
+                'organization',
+                'Required parameter "organization" was null or undefined when calling updateUserInSourceConnector().'
+            );
+        }
+
+        if (requestParameters['sourceConnectorId'] == null) {
+            throw new runtime.RequiredError(
+                'sourceConnectorId',
+                'Required parameter "sourceConnectorId" was null or undefined when calling updateUserInSourceConnector().'
+            );
+        }
+
+        if (requestParameters['updateUserInSourceConnectorRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateUserInSourceConnectorRequest',
+                'Required parameter "updateUserInSourceConnectorRequest" was null or undefined when calling updateUserInSourceConnector().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("bearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/org/{organization}/connectors/sources/{sourceConnectorId}/users`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateUserInSourceConnectorRequestToJSON(requestParameters['updateUserInSourceConnectorRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateUserInSourceConnectorResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a source connector user
+     */
+    async updateUserInSourceConnector(requestParameters: UpdateUserInSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateUserInSourceConnectorResponse> {
+        const response = await this.updateUserInSourceConnectorRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

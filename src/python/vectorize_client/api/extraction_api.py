@@ -17,7 +17,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictStr
-from typing import Optional
 from vectorize_client.models.extraction_result_response import ExtractionResultResponse
 from vectorize_client.models.start_extraction_request import StartExtractionRequest
 from vectorize_client.models.start_extraction_response import StartExtractionResponse
@@ -332,7 +331,7 @@ class ExtractionApi:
     def start_extraction(
         self,
         organization: StrictStr,
-        start_extraction_request: Optional[StartExtractionRequest] = None,
+        start_extraction_request: StartExtractionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -351,7 +350,7 @@ class ExtractionApi:
 
         :param organization: (required)
         :type organization: str
-        :param start_extraction_request:
+        :param start_extraction_request: (required)
         :type start_extraction_request: StartExtractionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -407,7 +406,7 @@ class ExtractionApi:
     def start_extraction_with_http_info(
         self,
         organization: StrictStr,
-        start_extraction_request: Optional[StartExtractionRequest] = None,
+        start_extraction_request: StartExtractionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -426,7 +425,7 @@ class ExtractionApi:
 
         :param organization: (required)
         :type organization: str
-        :param start_extraction_request:
+        :param start_extraction_request: (required)
         :type start_extraction_request: StartExtractionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -482,7 +481,7 @@ class ExtractionApi:
     def start_extraction_without_preload_content(
         self,
         organization: StrictStr,
-        start_extraction_request: Optional[StartExtractionRequest] = None,
+        start_extraction_request: StartExtractionRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -501,7 +500,7 @@ class ExtractionApi:
 
         :param organization: (required)
         :type organization: str
-        :param start_extraction_request:
+        :param start_extraction_request: (required)
         :type start_extraction_request: StartExtractionRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

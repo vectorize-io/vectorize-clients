@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ScheduleSchemaType } from './ScheduleSchemaType';
+import {
+    ScheduleSchemaTypeFromJSON,
+    ScheduleSchemaTypeFromJSONTyped,
+    ScheduleSchemaTypeToJSON,
+    ScheduleSchemaTypeToJSONTyped,
+} from './ScheduleSchemaType';
+
 /**
  * 
  * @export
@@ -21,22 +29,12 @@ import { mapValues } from '../runtime';
 export interface ScheduleSchema {
     /**
      * 
-     * @type {string}
+     * @type {ScheduleSchemaType}
      * @memberof ScheduleSchema
      */
-    type: ScheduleSchemaTypeEnum;
+    type: ScheduleSchemaType;
 }
 
-
-/**
- * @export
- */
-export const ScheduleSchemaTypeEnum = {
-    Manual: 'manual',
-    Realtime: 'realtime',
-    Custom: 'custom'
-} as const;
-export type ScheduleSchemaTypeEnum = typeof ScheduleSchemaTypeEnum[keyof typeof ScheduleSchemaTypeEnum];
 
 
 /**
@@ -57,7 +55,7 @@ export function ScheduleSchemaFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'type': json['type'],
+        'type': ScheduleSchemaTypeFromJSON(json['type']),
     };
 }
 
@@ -72,7 +70,7 @@ export function ScheduleSchemaToJSONTyped(value?: ScheduleSchema | null, ignoreD
 
     return {
         
-        'type': value['type'],
+        'type': ScheduleSchemaTypeToJSON(value['type']),
     };
 }
 

@@ -1,6 +1,12 @@
 import {beforeEach, describe, it, expect} from "vitest";
 import {createTestContext, TestContext} from "./testContext";
-import {ConnectorsApi, PipelinesApi, ResponseError, UploadsApi} from "@vectorize-io/vectorize-client";
+import {
+    ConnectorsApi,
+    PipelinesApi,
+    ResponseError,
+    SourceConnectorType,
+    UploadsApi
+} from "@vectorize-io/vectorize-client";
 import {pipeline} from "stream";
 import * as os from "node:os";
 import fs from "node:fs";
@@ -14,9 +20,11 @@ beforeEach(() => {
 async function createFileUploadSource(connectorsApi: ConnectorsApi) {
     let sourceResponse = await connectorsApi.createSourceConnector({
         organization: testContext.orgId,
-        requestBody: [
-            {type: "FILE_UPLOAD", name: "from api"}
-        ]
+        createSourceConnector: [{
+            type: SourceConnectorType.FileUpload,
+            name: "from api",
+            config: {}
+        }]
     });
     const sourceConnectorId = sourceResponse.connectors[0].id;
     return sourceConnectorId;

@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.get_pipeline_events_response_data_inner import GetPipelineEventsResponseDataInner
+from vectorize_client.models.pipeline_events import PipelineEvents
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +29,7 @@ class GetPipelineEventsResponse(BaseModel):
     """ # noqa: E501
     message: StrictStr
     next_token: Optional[StrictStr] = Field(default=None, alias="nextToken")
-    data: List[GetPipelineEventsResponseDataInner]
+    data: List[PipelineEvents]
     __properties: ClassVar[List[str]] = ["message", "nextToken", "data"]
 
     model_config = ConfigDict(
@@ -92,7 +92,7 @@ class GetPipelineEventsResponse(BaseModel):
         _obj = cls.model_validate({
             "message": obj.get("message"),
             "nextToken": obj.get("nextToken"),
-            "data": [GetPipelineEventsResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
+            "data": [PipelineEvents.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
         })
         return _obj
 

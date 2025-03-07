@@ -47,7 +47,7 @@ export interface GetUploadFilesFromConnectorRequest {
 export interface StartFileUploadToConnectorOperationRequest {
     organization: string;
     connectorId: string;
-    startFileUploadToConnectorRequest?: StartFileUploadToConnectorRequest;
+    startFileUploadToConnectorRequest: StartFileUploadToConnectorRequest;
 }
 
 /**
@@ -166,6 +166,13 @@ export class UploadsApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'connectorId',
                 'Required parameter "connectorId" was null or undefined when calling startFileUploadToConnector().'
+            );
+        }
+
+        if (requestParameters['startFileUploadToConnectorRequest'] == null) {
+            throw new runtime.RequiredError(
+                'startFileUploadToConnectorRequest',
+                'Required parameter "startFileUploadToConnectorRequest" was null or undefined when calling startFileUploadToConnector().'
             );
         }
 

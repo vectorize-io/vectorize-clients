@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.get_pipeline_metrics_response_data_inner import GetPipelineMetricsResponseDataInner
+from vectorize_client.models.pipeline_metrics import PipelineMetrics
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class GetPipelineMetricsResponse(BaseModel):
     GetPipelineMetricsResponse
     """ # noqa: E501
     message: StrictStr
-    data: List[GetPipelineMetricsResponseDataInner]
+    data: List[PipelineMetrics]
     __properties: ClassVar[List[str]] = ["message", "data"]
 
     model_config = ConfigDict(
@@ -90,7 +90,7 @@ class GetPipelineMetricsResponse(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "data": [GetPipelineMetricsResponseDataInner.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
+            "data": [PipelineMetrics.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
         })
         return _obj
 

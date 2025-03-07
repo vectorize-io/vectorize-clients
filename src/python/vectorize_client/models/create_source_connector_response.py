@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.create_source_connector_response_connectors_inner import CreateSourceConnectorResponseConnectorsInner
+from vectorize_client.models.created_source_connector import CreatedSourceConnector
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +28,7 @@ class CreateSourceConnectorResponse(BaseModel):
     CreateSourceConnectorResponse
     """ # noqa: E501
     message: StrictStr
-    connectors: List[CreateSourceConnectorResponseConnectorsInner]
+    connectors: List[CreatedSourceConnector]
     __properties: ClassVar[List[str]] = ["message", "connectors"]
 
     model_config = ConfigDict(
@@ -90,7 +90,7 @@ class CreateSourceConnectorResponse(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "connectors": [CreateSourceConnectorResponseConnectorsInner.from_dict(_item) for _item in obj["connectors"]] if obj.get("connectors") is not None else None
+            "connectors": [CreatedSourceConnector.from_dict(_item) for _item in obj["connectors"]] if obj.get("connectors") is not None else None
         })
         return _obj
 

@@ -13,6 +13,21 @@
  */
 
 import { mapValues } from '../runtime';
+import type { AIPlatformType } from './AIPlatformType';
+import {
+    AIPlatformTypeFromJSON,
+    AIPlatformTypeFromJSONTyped,
+    AIPlatformTypeToJSON,
+    AIPlatformTypeToJSONTyped,
+} from './AIPlatformType';
+import type { AIPlatformConfigSchema } from './AIPlatformConfigSchema';
+import {
+    AIPlatformConfigSchemaFromJSON,
+    AIPlatformConfigSchemaFromJSONTyped,
+    AIPlatformConfigSchemaToJSON,
+    AIPlatformConfigSchemaToJSONTyped,
+} from './AIPlatformConfigSchema';
+
 /**
  * 
  * @export
@@ -27,17 +42,19 @@ export interface AIPlatformSchema {
     id: string;
     /**
      * 
-     * @type {string}
+     * @type {AIPlatformType}
      * @memberof AIPlatformSchema
      */
-    type: string;
+    type: AIPlatformType;
     /**
      * 
-     * @type {object}
+     * @type {AIPlatformConfigSchema}
      * @memberof AIPlatformSchema
      */
-    config: object;
+    config: AIPlatformConfigSchema;
 }
+
+
 
 /**
  * Check if a given object implements the AIPlatformSchema interface.
@@ -60,8 +77,8 @@ export function AIPlatformSchemaFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'id': json['id'],
-        'type': json['type'],
-        'config': json['config'],
+        'type': AIPlatformTypeFromJSON(json['type']),
+        'config': AIPlatformConfigSchemaFromJSON(json['config']),
     };
 }
 
@@ -77,8 +94,8 @@ export function AIPlatformSchemaToJSONTyped(value?: AIPlatformSchema | null, ign
     return {
         
         'id': value['id'],
-        'type': value['type'],
-        'config': value['config'],
+        'type': AIPlatformTypeToJSON(value['type']),
+        'config': AIPlatformConfigSchemaToJSON(value['config']),
     };
 }
 

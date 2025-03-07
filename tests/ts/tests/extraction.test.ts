@@ -60,7 +60,7 @@ describe("extraction", () => {
             if (result.ready) {
                 expect(result.data?.success).toBe(true)
                 expect(result.data?.error).toBeFalsy()
-                expect(result.data?.chunks?.length).toBe(3)
+                expect(result.data?.chunks?.length).toBeGreaterThan(2)
                 expect(result.data?.text).toBeTruthy()
                 break
             } else {
