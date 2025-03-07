@@ -107,7 +107,7 @@ describe("connector", () => {
             console.log(read)
             expect(read.name).toBe("from api")
             let configDoc = read.configDoc;
-            expect(configDoc!["seed-urls"]).toBe([ 'https://docs.vectorize.io', 'https://vectorize.io' ])
+            expect(configDoc!["seed-urls"]).toStrictEqual([ 'https://docs.vectorize.io', 'https://vectorize.io' ])
             expect(read.createdAt).toBeTruthy()
             await connectorsApi.deleteSourceConnector({
                 organization: testContext.orgId,
