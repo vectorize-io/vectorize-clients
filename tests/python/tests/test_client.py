@@ -88,9 +88,9 @@ def test_upload_create_pipeline(ctx: TestContext):
     try:
 
         response = pipelines.create_pipeline(ctx.org_id, v.PipelineConfigurationSchema(
-            source_connectors=[v.SourceConnectorSchema(id=source_connector_id, type="FILE_UPLOAD", config={})],
-            destination_connector=v.DestinationConnectorSchema(id=builtin_vector_db, type="VECTORIZE", config={}),
-            ai_platform=v.AIPlatformSchema(id=builtin_ai_platform, type="VECTORIZE", config={}),
+            source_connectors=[v.SourceConnectorSchema(id=source_connector_id, type=v.SourceConnectorType.FILE_UPLOAD, config={})],
+            destination_connector=v.DestinationConnectorSchema(id=builtin_vector_db, type=v.DestinationConnectorType.VECTORIZE, config={}),
+            ai_platform=v.AIPlatformSchema(id=builtin_ai_platform, type=v.AIPlatformType.VECTORIZE, config={}),
             pipeline_name="Test pipeline",
             schedule=v.ScheduleSchema(type="manual")
             )
