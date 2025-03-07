@@ -25,6 +25,13 @@ if [[ ! $version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   exit 1
 fi
 
+read -p "Release ts client $version? (y/n) " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  echo "Aborting release"
+  exit 1
+fi
+
 
 npm version $version --prefix $SRC_DIR/ts
 git commit -am "Release ts client $version"

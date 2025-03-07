@@ -24,6 +24,14 @@ if [[ ! $version =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   exit 1
 fi
 
+read -p "Release python client $version? (y/n) " -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  echo "Aborting release"
+  exit 1
+fi
+
+
 npm run edit-toml $SRC_DIR/python/pyproject.toml tool.poetry version $version
 git commit -am "Release python client $version"
 git push origin main
