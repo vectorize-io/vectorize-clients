@@ -42,7 +42,6 @@ async function createWebCrawlerSource(connectorsApi: ConnectorsApi) {
         ]
     });
     const sourceConnectorId = sourceResponse.connectors[0].id;
-    connectorsApi.createAIPlatformConnector()
     await connectorsApi.updateSourceConnector({
             organization: testContext.orgId,
         sourceConnectorId,
