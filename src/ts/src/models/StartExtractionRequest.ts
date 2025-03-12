@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { MetadataExtractionStrategy } from './MetadataExtractionStrategy';
+import {
+    MetadataExtractionStrategyFromJSON,
+    MetadataExtractionStrategyFromJSONTyped,
+    MetadataExtractionStrategyToJSON,
+    MetadataExtractionStrategyToJSONTyped,
+} from './MetadataExtractionStrategy';
 import type { ExtractionType } from './ExtractionType';
 import {
     ExtractionTypeFromJSON,
@@ -58,6 +65,12 @@ export interface StartExtractionRequest {
      * @memberof StartExtractionRequest
      */
     chunkSize?: number;
+    /**
+     * 
+     * @type {MetadataExtractionStrategy}
+     * @memberof StartExtractionRequest
+     */
+    metadata?: MetadataExtractionStrategy;
 }
 
 
@@ -84,6 +97,7 @@ export function StartExtractionRequestFromJSONTyped(json: any, ignoreDiscriminat
         'type': json['type'] == null ? undefined : ExtractionTypeFromJSON(json['type']),
         'chunkingStrategy': json['chunkingStrategy'] == null ? undefined : ExtractionChunkingStrategyFromJSON(json['chunkingStrategy']),
         'chunkSize': json['chunkSize'] == null ? undefined : json['chunkSize'],
+        'metadata': json['metadata'] == null ? undefined : MetadataExtractionStrategyFromJSON(json['metadata']),
     };
 }
 
@@ -102,6 +116,7 @@ export function StartExtractionRequestToJSONTyped(value?: StartExtractionRequest
         'type': ExtractionTypeToJSON(value['type']),
         'chunkingStrategy': ExtractionChunkingStrategyToJSON(value['chunkingStrategy']),
         'chunkSize': value['chunkSize'],
+        'metadata': MetadataExtractionStrategyToJSON(value['metadata']),
     };
 }
 

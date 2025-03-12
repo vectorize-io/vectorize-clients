@@ -41,6 +41,8 @@ export * from './GetPipelines400Response';
 export * from './GetPipelinesResponse';
 export * from './GetSourceConnectors200Response';
 export * from './GetUploadFilesResponse';
+export * from './MetadataExtractionStrategy';
+export * from './MetadataExtractionStrategySchema';
 export * from './N8NConfig';
 export * from './PipelineConfigurationSchema';
 export * from './PipelineEvents';
