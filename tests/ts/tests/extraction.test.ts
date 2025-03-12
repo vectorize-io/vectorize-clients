@@ -2,6 +2,7 @@ import {beforeEach, describe, it, expect} from "vitest";
 import {createTestContext, TestContext} from "./testContext";
 import {ExtractionApi, FilesApi} from "@vectorize-io/vectorize-client";
 import * as fs from "node:fs";
+import exp from "node:constants";
 
 export let testContext: TestContext;
 
@@ -39,6 +40,9 @@ describe("extraction", () => {
                 startExtractionRequest: {
                     fileId: startResponse.fileId,
                     chunkSize: 512,
+                    metadata: {
+                        inferSchema: true
+                    }
                 }
             })
             await pollExtraction(extractionApi, response.extractionId)
@@ -58,10 +62,17 @@ describe("extraction", () => {
                 extractionId: extractionId
             })
             if (result.ready) {
+
                 expect(result.data?.success).toBe(true)
                 expect(result.data?.error).toBeFalsy()
                 expect(result.data?.chunks?.length).toBeGreaterThan(2)
                 expect(result.data?.text).toBeTruthy()
+                expect(result.data?.metadata).toBeTruthy()
+                const parsedMeta = JSON.parse(result.data!.metadata!)
+                console.log(parsedMeta)
+                expect(result.data?.metadataSchema).toBe("generated")
+                expect(result.data?.chunksSchema?.length).toBe(result.data?.chunks?.length)
+                expect(result.data?.chunksMetadata?.length).toBe(result.data?.chunks?.length)
                 break
             } else {
                 console.log("not ready")

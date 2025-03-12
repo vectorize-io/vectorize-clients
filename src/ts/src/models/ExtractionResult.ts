@@ -42,6 +42,30 @@ export interface ExtractionResult {
      * @type {string}
      * @memberof ExtractionResult
      */
+    metadata?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtractionResult
+     */
+    metadataSchema?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ExtractionResult
+     */
+    chunksMetadata?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ExtractionResult
+     */
+    chunksSchema?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ExtractionResult
+     */
     error?: string;
 }
 
@@ -66,6 +90,10 @@ export function ExtractionResultFromJSONTyped(json: any, ignoreDiscriminator: bo
         'success': json['success'],
         'chunks': json['chunks'] == null ? undefined : json['chunks'],
         'text': json['text'] == null ? undefined : json['text'],
+        'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'metadataSchema': json['metadataSchema'] == null ? undefined : json['metadataSchema'],
+        'chunksMetadata': json['chunksMetadata'] == null ? undefined : json['chunksMetadata'],
+        'chunksSchema': json['chunksSchema'] == null ? undefined : json['chunksSchema'],
         'error': json['error'] == null ? undefined : json['error'],
     };
 }
@@ -84,6 +112,10 @@ export function ExtractionResultToJSONTyped(value?: ExtractionResult | null, ign
         'success': value['success'],
         'chunks': value['chunks'],
         'text': value['text'],
+        'metadata': value['metadata'],
+        'metadataSchema': value['metadataSchema'],
+        'chunksMetadata': value['chunksMetadata'],
+        'chunksSchema': value['chunksSchema'],
         'error': value['error'],
     };
 }
