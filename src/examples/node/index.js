@@ -100,7 +100,7 @@ async function pipelineFunctions(pipelineId) {
     try {
         const api = new Configuration({
             accessToken: token,
-            basePath: "https://api-dev.vectorize.io/v1"
+            basePath: "https://api.vectorize.io/v1"
         });
         const pipelinesApi = new PipelinesApi(api);
         const uploadsApi = new UploadsApi(api);
@@ -158,7 +158,7 @@ async function extraction() {
     try {
         const api = new Configuration({
             accessToken: token,
-            basePath: "https://api-dev.vectorize.io/v1"
+            basePath: "https://api.vectorize.io/v1"
         });
         const pipelinesApi = new PipelinesApi(api);
         const uploadsApi = new UploadsApi(api);
