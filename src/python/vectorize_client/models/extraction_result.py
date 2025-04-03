@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +29,12 @@ class ExtractionResult(BaseModel):
     success: StrictBool
     chunks: Optional[List[StrictStr]] = None
     text: Optional[StrictStr] = None
+    metadata: Optional[StrictStr] = None
+    metadata_schema: Optional[StrictStr] = Field(default=None, alias="metadataSchema")
+    chunks_metadata: Optional[List[StrictStr]] = Field(default=None, alias="chunksMetadata")
+    chunks_schema: Optional[List[StrictStr]] = Field(default=None, alias="chunksSchema")
     error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["success", "chunks", "text", "error"]
+    __properties: ClassVar[List[str]] = ["success", "chunks", "text", "metadata", "metadataSchema", "chunksMetadata", "chunksSchema", "error"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +90,10 @@ class ExtractionResult(BaseModel):
             "success": obj.get("success"),
             "chunks": obj.get("chunks"),
             "text": obj.get("text"),
+            "metadata": obj.get("metadata"),
+            "metadataSchema": obj.get("metadataSchema"),
+            "chunksMetadata": obj.get("chunksMetadata"),
+            "chunksSchema": obj.get("chunksSchema"),
             "error": obj.get("error")
         })
         return _obj
