@@ -46,6 +46,38 @@ def test_get_pipelines(ctx: TestContext):
         logging.info(pipeline.id)
 
 
+
+def test_delete_system_connectors(ctx: TestContext):
+    connectors = v.ConnectorsApi(ctx.api_client)
+
+    ai_platforms = connectors.get_ai_platform_connectors(ctx.org_id)
+    builtin_ai_platform = [c.id for c in ai_platforms.ai_platform_connectors if c.type == "VECTORIZE"][0]
+
+    destination_connectors = connectors.get_destination_connectors(ctx.org_id)
+    builtin_vector_db = [c.id for c in destination_connectors.destination_connectors if c.type == "VECTORIZE"][0]
+
+
+    try:
+        connectors.delete_ai_platform(ctx.org_id, builtin_ai_platform)
+        raise ValueError("test should have failed")
+    except Exception as e:
+        logging.error(f"Failed to delete: {e}")
+        if "Cannot delete system connector" in str(e):
+            pass
+        else:
+            raise e
+
+    try:
+        connectors.delete_destination_connector(ctx.org_id, builtin_vector_db)
+        raise ValueError("test should have failed")
+    except Exception as e:
+        logging.error(f"Failed to delete: {e}")
+        if "Cannot delete system connector" in str(e):
+            pass
+        else:
+            raise e
+
+
 def test_upload_create_pipeline(ctx: TestContext):
     pipelines = v.PipelinesApi(ctx.api_client)
 
