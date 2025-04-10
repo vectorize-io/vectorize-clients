@@ -21,6 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, Stric
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from vectorize_client.models.extraction_chunking_strategy import ExtractionChunkingStrategy
 from vectorize_client.models.extraction_type import ExtractionType
+from vectorize_client.models.metadata_extraction_strategy import MetadataExtractionStrategy
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +33,8 @@ class StartExtractionRequest(BaseModel):
     type: Optional[ExtractionType] = ExtractionType.IRIS
     chunking_strategy: Optional[ExtractionChunkingStrategy] = Field(default=ExtractionChunkingStrategy.MARKDOWN, alias="chunkingStrategy")
     chunk_size: Optional[Union[StrictFloat, StrictInt]] = Field(default=256, alias="chunkSize")
-    __properties: ClassVar[List[str]] = ["fileId", "type", "chunkingStrategy", "chunkSize"]
+    metadata: Optional[MetadataExtractionStrategy] = None
+    __properties: ClassVar[List[str]] = ["fileId", "type", "chunkingStrategy", "chunkSize", "metadata"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,6 +75,9 @@ class StartExtractionRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of metadata
+        if self.metadata:
+            _dict['metadata'] = self.metadata.to_dict()
         return _dict
 
     @classmethod
@@ -88,7 +93,8 @@ class StartExtractionRequest(BaseModel):
             "fileId": obj.get("fileId"),
             "type": obj.get("type") if obj.get("type") is not None else ExtractionType.IRIS,
             "chunkingStrategy": obj.get("chunkingStrategy") if obj.get("chunkingStrategy") is not None else ExtractionChunkingStrategy.MARKDOWN,
-            "chunkSize": obj.get("chunkSize") if obj.get("chunkSize") is not None else 256
+            "chunkSize": obj.get("chunkSize") if obj.get("chunkSize") is not None else 256,
+            "metadata": MetadataExtractionStrategy.from_dict(obj["metadata"]) if obj.get("metadata") is not None else None
         })
         return _obj
 

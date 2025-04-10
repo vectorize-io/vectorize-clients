@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { AddUserToSourceConnectorRequestSelectedFilesValue } from './AddUserToSourceConnectorRequestSelectedFilesValue';
+import {
+    AddUserToSourceConnectorRequestSelectedFilesValueFromJSON,
+    AddUserToSourceConnectorRequestSelectedFilesValueFromJSONTyped,
+    AddUserToSourceConnectorRequestSelectedFilesValueToJSON,
+    AddUserToSourceConnectorRequestSelectedFilesValueToJSONTyped,
+} from './AddUserToSourceConnectorRequestSelectedFilesValue';
+
 /**
  * 
  * @export
@@ -27,10 +35,10 @@ export interface UpdateUserInSourceConnectorRequest {
     userId: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {{ [key: string]: AddUserToSourceConnectorRequestSelectedFilesValue; }}
      * @memberof UpdateUserInSourceConnectorRequest
      */
-    fileIds?: Array<string>;
+    selectedFiles?: { [key: string]: AddUserToSourceConnectorRequestSelectedFilesValue; };
     /**
      * 
      * @type {string}
@@ -58,7 +66,7 @@ export function UpdateUserInSourceConnectorRequestFromJSONTyped(json: any, ignor
     return {
         
         'userId': json['userId'],
-        'fileIds': json['fileIds'] == null ? undefined : json['fileIds'],
+        'selectedFiles': json['selectedFiles'] == null ? undefined : (mapValues(json['selectedFiles'], AddUserToSourceConnectorRequestSelectedFilesValueFromJSON)),
         'refreshToken': json['refreshToken'] == null ? undefined : json['refreshToken'],
     };
 }
@@ -75,7 +83,7 @@ export function UpdateUserInSourceConnectorRequestToJSONTyped(value?: UpdateUser
     return {
         
         'userId': value['userId'],
-        'fileIds': value['fileIds'],
+        'selectedFiles': value['selectedFiles'] == null ? undefined : (mapValues(value['selectedFiles'], AddUserToSourceConnectorRequestSelectedFilesValueToJSON)),
         'refreshToken': value['refreshToken'],
     };
 }

@@ -15,7 +15,8 @@
     "release:patch:all": "npm run release:python patch && npm run release:ts patch",
     "release:minor:all": "npm run release:python minor && npm run release:ts minor",
     "release:major:all": "npm run release:python major && npm run release:ts major",
-    "download-spec":  "curl -fs -o ./vectorize_api.json http://localhost:3000/api/openapi"
+    "download-spec":  "curl -fs -o ./vectorize_api.json https://platform.vectorize.io/api/openapi",
+    "download-spec:dev":  "curl -fs -o ./vectorize_api.json http://localhost:3000/api/openapi"
   },
   "author": "",
   "license": "ISC",

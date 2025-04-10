@@ -17,24 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ExtractionResult(BaseModel):
+class AddUserToSourceConnectorRequestSelectedFilesValue(BaseModel):
     """
-    ExtractionResult
+    AddUserToSourceConnectorRequestSelectedFilesValue
     """ # noqa: E501
-    success: StrictBool
-    chunks: Optional[List[StrictStr]] = None
-    text: Optional[StrictStr] = None
-    metadata: Optional[StrictStr] = None
-    metadata_schema: Optional[StrictStr] = Field(default=None, alias="metadataSchema")
-    chunks_metadata: Optional[List[StrictStr]] = Field(default=None, alias="chunksMetadata")
-    chunks_schema: Optional[List[StrictStr]] = Field(default=None, alias="chunksSchema")
-    error: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["success", "chunks", "text", "metadata", "metadataSchema", "chunksMetadata", "chunksSchema", "error"]
+    name: StrictStr
+    mime_type: StrictStr = Field(alias="mimeType")
+    __properties: ClassVar[List[str]] = ["name", "mimeType"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +48,7 @@ class ExtractionResult(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ExtractionResult from a JSON string"""
+        """Create an instance of AddUserToSourceConnectorRequestSelectedFilesValue from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,7 +73,7 @@ class ExtractionResult(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ExtractionResult from a dict"""
+        """Create an instance of AddUserToSourceConnectorRequestSelectedFilesValue from a dict"""
         if obj is None:
             return None
 
@@ -87,14 +81,8 @@ class ExtractionResult(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "success": obj.get("success"),
-            "chunks": obj.get("chunks"),
-            "text": obj.get("text"),
-            "metadata": obj.get("metadata"),
-            "metadataSchema": obj.get("metadataSchema"),
-            "chunksMetadata": obj.get("chunksMetadata"),
-            "chunksSchema": obj.get("chunksSchema"),
-            "error": obj.get("error")
+            "name": obj.get("name"),
+            "mimeType": obj.get("mimeType")
         })
         return _obj
 

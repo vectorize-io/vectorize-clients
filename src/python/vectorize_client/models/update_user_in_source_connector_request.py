@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from vectorize_client.models.add_user_to_source_connector_request_selected_files_value import AddUserToSourceConnectorRequestSelectedFilesValue
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,9 +28,9 @@ class UpdateUserInSourceConnectorRequest(BaseModel):
     UpdateUserInSourceConnectorRequest
     """ # noqa: E501
     user_id: StrictStr = Field(alias="userId")
-    file_ids: Optional[List[StrictStr]] = Field(default=None, alias="fileIds")
+    selected_files: Optional[Dict[str, AddUserToSourceConnectorRequestSelectedFilesValue]] = Field(default=None, alias="selectedFiles")
     refresh_token: Optional[StrictStr] = Field(default=None, alias="refreshToken")
-    __properties: ClassVar[List[str]] = ["userId", "fileIds", "refreshToken"]
+    __properties: ClassVar[List[str]] = ["userId", "selectedFiles", "refreshToken"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,6 +71,13 @@ class UpdateUserInSourceConnectorRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each value in selected_files (dict)
+        _field_dict = {}
+        if self.selected_files:
+            for _key_selected_files in self.selected_files:
+                if self.selected_files[_key_selected_files]:
+                    _field_dict[_key_selected_files] = self.selected_files[_key_selected_files].to_dict()
+            _dict['selectedFiles'] = _field_dict
         return _dict
 
     @classmethod
@@ -83,7 +91,12 @@ class UpdateUserInSourceConnectorRequest(BaseModel):
 
         _obj = cls.model_validate({
             "userId": obj.get("userId"),
-            "fileIds": obj.get("fileIds"),
+            "selectedFiles": dict(
+                (_k, AddUserToSourceConnectorRequestSelectedFilesValue.from_dict(_v))
+                for _k, _v in obj["selectedFiles"].items()
+            )
+            if obj.get("selectedFiles") is not None
+            else None,
             "refreshToken": obj.get("refreshToken")
         })
         return _obj
