@@ -26,6 +26,7 @@ export const DestinationConnectorType = {
     Milvus: 'MILVUS',
     Postgresql: 'POSTGRESQL',
     Qdrant: 'QDRANT',
+    Supabase: 'SUPABASE',
     Weaviate: 'WEAVIATE',
     Azureaisearch: 'AZUREAISEARCH',
     Vectorize: 'VECTORIZE',

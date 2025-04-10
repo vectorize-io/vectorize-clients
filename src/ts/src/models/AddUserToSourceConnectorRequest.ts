@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { AddUserToSourceConnectorRequestSelectedFilesValue } from './AddUserToSourceConnectorRequestSelectedFilesValue';
+import {
+    AddUserToSourceConnectorRequestSelectedFilesValueFromJSON,
+    AddUserToSourceConnectorRequestSelectedFilesValueFromJSONTyped,
+    AddUserToSourceConnectorRequestSelectedFilesValueToJSON,
+    AddUserToSourceConnectorRequestSelectedFilesValueToJSONTyped,
+} from './AddUserToSourceConnectorRequestSelectedFilesValue';
+
 /**
  * 
  * @export
@@ -27,10 +35,10 @@ export interface AddUserToSourceConnectorRequest {
     userId: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {{ [key: string]: AddUserToSourceConnectorRequestSelectedFilesValue; }}
      * @memberof AddUserToSourceConnectorRequest
      */
-    fileIds?: Array<string>;
+    selectedFiles: { [key: string]: AddUserToSourceConnectorRequestSelectedFilesValue; };
     /**
      * 
      * @type {string}
@@ -44,6 +52,7 @@ export interface AddUserToSourceConnectorRequest {
  */
 export function instanceOfAddUserToSourceConnectorRequest(value: object): value is AddUserToSourceConnectorRequest {
     if (!('userId' in value) || value['userId'] === undefined) return false;
+    if (!('selectedFiles' in value) || value['selectedFiles'] === undefined) return false;
     if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
     return true;
 }
@@ -59,7 +68,7 @@ export function AddUserToSourceConnectorRequestFromJSONTyped(json: any, ignoreDi
     return {
         
         'userId': json['userId'],
-        'fileIds': json['fileIds'] == null ? undefined : json['fileIds'],
+        'selectedFiles': (mapValues(json['selectedFiles'], AddUserToSourceConnectorRequestSelectedFilesValueFromJSON)),
         'refreshToken': json['refreshToken'],
     };
 }
@@ -76,7 +85,7 @@ export function AddUserToSourceConnectorRequestToJSONTyped(value?: AddUserToSour
     return {
         
         'userId': value['userId'],
-        'fileIds': value['fileIds'],
+        'selectedFiles': (mapValues(value['selectedFiles'], AddUserToSourceConnectorRequestSelectedFilesValueToJSON)),
         'refreshToken': value['refreshToken'],
     };
 }
