@@ -182,7 +182,7 @@ describe("connector", () => {
             let sourceResponse = await connectorsApi.createDestinationConnector({
                 organization: testContext.orgId,
                 createDestinationConnector: [
-                    {type: DestinationConnectorType.Pinecone, name: "from api", config: {"key": "sk"}}
+                    {type: DestinationConnectorType.Pinecone, name: "from api", config: {"api-key": "sk"}}
                 ]
             });
             const connectorId = sourceResponse.connectors[0].id;
@@ -190,7 +190,7 @@ describe("connector", () => {
                     organization: testContext.orgId,
                     destinationConnectorId: connectorId,
                     updateDestinationConnectorRequest: {
-                        config: {"key": "sk"}
+                        config: {"api-key": "sk"}
                     }
                 }
             );
