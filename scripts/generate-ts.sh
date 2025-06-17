@@ -4,9 +4,16 @@ ROOT_DIR=$(git rev-parse --show-toplevel)
 SRC_DIR=$ROOT_DIR/src
 
 PACKAGE_JSON=$SRC_DIR/ts/package.json
-cd $SRC_DIR/ts
-current_version=$(npm pkg get version | tr -d '"')
-cd ../../
+
+# Try to get current version if the directory exists
+if [ -d "$SRC_DIR/ts" ] && [ -f "$PACKAGE_JSON" ]; then
+  cd $SRC_DIR/ts
+  current_version=$(npm pkg get version | tr -d '"')
+  cd ../../
+else
+  # Use version from root package.json as fallback
+  current_version=$(node -p "require('./package.json').version")
+fi
 
 rm -rf $SRC_DIR/ts
 openapi-generator-cli generate -i $ROOT_DIR/vectorize_api.json -g typescript-fetch -o $SRC_DIR/ts \
