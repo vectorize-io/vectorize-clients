@@ -4,7 +4,7 @@ ROOT_DIR=$(git rev-parse --show-toplevel)
 SRC_DIR=$ROOT_DIR/src
 
 PYPROJECT=$SRC_DIR/python/pyproject.toml
-current_version=$(npm run read-toml $PYPROJECT tool.poetry version | tail -n 1 | tr -d '[:space:]')
+current_version=$(node -p "require('./package.json').version")
 
 rm -rf $SRC_DIR/python
 openapi-generator-cli generate -i $ROOT_DIR/vectorize_api.json -g python -o $SRC_DIR/python \
