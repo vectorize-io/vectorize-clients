@@ -1,0 +1,2197 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Vectorize API (Beta)",
+    "version": "0.0.1",
+    "description": "API for Vectorize services",
+    "contact": {
+      "name": "Vectorize",
+      "url": "https://vectorize.io"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.vectorize.io/v1",
+      "description": "Vectorize API"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "CreatePipelineResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "AdvancedQuery": {
+        "type": "object",
+        "description": "Advanced query configuration for document retrieval",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "text",
+              "vector",
+              "hybrid"
+            ],
+            "default": "vector",
+            "description": "Query mode - text, vector, or hybrid"
+          },
+          "text-fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Fields to search in text mode"
+          },
+          "match-type": {
+            "type": "string",
+            "enum": [
+              "match",
+              "match_phrase",
+              "multi_match"
+            ],
+            "description": "Text matching type"
+          },
+          "text-boost": {
+            "type": "number",
+            "format": "float",
+            "default": 1.0,
+            "description": "Boost factor for text queries"
+          },
+          "filters": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Filters to apply to the query (Elasticsearch-style filters)"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SourceConnectorType": {
+        "type": "string",
+        "enum": [
+          "AWS_S3",
+          "AZURE_BLOB",
+          "CONFLUENCE",
+          "DISCORD",
+          "DROPBOX",
+          "GOOGLE_DRIVE_OAUTH",
+          "GOOGLE_DRIVE",
+          "GOOGLE_DRIVE_OAUTH_MULTI",
+          "GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM",
+          "FIRECRAWL",
+          "GCS",
+          "INTERCOM",
+          "ONE_DRIVE",
+          "SHAREPOINT",
+          "WEB_CRAWLER",
+          "FILE_UPLOAD",
+          "SALESFORCE",
+          "ZENDESK"
+        ]
+      },
+      "SourceConnectorSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SourceConnectorType"
+          },
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ],
+        "additionalProperties": false
+      },
+      "DestinationConnectorType": {
+        "type": "string",
+        "enum": [
+          "CAPELLA",
+          "DATASTAX",
+          "ELASTIC",
+          "PINECONE",
+          "SINGLESTORE",
+          "MILVUS",
+          "POSTGRESQL",
+          "QDRANT",
+          "SUPABASE",
+          "WEAVIATE",
+          "AZUREAISEARCH",
+          "VECTORIZE",
+          "CHROMA",
+          "MONGODB"
+        ]
+      },
+      "DestinationConnectorSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "$ref": "#/components/schemas/DestinationConnectorType"
+          },
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ],
+        "additionalProperties": false
+      },
+      "AIPlatformType": {
+        "type": "string",
+        "enum": [
+          "BEDROCK",
+          "VERTEX",
+          "OPENAI",
+          "VOYAGE",
+          "VECTORIZE"
+        ]
+      },
+      "AIPlatformConfigSchema": {
+        "type": "object",
+        "properties": {
+          "embeddingModel": {
+            "type": "string",
+            "enum": [
+              "VECTORIZE_OPEN_AI_TEXT_EMBEDDING_2",
+              "VECTORIZE_OPEN_AI_TEXT_EMBEDDING_3_LARGE",
+              "VECTORIZE_OPEN_AI_TEXT_EMBEDDING_3_SMALL",
+              "VECTORIZE_VOYAGE_AI_2",
+              "VECTORIZE_VOYAGE_AI_3",
+              "VECTORIZE_VOYAGE_AI_3_LITE",
+              "VECTORIZE_VOYAGE_AI_3_LARGE",
+              "VECTORIZE_VOYAGE_AI_FINANCE_2",
+              "VECTORIZE_VOYAGE_AI_MULTILINGUAL_2",
+              "VECTORIZE_VOYAGE_AI_LAW_2",
+              "VECTORIZE_VOYAGE_AI_CODE_2",
+              "VECTORIZE_TITAN_TEXT_EMBEDDING_2",
+              "VECTORIZE_TITAN_TEXT_EMBEDDING_1",
+              "OPEN_AI_TEXT_EMBEDDING_2",
+              "OPEN_AI_TEXT_EMBEDDING_3_SMALL",
+              "OPEN_AI_TEXT_EMBEDDING_3_LARGE",
+              "VOYAGE_AI_2",
+              "VOYAGE_AI_3",
+              "VOYAGE_AI_3_LITE",
+              "VOYAGE_AI_3_LARGE",
+              "VOYAGE_AI_FINANCE_2",
+              "VOYAGE_AI_MULTILINGUAL_2",
+              "VOYAGE_AI_LAW_2",
+              "VOYAGE_AI_CODE_2",
+              "TITAN_TEXT_EMBEDDING_1",
+              "TITAN_TEXT_EMBEDDING_2",
+              "VERTEX_TEXT_EMBEDDING_4",
+              "VERTEX_TEXT_EMBEDDING_GECKO_3",
+              "VERTEX_GECKO_MULTILINGUAL_1",
+              "VERTEX_MULTILINGUAL_EMBEDDING_2"
+            ]
+          },
+          "chunkingStrategy": {
+            "type": "string",
+            "enum": [
+              "FIXED",
+              "SENTENCE",
+              "PARAGRAPH",
+              "MARKDOWN"
+            ]
+          },
+          "chunkSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "chunkOverlap": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "dimensions": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "extractionStrategy": {
+            "type": "string",
+            "enum": [
+              "FAST",
+              "IRIS",
+              "MIXED"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "AIPlatformSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AIPlatformType"
+          },
+          "config": {
+            "$ref": "#/components/schemas/AIPlatformConfigSchema"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "config"
+        ],
+        "additionalProperties": false
+      },
+      "ScheduleSchemaType": {
+        "type": "string",
+        "enum": [
+          "manual",
+          "realtime",
+          "custom"
+        ]
+      },
+      "ScheduleSchema": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ScheduleSchemaType"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "PipelineConfigurationSchema": {
+        "type": "object",
+        "properties": {
+          "sourceConnectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceConnectorSchema"
+            },
+            "minItems": 1
+          },
+          "destinationConnector": {
+            "$ref": "#/components/schemas/DestinationConnectorSchema"
+          },
+          "aiPlatform": {
+            "$ref": "#/components/schemas/AIPlatformSchema"
+          },
+          "pipelineName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "schedule": {
+            "$ref": "#/components/schemas/ScheduleSchema"
+          }
+        },
+        "required": [
+          "sourceConnectors",
+          "destinationConnector",
+          "aiPlatform",
+          "pipelineName",
+          "schedule"
+        ],
+        "additionalProperties": false
+      },
+      "PipelineListSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "documentCount": {
+            "type": "number"
+          },
+          "sourceConnectorAuthIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "destinationConnectorAuthIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "aiPlatformAuthIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceConnectorTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "destinationConnectorTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "aiPlatformTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "configDoc": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "documentCount",
+          "sourceConnectorAuthIds",
+          "destinationConnectorAuthIds",
+          "aiPlatformAuthIds",
+          "sourceConnectorTypes",
+          "destinationConnectorTypes",
+          "aiPlatformTypes",
+          "createdAt",
+          "createdBy"
+        ]
+      },
+      "GetPipelinesResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineListSummary"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "SourceConnector": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "configDoc": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdById": {
+            "type": "string"
+          },
+          "lastUpdatedById": {
+            "type": "string"
+          },
+          "createdByEmail": {
+            "type": "string"
+          },
+          "lastUpdatedByEmail": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "verificationStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "name"
+        ]
+      },
+      "DestinationConnector": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "configDoc": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdById": {
+            "type": "string"
+          },
+          "lastUpdatedById": {
+            "type": "string"
+          },
+          "createdByEmail": {
+            "type": "string"
+          },
+          "lastUpdatedByEmail": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "verificationStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "name"
+        ]
+      },
+      "AIPlatform": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "configDoc": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdById": {
+            "type": "string"
+          },
+          "lastUpdatedById": {
+            "type": "string"
+          },
+          "createdByEmail": {
+            "type": "string"
+          },
+          "lastUpdatedByEmail": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "verificationStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "name"
+        ]
+      },
+      "PipelineSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "documentCount": {
+            "type": "number"
+          },
+          "sourceConnectorAuthIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "destinationConnectorAuthIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "aiPlatformAuthIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceConnectorTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "destinationConnectorTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "aiPlatformTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "configDoc": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          },
+          "sourceConnectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceConnector"
+            }
+          },
+          "destinationConnectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DestinationConnector"
+            }
+          },
+          "aiPlatforms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AIPlatform"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "documentCount",
+          "sourceConnectorAuthIds",
+          "destinationConnectorAuthIds",
+          "aiPlatformAuthIds",
+          "sourceConnectorTypes",
+          "destinationConnectorTypes",
+          "aiPlatformTypes",
+          "createdAt",
+          "createdBy",
+          "sourceConnectors",
+          "destinationConnectors",
+          "aiPlatforms"
+        ]
+      },
+      "GetPipelineResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PipelineSummary"
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "DeletePipelineResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "PipelineEvents": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          },
+          "summary": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "timestamp"
+        ]
+      },
+      "GetPipelineEventsResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "nextToken": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineEvents"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "PipelineMetrics": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "newObjects": {
+            "type": "number"
+          },
+          "changedObjects": {
+            "type": "number"
+          },
+          "deletedObjects": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "timestamp",
+          "newObjects",
+          "changedObjects",
+          "deletedObjects"
+        ]
+      },
+      "GetPipelineMetricsResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineMetrics"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "Document": {
+        "type": "object",
+        "properties": {
+          "relevancy": {
+            "type": "number"
+          },
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "chunk_id": {
+            "type": "string"
+          },
+          "total_chunks": {
+            "type": "string"
+          },
+          "origin": {
+            "type": "string"
+          },
+          "origin_id": {
+            "type": "string"
+          },
+          "similarity": {
+            "type": "number"
+          },
+          "source": {
+            "type": "string"
+          },
+          "unique_source": {
+            "type": "string"
+          },
+          "source_display_name": {
+            "type": "string"
+          },
+          "pipeline_id": {
+            "type": "string"
+          },
+          "org_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "relevancy",
+          "id",
+          "text",
+          "chunk_id",
+          "total_chunks",
+          "origin",
+          "origin_id",
+          "similarity",
+          "source",
+          "unique_source",
+          "source_display_name"
+        ],
+        "additionalProperties": true
+      },
+      "RetrieveDocumentsResponse": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            }
+          },
+          "average_relevancy": {
+            "type": "number"
+          },
+          "ndcg": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "question",
+          "documents",
+          "average_relevancy",
+          "ndcg"
+        ]
+      },
+      "RetrieveContextMessage": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "content"
+        ]
+      },
+      "RetrieveContext": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RetrieveContextMessage"
+            }
+          }
+        },
+        "required": [
+          "messages"
+        ]
+      },
+      "RetrieveDocumentsRequest": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "numResults": {
+            "type": "number",
+            "minimum": 1
+          },
+          "rerank": {
+            "type": "boolean",
+            "default": true
+          },
+          "metadata-filters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "nullable": true
+              }
+            }
+          },
+          "context": {
+            "$ref": "#/components/schemas/RetrieveContext"
+          },
+          "advanced-query": {
+            "$ref": "#/components/schemas/AdvancedQuery",
+            "description": "Advanced query configuration for enhanced document retrieval"
+          }
+        },
+        "required": [
+          "question",
+          "numResults"
+        ]
+      },
+      "StartPipelineResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "StopPipelineResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "StartDeepResearchResponse": {
+        "type": "object",
+        "properties": {
+          "researchId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "researchId"
+        ]
+      },
+      "N8NConfig": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "webhookPath": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "account",
+          "webhookPath"
+        ]
+      },
+      "StartDeepResearchRequest": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "webSearch": {
+            "type": "boolean",
+            "default": false
+          },
+          "schema": {
+            "type": "string"
+          },
+          "n8n": {
+            "$ref": "#/components/schemas/N8NConfig"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "DeepResearchResult": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "markdown": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "GetDeepResearchResponse": {
+        "type": "object",
+        "properties": {
+          "ready": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/DeepResearchResult"
+          }
+        },
+        "required": [
+          "ready"
+        ]
+      },
+      "CreatedSourceConnector": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "id"
+        ]
+      },
+      "CreateSourceConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "connectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatedSourceConnector"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "connectors"
+        ]
+      },
+      "CreateSourceConnector": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SourceConnectorType"
+          },
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "CreateSourceConnectorRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CreateSourceConnector"
+        },
+        "minItems": 1
+      },
+      "UpdateSourceConnectorResponseData": {
+        "type": "object",
+        "properties": {
+          "updatedConnector": {
+            "$ref": "#/components/schemas/SourceConnector"
+          },
+          "pipelineIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "updatedConnector"
+        ]
+      },
+      "UpdateSourceConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UpdateSourceConnectorResponseData"
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "UpdateSourceConnectorRequest": {
+        "type": "object",
+        "properties": {
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "config"
+        ]
+      },
+      "DeleteSourceConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "CreatedDestinationConnector": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "id"
+        ]
+      },
+      "CreateDestinationConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "connectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatedDestinationConnector"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "connectors"
+        ]
+      },
+      "CreateDestinationConnector": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/DestinationConnectorType"
+          },
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "CreateDestinationConnectorRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CreateDestinationConnector"
+        },
+        "minItems": 1
+      },
+      "UpdatedDestinationConnectorData": {
+        "type": "object",
+        "properties": {
+          "updatedConnector": {
+            "$ref": "#/components/schemas/DestinationConnector"
+          },
+          "pipelineIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "updatedConnector"
+        ]
+      },
+      "UpdateDestinationConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UpdatedDestinationConnectorData"
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "UpdateDestinationConnectorRequest": {
+        "type": "object",
+        "properties": {
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "config"
+        ]
+      },
+      "DeleteDestinationConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "CreatedAIPlatformConnector": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "id"
+        ]
+      },
+      "CreateAIPlatformConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "connectors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreatedAIPlatformConnector"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "connectors"
+        ]
+      },
+      "CreateAIPlatformConnector": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AIPlatformType"
+          },
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "name",
+          "type"
+        ]
+      },
+      "CreateAIPlatformConnectorRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/CreateAIPlatformConnector"
+        },
+        "minItems": 1
+      },
+      "UpdatedAIPlatformConnectorData": {
+        "type": "object",
+        "properties": {
+          "updatedConnector": {
+            "$ref": "#/components/schemas/AIPlatform"
+          },
+          "pipelineIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "updatedConnector"
+        ]
+      },
+      "UpdateAIPlatformConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UpdatedAIPlatformConnectorData"
+          }
+        },
+        "required": [
+          "message",
+          "data"
+        ]
+      },
+      "UpdateAIPlatformConnectorRequest": {
+        "type": "object",
+        "properties": {
+          "config": {
+            "type": "object",
+            "additionalProperties": {
+              "nullable": true
+            }
+          }
+        },
+        "required": [
+          "config"
+        ]
+      },
+      "DeleteAIPlatformConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "UploadFile": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "extension": {
+            "type": "string"
+          },
+          "lastModified": {
+            "type": "string",
+            "nullable": true
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "key",
+          "name",
+          "size",
+          "lastModified",
+          "metadata"
+        ]
+      },
+      "GetUploadFilesResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UploadFile"
+            }
+          }
+        },
+        "required": [
+          "message",
+          "files"
+        ]
+      },
+      "StartFileUploadToConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "uploadUrl": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "uploadUrl"
+        ]
+      },
+      "StartFileUploadToConnectorRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "contentType"
+        ]
+      },
+      "DeleteFileResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message",
+          "fileName"
+        ]
+      },
+      "StartExtractionResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "extractionId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message",
+          "extractionId"
+        ]
+      },
+      "ExtractionType": {
+        "type": "string",
+        "enum": [
+          "iris"
+        ],
+        "default": "iris"
+      },
+      "ExtractionChunkingStrategy": {
+        "type": "string",
+        "enum": [
+          "markdown"
+        ],
+        "default": "markdown"
+      },
+      "MetadataExtractionStrategySchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "schema"
+        ]
+      },
+      "MetadataExtractionStrategy": {
+        "type": "object",
+        "properties": {
+          "schemas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataExtractionStrategySchema"
+            }
+          },
+          "inferSchema": {
+            "type": "boolean"
+          }
+        }
+      },
+      "StartExtractionRequest": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ExtractionType"
+          },
+          "chunkingStrategy": {
+            "$ref": "#/components/schemas/ExtractionChunkingStrategy"
+          },
+          "chunkSize": {
+            "type": "number",
+            "default": 256
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MetadataExtractionStrategy"
+          }
+        },
+        "required": [
+          "fileId"
+        ]
+      },
+      "ExtractionResult": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "chunks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "text": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          },
+          "metadataSchema": {
+            "type": "string"
+          },
+          "chunksMetadata": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "chunksSchema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "ExtractionResultResponse": {
+        "type": "object",
+        "properties": {
+          "ready": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ExtractionResult"
+          }
+        },
+        "required": [
+          "ready"
+        ]
+      },
+      "StartFileUploadResponse": {
+        "type": "object",
+        "properties": {
+          "fileId": {
+            "type": "string"
+          },
+          "uploadUrl": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "fileId",
+          "uploadUrl"
+        ]
+      },
+      "StartFileUploadRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "contentType"
+        ]
+      },
+      "AddUserFromSourceConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "AddUserToSourceConnectorRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "selectedFiles": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "mimeType": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "mimeType"
+              ]
+            }
+          },
+          "refreshToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "userId",
+          "selectedFiles",
+          "refreshToken"
+        ]
+      },
+      "UpdateUserInSourceConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "UpdateUserInSourceConnectorRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "selectedFiles": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "mimeType": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "mimeType"
+              ]
+            }
+          },
+          "refreshToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "userId"
+        ]
+      },
+      "RemoveUserFromSourceConnectorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "RemoveUserFromSourceConnectorRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "userId"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/org/{organization}/pipelines": {
+      "post": {
+        "operationId": "createPipeline",
+        "summary": "Create a new source pipeline. Config fields for sources: Amazon S3 (AWS_S3): \nCheck for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Azure Blob Storage (AZURE_BLOB): \nPolling Interval (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Confluence (CONFLUENCE): \nSpaces (spaces): array oftext, Root Parents (root-parents): array oftext) | Discord (DISCORD): \nEmoji Filter (emoji): array oftext, Author Filter (author): array oftext, Ignore Author Filter (ignore-author): array oftext, Limit (limit): number) | Dropbox (DROPBOX): \nRead from these folders (optional) (path-prefix): array oftext) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH): \nPolling Interval (seconds) (idle-time): number) | Google Drive (Service Account) (GOOGLE_DRIVE): \nRestrict ingest to these folder URLs (optional) (root-parents): array oftext, Polling Interval (seconds) (idle-time): number) | Google Drive Multi-User (Vectorize) (GOOGLE_DRIVE_OAUTH_MULTI): \nPolling Interval (seconds) (idle-time): number) | Google Drive Multi-User (White Label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM): \nPolling Interval (seconds) (idle-time): number) | Firecrawl (FIRECRAWL): \n) | GCP Cloud Storage (GCS): \nCheck for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Intercom (INTERCOM): \nReindex Interval (seconds) (reindexIntervalSeconds): number, Limit (limit): number, Tags (tags): array oftext) | OneDrive (ONE_DRIVE): \nRead starting from this folder (optional) (path-prefix): text) | SharePoint (SHAREPOINT): \nSite Name(s) (sites): array oftext) | Web Crawler (WEB_CRAWLER): \nAdditional Allowed URLs or prefix(es) (allowed-domains-opt): array ofurl, Forbidden Paths (forbidden-paths): array oftext, Throttle (ms) (min-time-between-requests): number, Max Error Count (max-error-count): number, Max URLs (max-urls): number, Max Depth (max-depth): number, Reindex Interval (seconds) (reindex-interval-seconds): number) | File Upload (FILE_UPLOAD): \n). Config fields for destinations: Couchbase Capella (CAPELLA): \nBucket Name (bucket): text, Scope Name (scope): text, Collection Name (collection): text, Search Index Name (index): text) | DataStax Astra (DATASTAX): \nCollection Name (collection): text) | Elasticsearch (ELASTIC): \nIndex Name (index): text) | Pinecone (PINECONE): \nIndex Name (index): text, Namespace (namespace): text) | SingleStore (SINGLESTORE): \nTable Name (table): text) | Milvus (MILVUS): \nCollection Name (collection): text) | PostgreSQL (POSTGRESQL): \nTable Name (table): text) | Qdrant (QDRANT): \nCollection Name (collection): text) | Supabase (SUPABASE): \nTable Name (table): text) | Weaviate (WEAVIATE): \nCollection Name (collection): text) | Azure AI Search (AZUREAISEARCH): \nIndex Name (index): text) | Built-in (VECTORIZE): \n) | Chroma (CHROMA): \nIndex Name (index): text) | MongoDB (MONGODB): \nIndex Name (index): text). Config fields for AI platforms: ",
+        "tags": [
+          "Pipelines"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "organization",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineConfigurationSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pipeline created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePipelineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPipelines",
+        "summary": "Get all existing pipelines",
+        "tags": [
+          "Pipelines"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "organization",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all pipelines",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPipelinesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
