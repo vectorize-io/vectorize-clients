@@ -31,6 +31,7 @@ class AdvancedQuery(BaseModel):
     match_type: Optional[StrictStr] = Field(default=None, alias="match-type")
     text_boost: Optional[Union[StrictFloat, StrictInt]] = Field(default=1.0, alias="text-boost")
     filters: Optional[Dict[str, Any]] = None
+    additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["mode", "text-fields", "match-type", "text-boost", "filters"]
 
     @field_validator('mode')
@@ -83,8 +84,10 @@ class AdvancedQuery(BaseModel):
         * `None` is only added to the output dict for nullable fields that
           were set at model initialization. Other fields with value `None`
           are ignored.
+        * Fields in `self.additional_properties` are added to the output dict.
         """
         excluded_fields: Set[str] = set([
+            "additional_properties",
         ])
 
         _dict = self.model_dump(
@@ -92,6 +95,11 @@ class AdvancedQuery(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
         return _dict
 
     @classmethod
@@ -110,6 +118,11 @@ class AdvancedQuery(BaseModel):
             "text-boost": obj.get("text-boost") if obj.get("text-boost") is not None else 1.0,
             "filters": obj.get("filters")
         })
+        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
         return _obj
 
 

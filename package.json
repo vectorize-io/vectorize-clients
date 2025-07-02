@@ -15,13 +15,15 @@
     "release:patch:all": "npm run release:python patch && npm run release:ts patch",
     "release:minor:all": "npm run release:python minor && npm run release:ts minor",
     "release:major:all": "npm run release:python major && npm run release:ts major",
-    "download-spec":  "curl -fs -o ./vectorize_api.json https://platform.vectorize.io/api/openapi",
-    "download-spec:dev":  "curl -fs -o ./vectorize_api.json http://localhost:3000/api/openapi"
+    "download-spec": "curl -fs -o ./vectorize_api.json https://platform.vectorize.io/api/openapi",
+    "download-spec:dev": "curl -fs -o ./vectorize_api.json http://localhost:3000/api/openapi"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@iarna/toml": "^2.2.5",
+    "axios": "^1.10.0",
+    "axis": "^1.0.0",
     "toml": "^3.0.0"
   },
   "devDependencies": {
