@@ -85,8 +85,13 @@ export class UploadsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/uploads/{connectorId}/files`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"connectorId"}}`, encodeURIComponent(String(requestParameters['connectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/uploads/{connectorId}/files`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"connectorId"}}`, encodeURIComponent(String(requestParameters['connectorId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -133,8 +138,13 @@ export class UploadsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/uploads/{connectorId}/files`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"connectorId"}}`, encodeURIComponent(String(requestParameters['connectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/uploads/{connectorId}/files`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"connectorId"}}`, encodeURIComponent(String(requestParameters['connectorId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -190,8 +200,13 @@ export class UploadsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/uploads/{connectorId}/files`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"connectorId"}}`, encodeURIComponent(String(requestParameters['connectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/uploads/{connectorId}/files`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"connectorId"}}`, encodeURIComponent(String(requestParameters['connectorId']))),
+            path: urlPath,
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,

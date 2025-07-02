@@ -76,8 +76,13 @@ export class ExtractionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/extraction/{extractionId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"extractionId"}}`, encodeURIComponent(String(requestParameters['extractionId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/extraction/{extractionId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"extractionId"}}`, encodeURIComponent(String(requestParameters['extractionId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -126,8 +131,12 @@ export class ExtractionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/extraction`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/extraction`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

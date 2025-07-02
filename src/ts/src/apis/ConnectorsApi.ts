@@ -240,8 +240,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/sources/{sourceConnectorId}/users`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/sources/{sourceConnectorId}/users`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -291,8 +296,12 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/aiplatforms`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/aiplatforms`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -342,8 +351,12 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/destinations`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/destinations`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -393,8 +406,12 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/sources`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/sources`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -442,8 +459,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/aiplatforms/{aiplatformId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"aiplatformId"}}`, encodeURIComponent(String(requestParameters['aiplatformId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/aiplatforms/{aiplatformId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"aiplatformId"}}`, encodeURIComponent(String(requestParameters['aiplatformId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -490,8 +512,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/destinations/{destinationConnectorId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"destinationConnectorId"}}`, encodeURIComponent(String(requestParameters['destinationConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/destinations/{destinationConnectorId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"destinationConnectorId"}}`, encodeURIComponent(String(requestParameters['destinationConnectorId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -538,8 +565,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/sources/{sourceConnectorId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/sources/{sourceConnectorId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -595,8 +627,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/sources/{sourceConnectorId}/users`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/sources/{sourceConnectorId}/users`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -644,8 +681,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/aiplatforms/{aiplatformId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"aiplatformId"}}`, encodeURIComponent(String(requestParameters['aiplatformId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/aiplatforms/{aiplatformId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"aiplatformId"}}`, encodeURIComponent(String(requestParameters['aiplatformId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -685,8 +727,12 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/aiplatforms`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/aiplatforms`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -733,8 +779,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/destinations/{destinationConnectorId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"destinationConnectorId"}}`, encodeURIComponent(String(requestParameters['destinationConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/destinations/{destinationConnectorId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"destinationConnectorId"}}`, encodeURIComponent(String(requestParameters['destinationConnectorId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -774,8 +825,12 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/destinations`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/destinations`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -822,8 +877,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/sources/{sourceConnectorId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/sources/{sourceConnectorId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -863,8 +923,12 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/sources`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/sources`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -920,8 +984,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/aiplatforms/{aiplatformId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"aiplatformId"}}`, encodeURIComponent(String(requestParameters['aiplatformId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/aiplatforms/{aiplatformId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"aiplatformId"}}`, encodeURIComponent(String(requestParameters['aiplatformId']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -978,8 +1047,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/destinations/{destinationConnectorId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"destinationConnectorId"}}`, encodeURIComponent(String(requestParameters['destinationConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/destinations/{destinationConnectorId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"destinationConnectorId"}}`, encodeURIComponent(String(requestParameters['destinationConnectorId']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -1036,8 +1110,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/sources/{sourceConnectorId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/sources/{sourceConnectorId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
@@ -1094,8 +1173,13 @@ export class ConnectorsApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/connectors/sources/{sourceConnectorId}/users`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/connectors/sources/{sourceConnectorId}/users`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"sourceConnectorId"}}`, encodeURIComponent(String(requestParameters['sourceConnectorId']))),
+            path: urlPath,
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,

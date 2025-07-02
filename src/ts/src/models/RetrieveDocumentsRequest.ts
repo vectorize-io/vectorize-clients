@@ -20,6 +20,13 @@ import {
     RetrieveContextToJSON,
     RetrieveContextToJSONTyped,
 } from './RetrieveContext';
+import type { AdvancedQuery } from './AdvancedQuery';
+import {
+    AdvancedQueryFromJSON,
+    AdvancedQueryFromJSONTyped,
+    AdvancedQueryToJSON,
+    AdvancedQueryToJSONTyped,
+} from './AdvancedQuery';
 
 /**
  * 
@@ -57,6 +64,12 @@ export interface RetrieveDocumentsRequest {
      * @memberof RetrieveDocumentsRequest
      */
     context?: RetrieveContext;
+    /**
+     * 
+     * @type {AdvancedQuery}
+     * @memberof RetrieveDocumentsRequest
+     */
+    advancedQuery?: AdvancedQuery;
 }
 
 /**
@@ -83,6 +96,7 @@ export function RetrieveDocumentsRequestFromJSONTyped(json: any, ignoreDiscrimin
         'rerank': json['rerank'] == null ? undefined : json['rerank'],
         'metadataFilters': json['metadata-filters'] == null ? undefined : json['metadata-filters'],
         'context': json['context'] == null ? undefined : RetrieveContextFromJSON(json['context']),
+        'advancedQuery': json['advanced-query'] == null ? undefined : AdvancedQueryFromJSON(json['advanced-query']),
     };
 }
 
@@ -102,6 +116,7 @@ export function RetrieveDocumentsRequestToJSONTyped(value?: RetrieveDocumentsReq
         'rerank': value['rerank'],
         'metadata-filters': value['metadataFilters'],
         'context': RetrieveContextToJSON(value['context']),
+        'advanced-query': AdvancedQueryToJSON(value['advancedQuery']),
     };
 }
 
