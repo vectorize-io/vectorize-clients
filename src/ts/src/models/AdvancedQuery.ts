@@ -19,6 +19,7 @@ import { mapValues } from '../runtime';
  * @interface AdvancedQuery
  */
 export interface AdvancedQuery {
+    [key: string]: any | any;
     /**
      * 
      * @type {string}
@@ -90,6 +91,7 @@ export function AdvancedQueryFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+            ...json,
         'mode': json['mode'] == null ? undefined : json['mode'],
         'textFields': json['text-fields'] == null ? undefined : json['text-fields'],
         'matchType': json['match-type'] == null ? undefined : json['match-type'],
@@ -109,6 +111,7 @@ export function AdvancedQueryToJSONTyped(value?: AdvancedQuery | null, ignoreDis
 
     return {
         
+            ...value,
         'mode': value['mode'],
         'text-fields': value['textFields'],
         'match-type': value['matchType'],
