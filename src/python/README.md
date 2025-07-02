@@ -1,32 +1,52 @@
-# Vectorize Client
-Python Api Client for [Vectorize](https://vectorize.io).
-For the full documentation, please visit [docs.vectorize.io](https://docs.vectorize.io/api/api-getting-started).
+# Vectorize Clients
+
+<p align="center">
+  <a href="https://pypi.org/project/vectorize-client/">
+    <img src="https://img.shields.io/pypi/v/vectorize-client?color=green&amp;label=Version" alt="PyPI">
+  </a>
+  <a href="https://pepy.tech/project/vectorize-client">
+    <img src="https://img.shields.io/pypi/dw/vectorize-client?label=pypi" alt="Pypi">
+  </a>
+  <a href="https://pepy.tech/project/vectorize-client">
+    <img src="https://img.shields.io/npm/dw/%40vectorize-io%2Fvectorize-client?label=NPM" alt="NPM">
+  </a>
+</p>
+
+This repository contains source and test code for **Vectorize** clients in different languages.
+
+The clients are generated automatically using OpenAPI generator, starting from the OpenAPI specification in the `vectorize_api.json` file that is downloaded from the [Vectorize Platform OpenAPI endpoint](https://platform.vectorize.io/api/openapi).
 
 
-## Installation
-```sh
-pip install vectorize-client
+## How to
+- Python
+  - [Getting started](./src/python/README.md)
+  - [Official documentation](https://docs.vectorize.io/api/api-getting-started)
+  - [Code Reference](https://vectorize-io.github.io/vectorize-clients/python/vectorize_client/api.html)
+- TypeScript
+  - [Getting started](./src/ts/README.md)
+  - [Official documentation](https://docs.vectorize.io/api/api-getting-started)
+  - [Code Reference](https://vectorize-io.github.io/vectorize-clients/ts/)
+
+
+
+## Generate and release clients
+To generate a client, run the following command:
+
+```bash
+npm install
+
+npm run generate:ts
+npm run generate:python
 ```
 
-Then import the package:
-```python
-import vectorize_client
+To release a client, run the following command:
+
+```bash
+npm install
+
+npm run release:ts
+npm run release:python
 ```
 
-## Getting Started
 
-List all your pipelines:
-```python
-import vectorize_client as v
-
-TOKEN = '<your-token>'
-ORG = '<your-org-id>'
-
-with v.ApiClient(v.Configuration(access_token=TOKEN)) as api:
-    pipelines = v.PipelinesApi(api)
-    response = pipelines.get_pipelines(ORG)
-    print("Found" + str(len(response.data)) + " pipelines")
-```
-
-Visit [docs.vectorize.io](https://docs.vectorize.io/api/api-getting-started) to learn more about the API.
 
