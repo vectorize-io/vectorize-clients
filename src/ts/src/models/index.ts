@@ -7,6 +7,7 @@ export * from './AIPlatformType';
 export * from './AddUserFromSourceConnectorResponse';
 export * from './AddUserToSourceConnectorRequest';
 export * from './AddUserToSourceConnectorRequestSelectedFilesValue';
+export * from './AdvancedQuery';
 export * from './CreateAIPlatformConnector';
 export * from './CreateAIPlatformConnectorResponse';
 export * from './CreateDestinationConnector';

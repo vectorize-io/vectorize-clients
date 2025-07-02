@@ -17,25 +17,41 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from typing_extensions import Annotated
-from vectorize_client.models.advanced_query import AdvancedQuery
-from vectorize_client.models.retrieve_context import RetrieveContext
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RetrieveDocumentsRequest(BaseModel):
+class AdvancedQuery(BaseModel):
     """
-    RetrieveDocumentsRequest
+    AdvancedQuery
     """ # noqa: E501
-    question: StrictStr
-    num_results: Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]] = Field(alias="numResults")
-    rerank: Optional[StrictBool] = True
-    metadata_filters: Optional[List[Dict[str, Any]]] = Field(default=None, alias="metadata-filters")
-    context: Optional[RetrieveContext] = None
-    advanced_query: Optional[AdvancedQuery] = Field(default=None, alias="advanced-query")
-    __properties: ClassVar[List[str]] = ["question", "numResults", "rerank", "metadata-filters", "context", "advanced-query"]
+    mode: Optional[StrictStr] = 'vector'
+    text_fields: Optional[List[StrictStr]] = Field(default=None, alias="text-fields")
+    match_type: Optional[StrictStr] = Field(default=None, alias="match-type")
+    text_boost: Optional[Union[StrictFloat, StrictInt]] = Field(default=1.0, alias="text-boost")
+    filters: Optional[Dict[str, Any]] = None
+    __properties: ClassVar[List[str]] = ["mode", "text-fields", "match-type", "text-boost", "filters"]
+
+    @field_validator('mode')
+    def mode_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['text', 'vector', 'hybrid']):
+            raise ValueError("must be one of enum values ('text', 'vector', 'hybrid')")
+        return value
+
+    @field_validator('match_type')
+    def match_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['match', 'match_phrase', 'multi_match']):
+            raise ValueError("must be one of enum values ('match', 'match_phrase', 'multi_match')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +71,7 @@ class RetrieveDocumentsRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RetrieveDocumentsRequest from a JSON string"""
+        """Create an instance of AdvancedQuery from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,17 +92,11 @@ class RetrieveDocumentsRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of context
-        if self.context:
-            _dict['context'] = self.context.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of advanced_query
-        if self.advanced_query:
-            _dict['advanced-query'] = self.advanced_query.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RetrieveDocumentsRequest from a dict"""
+        """Create an instance of AdvancedQuery from a dict"""
         if obj is None:
             return None
 
@@ -94,12 +104,11 @@ class RetrieveDocumentsRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "question": obj.get("question"),
-            "numResults": obj.get("numResults"),
-            "rerank": obj.get("rerank") if obj.get("rerank") is not None else True,
-            "metadata-filters": obj.get("metadata-filters"),
-            "context": RetrieveContext.from_dict(obj["context"]) if obj.get("context") is not None else None,
-            "advanced-query": AdvancedQuery.from_dict(obj["advanced-query"]) if obj.get("advanced-query") is not None else None
+            "mode": obj.get("mode") if obj.get("mode") is not None else 'vector',
+            "text-fields": obj.get("text-fields"),
+            "match-type": obj.get("match-type"),
+            "text-boost": obj.get("text-boost") if obj.get("text-boost") is not None else 1.0,
+            "filters": obj.get("filters")
         })
         return _obj
 

@@ -159,8 +159,12 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -208,8 +212,13 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -263,8 +272,14 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}/deep-research/{researchId}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+        urlPath = urlPath.replace(`{${"researchId"}}`, encodeURIComponent(String(requestParameters['researchId'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}/deep-research/{researchId}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))).replace(`{${"researchId"}}`, encodeURIComponent(String(requestParameters['researchId']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -311,8 +326,13 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -363,8 +383,13 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}/events`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}/events`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -411,8 +436,13 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}/metrics`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}/metrics`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -452,8 +482,12 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -509,8 +543,13 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}/retrieval`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}/retrieval`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -567,8 +606,13 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}/deep-research`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}/deep-research`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -616,8 +660,13 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}/start`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}/start`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -664,8 +713,13 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/pipelines/{pipeline}/stop`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
+
         const response = await this.request({
-            path: `/org/{organization}/pipelines/{pipeline}/stop`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))).replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

@@ -70,8 +70,12 @@ export class FilesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
+
+        let urlPath = `/org/{organization}/files`;
+        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
+
         const response = await this.request({
-            path: `/org/{organization}/files`.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization']))),
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

@@ -1,15 +1,15 @@
 # Vectorize Client
-Typescript Api Client for Vectorize
-For more information, please visit [https://vectorize.io](https://vectorize.io)
+Node Api Client for [Vectorize](https://vectorize.io).
+For the full documentation, please visit [docs.vectorize.io](https://docs.vectorize.io/api/api-getting-started).
 
-## Installation & Usage
+## Installation
 ```sh
 npm install @vectorize-io/vectorize-client
 ```
 
 ## Getting Started
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+List all your pipelines:
 
 ```typescript
 
@@ -23,8 +23,4 @@ const pipelines = connectorsApi.getPipelines({
 console.log(pipelines)
 ```
 
-## Documentation for API Endpoints
-
-All URIs are relative to *https://api.vectorize.io/v1*
-
-See the full [reference](https://vectorize.readme.io/reference) for more information.
+Visit [docs.vectorize.io](https://docs.vectorize.io/api/api-getting-started) to learn more about the API.
