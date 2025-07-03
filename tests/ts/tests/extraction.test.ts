@@ -15,7 +15,7 @@ describe("extraction", () => {
         try {
             const startResponse = await new FilesApi(testContext.configuration)
                 .startFileUpload({
-                    organization: testContext.orgId,
+                    organizationId: testContext.orgId,
                     startFileUploadRequest: {
                         name: "test",
                         contentType: "application/pdf"
@@ -35,7 +35,7 @@ describe("extraction", () => {
             }
 
             const response = await extractionApi.startExtraction({
-                organization: testContext.orgId,
+                organizationId: testContext.orgId,
                 startExtractionRequest: {
                     fileId: startResponse.fileId,
                     chunkSize: 512,
@@ -54,7 +54,7 @@ describe("extraction", () => {
     async function pollExtraction(extractionApi: ExtractionApi, extractionId: string) {
         while (true) {
             const result = await extractionApi.getExtractionResult({
-                organization: testContext.orgId,
+                organizationId: testContext.orgId,
                 extractionId: extractionId
             })
             if (result.ready) {

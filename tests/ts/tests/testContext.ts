@@ -6,13 +6,13 @@ export interface TestContext {
 }
 
 export function createTestContext(): TestContext {
-    const token = process.env.VECTORIZE_TOKEN
+    const token = process.env.VECTORIZE_API_KEY
     if (!token) {
-        throw new Error("VECTORIZE_TOKEN must be set");
+        throw new Error("VECTORIZE_API_KEY must be set");
     }
-    const orgId = process.env.VECTORIZE_ORG
+    const orgId = process.env.VECTORIZE_ORGANIZATION_ID
     if (!orgId) {
-        throw new Error("VECTORIZE_ORG must be set");
+        throw new Error("VECTORIZE_ORGANIZATION_ID must be set");
     }
     const env = process.env.VECTORIZE_ENV || "local"
     let host;

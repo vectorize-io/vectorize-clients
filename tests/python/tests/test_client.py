@@ -14,12 +14,12 @@ class TestContext:
 
 @pytest.fixture
 def ctx() -> TestContext:
-    token = os.getenv("VECTORIZE_TOKEN")
+    token = os.getenv("VECTORIZE_API_KEY")
     if not token:
-        raise ValueError("Please set VECTORIZE_TOKEN environment variable")
-    org = os.getenv("VECTORIZE_ORG")
+        raise ValueError("Please set VECTORIZE_API_KEY environment variable")
+    org = os.getenv("VECTORIZE_ORGANIZATION_ID")
     if not org:
-        raise ValueError("Please set VECTORIZE_ORG environment variable")
+        raise ValueError("Please set VECTORIZE_ORGANIZATION_ID environment variable")
     env = os.getenv("VECTORIZE_ENV", "prod")
     header_name = None
     header_value = None
@@ -46,49 +46,55 @@ def test_get_pipelines(ctx: TestContext):
         logging.info(pipeline.id)
 
 
-
 def test_delete_system_connectors(ctx: TestContext):
-    connectors = v.ConnectorsApi(ctx.api_client)
+    # Split the old ConnectorsApi into specific APIs
+    ai_platforms_api = v.AIPlatformConnectorsApi(ctx.api_client)
+    destination_connectors_api = v.DestinationConnectorsApi(ctx.api_client)
 
-    ai_platforms = connectors.get_ai_platform_connectors(ctx.org_id)
+    ai_platforms = ai_platforms_api.get_ai_platform_connectors(ctx.org_id)
     builtin_ai_platform = [c.id for c in ai_platforms.ai_platform_connectors if c.type == "VECTORIZE"][0]
 
-    destination_connectors = connectors.get_destination_connectors(ctx.org_id)
+    destination_connectors = destination_connectors_api.get_destination_connectors(ctx.org_id)
     builtin_vector_db = [c.id for c in destination_connectors.destination_connectors if c.type == "VECTORIZE"][0]
 
-
     try:
-        connectors.delete_ai_platform(ctx.org_id, builtin_ai_platform)
+        ai_platforms_api.delete_ai_platform(ctx.org_id, builtin_ai_platform)
         raise ValueError("test should have failed")
     except Exception as e:
         logging.error(f"Failed to delete: {e}")
-        if "Cannot delete system connector" in str(e):
+        # Update the expected error message
+        if "Cannot delete AI platform" in str(e) or "Cannot delete system connector" in str(e):
             pass
         else:
             raise e
 
     try:
-        connectors.delete_destination_connector(ctx.org_id, builtin_vector_db)
+        destination_connectors_api.delete_destination_connector(ctx.org_id, builtin_vector_db)
         raise ValueError("test should have failed")
     except Exception as e:
         logging.error(f"Failed to delete: {e}")
-        if "Cannot delete system connector" in str(e):
+        # Update the expected error message  
+        if "Cannot delete destination connector" in str(e) or "Cannot delete system connector" in str(e):
             pass
         else:
             raise e
-
-
+       
+       
 def test_upload_create_pipeline(ctx: TestContext):
     pipelines = v.PipelinesApi(ctx.api_client)
 
-    connectors_api = v.ConnectorsApi(ctx.api_client)
-    response = connectors_api.create_source_connector(ctx.org_id, [v.CreateSourceConnector(
+    # Create source connector using new API structure
+    source_connectors_api = v.SourceConnectorsApi(ctx.api_client)
+    file_upload = v.FileUpload(
         name="from api",
-        type=v.SourceConnectorType.FILE_UPLOAD)]
+        type="FILE_UPLOAD"
     )
-    source_connector_id = response.connectors[0].id
+    create_request = v.CreateSourceConnectorRequest(file_upload)  # Just pass file_upload directly
+    response = source_connectors_api.create_source_connector(ctx.org_id, create_request)
+    source_connector_id = response.connector.id
     logging.info(f"Created source connector {source_connector_id}")
 
+    # Upload file to the connector
     uploads_api = v.UploadsApi(ctx.api_client)
     upload_response = uploads_api.start_file_upload_to_connector(
         ctx.org_id, source_connector_id, v.StartFileUploadToConnectorRequest(
@@ -108,21 +114,37 @@ def test_upload_create_pipeline(ctx: TestContext):
     else:
         logging.info("Upload successful")
 
-    ai_platforms = connectors_api.get_ai_platform_connectors(ctx.org_id)
+    # Get AI platform connector
+    ai_platforms_api = v.AIPlatformConnectorsApi(ctx.api_client)
+    ai_platforms = ai_platforms_api.get_ai_platform_connectors(ctx.org_id)
     builtin_ai_platform = [c.id for c in ai_platforms.ai_platform_connectors if c.type == "VECTORIZE"][0]
     logging.info(f"Using AI platform {builtin_ai_platform}")
 
-    vector_databases = connectors_api.get_destination_connectors(ctx.org_id)
-    builtin_vector_db = [c.id for c in vector_databases.destination_connectors if c.type == "VECTORIZE"][0]
+    # Get destination connector
+    destination_connectors_api = v.DestinationConnectorsApi(ctx.api_client)
+    destination_connectors = destination_connectors_api.get_destination_connectors(ctx.org_id)
+    builtin_vector_db = [c.id for c in destination_connectors.destination_connectors if c.type == "VECTORIZE"][0]
     logging.info(f"Using destination connector {builtin_vector_db}")
 
     created_pipeline_id = None
     try:
-
+        # Create pipeline with updated schema
         response = pipelines.create_pipeline(ctx.org_id, v.PipelineConfigurationSchema(
-            source_connectors=[v.SourceConnectorSchema(id=source_connector_id, type=v.SourceConnectorType.FILE_UPLOAD, config={})],
-            destination_connector=v.DestinationConnectorSchema(id=builtin_vector_db, type=v.DestinationConnectorType.VECTORIZE, config={}),
-            ai_platform=v.AIPlatformSchema(id=builtin_ai_platform, type=v.AIPlatformType.VECTORIZE, config={}),
+            source_connectors=[v.SourceConnectorSchema(
+                id=source_connector_id, 
+                type="FILE_UPLOAD",
+                config={}
+            )],
+            destination_connector=v.DestinationConnectorSchema(
+                id=builtin_vector_db, 
+                type="VECTORIZE",
+                config={}
+            ),
+            aiPlatform=v.AIPlatformConnectorSchema(
+                id=builtin_ai_platform, 
+                type="VECTORIZE",
+                config={}
+            ),
             pipeline_name="Test pipeline",
             schedule=v.ScheduleSchema(type="manual")
             )
@@ -132,6 +154,7 @@ def test_upload_create_pipeline(ctx: TestContext):
         pipeline_id = response.data.id
         _test_retrieval(ctx, response.data.id)
 
+        # Start deep research
         response = pipelines.start_deep_research(ctx.org_id, response.data.id, v.StartDeepResearchRequest(
             query="What is the meaning of life?",
             web_search=False,
@@ -153,9 +176,7 @@ def test_upload_create_pipeline(ctx: TestContext):
                 pipelines.delete_pipeline(ctx.org_id, created_pipeline_id)
             except Exception as e:
                 logging.error(f"Failed to delete pipeline {created_pipeline_id}: {e}")
-
-
-
+                
 def _test_retrieval(ctx: TestContext, pipeline_id: str):
     pipelines = v.PipelinesApi(ctx.api_client)
     response = pipelines.retrieve_documents(ctx.org_id, pipeline_id, v.RetrieveDocumentsRequest(

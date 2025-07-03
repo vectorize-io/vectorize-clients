@@ -4,17 +4,29 @@ ROOT_DIR=$(git rev-parse --show-toplevel)
 SRC_DIR=$ROOT_DIR/src
 
 PACKAGE_JSON=$SRC_DIR/ts/package.json
-cd $SRC_DIR/ts
-current_version=$(npm pkg get version | tr -d '"')
-cd ../../
+
+# Try to get current version if the directory exists
+if [ -d "$SRC_DIR/ts" ] && [ -f "$PACKAGE_JSON" ]; then
+  cd $SRC_DIR/ts
+  current_version=$(npm pkg get version | tr -d '"')
+  cd ../../
+else
+  # Use version from root package.json as fallback
+  current_version=$(node -p "require('./package.json').version")
+fi
 
 rm -rf $SRC_DIR/ts
+
+# Generate the client
 openapi-generator-cli generate -i $ROOT_DIR/vectorize_api.json -g typescript-fetch -o $SRC_DIR/ts \
   --additional-properties=npmName=@vectorize-io/vectorize-client \
   --additional-properties=licenseName=MIT \
   --additional-properties=npmRepository="https://github.com/vectorize-io/vectorize-clients" \
   --additional-properties=snapshot=true \
   --additional-properties=generateSourceCodeOnly=false
+
+# Fix the union types
+node $ROOT_DIR/scripts/fix-ts-unions.js $SRC_DIR/ts
 
 edit_field() {
   local field=$1
