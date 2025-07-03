@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -34,13 +34,13 @@ import {
     DestinationConnectorSchemaToJSON,
     DestinationConnectorSchemaToJSONTyped,
 } from './DestinationConnectorSchema';
-import type { AIPlatformSchema } from './AIPlatformSchema';
+import type { AIPlatformConnectorSchema } from './AIPlatformConnectorSchema';
 import {
-    AIPlatformSchemaFromJSON,
-    AIPlatformSchemaFromJSONTyped,
-    AIPlatformSchemaToJSON,
-    AIPlatformSchemaToJSONTyped,
-} from './AIPlatformSchema';
+    AIPlatformConnectorSchemaFromJSON,
+    AIPlatformConnectorSchemaFromJSONTyped,
+    AIPlatformConnectorSchemaToJSON,
+    AIPlatformConnectorSchemaToJSONTyped,
+} from './AIPlatformConnectorSchema';
 
 /**
  * 
@@ -62,10 +62,10 @@ export interface PipelineConfigurationSchema {
     destinationConnector: DestinationConnectorSchema;
     /**
      * 
-     * @type {AIPlatformSchema}
+     * @type {AIPlatformConnectorSchema}
      * @memberof PipelineConfigurationSchema
      */
-    aiPlatform: AIPlatformSchema;
+    aiPlatform: AIPlatformConnectorSchema;
     /**
      * 
      * @type {string}
@@ -104,7 +104,7 @@ export function PipelineConfigurationSchemaFromJSONTyped(json: any, ignoreDiscri
         
         'sourceConnectors': ((json['sourceConnectors'] as Array<any>).map(SourceConnectorSchemaFromJSON)),
         'destinationConnector': DestinationConnectorSchemaFromJSON(json['destinationConnector']),
-        'aiPlatform': AIPlatformSchemaFromJSON(json['aiPlatform']),
+        'aiPlatform': AIPlatformConnectorSchemaFromJSON(json['aiPlatform']),
         'pipelineName': json['pipelineName'],
         'schedule': ScheduleSchemaFromJSON(json['schedule']),
     };
@@ -123,7 +123,7 @@ export function PipelineConfigurationSchemaToJSONTyped(value?: PipelineConfigura
         
         'sourceConnectors': ((value['sourceConnectors'] as Array<any>).map(SourceConnectorSchemaToJSON)),
         'destinationConnector': DestinationConnectorSchemaToJSON(value['destinationConnector']),
-        'aiPlatform': AIPlatformSchemaToJSON(value['aiPlatform']),
+        'aiPlatform': AIPlatformConnectorSchemaToJSON(value['aiPlatform']),
         'pipelineName': value['pipelineName'],
         'schedule': ScheduleSchemaToJSON(value['schedule']),
     };

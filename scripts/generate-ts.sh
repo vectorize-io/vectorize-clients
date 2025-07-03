@@ -16,12 +16,17 @@ else
 fi
 
 rm -rf $SRC_DIR/ts
+
+# Generate the client
 openapi-generator-cli generate -i $ROOT_DIR/vectorize_api.json -g typescript-fetch -o $SRC_DIR/ts \
   --additional-properties=npmName=@vectorize-io/vectorize-client \
   --additional-properties=licenseName=MIT \
   --additional-properties=npmRepository="https://github.com/vectorize-io/vectorize-clients" \
   --additional-properties=snapshot=true \
   --additional-properties=generateSourceCodeOnly=false
+
+# Fix the union types
+node $ROOT_DIR/scripts/fix-ts-unions.js $SRC_DIR/ts
 
 edit_field() {
   local field=$1

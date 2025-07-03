@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -12,28 +12,181 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-/**
- * 
- * @export
- * @interface UpdateSourceConnectorRequest
- */
-export interface UpdateSourceConnectorRequest {
-    /**
-     * 
-     * @type {{ [key: string]: any | null; }}
-     * @memberof UpdateSourceConnectorRequest
-     */
-    config: { [key: string]: any | null; };
-}
+import type { AwsS31 } from './AwsS31';
+import {
+    instanceOfAwsS31,
+    AwsS31FromJSON,
+    AwsS31FromJSONTyped,
+    AwsS31ToJSON,
+} from './AwsS31';
+import type { AzureBlob1 } from './AzureBlob1';
+import {
+    instanceOfAzureBlob1,
+    AzureBlob1FromJSON,
+    AzureBlob1FromJSONTyped,
+    AzureBlob1ToJSON,
+} from './AzureBlob1';
+import type { Confluence1 } from './Confluence1';
+import {
+    instanceOfConfluence1,
+    Confluence1FromJSON,
+    Confluence1FromJSONTyped,
+    Confluence1ToJSON,
+} from './Confluence1';
+import type { Discord1 } from './Discord1';
+import {
+    instanceOfDiscord1,
+    Discord1FromJSON,
+    Discord1FromJSONTyped,
+    Discord1ToJSON,
+} from './Discord1';
+import type { Dropbox } from './Dropbox';
+import {
+    instanceOfDropbox,
+    DropboxFromJSON,
+    DropboxFromJSONTyped,
+    DropboxToJSON,
+} from './Dropbox';
+import type { DropboxOauth } from './DropboxOauth';
+import {
+    instanceOfDropboxOauth,
+    DropboxOauthFromJSON,
+    DropboxOauthFromJSONTyped,
+    DropboxOauthToJSON,
+} from './DropboxOauth';
+import type { DropboxOauthMulti } from './DropboxOauthMulti';
+import {
+    instanceOfDropboxOauthMulti,
+    DropboxOauthMultiFromJSON,
+    DropboxOauthMultiFromJSONTyped,
+    DropboxOauthMultiToJSON,
+} from './DropboxOauthMulti';
+import type { DropboxOauthMultiCustom } from './DropboxOauthMultiCustom';
+import {
+    instanceOfDropboxOauthMultiCustom,
+    DropboxOauthMultiCustomFromJSON,
+    DropboxOauthMultiCustomFromJSONTyped,
+    DropboxOauthMultiCustomToJSON,
+} from './DropboxOauthMultiCustom';
+import type { FileUpload1 } from './FileUpload1';
+import {
+    instanceOfFileUpload1,
+    FileUpload1FromJSON,
+    FileUpload1FromJSONTyped,
+    FileUpload1ToJSON,
+} from './FileUpload1';
+import type { Firecrawl1 } from './Firecrawl1';
+import {
+    instanceOfFirecrawl1,
+    Firecrawl1FromJSON,
+    Firecrawl1FromJSONTyped,
+    Firecrawl1ToJSON,
+} from './Firecrawl1';
+import type { Fireflies1 } from './Fireflies1';
+import {
+    instanceOfFireflies1,
+    Fireflies1FromJSON,
+    Fireflies1FromJSONTyped,
+    Fireflies1ToJSON,
+} from './Fireflies1';
+import type { Gcs1 } from './Gcs1';
+import {
+    instanceOfGcs1,
+    Gcs1FromJSON,
+    Gcs1FromJSONTyped,
+    Gcs1ToJSON,
+} from './Gcs1';
+import type { Github1 } from './Github1';
+import {
+    instanceOfGithub1,
+    Github1FromJSON,
+    Github1FromJSONTyped,
+    Github1ToJSON,
+} from './Github1';
+import type { GoogleDrive1 } from './GoogleDrive1';
+import {
+    instanceOfGoogleDrive1,
+    GoogleDrive1FromJSON,
+    GoogleDrive1FromJSONTyped,
+    GoogleDrive1ToJSON,
+} from './GoogleDrive1';
+import type { GoogleDriveOauth } from './GoogleDriveOauth';
+import {
+    instanceOfGoogleDriveOauth,
+    GoogleDriveOauthFromJSON,
+    GoogleDriveOauthFromJSONTyped,
+    GoogleDriveOauthToJSON,
+} from './GoogleDriveOauth';
+import type { GoogleDriveOauthMulti } from './GoogleDriveOauthMulti';
+import {
+    instanceOfGoogleDriveOauthMulti,
+    GoogleDriveOauthMultiFromJSON,
+    GoogleDriveOauthMultiFromJSONTyped,
+    GoogleDriveOauthMultiToJSON,
+} from './GoogleDriveOauthMulti';
+import type { GoogleDriveOauthMultiCustom } from './GoogleDriveOauthMultiCustom';
+import {
+    instanceOfGoogleDriveOauthMultiCustom,
+    GoogleDriveOauthMultiCustomFromJSON,
+    GoogleDriveOauthMultiCustomFromJSONTyped,
+    GoogleDriveOauthMultiCustomToJSON,
+} from './GoogleDriveOauthMultiCustom';
+import type { Intercom } from './Intercom';
+import {
+    instanceOfIntercom,
+    IntercomFromJSON,
+    IntercomFromJSONTyped,
+    IntercomToJSON,
+} from './Intercom';
+import type { Notion } from './Notion';
+import {
+    instanceOfNotion,
+    NotionFromJSON,
+    NotionFromJSONTyped,
+    NotionToJSON,
+} from './Notion';
+import type { NotionOauthMulti } from './NotionOauthMulti';
+import {
+    instanceOfNotionOauthMulti,
+    NotionOauthMultiFromJSON,
+    NotionOauthMultiFromJSONTyped,
+    NotionOauthMultiToJSON,
+} from './NotionOauthMulti';
+import type { NotionOauthMultiCustom } from './NotionOauthMultiCustom';
+import {
+    instanceOfNotionOauthMultiCustom,
+    NotionOauthMultiCustomFromJSON,
+    NotionOauthMultiCustomFromJSONTyped,
+    NotionOauthMultiCustomToJSON,
+} from './NotionOauthMultiCustom';
+import type { OneDrive1 } from './OneDrive1';
+import {
+    instanceOfOneDrive1,
+    OneDrive1FromJSON,
+    OneDrive1FromJSONTyped,
+    OneDrive1ToJSON,
+} from './OneDrive1';
+import type { Sharepoint1 } from './Sharepoint1';
+import {
+    instanceOfSharepoint1,
+    Sharepoint1FromJSON,
+    Sharepoint1FromJSONTyped,
+    Sharepoint1ToJSON,
+} from './Sharepoint1';
+import type { WebCrawler1 } from './WebCrawler1';
+import {
+    instanceOfWebCrawler1,
+    WebCrawler1FromJSON,
+    WebCrawler1FromJSONTyped,
+    WebCrawler1ToJSON,
+} from './WebCrawler1';
 
 /**
- * Check if a given object implements the UpdateSourceConnectorRequest interface.
+ * @type UpdateSourceConnectorRequest
+ * 
+ * @export
  */
-export function instanceOfUpdateSourceConnectorRequest(value: object): value is UpdateSourceConnectorRequest {
-    if (!('config' in value) || value['config'] === undefined) return false;
-    return true;
-}
+export type UpdateSourceConnectorRequest = AwsS31 | AzureBlob1 | Confluence1 | Discord1 | Dropbox | DropboxOauth | DropboxOauthMulti | DropboxOauthMultiCustom | FileUpload1 | Firecrawl1 | Fireflies1 | Gcs1 | Github1 | GoogleDrive1 | GoogleDriveOauth | GoogleDriveOauthMulti | GoogleDriveOauthMultiCustom | Intercom | Notion | NotionOauthMulti | NotionOauthMultiCustom | OneDrive1 | Sharepoint1 | WebCrawler1;
 
 export function UpdateSourceConnectorRequestFromJSON(json: any): UpdateSourceConnectorRequest {
     return UpdateSourceConnectorRequestFromJSONTyped(json, false);
@@ -43,13 +196,86 @@ export function UpdateSourceConnectorRequestFromJSONTyped(json: any, ignoreDiscr
     if (json == null) {
         return json;
     }
-    return {
-        
-        'config': json['config'],
-    };
+    if (typeof json !== 'object') {
+        return json;
+    }
+    if (instanceOfAwsS31(json)) {
+        return AwsS31FromJSONTyped(json, true);
+    }
+    if (instanceOfAzureBlob1(json)) {
+        return AzureBlob1FromJSONTyped(json, true);
+    }
+    if (instanceOfConfluence1(json)) {
+        return Confluence1FromJSONTyped(json, true);
+    }
+    if (instanceOfDiscord1(json)) {
+        return Discord1FromJSONTyped(json, true);
+    }
+    if (instanceOfDropbox(json)) {
+        return DropboxFromJSONTyped(json, true);
+    }
+    if (instanceOfDropboxOauth(json)) {
+        return DropboxOauthFromJSONTyped(json, true);
+    }
+    if (instanceOfDropboxOauthMulti(json)) {
+        return DropboxOauthMultiFromJSONTyped(json, true);
+    }
+    if (instanceOfDropboxOauthMultiCustom(json)) {
+        return DropboxOauthMultiCustomFromJSONTyped(json, true);
+    }
+    if (instanceOfFileUpload1(json)) {
+        return FileUpload1FromJSONTyped(json, true);
+    }
+    if (instanceOfFirecrawl1(json)) {
+        return Firecrawl1FromJSONTyped(json, true);
+    }
+    if (instanceOfFireflies1(json)) {
+        return Fireflies1FromJSONTyped(json, true);
+    }
+    if (instanceOfGcs1(json)) {
+        return Gcs1FromJSONTyped(json, true);
+    }
+    if (instanceOfGithub1(json)) {
+        return Github1FromJSONTyped(json, true);
+    }
+    if (instanceOfGoogleDrive1(json)) {
+        return GoogleDrive1FromJSONTyped(json, true);
+    }
+    if (instanceOfGoogleDriveOauth(json)) {
+        return GoogleDriveOauthFromJSONTyped(json, true);
+    }
+    if (instanceOfGoogleDriveOauthMulti(json)) {
+        return GoogleDriveOauthMultiFromJSONTyped(json, true);
+    }
+    if (instanceOfGoogleDriveOauthMultiCustom(json)) {
+        return GoogleDriveOauthMultiCustomFromJSONTyped(json, true);
+    }
+    if (instanceOfIntercom(json)) {
+        return IntercomFromJSONTyped(json, true);
+    }
+    if (instanceOfNotion(json)) {
+        return NotionFromJSONTyped(json, true);
+    }
+    if (instanceOfNotionOauthMulti(json)) {
+        return NotionOauthMultiFromJSONTyped(json, true);
+    }
+    if (instanceOfNotionOauthMultiCustom(json)) {
+        return NotionOauthMultiCustomFromJSONTyped(json, true);
+    }
+    if (instanceOfOneDrive1(json)) {
+        return OneDrive1FromJSONTyped(json, true);
+    }
+    if (instanceOfSharepoint1(json)) {
+        return Sharepoint1FromJSONTyped(json, true);
+    }
+    if (instanceOfWebCrawler1(json)) {
+        return WebCrawler1FromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
-export function UpdateSourceConnectorRequestToJSON(json: any): UpdateSourceConnectorRequest {
+export function UpdateSourceConnectorRequestToJSON(json: any): any {
     return UpdateSourceConnectorRequestToJSONTyped(json, false);
 }
 
@@ -57,10 +283,82 @@ export function UpdateSourceConnectorRequestToJSONTyped(value?: UpdateSourceConn
     if (value == null) {
         return value;
     }
+    if (typeof value !== 'object') {
+        return value;
+    }
+    if (instanceOfAwsS31(value)) {
+        return AwsS31ToJSON(value as AwsS31);
+    }
+    if (instanceOfAzureBlob1(value)) {
+        return AzureBlob1ToJSON(value as AzureBlob1);
+    }
+    if (instanceOfConfluence1(value)) {
+        return Confluence1ToJSON(value as Confluence1);
+    }
+    if (instanceOfDiscord1(value)) {
+        return Discord1ToJSON(value as Discord1);
+    }
+    if (instanceOfDropbox(value)) {
+        return DropboxToJSON(value as Dropbox);
+    }
+    if (instanceOfDropboxOauth(value)) {
+        return DropboxOauthToJSON(value as DropboxOauth);
+    }
+    if (instanceOfDropboxOauthMulti(value)) {
+        return DropboxOauthMultiToJSON(value as DropboxOauthMulti);
+    }
+    if (instanceOfDropboxOauthMultiCustom(value)) {
+        return DropboxOauthMultiCustomToJSON(value as DropboxOauthMultiCustom);
+    }
+    if (instanceOfFileUpload1(value)) {
+        return FileUpload1ToJSON(value as FileUpload1);
+    }
+    if (instanceOfFirecrawl1(value)) {
+        return Firecrawl1ToJSON(value as Firecrawl1);
+    }
+    if (instanceOfFireflies1(value)) {
+        return Fireflies1ToJSON(value as Fireflies1);
+    }
+    if (instanceOfGcs1(value)) {
+        return Gcs1ToJSON(value as Gcs1);
+    }
+    if (instanceOfGithub1(value)) {
+        return Github1ToJSON(value as Github1);
+    }
+    if (instanceOfGoogleDrive1(value)) {
+        return GoogleDrive1ToJSON(value as GoogleDrive1);
+    }
+    if (instanceOfGoogleDriveOauth(value)) {
+        return GoogleDriveOauthToJSON(value as GoogleDriveOauth);
+    }
+    if (instanceOfGoogleDriveOauthMulti(value)) {
+        return GoogleDriveOauthMultiToJSON(value as GoogleDriveOauthMulti);
+    }
+    if (instanceOfGoogleDriveOauthMultiCustom(value)) {
+        return GoogleDriveOauthMultiCustomToJSON(value as GoogleDriveOauthMultiCustom);
+    }
+    if (instanceOfIntercom(value)) {
+        return IntercomToJSON(value as Intercom);
+    }
+    if (instanceOfNotion(value)) {
+        return NotionToJSON(value as Notion);
+    }
+    if (instanceOfNotionOauthMulti(value)) {
+        return NotionOauthMultiToJSON(value as NotionOauthMulti);
+    }
+    if (instanceOfNotionOauthMultiCustom(value)) {
+        return NotionOauthMultiCustomToJSON(value as NotionOauthMultiCustom);
+    }
+    if (instanceOfOneDrive1(value)) {
+        return OneDrive1ToJSON(value as OneDrive1);
+    }
+    if (instanceOfSharepoint1(value)) {
+        return Sharepoint1ToJSON(value as Sharepoint1);
+    }
+    if (instanceOfWebCrawler1(value)) {
+        return WebCrawler1ToJSON(value as WebCrawler1);
+    }
 
-    return {
-        
-        'config': value['config'],
-    };
+    return {};
 }
 

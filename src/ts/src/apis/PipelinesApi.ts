@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -65,61 +65,61 @@ import {
 } from '../models/index';
 
 export interface CreatePipelineRequest {
-    organization: string;
+    organizationId: string;
     pipelineConfigurationSchema: PipelineConfigurationSchema;
 }
 
 export interface DeletePipelineRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
 }
 
 export interface GetDeepResearchResultRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
     researchId: string;
 }
 
 export interface GetPipelineRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
 }
 
 export interface GetPipelineEventsRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
     nextToken?: string;
 }
 
 export interface GetPipelineMetricsRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
 }
 
 export interface GetPipelinesRequest {
-    organization: string;
+    organizationId: string;
 }
 
 export interface RetrieveDocumentsOperationRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
     retrieveDocumentsRequest: RetrieveDocumentsRequest;
 }
 
 export interface StartDeepResearchOperationRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
     startDeepResearchRequest: StartDeepResearchRequest;
 }
 
 export interface StartPipelineRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
 }
 
 export interface StopPipelineRequest {
-    organization: string;
-    pipeline: string;
+    organizationId: string;
+    pipelineId: string;
 }
 
 /**
@@ -128,13 +128,14 @@ export interface StopPipelineRequest {
 export class PipelinesApi extends runtime.BaseAPI {
 
     /**
-     * Create a new source pipeline. Config fields for sources: Amazon S3 (AWS_S3):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Azure Blob Storage (AZURE_BLOB):  Polling Interval (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Confluence (CONFLUENCE):  Spaces (spaces): array oftext, Root Parents (root-parents): array oftext) | Discord (DISCORD):  Emoji Filter (emoji): array oftext, Author Filter (author): array oftext, Ignore Author Filter (ignore-author): array oftext, Limit (limit): number) | Dropbox (DROPBOX):  Read from these folders (optional) (path-prefix): array oftext) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Polling Interval (seconds) (idle-time): number) | Google Drive (Service Account) (GOOGLE_DRIVE):  Restrict ingest to these folder URLs (optional) (root-parents): array oftext, Polling Interval (seconds) (idle-time): number) | Google Drive Multi-User (Vectorize) (GOOGLE_DRIVE_OAUTH_MULTI):  Polling Interval (seconds) (idle-time): number) | Google Drive Multi-User (White Label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Polling Interval (seconds) (idle-time): number) | Firecrawl (FIRECRAWL):  ) | GCP Cloud Storage (GCS):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Intercom (INTERCOM):  Reindex Interval (seconds) (reindexIntervalSeconds): number, Limit (limit): number, Tags (tags): array oftext) | OneDrive (ONE_DRIVE):  Read starting from this folder (optional) (path-prefix): text) | SharePoint (SHAREPOINT):  Site Name(s) (sites): array oftext) | Web Crawler (WEB_CRAWLER):  Additional Allowed URLs or prefix(es) (allowed-domains-opt): array ofurl, Forbidden Paths (forbidden-paths): array oftext, Throttle (ms) (min-time-between-requests): number, Max Error Count (max-error-count): number, Max URLs (max-urls): number, Max Depth (max-depth): number, Reindex Interval (seconds) (reindex-interval-seconds): number) | File Upload (FILE_UPLOAD):  ). Config fields for destinations: Couchbase Capella (CAPELLA):  Bucket Name (bucket): text, Scope Name (scope): text, Collection Name (collection): text, Search Index Name (index): text) | DataStax Astra (DATASTAX):  Collection Name (collection): text) | Elasticsearch (ELASTIC):  Index Name (index): text) | Pinecone (PINECONE):  Index Name (index): text, Namespace (namespace): text) | SingleStore (SINGLESTORE):  Table Name (table): text) | Milvus (MILVUS):  Collection Name (collection): text) | PostgreSQL (POSTGRESQL):  Table Name (table): text) | Qdrant (QDRANT):  Collection Name (collection): text) | Supabase (SUPABASE):  Table Name (table): text) | Weaviate (WEAVIATE):  Collection Name (collection): text) | Azure AI Search (AZUREAISEARCH):  Index Name (index): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Index Name (index): text) | MongoDB (MONGODB):  Index Name (index): text). Config fields for AI platforms: 
+     * Creates a new pipeline with source connectors, destination connector, and AI platform configuration. The specific configuration fields required depend on the connector types selected.
+     * Create a new pipeline
      */
     async createPipelineRaw(requestParameters: CreatePipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePipelineResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling createPipeline().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling createPipeline().'
             );
         }
 
@@ -159,12 +160,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -175,7 +172,8 @@ export class PipelinesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a new source pipeline. Config fields for sources: Amazon S3 (AWS_S3):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Azure Blob Storage (AZURE_BLOB):  Polling Interval (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Confluence (CONFLUENCE):  Spaces (spaces): array oftext, Root Parents (root-parents): array oftext) | Discord (DISCORD):  Emoji Filter (emoji): array oftext, Author Filter (author): array oftext, Ignore Author Filter (ignore-author): array oftext, Limit (limit): number) | Dropbox (DROPBOX):  Read from these folders (optional) (path-prefix): array oftext) | Google Drive OAuth (GOOGLE_DRIVE_OAUTH):  Polling Interval (seconds) (idle-time): number) | Google Drive (Service Account) (GOOGLE_DRIVE):  Restrict ingest to these folder URLs (optional) (root-parents): array oftext, Polling Interval (seconds) (idle-time): number) | Google Drive Multi-User (Vectorize) (GOOGLE_DRIVE_OAUTH_MULTI):  Polling Interval (seconds) (idle-time): number) | Google Drive Multi-User (White Label) (GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM):  Polling Interval (seconds) (idle-time): number) | Firecrawl (FIRECRAWL):  ) | GCP Cloud Storage (GCS):  Check for updates every (seconds) (idle-time): number, Path Prefix (path-prefix): text, Path Metadata Regex (path-metadata-regex): text, Path Regex Group Names (path-regex-group-names): array oftext) | Intercom (INTERCOM):  Reindex Interval (seconds) (reindexIntervalSeconds): number, Limit (limit): number, Tags (tags): array oftext) | OneDrive (ONE_DRIVE):  Read starting from this folder (optional) (path-prefix): text) | SharePoint (SHAREPOINT):  Site Name(s) (sites): array oftext) | Web Crawler (WEB_CRAWLER):  Additional Allowed URLs or prefix(es) (allowed-domains-opt): array ofurl, Forbidden Paths (forbidden-paths): array oftext, Throttle (ms) (min-time-between-requests): number, Max Error Count (max-error-count): number, Max URLs (max-urls): number, Max Depth (max-depth): number, Reindex Interval (seconds) (reindex-interval-seconds): number) | File Upload (FILE_UPLOAD):  ). Config fields for destinations: Couchbase Capella (CAPELLA):  Bucket Name (bucket): text, Scope Name (scope): text, Collection Name (collection): text, Search Index Name (index): text) | DataStax Astra (DATASTAX):  Collection Name (collection): text) | Elasticsearch (ELASTIC):  Index Name (index): text) | Pinecone (PINECONE):  Index Name (index): text, Namespace (namespace): text) | SingleStore (SINGLESTORE):  Table Name (table): text) | Milvus (MILVUS):  Collection Name (collection): text) | PostgreSQL (POSTGRESQL):  Table Name (table): text) | Qdrant (QDRANT):  Collection Name (collection): text) | Supabase (SUPABASE):  Table Name (table): text) | Weaviate (WEAVIATE):  Collection Name (collection): text) | Azure AI Search (AZUREAISEARCH):  Index Name (index): text) | Built-in (VECTORIZE):  ) | Chroma (CHROMA):  Index Name (index): text) | MongoDB (MONGODB):  Index Name (index): text). Config fields for AI platforms: 
+     * Creates a new pipeline with source connectors, destination connector, and AI platform configuration. The specific configuration fields required depend on the connector types selected.
+     * Create a new pipeline
      */
     async createPipeline(requestParameters: CreatePipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePipelineResponse> {
         const response = await this.createPipelineRaw(requestParameters, initOverrides);
@@ -184,19 +182,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Delete a pipeline
+     * Delete a pipeline
      */
     async deletePipelineRaw(requestParameters: DeletePipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePipelineResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling deletePipeline().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling deletePipeline().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling deletePipeline().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling deletePipeline().'
             );
         }
 
@@ -212,13 +211,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -229,6 +223,7 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Delete a pipeline
+     * Delete a pipeline
      */
     async deletePipeline(requestParameters: DeletePipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeletePipelineResponse> {
         const response = await this.deletePipelineRaw(requestParameters, initOverrides);
@@ -237,19 +232,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Get deep research result
+     * Get deep research result
      */
     async getDeepResearchResultRaw(requestParameters: GetDeepResearchResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDeepResearchResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling getDeepResearchResult().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling getDeepResearchResult().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling getDeepResearchResult().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling getDeepResearchResult().'
             );
         }
 
@@ -272,14 +268,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}/deep-research/{researchId}`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-        urlPath = urlPath.replace(`{${"researchId"}}`, encodeURIComponent(String(requestParameters['researchId'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}/deep-research/{researchId}`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))).replace(`{${"researchId"}}`, encodeURIComponent(String(requestParameters['researchId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -290,6 +280,7 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Get deep research result
+     * Get deep research result
      */
     async getDeepResearchResult(requestParameters: GetDeepResearchResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetDeepResearchResponse> {
         const response = await this.getDeepResearchResultRaw(requestParameters, initOverrides);
@@ -298,19 +289,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Get a pipeline
+     * Get a pipeline
      */
     async getPipelineRaw(requestParameters: GetPipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPipelineResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling getPipeline().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling getPipeline().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling getPipeline().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling getPipeline().'
             );
         }
 
@@ -326,13 +318,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -343,6 +330,7 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Get a pipeline
+     * Get a pipeline
      */
     async getPipeline(requestParameters: GetPipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPipelineResponse> {
         const response = await this.getPipelineRaw(requestParameters, initOverrides);
@@ -351,19 +339,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Get pipeline events
+     * Get pipeline events
      */
     async getPipelineEventsRaw(requestParameters: GetPipelineEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPipelineEventsResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling getPipelineEvents().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling getPipelineEvents().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling getPipelineEvents().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling getPipelineEvents().'
             );
         }
 
@@ -383,13 +372,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}/events`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}/events`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -400,6 +384,7 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Get pipeline events
+     * Get pipeline events
      */
     async getPipelineEvents(requestParameters: GetPipelineEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPipelineEventsResponse> {
         const response = await this.getPipelineEventsRaw(requestParameters, initOverrides);
@@ -408,19 +393,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Get pipeline metrics
+     * Get pipeline metrics
      */
     async getPipelineMetricsRaw(requestParameters: GetPipelineMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPipelineMetricsResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling getPipelineMetrics().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling getPipelineMetrics().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling getPipelineMetrics().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling getPipelineMetrics().'
             );
         }
 
@@ -436,13 +422,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}/metrics`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}/metrics`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -453,6 +434,7 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Get pipeline metrics
+     * Get pipeline metrics
      */
     async getPipelineMetrics(requestParameters: GetPipelineMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPipelineMetricsResponse> {
         const response = await this.getPipelineMetricsRaw(requestParameters, initOverrides);
@@ -460,13 +442,14 @@ export class PipelinesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all existing pipelines
+     * Returns a list of all pipelines in the organization
+     * Get all pipelines
      */
     async getPipelinesRaw(requestParameters: GetPipelinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPipelinesResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling getPipelines().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling getPipelines().'
             );
         }
 
@@ -482,12 +465,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -497,7 +476,8 @@ export class PipelinesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all existing pipelines
+     * Returns a list of all pipelines in the organization
+     * Get all pipelines
      */
     async getPipelines(requestParameters: GetPipelinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPipelinesResponse> {
         const response = await this.getPipelinesRaw(requestParameters, initOverrides);
@@ -506,19 +486,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Retrieve documents from a pipeline
+     * Retrieve documents from a pipeline
      */
     async retrieveDocumentsRaw(requestParameters: RetrieveDocumentsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RetrieveDocumentsResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling retrieveDocuments().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling retrieveDocuments().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling retrieveDocuments().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling retrieveDocuments().'
             );
         }
 
@@ -543,13 +524,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}/retrieval`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}/retrieval`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -561,6 +537,7 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Retrieve documents from a pipeline
+     * Retrieve documents from a pipeline
      */
     async retrieveDocuments(requestParameters: RetrieveDocumentsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RetrieveDocumentsResponse> {
         const response = await this.retrieveDocumentsRaw(requestParameters, initOverrides);
@@ -569,19 +546,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Start a deep research
+     * Start a deep research
      */
     async startDeepResearchRaw(requestParameters: StartDeepResearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartDeepResearchResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling startDeepResearch().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling startDeepResearch().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling startDeepResearch().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling startDeepResearch().'
             );
         }
 
@@ -606,13 +584,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}/deep-research`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}/deep-research`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -624,6 +597,7 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Start a deep research
+     * Start a deep research
      */
     async startDeepResearch(requestParameters: StartDeepResearchOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartDeepResearchResponse> {
         const response = await this.startDeepResearchRaw(requestParameters, initOverrides);
@@ -632,19 +606,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Start a pipeline
+     * Start a pipeline
      */
     async startPipelineRaw(requestParameters: StartPipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartPipelineResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling startPipeline().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling startPipeline().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling startPipeline().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling startPipeline().'
             );
         }
 
@@ -660,13 +635,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}/start`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}/start`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -677,6 +647,7 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Start a pipeline
+     * Start a pipeline
      */
     async startPipeline(requestParameters: StartPipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartPipelineResponse> {
         const response = await this.startPipelineRaw(requestParameters, initOverrides);
@@ -685,19 +656,20 @@ export class PipelinesApi extends runtime.BaseAPI {
 
     /**
      * Stop a pipeline
+     * Stop a pipeline
      */
     async stopPipelineRaw(requestParameters: StopPipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StopPipelineResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling stopPipeline().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling stopPipeline().'
             );
         }
 
-        if (requestParameters['pipeline'] == null) {
+        if (requestParameters['pipelineId'] == null) {
             throw new runtime.RequiredError(
-                'pipeline',
-                'Required parameter "pipeline" was null or undefined when calling stopPipeline().'
+                'pipelineId',
+                'Required parameter "pipelineId" was null or undefined when calling stopPipeline().'
             );
         }
 
@@ -713,13 +685,8 @@ export class PipelinesApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/pipelines/{pipeline}/stop`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"pipeline"}}`, encodeURIComponent(String(requestParameters['pipeline'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/pipelines/{pipelineId}/stop`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"pipelineId"}}`, encodeURIComponent(String(requestParameters['pipelineId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -729,6 +696,7 @@ export class PipelinesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Stop a pipeline
      * Stop a pipeline
      */
     async stopPipeline(requestParameters: StopPipelineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StopPipelineResponse> {

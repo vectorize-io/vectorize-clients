@@ -30,8 +30,8 @@ jobs:
 
       - name: "Run tests"
         env:
-            VECTORIZE_TOKEN: ${{ secrets.VECTORIZE_TOKEN }}
-            VECTORIZE_ORG: ${{ secrets.VECTORIZE_ORG }}
+            VECTORIZE_API_KEY: ${{ secrets.VECTORIZE_TOKEN }}
+            VECTORIZE_ORGANIZATION_ID: ${{ secrets.VECTORIZE_ORG }}
             VECTORIZE_ENV: dev
         run: |
           cd tests/ts
@@ -65,8 +65,8 @@ jobs:
 
       - name: Tests
         env:
-          VECTORIZE_TOKEN: ${{ secrets.VECTORIZE_TOKEN }}
-          VECTORIZE_ORG: ${{ secrets.VECTORIZE_ORG }}
+          VECTORIZE_API_KEY: ${{ secrets.VECTORIZE_TOKEN }}
+          VECTORIZE_ORGANIZATION_ID: ${{ secrets.VECTORIZE_ORG }}
           VECTORIZE_ENV: dev
         run: |
           cd tests/python

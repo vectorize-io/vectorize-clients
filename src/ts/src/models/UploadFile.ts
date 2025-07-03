@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -51,10 +51,10 @@ export interface UploadFile {
     lastModified: string | null;
     /**
      * 
-     * @type {{ [key: string]: string; }}
+     * @type {{ [key: string]: any | null; }}
      * @memberof UploadFile
      */
-    metadata: { [key: string]: string; };
+    metadata: { [key: string]: any | null; };
 }
 
 /**

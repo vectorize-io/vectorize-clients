@@ -1,7 +1,9 @@
 import {beforeEach, describe, it, expect} from "vitest";
 import {createTestContext, TestContext} from "./testContext";
 import {
-    ConnectorsApi,
+    SourceConnectorsApi,
+    AIPlatformConnectorsApi,
+    DestinationConnectorsApi,
     type CreateSourceConnector,
     PipelinesApi,
     ResponseError,
@@ -18,31 +20,34 @@ beforeEach(() => {
     testContext = createTestContext();
 });
 
-async function findVectorizeDestinationConnector(connectorsApi: ConnectorsApi) {
+async function findVectorizeDestinationConnector(connectorsApi: DestinationConnectorsApi) {
     let destinationResponse = await connectorsApi.getDestinationConnectors({
-        organization: testContext.orgId
+        organizationId: testContext.orgId
     });
     const destinationConnectorId = destinationResponse.destinationConnectors.find((connector) => connector.type === "VECTORIZE")!.id;
     return destinationConnectorId;
 }
 
-async function findAIPlatformVectorizeConnector(connectorsApi: ConnectorsApi) {
-    let aiPlatformResponse = await connectorsApi.getAIPlatformConnectors({
-        organization: testContext.orgId
+async function findAIPlatformVectorizeConnector(aiPlatformConnectorsApi: AIPlatformConnectorsApi) {
+    let aiPlatformResponse = await aiPlatformConnectorsApi.getAIPlatformConnectors({
+        organizationId: testContext.orgId
     });
     const aiPlatformId = aiPlatformResponse.aiPlatformConnectors.find((connector) => connector.type === "VECTORIZE")!.id;
     return aiPlatformId;
 }
 
-async function createWebCrawlerSource(connectorsApi: ConnectorsApi) {
-    let sourceResponse = await connectorsApi.createSourceConnector({
-        organization: testContext.orgId,
-        createSourceConnector: [
-            {type: SourceConnectorType.WebCrawler, name: "from api", config: {"seed-urls": ["https://docs.vectorize.io"]}}
-        ]
+async function createWebCrawlerSource(sourceConnectorsApi: SourceConnectorsApi) {
+    let sourceResponse = await sourceConnectorsApi.createSourceConnector({
+        organizationId: testContext.orgId,
+        createSourceConnectorRequest: {
+            type: SourceConnectorType.WebCrawler, 
+            name: "from api", 
+            config: {"seed-urls": ["https://docs.vectorize.io"]}
+        }
     });
-    const sourceConnectorId = sourceResponse.connectors[0].id;
-    await connectorsApi.updateSourceConnector({
+    const sourceConnectorId = sourceResponse.connector.id;
+    /* ENG-2651
+    await sourceConnectorsApi.updateSourceConnector({
             organization: testContext.orgId,
         sourceConnectorId,
             updateSourceConnectorRequest: {
@@ -50,23 +55,24 @@ async function createWebCrawlerSource(connectorsApi: ConnectorsApi) {
             }
         }
     );
+    */
     return sourceConnectorId;
 }
 
 async function deployPipeline(pipelinesApi: PipelinesApi, sourceConnectorId: string, destinationConnectorId: string, aiPlatformId: string): Promise<string> {
     return (await pipelinesApi.createPipeline({
-        organization: testContext.orgId,
+        organizationId: testContext.orgId,
         pipelineConfigurationSchema: {
             pipelineName: "from api",
             sourceConnectors: [{id: sourceConnectorId, type: SourceConnectorType.WebCrawler, config: {}}],
             destinationConnector: {
                 id: destinationConnectorId,
-                type: DestinationConnectorType.Vectorize,
+                type: DestinationConnectorType.VECTORIZE,
                 config: {}
             },
             aiPlatform: {
                 id: aiPlatformId,
-                type: AIPlatformType.Vectorize,
+                type: AIPlatformType.VECTORIZE,
                 config: {}
             },
             schedule: {type: "manual"}
@@ -77,46 +83,48 @@ async function deployPipeline(pipelinesApi: PipelinesApi, sourceConnectorId: str
 
 describe("pipelines", () => {
     it("verify pipeline lifecycle", async () => {
-        let connectorsApi = new ConnectorsApi(testContext.configuration);
+        let sourceConnectorsApi = new SourceConnectorsApi(testContext.configuration);
+        let destinationConnectorsApi = new DestinationConnectorsApi(testContext.configuration);
+        let aiPlatformConnectorsApi = new AIPlatformConnectorsApi(testContext.configuration);
         let pipelinesApi = new PipelinesApi(testContext.configuration);
         let pipelineId;
         try {
 
-            const sourceConnectorId = await createWebCrawlerSource(connectorsApi);
+            const sourceConnectorId = await createWebCrawlerSource(sourceConnectorsApi);
             console.log("created source", sourceConnectorId);
 
-            const aiPlatformId = await findAIPlatformVectorizeConnector(connectorsApi);
-            console.log("ai platform", aiPlatformId);
+            const aiPlatformConnectorId = await findAIPlatformVectorizeConnector(aiPlatformConnectorsApi);
+            console.log("ai platform", aiPlatformConnectorId);
 
-            const destinationConnectorId = await findVectorizeDestinationConnector(connectorsApi);
+            const destinationConnectorId = await findVectorizeDestinationConnector(destinationConnectorsApi);
             console.log("destinationConnectorId", destinationConnectorId);
 
 
-            pipelineId = await deployPipeline(pipelinesApi, sourceConnectorId, destinationConnectorId, aiPlatformId);
+            pipelineId = await deployPipeline(pipelinesApi, sourceConnectorId, destinationConnectorId, aiPlatformConnectorId);
 
             const events = await pipelinesApi.getPipelineEvents({
-                organization: testContext.orgId,
-                pipeline: pipelineId
+                organizationId: testContext.orgId,
+                pipelineId: pipelineId
             })
             console.log("events", events.data);
             const metrics = await pipelinesApi.getPipelineMetrics({
-                organization: testContext.orgId,
-                pipeline: pipelineId
+                organizationId: testContext.orgId,
+                pipelineId: pipelineId
             })
             console.log("metrics", metrics.data);
             await pipelinesApi.stopPipeline({
-                organization: testContext.orgId,
-                pipeline: pipelineId
+                organizationId: testContext.orgId,
+                pipelineId: pipelineId
             })
 
             await pipelinesApi.startPipeline({
-                organization: testContext.orgId,
-                pipeline: pipelineId
+                organizationId: testContext.orgId,
+                pipelineId: pipelineId
             })
 
 
             let response = await pipelinesApi.getPipelines({
-                organization: testContext.orgId
+                organizationId: testContext.orgId
             });
             console.log(response.data);
             const pipelines = response.data;
@@ -130,8 +138,8 @@ describe("pipelines", () => {
             expect(found).toBe(true)
 
             let docs = await pipelinesApi.retrieveDocuments({
-                organization: testContext.orgId,
-                pipeline: pipelineId,
+                organizationId: testContext.orgId,
+                pipelineId: pipelineId,
                 retrieveDocumentsRequest: {
                     question: "what is vectorize?",
                     numResults: 5,
@@ -146,8 +154,8 @@ describe("pipelines", () => {
             if (pipelineId) {
                 try {
                     await pipelinesApi.deletePipeline({
-                        organization: testContext.orgId,
-                        pipeline: pipelineId
+                        organizationId: testContext.orgId,
+                        pipelineId: pipelineId
                     })
                 } catch (error: any) {
                     console.error("failed to delete pipeline", error?.response);

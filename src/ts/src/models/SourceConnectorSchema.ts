@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -44,7 +44,7 @@ export interface SourceConnectorSchema {
      * @type {{ [key: string]: any | null; }}
      * @memberof SourceConnectorSchema
      */
-    config?: { [key: string]: any | null; };
+    config: { [key: string]: any | null; };
 }
 
 
@@ -55,6 +55,7 @@ export interface SourceConnectorSchema {
 export function instanceOfSourceConnectorSchema(value: object): value is SourceConnectorSchema {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('config' in value) || value['config'] === undefined) return false;
     return true;
 }
 
@@ -70,7 +71,7 @@ export function SourceConnectorSchemaFromJSONTyped(json: any, ignoreDiscriminato
         
         'id': json['id'],
         'type': SourceConnectorTypeFromJSON(json['type']),
-        'config': json['config'] == null ? undefined : json['config'],
+        'config': json['config'],
     };
 }
 

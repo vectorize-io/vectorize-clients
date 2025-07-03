@@ -11,8 +11,6 @@ openapi-generator-cli generate -i $ROOT_DIR/vectorize_api.json -g python -o $SRC
   --additional-properties=packageName=vectorize_client \
   --additional-properties=generateSourceCodeOnly=false
 
-
-
 npm run edit-toml $PYPROJECT tool.poetry version $current_version
 npm run edit-toml $PYPROJECT tool.poetry name vectorize-client
 npm run edit-toml $PYPROJECT tool.poetry description "Python client for the Vectorize API"

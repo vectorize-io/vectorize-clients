@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AddUserToSourceConnectorRequestSelectedFilesValue } from './AddUserToSourceConnectorRequestSelectedFilesValue';
+import type { AddUserToSourceConnectorRequestSelectedFiles } from './AddUserToSourceConnectorRequestSelectedFiles';
 import {
-    AddUserToSourceConnectorRequestSelectedFilesValueFromJSON,
-    AddUserToSourceConnectorRequestSelectedFilesValueFromJSONTyped,
-    AddUserToSourceConnectorRequestSelectedFilesValueToJSON,
-    AddUserToSourceConnectorRequestSelectedFilesValueToJSONTyped,
-} from './AddUserToSourceConnectorRequestSelectedFilesValue';
+    AddUserToSourceConnectorRequestSelectedFilesFromJSON,
+    AddUserToSourceConnectorRequestSelectedFilesFromJSONTyped,
+    AddUserToSourceConnectorRequestSelectedFilesToJSON,
+    AddUserToSourceConnectorRequestSelectedFilesToJSONTyped,
+} from './AddUserToSourceConnectorRequestSelectedFiles';
 
 /**
  * 
@@ -35,16 +35,22 @@ export interface AddUserToSourceConnectorRequest {
     userId: string;
     /**
      * 
-     * @type {{ [key: string]: AddUserToSourceConnectorRequestSelectedFilesValue; }}
+     * @type {AddUserToSourceConnectorRequestSelectedFiles}
      * @memberof AddUserToSourceConnectorRequest
      */
-    selectedFiles: { [key: string]: AddUserToSourceConnectorRequestSelectedFilesValue; };
+    selectedFiles: AddUserToSourceConnectorRequestSelectedFiles;
     /**
      * 
      * @type {string}
      * @memberof AddUserToSourceConnectorRequest
      */
-    refreshToken: string;
+    refreshToken?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddUserToSourceConnectorRequest
+     */
+    accessToken?: string;
 }
 
 /**
@@ -53,7 +59,6 @@ export interface AddUserToSourceConnectorRequest {
 export function instanceOfAddUserToSourceConnectorRequest(value: object): value is AddUserToSourceConnectorRequest {
     if (!('userId' in value) || value['userId'] === undefined) return false;
     if (!('selectedFiles' in value) || value['selectedFiles'] === undefined) return false;
-    if (!('refreshToken' in value) || value['refreshToken'] === undefined) return false;
     return true;
 }
 
@@ -68,8 +73,9 @@ export function AddUserToSourceConnectorRequestFromJSONTyped(json: any, ignoreDi
     return {
         
         'userId': json['userId'],
-        'selectedFiles': (mapValues(json['selectedFiles'], AddUserToSourceConnectorRequestSelectedFilesValueFromJSON)),
-        'refreshToken': json['refreshToken'],
+        'selectedFiles': AddUserToSourceConnectorRequestSelectedFilesFromJSON(json['selectedFiles']),
+        'refreshToken': json['refreshToken'] == null ? undefined : json['refreshToken'],
+        'accessToken': json['accessToken'] == null ? undefined : json['accessToken'],
     };
 }
 
@@ -85,8 +91,9 @@ export function AddUserToSourceConnectorRequestToJSONTyped(value?: AddUserToSour
     return {
         
         'userId': value['userId'],
-        'selectedFiles': (mapValues(value['selectedFiles'], AddUserToSourceConnectorRequestSelectedFilesValueToJSON)),
+        'selectedFiles': AddUserToSourceConnectorRequestSelectedFilesToJSON(value['selectedFiles']),
         'refreshToken': value['refreshToken'],
+        'accessToken': value['accessToken'],
     };
 }
 

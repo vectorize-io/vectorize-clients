@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -32,12 +32,12 @@ import {
 } from '../models/index';
 
 export interface GetExtractionResultRequest {
-    organization: string;
+    organizationId: string;
     extractionId: string;
 }
 
 export interface StartExtractionOperationRequest {
-    organization: string;
+    organizationId: string;
     startExtractionRequest: StartExtractionRequest;
 }
 
@@ -48,12 +48,13 @@ export class ExtractionApi extends runtime.BaseAPI {
 
     /**
      * Get extraction result
+     * Get extraction result
      */
     async getExtractionResultRaw(requestParameters: GetExtractionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtractionResultResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling getExtractionResult().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling getExtractionResult().'
             );
         }
 
@@ -76,13 +77,8 @@ export class ExtractionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/extraction/{extractionId}`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-        urlPath = urlPath.replace(`{${"extractionId"}}`, encodeURIComponent(String(requestParameters['extractionId'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/extraction/{extractionId}`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))).replace(`{${"extractionId"}}`, encodeURIComponent(String(requestParameters['extractionId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -93,6 +89,7 @@ export class ExtractionApi extends runtime.BaseAPI {
 
     /**
      * Get extraction result
+     * Get extraction result
      */
     async getExtractionResult(requestParameters: GetExtractionResultRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtractionResultResponse> {
         const response = await this.getExtractionResultRaw(requestParameters, initOverrides);
@@ -101,12 +98,13 @@ export class ExtractionApi extends runtime.BaseAPI {
 
     /**
      * Start content extraction from a file
+     * Start content extraction from a file
      */
     async startExtractionRaw(requestParameters: StartExtractionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StartExtractionResponse>> {
-        if (requestParameters['organization'] == null) {
+        if (requestParameters['organizationId'] == null) {
             throw new runtime.RequiredError(
-                'organization',
-                'Required parameter "organization" was null or undefined when calling startExtraction().'
+                'organizationId',
+                'Required parameter "organizationId" was null or undefined when calling startExtraction().'
             );
         }
 
@@ -131,12 +129,8 @@ export class ExtractionApi extends runtime.BaseAPI {
                 headerParameters["Authorization"] = `Bearer ${tokenString}`;
             }
         }
-
-        let urlPath = `/org/{organization}/extraction`;
-        urlPath = urlPath.replace(`{${"organization"}}`, encodeURIComponent(String(requestParameters['organization'])));
-
         const response = await this.request({
-            path: urlPath,
+            path: `/org/{organizationId}/extraction`.replace(`{${"organizationId"}}`, encodeURIComponent(String(requestParameters['organizationId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -147,6 +141,7 @@ export class ExtractionApi extends runtime.BaseAPI {
     }
 
     /**
+     * Start content extraction from a file
      * Start content extraction from a file
      */
     async startExtraction(requestParameters: StartExtractionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StartExtractionResponse> {

@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { DestinationConnectorType } from './DestinationConnectorType';
+import type { DestinationConnectorTypeForPipeline } from './DestinationConnectorTypeForPipeline';
 import {
-    DestinationConnectorTypeFromJSON,
-    DestinationConnectorTypeFromJSONTyped,
-    DestinationConnectorTypeToJSON,
-    DestinationConnectorTypeToJSONTyped,
-} from './DestinationConnectorType';
+    DestinationConnectorTypeForPipelineFromJSON,
+    DestinationConnectorTypeForPipelineFromJSONTyped,
+    DestinationConnectorTypeForPipelineToJSON,
+    DestinationConnectorTypeForPipelineToJSONTyped,
+} from './DestinationConnectorTypeForPipeline';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface DestinationConnectorSchema {
     id: string;
     /**
      * 
-     * @type {DestinationConnectorType}
+     * @type {DestinationConnectorTypeForPipeline}
      * @memberof DestinationConnectorSchema
      */
-    type: DestinationConnectorType;
+    type: DestinationConnectorTypeForPipeline;
     /**
      * 
      * @type {{ [key: string]: any | null; }}
@@ -69,7 +69,7 @@ export function DestinationConnectorSchemaFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'id': json['id'],
-        'type': DestinationConnectorTypeFromJSON(json['type']),
+        'type': DestinationConnectorTypeForPipelineFromJSON(json['type']),
         'config': json['config'] == null ? undefined : json['config'],
     };
 }
@@ -86,7 +86,7 @@ export function DestinationConnectorSchemaToJSONTyped(value?: DestinationConnect
     return {
         
         'id': value['id'],
-        'type': DestinationConnectorTypeToJSON(value['type']),
+        'type': DestinationConnectorTypeForPipelineToJSON(value['type']),
         'config': value['config'],
     };
 }

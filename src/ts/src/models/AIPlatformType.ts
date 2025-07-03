@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -21,8 +21,7 @@ export const AIPlatformType = {
     Bedrock: 'BEDROCK',
     Vertex: 'VERTEX',
     Openai: 'OPENAI',
-    Voyage: 'VOYAGE',
-    Vectorize: 'VECTORIZE'
+    Voyage: 'VOYAGE'
 } as const;
 export type AIPlatformType = typeof AIPlatformType[keyof typeof AIPlatformType];
 

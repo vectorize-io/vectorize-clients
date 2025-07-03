@@ -1,8 +1,8 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Vectorize API (Beta)
- * API for Vectorize services
+ * Vectorize API
+ * API for Vectorize services (Beta)
  *
  * The version of the OpenAPI document: 0.0.1
  * 
@@ -35,10 +35,10 @@ export interface CreateSourceConnectorResponse {
     message: string;
     /**
      * 
-     * @type {Array<CreatedSourceConnector>}
+     * @type {CreatedSourceConnector}
      * @memberof CreateSourceConnectorResponse
      */
-    connectors: Array<CreatedSourceConnector>;
+    connector: CreatedSourceConnector;
 }
 
 /**
@@ -46,7 +46,7 @@ export interface CreateSourceConnectorResponse {
  */
 export function instanceOfCreateSourceConnectorResponse(value: object): value is CreateSourceConnectorResponse {
     if (!('message' in value) || value['message'] === undefined) return false;
-    if (!('connectors' in value) || value['connectors'] === undefined) return false;
+    if (!('connector' in value) || value['connector'] === undefined) return false;
     return true;
 }
 
@@ -61,7 +61,7 @@ export function CreateSourceConnectorResponseFromJSONTyped(json: any, ignoreDisc
     return {
         
         'message': json['message'],
-        'connectors': ((json['connectors'] as Array<any>).map(CreatedSourceConnectorFromJSON)),
+        'connector': CreatedSourceConnectorFromJSON(json['connector']),
     };
 }
 
@@ -77,7 +77,7 @@ export function CreateSourceConnectorResponseToJSONTyped(value?: CreateSourceCon
     return {
         
         'message': value['message'],
-        'connectors': ((value['connectors'] as Array<any>).map(CreatedSourceConnectorToJSON)),
+        'connector': CreatedSourceConnectorToJSON(value['connector']),
     };
 }
 
