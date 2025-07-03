@@ -17,6 +17,7 @@ export * from './AddUserToSourceConnectorRequest';
 export * from './AddUserToSourceConnectorRequestSelectedFiles';
 export * from './AddUserToSourceConnectorRequestSelectedFilesAnyOf';
 export * from './AddUserToSourceConnectorRequestSelectedFilesAnyOfValue';
+export * from './AdvancedQuery';
 export * from './AwsS3';
 export * from './AwsS31';
 export * from './AzureBlob';
