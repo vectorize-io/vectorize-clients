@@ -27,11 +27,10 @@ class CONFLUENCEAuthConfig(BaseModel):
     """
     Authentication configuration for Confluence
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     username: StrictStr = Field(description="Username. Example: Enter your Confluence username")
     api_token: Annotated[str, Field(strict=True)] = Field(description="API Token. Example: Enter your Confluence API token", alias="api-token")
     domain: StrictStr = Field(description="Domain. Example: Enter your Confluence domain (e.g. my-domain.atlassian.net or confluence.<my-company>.com)")
-    __properties: ClassVar[List[str]] = ["name", "username", "api-token", "domain"]
+    __properties: ClassVar[List[str]] = ["username", "api-token", "domain"]
 
     @field_validator('api_token')
     def api_token_validate_regular_expression(cls, value):
@@ -91,7 +90,6 @@ class CONFLUENCEAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "username": obj.get("username"),
             "api-token": obj.get("api-token"),
             "domain": obj.get("domain")

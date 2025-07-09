@@ -348,7 +348,7 @@ class AIPlatformConnectorsApi:
 
 
     @validate_call
-    def delete_ai_platform(
+    def delete_ai_platform_connector(
         self,
         organization_id: StrictStr,
         ai_platform_connector_id: StrictStr,
@@ -395,7 +395,7 @@ class AIPlatformConnectorsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_ai_platform_serialize(
+        _param = self._delete_ai_platform_connector_serialize(
             organization_id=organization_id,
             ai_platform_connector_id=ai_platform_connector_id,
             _request_auth=_request_auth,
@@ -424,7 +424,7 @@ class AIPlatformConnectorsApi:
 
 
     @validate_call
-    def delete_ai_platform_with_http_info(
+    def delete_ai_platform_connector_with_http_info(
         self,
         organization_id: StrictStr,
         ai_platform_connector_id: StrictStr,
@@ -471,7 +471,7 @@ class AIPlatformConnectorsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_ai_platform_serialize(
+        _param = self._delete_ai_platform_connector_serialize(
             organization_id=organization_id,
             ai_platform_connector_id=ai_platform_connector_id,
             _request_auth=_request_auth,
@@ -500,7 +500,7 @@ class AIPlatformConnectorsApi:
 
 
     @validate_call
-    def delete_ai_platform_without_preload_content(
+    def delete_ai_platform_connector_without_preload_content(
         self,
         organization_id: StrictStr,
         ai_platform_connector_id: StrictStr,
@@ -547,7 +547,7 @@ class AIPlatformConnectorsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._delete_ai_platform_serialize(
+        _param = self._delete_ai_platform_connector_serialize(
             organization_id=organization_id,
             ai_platform_connector_id=ai_platform_connector_id,
             _request_auth=_request_auth,
@@ -571,7 +571,7 @@ class AIPlatformConnectorsApi:
         return response_data.response
 
 
-    def _delete_ai_platform_serialize(
+    def _delete_ai_platform_connector_serialize(
         self,
         organization_id,
         ai_platform_connector_id,

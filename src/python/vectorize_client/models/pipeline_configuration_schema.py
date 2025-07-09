@@ -33,10 +33,10 @@ class PipelineConfigurationSchema(BaseModel):
     """ # noqa: E501
     source_connectors: Annotated[List[SourceConnectorSchema], Field(min_length=1)] = Field(alias="sourceConnectors")
     destination_connector: DestinationConnectorSchema = Field(alias="destinationConnector")
-    ai_platform: AIPlatformConnectorSchema = Field(alias="aiPlatform")
+    ai_platform_connector: AIPlatformConnectorSchema = Field(alias="aiPlatformConnector")
     pipeline_name: Annotated[str, Field(min_length=1, strict=True)] = Field(alias="pipelineName")
     schedule: ScheduleSchema
-    __properties: ClassVar[List[str]] = ["sourceConnectors", "destinationConnector", "aiPlatform", "pipelineName", "schedule"]
+    __properties: ClassVar[List[str]] = ["sourceConnectors", "destinationConnector", "aiPlatformConnector", "pipelineName", "schedule"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,9 +87,9 @@ class PipelineConfigurationSchema(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of destination_connector
         if self.destination_connector:
             _dict['destinationConnector'] = self.destination_connector.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ai_platform
-        if self.ai_platform:
-            _dict['aiPlatform'] = self.ai_platform.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ai_platform_connector
+        if self.ai_platform_connector:
+            _dict['aiPlatformConnector'] = self.ai_platform_connector.to_dict()
         # override the default output from pydantic by calling `to_dict()` of schedule
         if self.schedule:
             _dict['schedule'] = self.schedule.to_dict()
@@ -107,7 +107,7 @@ class PipelineConfigurationSchema(BaseModel):
         _obj = cls.model_validate({
             "sourceConnectors": [SourceConnectorSchema.from_dict(_item) for _item in obj["sourceConnectors"]] if obj.get("sourceConnectors") is not None else None,
             "destinationConnector": DestinationConnectorSchema.from_dict(obj["destinationConnector"]) if obj.get("destinationConnector") is not None else None,
-            "aiPlatform": AIPlatformConnectorSchema.from_dict(obj["aiPlatform"]) if obj.get("aiPlatform") is not None else None,
+            "aiPlatformConnector": AIPlatformConnectorSchema.from_dict(obj["aiPlatformConnector"]) if obj.get("aiPlatformConnector") is not None else None,
             "pipelineName": obj.get("pipelineName"),
             "schedule": ScheduleSchema.from_dict(obj["schedule"]) if obj.get("schedule") is not None else None
         })

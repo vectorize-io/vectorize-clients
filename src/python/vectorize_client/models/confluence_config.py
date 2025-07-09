@@ -26,8 +26,8 @@ class CONFLUENCEConfig(BaseModel):
     """
     Configuration for Confluence connector
     """ # noqa: E501
-    spaces: StrictStr = Field(description="Spaces. Example: Spaces to include (name, key or id)")
-    root_parents: Optional[StrictStr] = Field(default=None, description="Root Parents. Example: Enter root parent pages", alias="root-parents")
+    spaces: List[StrictStr] = Field(description="Spaces. Example: Spaces to include (name, key or id)")
+    root_parents: Optional[List[StrictStr]] = Field(default=None, description="Root Parents. Example: Enter root parent pages", alias="root-parents")
     __properties: ClassVar[List[str]] = ["spaces", "root-parents"]
 
     model_config = ConfigDict(

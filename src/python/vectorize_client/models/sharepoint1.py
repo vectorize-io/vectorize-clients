@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.sharepoint_config import SHAREPOINTConfig
+from vectorize_client.models.sharepoint_auth_config import SHAREPOINTAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Sharepoint1(BaseModel):
     """
     Sharepoint1
     """ # noqa: E501
-    config: Optional[SHAREPOINTConfig] = None
+    config: Optional[SHAREPOINTAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Sharepoint1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": SHAREPOINTConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": SHAREPOINTAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

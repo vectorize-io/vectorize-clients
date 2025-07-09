@@ -27,14 +27,13 @@ class AWSS3AuthConfig(BaseModel):
     """
     Authentication configuration for Amazon S3
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     access_key: Annotated[str, Field(strict=True)] = Field(description="Access Key. Example: Enter Access Key", alias="access-key")
     secret_key: Annotated[str, Field(strict=True)] = Field(description="Secret Key. Example: Enter Secret Key", alias="secret-key")
     bucket_name: StrictStr = Field(description="Bucket Name. Example: Enter your S3 Bucket Name", alias="bucket-name")
     endpoint: Optional[StrictStr] = Field(default=None, description="Endpoint. Example: Enter Endpoint URL")
     region: Optional[StrictStr] = Field(default=None, description="Region. Example: Region Name")
     archiver: StrictBool = Field(description="Allow as archive destination")
-    __properties: ClassVar[List[str]] = ["name", "access-key", "secret-key", "bucket-name", "endpoint", "region", "archiver"]
+    __properties: ClassVar[List[str]] = ["access-key", "secret-key", "bucket-name", "endpoint", "region", "archiver"]
 
     @field_validator('access_key')
     def access_key_validate_regular_expression(cls, value):
@@ -101,7 +100,6 @@ class AWSS3AuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "access-key": obj.get("access-key"),
             "secret-key": obj.get("secret-key"),
             "bucket-name": obj.get("bucket-name"),

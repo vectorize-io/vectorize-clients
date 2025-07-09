@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.fireflies_config import FIREFLIESConfig
+from vectorize_client.models.fireflies_auth_config import FIREFLIESAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Fireflies1(BaseModel):
     """
     Fireflies1
     """ # noqa: E501
-    config: Optional[FIREFLIESConfig] = None
+    config: Optional[FIREFLIESAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Fireflies1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": FIREFLIESConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": FIREFLIESAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

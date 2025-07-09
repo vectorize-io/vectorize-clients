@@ -26,13 +26,12 @@ class NOTIONOAUTHMULTICUSTOMAuthConfig(BaseModel):
     """
     Authentication configuration for Notion Multi-User (White Label)
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     client_id: SecretStr = Field(description="Notion Client ID. Example: Enter Client ID", alias="client-id")
     client_secret: SecretStr = Field(description="Notion Client Secret. Example: Enter Client Secret", alias="client-secret")
-    authorized_users: Optional[StrictStr] = Field(default=None, description="Authorized Users", alias="authorized-users")
+    authorized_users: Optional[List[StrictStr]] = Field(default=None, description="Authorized Users", alias="authorized-users")
     edited_users: Optional[Dict[str, Any]] = Field(default=None, alias="editedUsers")
     deleted_users: Optional[Dict[str, Any]] = Field(default=None, alias="deletedUsers")
-    __properties: ClassVar[List[str]] = ["name", "client-id", "client-secret", "authorized-users", "editedUsers", "deletedUsers"]
+    __properties: ClassVar[List[str]] = ["client-id", "client-secret", "authorized-users", "editedUsers", "deletedUsers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +84,6 @@ class NOTIONOAUTHMULTICUSTOMAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "client-id": obj.get("client-id"),
             "client-secret": obj.get("client-secret"),
             "authorized-users": obj.get("authorized-users"),

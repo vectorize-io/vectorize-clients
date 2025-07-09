@@ -27,11 +27,10 @@ class DISCORDAuthConfig(BaseModel):
     """
     Authentication configuration for Discord
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     server_id: StrictStr = Field(description="Server ID. Example: Enter Server ID", alias="server-id")
     bot_token: Annotated[str, Field(strict=True)] = Field(description="Bot token. Example: Enter Token", alias="bot-token")
-    channel_ids: StrictStr = Field(description="Channel ID. Example: Enter channel ID", alias="channel-ids")
-    __properties: ClassVar[List[str]] = ["name", "server-id", "bot-token", "channel-ids"]
+    channel_ids: List[StrictStr] = Field(description="Channel ID. Example: Enter channel ID", alias="channel-ids")
+    __properties: ClassVar[List[str]] = ["server-id", "bot-token", "channel-ids"]
 
     @field_validator('bot_token')
     def bot_token_validate_regular_expression(cls, value):
@@ -91,7 +90,6 @@ class DISCORDAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "server-id": obj.get("server-id"),
             "bot-token": obj.get("bot-token"),
             "channel-ids": obj.get("channel-ids")

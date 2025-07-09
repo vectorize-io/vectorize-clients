@@ -17,9 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,24 +26,14 @@ class WEBCRAWLERConfig(BaseModel):
     """
     Configuration for Web Crawler connector
     """ # noqa: E501
-    allowed_domains_opt: Optional[StrictStr] = Field(default=None, description="Additional Allowed URLs or prefix(es). Add one or more allowed URLs or URL prefixes. The crawler will read URLs that match these patterns in addition to the seed URL(s).. Example: (e.g. https://docs.example.com)", alias="allowed-domains-opt")
-    forbidden_paths: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Forbidden Paths. Example: Enter forbidden paths (e.g. /admin)", alias="forbidden-paths")
+    allowed_domains_opt: Optional[List[StrictStr]] = Field(default=None, description="Additional Allowed URLs or prefix(es). Add one or more allowed URLs or URL prefixes. The crawler will read URLs that match these patterns in addition to the seed URL(s).. Example: (e.g. https://docs.example.com)", alias="allowed-domains-opt")
+    forbidden_paths: Optional[List[StrictStr]] = Field(default=None, description="Forbidden Paths. Example: Enter forbidden paths (e.g. /admin)", alias="forbidden-paths")
     min_time_between_requests: Optional[Union[StrictFloat, StrictInt]] = Field(default=500, description="Throttle (ms). Example: Enter minimum time between requests in milliseconds", alias="min-time-between-requests")
     max_error_count: Optional[Union[StrictFloat, StrictInt]] = Field(default=5, description="Max Error Count. Example: Enter maximum error count", alias="max-error-count")
     max_urls: Optional[Union[StrictFloat, StrictInt]] = Field(default=1000, description="Max URLs. Example: Enter maximum number of URLs to crawl", alias="max-urls")
     max_depth: Optional[Union[StrictFloat, StrictInt]] = Field(default=50, description="Max Depth. Example: Enter maximum crawl depth", alias="max-depth")
     reindex_interval_seconds: Optional[Union[StrictFloat, StrictInt]] = Field(default=3600, description="Reindex Interval (seconds). Example: Enter reindex interval in seconds", alias="reindex-interval-seconds")
     __properties: ClassVar[List[str]] = ["allowed-domains-opt", "forbidden-paths", "min-time-between-requests", "max-error-count", "max-urls", "max-depth", "reindex-interval-seconds"]
-
-    @field_validator('forbidden_paths')
-    def forbidden_paths_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^\/([a-zA-Z0-9-_]+(\/)?)+$", value):
-            raise ValueError(r"must validate the regular expression /^\/([a-zA-Z0-9-_]+(\/)?)+$/")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

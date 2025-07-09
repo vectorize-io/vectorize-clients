@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.gcs_config import GCSConfig
+from vectorize_client.models.gcs_auth_config import GCSAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Gcs1(BaseModel):
     """
     Gcs1
     """ # noqa: E501
-    config: Optional[GCSConfig] = None
+    config: Optional[GCSAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Gcs1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": GCSConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": GCSAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

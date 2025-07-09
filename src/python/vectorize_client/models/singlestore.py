@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.singlestore_config import SINGLESTOREConfig
+from vectorize_client.models.singlestore_auth_config import SINGLESTOREAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +29,7 @@ class Singlestore(BaseModel):
     """ # noqa: E501
     name: StrictStr = Field(description="Name of the connector")
     type: StrictStr = Field(description="Connector type (must be \"SINGLESTORE\")")
-    config: SINGLESTOREConfig
+    config: SINGLESTOREAuthConfig
     __properties: ClassVar[List[str]] = ["name", "type", "config"]
 
     @field_validator('type')
@@ -95,7 +95,7 @@ class Singlestore(BaseModel):
         _obj = cls.model_validate({
             "name": obj.get("name"),
             "type": obj.get("type"),
-            "config": SINGLESTOREConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": SINGLESTOREAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

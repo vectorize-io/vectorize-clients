@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.singlestore_config import SINGLESTOREConfig
+from vectorize_client.models.singlestore_auth_config import SINGLESTOREAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Singlestore1(BaseModel):
     """
     Singlestore1
     """ # noqa: E501
-    config: Optional[SINGLESTOREConfig] = None
+    config: Optional[SINGLESTOREAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Singlestore1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": SINGLESTOREConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": SINGLESTOREAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

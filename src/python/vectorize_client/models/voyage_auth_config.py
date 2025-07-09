@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -27,9 +27,8 @@ class VOYAGEAuthConfig(BaseModel):
     """
     Authentication configuration for Voyage AI
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name for your Voyage AI integration")
     key: Annotated[str, Field(strict=True)] = Field(description="API Key. Example: Enter your Voyage AI API Key")
-    __properties: ClassVar[List[str]] = ["name", "key"]
+    __properties: ClassVar[List[str]] = ["key"]
 
     @field_validator('key')
     def key_validate_regular_expression(cls, value):
@@ -89,7 +88,6 @@ class VOYAGEAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "key": obj.get("key")
         })
         return _obj

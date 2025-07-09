@@ -27,10 +27,9 @@ class AZUREAISEARCHAuthConfig(BaseModel):
     """
     Authentication configuration for Azure AI Search
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name for your Azure AI Search integration")
     service_name: StrictStr = Field(description="Azure AI Search Service Name. Example: Enter your Azure AI Search service name", alias="service-name")
     api_key: Annotated[str, Field(strict=True)] = Field(description="API Key. Example: Enter your API key", alias="api-key")
-    __properties: ClassVar[List[str]] = ["name", "service-name", "api-key"]
+    __properties: ClassVar[List[str]] = ["service-name", "api-key"]
 
     @field_validator('api_key')
     def api_key_validate_regular_expression(cls, value):
@@ -90,7 +89,6 @@ class AZUREAISEARCHAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "service-name": obj.get("service-name"),
             "api-key": obj.get("api-key")
         })

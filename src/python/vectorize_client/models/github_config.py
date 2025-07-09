@@ -20,7 +20,6 @@ import json
 from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,23 +27,16 @@ class GITHUBConfig(BaseModel):
     """
     Configuration for GitHub connector
     """ # noqa: E501
-    repositories: Annotated[str, Field(strict=True)] = Field(description="Repositories. Example: Example: owner1/repo1")
+    repositories: List[StrictStr] = Field(description="Repositories. Example: Example: owner1/repo1")
     include_pull_requests: StrictBool = Field(description="Include Pull Requests", alias="include-pull-requests")
     pull_request_status: StrictStr = Field(description="Pull Request Status", alias="pull-request-status")
-    pull_request_labels: Optional[StrictStr] = Field(default=None, description="Pull Request Labels. Example: Optionally filter by label. E.g. fix", alias="pull-request-labels")
+    pull_request_labels: Optional[List[StrictStr]] = Field(default=None, description="Pull Request Labels. Example: Optionally filter by label. E.g. fix", alias="pull-request-labels")
     include_issues: StrictBool = Field(description="Include Issues", alias="include-issues")
     issue_status: StrictStr = Field(description="Issue Status", alias="issue-status")
-    issue_labels: Optional[StrictStr] = Field(default=None, description="Issue Labels. Example: Optionally filter by label. E.g. bug", alias="issue-labels")
+    issue_labels: Optional[List[StrictStr]] = Field(default=None, description="Issue Labels. Example: Optionally filter by label. E.g. bug", alias="issue-labels")
     max_items: Union[StrictFloat, StrictInt] = Field(description="Max Items. Example: Enter maximum number of items to fetch", alias="max-items")
     created_after: Optional[date] = Field(default=None, description="Created After. Filter for items created after this date. Example: Enter a date: Example 2012-12-31", alias="created-after")
     __properties: ClassVar[List[str]] = ["repositories", "include-pull-requests", "pull-request-status", "pull-request-labels", "include-issues", "issue-status", "issue-labels", "max-items", "created-after"]
-
-    @field_validator('repositories')
-    def repositories_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"^[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+$", value):
-            raise ValueError(r"must validate the regular expression /^[a-zA-Z0-9-]+\/[a-zA-Z0-9-]+$/")
-        return value
 
     @field_validator('pull_request_status')
     def pull_request_status_validate_enum(cls, value):

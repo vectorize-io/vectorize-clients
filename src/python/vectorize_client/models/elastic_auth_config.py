@@ -27,11 +27,10 @@ class ELASTICAuthConfig(BaseModel):
     """
     Authentication configuration for Elasticsearch
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name for your Elastic integration")
     host: StrictStr = Field(description="Host. Example: Enter your host")
     port: StrictStr = Field(description="Port. Example: Enter your port")
     api_key: Annotated[str, Field(strict=True)] = Field(description="API Key. Example: Enter your API key", alias="api-key")
-    __properties: ClassVar[List[str]] = ["name", "host", "port", "api-key"]
+    __properties: ClassVar[List[str]] = ["host", "port", "api-key"]
 
     @field_validator('api_key')
     def api_key_validate_regular_expression(cls, value):
@@ -91,7 +90,6 @@ class ELASTICAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "host": obj.get("host"),
             "port": obj.get("port"),
             "api-key": obj.get("api-key")

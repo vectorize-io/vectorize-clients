@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.datastax_config import DATASTAXConfig
+from vectorize_client.models.datastax_auth_config import DATASTAXAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Datastax1(BaseModel):
     """
     Datastax1
     """ # noqa: E501
-    config: Optional[DATASTAXConfig] = None
+    config: Optional[DATASTAXAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Datastax1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": DATASTAXConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": DATASTAXAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

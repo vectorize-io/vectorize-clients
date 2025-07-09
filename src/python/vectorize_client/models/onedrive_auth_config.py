@@ -26,12 +26,11 @@ class ONEDRIVEAuthConfig(BaseModel):
     """
     Authentication configuration for OneDrive
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     ms_client_id: StrictStr = Field(description="Client Id. Example: Enter Client Id", alias="ms-client-id")
     ms_tenant_id: StrictStr = Field(description="Tenant Id. Example: Enter Tenant Id", alias="ms-tenant-id")
     ms_client_secret: SecretStr = Field(description="Client Secret. Example: Enter Client Secret", alias="ms-client-secret")
-    users: StrictStr = Field(description="Users. Example: Enter users emails to import files from. Example: developer@vectorize.io")
-    __properties: ClassVar[List[str]] = ["name", "ms-client-id", "ms-tenant-id", "ms-client-secret", "users"]
+    users: List[StrictStr] = Field(description="Users. Example: Enter users emails to import files from. Example: developer@vectorize.io")
+    __properties: ClassVar[List[str]] = ["ms-client-id", "ms-tenant-id", "ms-client-secret", "users"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +83,6 @@ class ONEDRIVEAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "ms-client-id": obj.get("ms-client-id"),
             "ms-tenant-id": obj.get("ms-tenant-id"),
             "ms-client-secret": obj.get("ms-client-secret"),

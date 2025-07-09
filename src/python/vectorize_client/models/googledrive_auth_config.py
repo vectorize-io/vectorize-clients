@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, SecretStr, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, SecretStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,9 +26,8 @@ class GOOGLEDRIVEAuthConfig(BaseModel):
     """
     Authentication configuration for Google Drive (Service Account)
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     service_account_json: SecretStr = Field(description="Service Account JSON. Example: Enter the JSON key file for the service account", alias="service-account-json")
-    __properties: ClassVar[List[str]] = ["name", "service-account-json"]
+    __properties: ClassVar[List[str]] = ["service-account-json"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +80,6 @@ class GOOGLEDRIVEAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "service-account-json": obj.get("service-account-json")
         })
         return _obj

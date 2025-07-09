@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.fireflies_config import FIREFLIESConfig
+from vectorize_client.models.fireflies_auth_config import FIREFLIESAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +29,7 @@ class Fireflies(BaseModel):
     """ # noqa: E501
     name: StrictStr = Field(description="Name of the connector")
     type: StrictStr = Field(description="Connector type (must be \"FIREFLIES\")")
-    config: FIREFLIESConfig
+    config: FIREFLIESAuthConfig
     __properties: ClassVar[List[str]] = ["name", "type", "config"]
 
     @field_validator('type')
@@ -95,7 +95,7 @@ class Fireflies(BaseModel):
         _obj = cls.model_validate({
             "name": obj.get("name"),
             "type": obj.get("type"),
-            "config": FIREFLIESConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": FIREFLIESAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

@@ -26,11 +26,10 @@ class GOOGLEDRIVEOAUTHMULTIAuthConfig(BaseModel):
     """
     Authentication configuration for Google Drive Multi-User (Vectorize)
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
-    authorized_users: Optional[StrictStr] = Field(default=None, description="Authorized Users", alias="authorized-users")
+    authorized_users: Optional[List[StrictStr]] = Field(default=None, description="Authorized Users", alias="authorized-users")
     edited_users: Optional[Dict[str, Any]] = Field(default=None, alias="editedUsers")
     deleted_users: Optional[Dict[str, Any]] = Field(default=None, alias="deletedUsers")
-    __properties: ClassVar[List[str]] = ["name", "authorized-users", "editedUsers", "deletedUsers"]
+    __properties: ClassVar[List[str]] = ["authorized-users", "editedUsers", "deletedUsers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,7 +82,6 @@ class GOOGLEDRIVEOAUTHMULTIAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "authorized-users": obj.get("authorized-users"),
             "editedUsers": obj.get("editedUsers"),
             "deletedUsers": obj.get("deletedUsers")

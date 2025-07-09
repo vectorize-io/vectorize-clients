@@ -17,9 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,18 +26,8 @@ class DROPBOXConfig(BaseModel):
     """
     Configuration for Dropbox (Legacy) connector
     """ # noqa: E501
-    path_prefix: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Read from these folders (optional). Example: Enter Path: /exampleFolder/subFolder", alias="path-prefix")
+    path_prefix: Optional[List[StrictStr]] = Field(default=None, description="Read from these folders (optional). Example: Enter Path: /exampleFolder/subFolder", alias="path-prefix")
     __properties: ClassVar[List[str]] = ["path-prefix"]
-
-    @field_validator('path_prefix')
-    def path_prefix_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^\/.*$", value):
-            raise ValueError(r"must validate the regular expression /^\/.*$/")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

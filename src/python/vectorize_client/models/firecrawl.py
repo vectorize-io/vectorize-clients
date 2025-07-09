@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.firecrawl_config import FIRECRAWLConfig
+from vectorize_client.models.firecrawl_auth_config import FIRECRAWLAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +29,7 @@ class Firecrawl(BaseModel):
     """ # noqa: E501
     name: StrictStr = Field(description="Name of the connector")
     type: StrictStr = Field(description="Connector type (must be \"FIRECRAWL\")")
-    config: FIRECRAWLConfig
+    config: FIRECRAWLAuthConfig
     __properties: ClassVar[List[str]] = ["name", "type", "config"]
 
     @field_validator('type')
@@ -95,7 +95,7 @@ class Firecrawl(BaseModel):
         _obj = cls.model_validate({
             "name": obj.get("name"),
             "type": obj.get("type"),
-            "config": FIRECRAWLConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": FIRECRAWLAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

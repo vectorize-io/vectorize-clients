@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.googledriveoauthmulticustom_config import GOOGLEDRIVEOAUTHMULTICUSTOMConfig
+from vectorize_client.models.googledriveoauthmulticustom_auth_config import GOOGLEDRIVEOAUTHMULTICUSTOMAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class GoogleDriveOauthMultiCustom(BaseModel):
     """
     GoogleDriveOauthMultiCustom
     """ # noqa: E501
-    config: Optional[GOOGLEDRIVEOAUTHMULTICUSTOMConfig] = None
+    config: Optional[GOOGLEDRIVEOAUTHMULTICUSTOMAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class GoogleDriveOauthMultiCustom(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": GOOGLEDRIVEOAUTHMULTICUSTOMConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": GOOGLEDRIVEOAUTHMULTICUSTOMAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

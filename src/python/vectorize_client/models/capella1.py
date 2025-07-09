@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.capella_config import CAPELLAConfig
+from vectorize_client.models.capella_auth_config import CAPELLAAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Capella1(BaseModel):
     """
     Capella1
     """ # noqa: E501
-    config: Optional[CAPELLAConfig] = None
+    config: Optional[CAPELLAAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Capella1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": CAPELLAConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": CAPELLAAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

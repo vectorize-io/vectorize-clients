@@ -51,9 +51,9 @@ export const SHAREPOINTConfigFileExtensionsEnum = {
     Emlmsg: 'eml,msg',
     Txt: 'txt',
     Htmlhtm: 'html,htm',
+    Jpgjpegpngwebpsvggif: 'jpg,jpeg,png,webp,svg,gif',
     Json: 'json',
-    Csv: 'csv',
-    Jpgjpegpngwebpsvggif: 'jpg,jpeg,png,webp,svg,gif'
+    Csv: 'csv'
 } as const;
 export type SHAREPOINTConfigFileExtensionsEnum = typeof SHAREPOINTConfigFileExtensionsEnum[keyof typeof SHAREPOINTConfigFileExtensionsEnum];
 

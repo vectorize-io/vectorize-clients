@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -27,9 +27,8 @@ class FIREFLIESAuthConfig(BaseModel):
     """
     Authentication configuration for Fireflies.ai
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     api_key: Annotated[str, Field(strict=True)] = Field(description="API Key. Example: Enter your Fireflies.ai API key", alias="api-key")
-    __properties: ClassVar[List[str]] = ["name", "api-key"]
+    __properties: ClassVar[List[str]] = ["api-key"]
 
     @field_validator('api_key')
     def api_key_validate_regular_expression(cls, value):
@@ -89,7 +88,6 @@ class FIREFLIESAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "api-key": obj.get("api-key")
         })
         return _obj

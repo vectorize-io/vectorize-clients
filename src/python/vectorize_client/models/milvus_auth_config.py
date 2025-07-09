@@ -26,12 +26,11 @@ class MILVUSAuthConfig(BaseModel):
     """
     Authentication configuration for Milvus
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name for your Milvus integration")
     url: StrictStr = Field(description="Public Endpoint. Example: Enter your public endpoint for your Milvus cluster")
     token: Optional[SecretStr] = Field(default=None, description="Token. Example: Enter your cluster token or Username/Password")
     username: Optional[StrictStr] = Field(default=None, description="Username. Example: Enter your cluster Username")
     password: Optional[SecretStr] = Field(default=None, description="Password. Example: Enter your cluster Password")
-    __properties: ClassVar[List[str]] = ["name", "url", "token", "username", "password"]
+    __properties: ClassVar[List[str]] = ["url", "token", "username", "password"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +83,6 @@ class MILVUSAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "url": obj.get("url"),
             "token": obj.get("token"),
             "username": obj.get("username"),

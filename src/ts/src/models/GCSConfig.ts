@@ -70,9 +70,9 @@ export const GCSConfigFileExtensionsEnum = {
     Txt: 'txt',
     Htmlhtm: 'html,htm',
     Md: 'md',
+    Jpgjpegpngwebpsvggif: 'jpg,jpeg,png,webp,svg,gif',
     Json: 'json',
-    Csv: 'csv',
-    Jpgjpegpngwebpsvggif: 'jpg,jpeg,png,webp,svg,gif'
+    Csv: 'csv'
 } as const;
 export type GCSConfigFileExtensionsEnum = typeof GCSConfigFileExtensionsEnum[keyof typeof GCSConfigFileExtensionsEnum];
 

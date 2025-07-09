@@ -46,9 +46,9 @@ export const GOOGLEDRIVEOAUTHMULTICUSTOMConfigFileExtensionsEnum = {
     Txt: 'txt',
     Htmlhtm: 'html,htm',
     Md: 'md',
+    Jpgjpegpngwebpsvggif: 'jpg,jpeg,png,webp,svg,gif',
     Json: 'json',
-    Csv: 'csv',
-    Jpgjpegpngwebpsvggif: 'jpg,jpeg,png,webp,svg,gif'
+    Csv: 'csv'
 } as const;
 export type GOOGLEDRIVEOAUTHMULTICUSTOMConfigFileExtensionsEnum = typeof GOOGLEDRIVEOAUTHMULTICUSTOMConfigFileExtensionsEnum[keyof typeof GOOGLEDRIVEOAUTHMULTICUSTOMConfigFileExtensionsEnum];
 

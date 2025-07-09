@@ -70,9 +70,9 @@ export const AWSS3ConfigFileExtensionsEnum = {
     Txt: 'txt',
     Htmlhtm: 'html,htm',
     Md: 'md',
+    Jpgjpegpngwebpsvggif: 'jpg,jpeg,png,webp,svg,gif',
     Json: 'json',
-    Csv: 'csv',
-    Jpgjpegpngwebpsvggif: 'jpg,jpeg,png,webp,svg,gif'
+    Csv: 'csv'
 } as const;
 export type AWSS3ConfigFileExtensionsEnum = typeof AWSS3ConfigFileExtensionsEnum[keyof typeof AWSS3ConfigFileExtensionsEnum];
 

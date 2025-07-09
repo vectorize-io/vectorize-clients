@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +27,7 @@ class SHAREPOINTConfig(BaseModel):
     Configuration for SharePoint connector
     """ # noqa: E501
     file_extensions: List[StrictStr] = Field(description="File Extensions", alias="file-extensions")
-    sites: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Site Name(s). Example: Filter by site name. All sites if empty.")
+    sites: Optional[List[StrictStr]] = Field(default=None, description="Site Name(s). Example: Filter by site name. All sites if empty.")
     folder_path: Optional[StrictStr] = Field(default=None, description="Read starting from this folder (optional). Example: Enter Folder path: /exampleFolder/subFolder", alias="folder-path")
     __properties: ClassVar[List[str]] = ["file-extensions", "sites", "folder-path"]
 
@@ -36,18 +35,8 @@ class SHAREPOINTConfig(BaseModel):
     def file_extensions_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
-            if i not in set(['pdf', 'doc,docx,gdoc,odt,rtf,epub', 'ppt,pptx,gslides', 'xls,xlsx,gsheets,ods', 'eml,msg', 'txt', 'html,htm', 'json', 'csv', 'jpg,jpeg,png,webp,svg,gif']):
-                raise ValueError("each list item must be one of ('pdf', 'doc,docx,gdoc,odt,rtf,epub', 'ppt,pptx,gslides', 'xls,xlsx,gsheets,ods', 'eml,msg', 'txt', 'html,htm', 'json', 'csv', 'jpg,jpeg,png,webp,svg,gif')")
-        return value
-
-    @field_validator('sites')
-    def sites_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^(?!.*(https?:\/\/|www\.))[\w\s\-.]+$", value):
-            raise ValueError(r"must validate the regular expression /^(?!.*(https?:\/\/|www\.))[\w\s\-.]+$/")
+            if i not in set(['pdf', 'doc,docx,gdoc,odt,rtf,epub', 'ppt,pptx,gslides', 'xls,xlsx,gsheets,ods', 'eml,msg', 'txt', 'html,htm', 'jpg,jpeg,png,webp,svg,gif', 'json', 'csv']):
+                raise ValueError("each list item must be one of ('pdf', 'doc,docx,gdoc,odt,rtf,epub', 'ppt,pptx,gslides', 'xls,xlsx,gsheets,ods', 'eml,msg', 'txt', 'html,htm', 'jpg,jpeg,png,webp,svg,gif', 'json', 'csv')")
         return value
 
     model_config = ConfigDict(

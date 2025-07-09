@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from vectorize_client.models.supabase_config import SUPABASEConfig
+from vectorize_client.models.supabase_auth_config import SUPABASEAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +29,7 @@ class Supabase(BaseModel):
     """ # noqa: E501
     name: StrictStr = Field(description="Name of the connector")
     type: StrictStr = Field(description="Connector type (must be \"SUPABASE\")")
-    config: SUPABASEConfig
+    config: SUPABASEAuthConfig
     __properties: ClassVar[List[str]] = ["name", "type", "config"]
 
     @field_validator('type')
@@ -95,7 +95,7 @@ class Supabase(BaseModel):
         _obj = cls.model_validate({
             "name": obj.get("name"),
             "type": obj.get("type"),
-            "config": SUPABASEConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": SUPABASEAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

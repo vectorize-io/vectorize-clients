@@ -8,7 +8,7 @@
       "name": "Vectorize",
       "url": "https://vectorize.io"
     },
-    "x-release-date": "2025-07-03"
+    "x-release-date": "2025-07-08"
   },
   "servers": [
     {
@@ -278,7 +278,7 @@
           "destinationConnector": {
             "$ref": "#/components/schemas/PipelineDestinationConnectorRequest"
           },
-          "aiPlatform": {
+          "aiPlatformConnector": {
             "$ref": "#/components/schemas/AIPlatformConnectorSchema"
           },
           "pipelineName": {
@@ -292,7 +292,7 @@
         "required": [
           "sourceConnectors",
           "destinationConnector",
-          "aiPlatform",
+          "aiPlatformConnector",
           "pipelineName",
           "schedule"
         ],
@@ -1109,7 +1109,7 @@
                 "description": "Connector type (must be \"AWS_S3\")"
               },
               "config": {
-                "$ref": "#/components/schemas/AWS_S3Config"
+                "$ref": "#/components/schemas/AWS_S3AuthConfig"
               }
             },
             "example": {
@@ -1145,7 +1145,7 @@
                 "description": "Connector type (must be \"AZURE_BLOB\")"
               },
               "config": {
-                "$ref": "#/components/schemas/AZURE_BLOBConfig"
+                "$ref": "#/components/schemas/AZURE_BLOBAuthConfig"
               }
             },
             "example": {
@@ -1179,7 +1179,7 @@
                 "description": "Connector type (must be \"CONFLUENCE\")"
               },
               "config": {
-                "$ref": "#/components/schemas/CONFLUENCEConfig"
+                "$ref": "#/components/schemas/CONFLUENCEAuthConfig"
               }
             },
             "example": {
@@ -1213,7 +1213,7 @@
                 "description": "Connector type (must be \"DISCORD\")"
               },
               "config": {
-                "$ref": "#/components/schemas/DISCORDConfig"
+                "$ref": "#/components/schemas/DISCORDAuthConfig"
               }
             },
             "example": {
@@ -1272,7 +1272,7 @@
                 "description": "Connector type (must be \"GOOGLE_DRIVE\")"
               },
               "config": {
-                "$ref": "#/components/schemas/GOOGLE_DRIVEConfig"
+                "$ref": "#/components/schemas/GOOGLE_DRIVEAuthConfig"
               }
             },
             "example": {
@@ -1304,7 +1304,7 @@
                 "description": "Connector type (must be \"FIRECRAWL\")"
               },
               "config": {
-                "$ref": "#/components/schemas/FIRECRAWLConfig"
+                "$ref": "#/components/schemas/FIRECRAWLAuthConfig"
               }
             },
             "example": {
@@ -1336,7 +1336,7 @@
                 "description": "Connector type (must be \"GCS\")"
               },
               "config": {
-                "$ref": "#/components/schemas/GCSConfig"
+                "$ref": "#/components/schemas/GCSAuthConfig"
               }
             },
             "example": {
@@ -1369,7 +1369,7 @@
                 "description": "Connector type (must be \"ONE_DRIVE\")"
               },
               "config": {
-                "$ref": "#/components/schemas/ONE_DRIVEConfig"
+                "$ref": "#/components/schemas/ONE_DRIVEAuthConfig"
               }
             },
             "example": {
@@ -1404,7 +1404,7 @@
                 "description": "Connector type (must be \"SHAREPOINT\")"
               },
               "config": {
-                "$ref": "#/components/schemas/SHAREPOINTConfig"
+                "$ref": "#/components/schemas/SHAREPOINTAuthConfig"
               }
             },
             "example": {
@@ -1438,7 +1438,7 @@
                 "description": "Connector type (must be \"WEB_CRAWLER\")"
               },
               "config": {
-                "$ref": "#/components/schemas/WEB_CRAWLERConfig"
+                "$ref": "#/components/schemas/WEB_CRAWLERAuthConfig"
               }
             },
             "example": {
@@ -1468,7 +1468,7 @@
                 "description": "Connector type (must be \"GITHUB\")"
               },
               "config": {
-                "$ref": "#/components/schemas/GITHUBConfig"
+                "$ref": "#/components/schemas/GITHUBAuthConfig"
               }
             },
             "example": {
@@ -1500,7 +1500,7 @@
                 "description": "Connector type (must be \"FIREFLIES\")"
               },
               "config": {
-                "$ref": "#/components/schemas/FIREFLIESConfig"
+                "$ref": "#/components/schemas/FIREFLIESAuthConfig"
               }
             },
             "example": {
@@ -1555,7 +1555,7 @@
             "title": "AwsS3",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/AWS_S3Config"
+                "$ref": "#/components/schemas/AWS_S3AuthConfig"
               }
             },
             "example": {
@@ -1574,7 +1574,7 @@
             "title": "AzureBlob",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/AZURE_BLOBConfig"
+                "$ref": "#/components/schemas/AZURE_BLOBAuthConfig"
               }
             },
             "example": {
@@ -1591,7 +1591,7 @@
             "title": "Confluence",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/CONFLUENCEConfig"
+                "$ref": "#/components/schemas/CONFLUENCEAuthConfig"
               }
             },
             "example": {
@@ -1607,7 +1607,7 @@
             "title": "Discord",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/DISCORDConfig"
+                "$ref": "#/components/schemas/DISCORDAuthConfig"
               }
             },
             "example": {
@@ -1623,7 +1623,7 @@
             "title": "Dropbox",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/DROPBOXConfig"
+                "$ref": "#/components/schemas/DROPBOXAuthConfig"
               }
             },
             "example": {
@@ -1681,7 +1681,7 @@
             "title": "GoogleDriveOauth",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTHConfig"
+                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTHAuthConfig"
               }
             },
             "example": {
@@ -1693,7 +1693,7 @@
             "title": "GoogleDrive",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/GOOGLE_DRIVEConfig"
+                "$ref": "#/components/schemas/GOOGLE_DRIVEAuthConfig"
               }
             },
             "example": {
@@ -1707,7 +1707,7 @@
             "title": "GoogleDriveOauthMulti",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTH_MULTIConfig"
+                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTH_MULTIAuthConfig"
               }
             },
             "example": {
@@ -1719,7 +1719,7 @@
             "title": "GoogleDriveOauthMultiCustom",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTH_MULTI_CUSTOMConfig"
+                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTH_MULTI_CUSTOMAuthConfig"
               }
             },
             "example": {
@@ -1731,7 +1731,7 @@
             "title": "Firecrawl",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/FIRECRAWLConfig"
+                "$ref": "#/components/schemas/FIRECRAWLAuthConfig"
               }
             },
             "example": {
@@ -1745,7 +1745,7 @@
             "title": "Gcs",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/GCSConfig"
+                "$ref": "#/components/schemas/GCSAuthConfig"
               }
             },
             "example": {
@@ -1760,7 +1760,7 @@
             "title": "Intercom",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/INTERCOMConfig"
+                "$ref": "#/components/schemas/INTERCOMAuthConfig"
               }
             },
             "example": {
@@ -1772,7 +1772,7 @@
             "title": "Notion",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/NOTIONConfig"
+                "$ref": "#/components/schemas/NOTIONAuthConfig"
               }
             },
             "example": {
@@ -1808,7 +1808,7 @@
             "title": "OneDrive",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/ONE_DRIVEConfig"
+                "$ref": "#/components/schemas/ONE_DRIVEAuthConfig"
               }
             },
             "example": {
@@ -1825,7 +1825,7 @@
             "title": "Sharepoint",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/SHAREPOINTConfig"
+                "$ref": "#/components/schemas/SHAREPOINTAuthConfig"
               }
             },
             "example": {
@@ -1841,7 +1841,7 @@
             "title": "WebCrawler",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/WEB_CRAWLERConfig"
+                "$ref": "#/components/schemas/WEB_CRAWLERAuthConfig"
               }
             },
             "example": {
@@ -1855,7 +1855,7 @@
             "title": "Github",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/GITHUBConfig"
+                "$ref": "#/components/schemas/GITHUBAuthConfig"
               }
             },
             "example": {
@@ -1869,7 +1869,7 @@
             "title": "Fireflies",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/FIREFLIESConfig"
+                "$ref": "#/components/schemas/FIREFLIESAuthConfig"
               }
             },
             "example": {
@@ -1961,7 +1961,7 @@
                 "description": "Connector type (must be \"CAPELLA\")"
               },
               "config": {
-                "$ref": "#/components/schemas/CAPELLAConfig"
+                "$ref": "#/components/schemas/CAPELLAAuthConfig"
               }
             },
             "example": {
@@ -1996,7 +1996,7 @@
                 "description": "Connector type (must be \"DATASTAX\")"
               },
               "config": {
-                "$ref": "#/components/schemas/DATASTAXConfig"
+                "$ref": "#/components/schemas/DATASTAXAuthConfig"
               }
             },
             "example": {
@@ -2028,7 +2028,7 @@
                 "description": "Connector type (must be \"ELASTIC\")"
               },
               "config": {
-                "$ref": "#/components/schemas/ELASTICConfig"
+                "$ref": "#/components/schemas/ELASTICAuthConfig"
               }
             },
             "example": {
@@ -2060,7 +2060,7 @@
                 "description": "Connector type (must be \"PINECONE\")"
               },
               "config": {
-                "$ref": "#/components/schemas/PINECONEConfig"
+                "$ref": "#/components/schemas/PINECONEAuthConfig"
               }
             },
             "example": {
@@ -2093,7 +2093,7 @@
                 "description": "Connector type (must be \"SINGLESTORE\")"
               },
               "config": {
-                "$ref": "#/components/schemas/SINGLESTOREConfig"
+                "$ref": "#/components/schemas/SINGLESTOREAuthConfig"
               }
             },
             "example": {
@@ -2125,7 +2125,7 @@
                 "description": "Connector type (must be \"MILVUS\")"
               },
               "config": {
-                "$ref": "#/components/schemas/MILVUSConfig"
+                "$ref": "#/components/schemas/MILVUSAuthConfig"
               }
             },
             "example": {
@@ -2157,7 +2157,7 @@
                 "description": "Connector type (must be \"POSTGRESQL\")"
               },
               "config": {
-                "$ref": "#/components/schemas/POSTGRESQLConfig"
+                "$ref": "#/components/schemas/POSTGRESQLAuthConfig"
               }
             },
             "example": {
@@ -2189,7 +2189,7 @@
                 "description": "Connector type (must be \"QDRANT\")"
               },
               "config": {
-                "$ref": "#/components/schemas/QDRANTConfig"
+                "$ref": "#/components/schemas/QDRANTAuthConfig"
               }
             },
             "example": {
@@ -2221,7 +2221,7 @@
                 "description": "Connector type (must be \"SUPABASE\")"
               },
               "config": {
-                "$ref": "#/components/schemas/SUPABASEConfig"
+                "$ref": "#/components/schemas/SUPABASEAuthConfig"
               }
             },
             "example": {
@@ -2253,7 +2253,7 @@
                 "description": "Connector type (must be \"WEAVIATE\")"
               },
               "config": {
-                "$ref": "#/components/schemas/WEAVIATEConfig"
+                "$ref": "#/components/schemas/WEAVIATEAuthConfig"
               }
             },
             "example": {
@@ -2285,7 +2285,7 @@
                 "description": "Connector type (must be \"AZUREAISEARCH\")"
               },
               "config": {
-                "$ref": "#/components/schemas/AZUREAISEARCHConfig"
+                "$ref": "#/components/schemas/AZUREAISEARCHAuthConfig"
               }
             },
             "example": {
@@ -2317,7 +2317,7 @@
                 "description": "Connector type (must be \"TURBOPUFFER\")"
               },
               "config": {
-                "$ref": "#/components/schemas/TURBOPUFFERConfig"
+                "$ref": "#/components/schemas/TURBOPUFFERAuthConfig"
               }
             },
             "example": {
@@ -2372,7 +2372,7 @@
             "title": "Capella",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/CAPELLAConfig"
+                "$ref": "#/components/schemas/CAPELLAAuthConfig"
               }
             },
             "example": {
@@ -2388,7 +2388,7 @@
             "title": "Datastax",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/DATASTAXConfig"
+                "$ref": "#/components/schemas/DATASTAXAuthConfig"
               }
             },
             "example": {
@@ -2403,7 +2403,7 @@
             "title": "Elastic",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/ELASTICConfig"
+                "$ref": "#/components/schemas/ELASTICAuthConfig"
               }
             },
             "example": {
@@ -2419,7 +2419,7 @@
             "title": "Pinecone",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/PINECONEConfig"
+                "$ref": "#/components/schemas/PINECONEAuthConfig"
               }
             },
             "example": {
@@ -2433,7 +2433,7 @@
             "title": "Singlestore",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/SINGLESTOREConfig"
+                "$ref": "#/components/schemas/SINGLESTOREAuthConfig"
               }
             },
             "example": {
@@ -2451,7 +2451,7 @@
             "title": "Milvus",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/MILVUSConfig"
+                "$ref": "#/components/schemas/MILVUSAuthConfig"
               }
             },
             "example": {
@@ -2468,7 +2468,7 @@
             "title": "Postgresql",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/POSTGRESQLConfig"
+                "$ref": "#/components/schemas/POSTGRESQLAuthConfig"
               }
             },
             "example": {
@@ -2486,7 +2486,7 @@
             "title": "Qdrant",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/QDRANTConfig"
+                "$ref": "#/components/schemas/QDRANTAuthConfig"
               }
             },
             "example": {
@@ -2501,7 +2501,7 @@
             "title": "Supabase",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/SUPABASEConfig"
+                "$ref": "#/components/schemas/SUPABASEAuthConfig"
               }
             },
             "example": {
@@ -2519,7 +2519,7 @@
             "title": "Weaviate",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/WEAVIATEConfig"
+                "$ref": "#/components/schemas/WEAVIATEAuthConfig"
               }
             },
             "example": {
@@ -2534,7 +2534,7 @@
             "title": "Azureaisearch",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/AZUREAISEARCHConfig"
+                "$ref": "#/components/schemas/AZUREAISEARCHAuthConfig"
               }
             },
             "example": {
@@ -2549,7 +2549,7 @@
             "title": "Turbopuffer",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/TURBOPUFFERConfig"
+                "$ref": "#/components/schemas/TURBOPUFFERAuthConfig"
               }
             },
             "example": {
@@ -3270,10 +3270,6 @@
         "type": "object",
         "description": "Authentication configuration for Amazon S3",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "access-key": {
             "type": "string",
             "format": "password",
@@ -3305,7 +3301,6 @@
           }
         },
         "required": [
-          "name",
           "access-key",
           "secret-key",
           "bucket-name",
@@ -3329,9 +3324,9 @@
                 "txt",
                 "html,htm",
                 "md",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -3356,8 +3351,6 @@
               "html",
               "htm",
               "md",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -3374,16 +3367,16 @@
               "txt",
               "html,htm",
               "md",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "idle-time": {
             "type": "number",
             "description": "Check for updates every (seconds)",
             "minimum": 1,
-            "default": 5
+            "default": 30
           },
           "recursive": {
             "type": "boolean",
@@ -3398,7 +3391,10 @@
             "description": "Path Metadata Regex"
           },
           "path-regex-group-names": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Path Regex Group Names. Example: Enter Group Name"
           }
         },
@@ -3411,10 +3407,6 @@
         "type": "object",
         "description": "Authentication configuration for Azure Blob Storage",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "storage-account-name": {
             "type": "string",
             "description": "Storage Account Name. Example: Enter Storage Account Name"
@@ -3434,7 +3426,6 @@
           }
         },
         "required": [
-          "name",
           "storage-account-name",
           "storage-account-key",
           "container"
@@ -3457,9 +3448,9 @@
                 "txt",
                 "html,htm",
                 "md",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -3484,8 +3475,6 @@
               "html",
               "htm",
               "md",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -3502,16 +3491,16 @@
               "txt",
               "html,htm",
               "md",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "idle-time": {
             "type": "number",
             "description": "Polling Interval (seconds)",
             "minimum": 1,
-            "default": 5
+            "default": 30
           },
           "recursive": {
             "type": "boolean",
@@ -3526,7 +3515,10 @@
             "description": "Path Metadata Regex"
           },
           "path-regex-group-names": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Path Regex Group Names. Example: Enter Group Name"
           }
         },
@@ -3539,10 +3531,6 @@
         "type": "object",
         "description": "Authentication configuration for Confluence",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "username": {
             "type": "string",
             "description": "Username. Example: Enter your Confluence username"
@@ -3559,7 +3547,6 @@
           }
         },
         "required": [
-          "name",
           "username",
           "api-token",
           "domain"
@@ -3570,11 +3557,17 @@
         "description": "Configuration for Confluence connector",
         "properties": {
           "spaces": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Spaces. Example: Spaces to include (name, key or id)"
           },
           "root-parents": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Root Parents. Example: Enter root parent pages"
           }
         },
@@ -3586,10 +3579,6 @@
         "type": "object",
         "description": "Authentication configuration for Discord",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "server-id": {
             "type": "string",
             "description": "Server ID. Example: Enter Server ID"
@@ -3601,12 +3590,14 @@
             "pattern": "^\\S.*\\S$|^\\S$"
           },
           "channel-ids": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Channel ID. Example: Enter channel ID"
           }
         },
         "required": [
-          "name",
           "server-id",
           "bot-token",
           "channel-ids"
@@ -3617,15 +3608,24 @@
         "description": "Configuration for Discord connector",
         "properties": {
           "emoji": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Emoji Filter. Example: Enter custom emoji filter name"
           },
           "author": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Author Filter. Example: Enter author name"
           },
           "ignore-author": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Ignore Author Filter. Example: Enter ignore author name"
           },
           "limit": {
@@ -3667,10 +3667,6 @@
         "type": "object",
         "description": "Authentication configuration for Dropbox (Legacy)",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "refresh-token": {
             "type": "string",
             "format": "password",
@@ -3679,7 +3675,6 @@
           }
         },
         "required": [
-          "name",
           "refresh-token"
         ]
       },
@@ -3688,7 +3683,10 @@
         "description": "Configuration for Dropbox (Legacy) connector",
         "properties": {
           "path-prefix": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Read from these folders (optional). Example: Enter Path: /exampleFolder/subFolder",
             "pattern": "^\\/.*$"
           }
@@ -3698,10 +3696,6 @@
         "type": "object",
         "description": "Authentication configuration for Dropbox OAuth",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "authorized-user": {
             "type": "string",
             "description": "Authorized User"
@@ -3720,7 +3714,6 @@
           }
         },
         "required": [
-          "name",
           "selection-details"
         ]
       },
@@ -3728,12 +3721,11 @@
         "type": "object",
         "description": "Authentication configuration for Dropbox Multi-User (Vectorize)",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "authorized-users": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Authorized Users"
           },
           "editedUsers": {
@@ -3744,19 +3736,12 @@
             "type": "object",
             "default": {}
           }
-        },
-        "required": [
-          "name"
-        ]
+        }
       },
       "DROPBOX_OAUTH_MULTI_CUSTOMAuthConfig": {
         "type": "object",
         "description": "Authentication configuration for Dropbox Multi-User (White Label)",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "app-key": {
             "type": "string",
             "format": "password",
@@ -3768,7 +3753,10 @@
             "description": "Dropbox App Secret. Example: Enter App Secret"
           },
           "authorized-users": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Authorized Users"
           },
           "editedUsers": {
@@ -3781,7 +3769,6 @@
           }
         },
         "required": [
-          "name",
           "app-key",
           "app-secret"
         ]
@@ -3790,10 +3777,6 @@
         "type": "object",
         "description": "Authentication configuration for File Upload",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for this connector"
-          },
           "path-prefix": {
             "type": "string",
             "description": "Path Prefix"
@@ -3805,10 +3788,7 @@
             },
             "description": "Choose files. Files uploaded to this connector can be used in pipelines to vectorize their contents. Note: files with the same name will be overwritten."
           }
-        },
-        "required": [
-          "name"
-        ]
+        }
       },
       "FILE_UPLOADCreateConfig": {
         "type": "object",
@@ -3819,10 +3799,6 @@
         "type": "object",
         "description": "Authentication configuration for Google Drive OAuth",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "authorized-user": {
             "type": "string",
             "description": "Authorized User"
@@ -3841,7 +3817,6 @@
           }
         },
         "required": [
-          "name",
           "selection-details"
         ]
       },
@@ -3862,9 +3837,9 @@
                 "txt",
                 "html,htm",
                 "md",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -3889,8 +3864,6 @@
               "html",
               "htm",
               "md",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -3907,15 +3880,15 @@
               "txt",
               "html,htm",
               "md",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "idle-time": {
             "type": "number",
             "description": "Polling Interval (seconds). Example: Enter polling interval in seconds",
-            "default": 5
+            "default": 30
           }
         },
         "required": [
@@ -3926,10 +3899,6 @@
         "type": "object",
         "description": "Authentication configuration for Google Drive (Service Account)",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "service-account-json": {
             "type": "string",
             "format": "password",
@@ -3937,7 +3906,6 @@
           }
         },
         "required": [
-          "name",
           "service-account-json"
         ]
       },
@@ -3958,9 +3926,9 @@
                 "txt",
                 "html,htm",
                 "md",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -3985,8 +3953,6 @@
               "html",
               "htm",
               "md",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -4003,20 +3969,23 @@
               "txt",
               "html,htm",
               "md",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "root-parents": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Restrict ingest to these folder URLs (optional). Example: Enter Folder URLs. Example: https://drive.google.com/drive/folders/1234aBCd5678_eFgH9012iJKL3456opqr",
             "pattern": "^https:\\/\\/drive\\.google\\.com\\/drive(\\/u\\/\\d+)?\\/folders\\/[a-zA-Z0-9_-]+(\\?.*)?$"
           },
           "idle-time": {
             "type": "number",
             "description": "Polling Interval (seconds). Example: Enter polling interval in seconds",
-            "default": 5
+            "default": 30
           }
         },
         "required": [
@@ -4027,12 +3996,11 @@
         "type": "object",
         "description": "Authentication configuration for Google Drive Multi-User (Vectorize)",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "authorized-users": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Authorized Users"
           },
           "editedUsers": {
@@ -4043,10 +4011,7 @@
             "type": "object",
             "default": {}
           }
-        },
-        "required": [
-          "name"
-        ]
+        }
       },
       "GOOGLE_DRIVE_OAUTH_MULTIConfig": {
         "type": "object",
@@ -4065,9 +4030,9 @@
                 "txt",
                 "html,htm",
                 "md",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -4092,8 +4057,6 @@
               "html",
               "htm",
               "md",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -4110,15 +4073,15 @@
               "txt",
               "html,htm",
               "md",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "idle-time": {
             "type": "number",
             "description": "Polling Interval (seconds). Example: Enter polling interval in seconds",
-            "default": 5
+            "default": 30
           }
         },
         "required": [
@@ -4129,10 +4092,6 @@
         "type": "object",
         "description": "Authentication configuration for Google Drive Multi-User (White Label)",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "oauth2-client-id": {
             "type": "string",
             "format": "password",
@@ -4144,7 +4103,10 @@
             "description": "OAuth2 Client Secret. Example: Enter Client Secret"
           },
           "authorized-users": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Authorized Users"
           },
           "editedUsers": {
@@ -4157,7 +4119,6 @@
           }
         },
         "required": [
-          "name",
           "oauth2-client-id",
           "oauth2-client-secret"
         ]
@@ -4179,9 +4140,9 @@
                 "txt",
                 "html,htm",
                 "md",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -4206,8 +4167,6 @@
               "html",
               "htm",
               "md",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -4224,15 +4183,15 @@
               "txt",
               "html,htm",
               "md",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "idle-time": {
             "type": "number",
             "description": "Polling Interval (seconds). Example: Enter polling interval in seconds",
-            "default": 5
+            "default": 30
           }
         },
         "required": [
@@ -4243,10 +4202,6 @@
         "type": "object",
         "description": "Authentication configuration for Firecrawl",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "api-key": {
             "type": "string",
             "format": "password",
@@ -4254,7 +4209,6 @@
           }
         },
         "required": [
-          "name",
           "api-key"
         ]
       },
@@ -4290,10 +4244,6 @@
         "type": "object",
         "description": "Authentication configuration for GCP Cloud Storage",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "service-account-json": {
             "type": "string",
             "format": "password",
@@ -4305,7 +4255,6 @@
           }
         },
         "required": [
-          "name",
           "service-account-json",
           "bucket-name"
         ]
@@ -4327,9 +4276,9 @@
                 "txt",
                 "html,htm",
                 "md",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -4354,8 +4303,6 @@
               "html",
               "htm",
               "md",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -4372,16 +4319,16 @@
               "txt",
               "html,htm",
               "md",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "idle-time": {
             "type": "number",
             "description": "Check for updates every (seconds)",
             "minimum": 1,
-            "default": 5
+            "default": 30
           },
           "recursive": {
             "type": "boolean",
@@ -4396,7 +4343,10 @@
             "description": "Path Metadata Regex"
           },
           "path-regex-group-names": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Path Regex Group Names. Example: Enter Group Name"
           }
         },
@@ -4409,10 +4359,6 @@
         "type": "object",
         "description": "Authentication configuration for Intercom",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "token": {
             "type": "string",
             "format": "password",
@@ -4420,7 +4366,6 @@
           }
         },
         "required": [
-          "name",
           "token"
         ]
       },
@@ -4432,7 +4377,7 @@
             "type": "string",
             "format": "date",
             "description": "Created After. Filter for conversations created after this date. Example: Enter a date: Example 2012-12-31",
-            "default": "2025-07-03"
+            "default": "2025-07-08"
           },
           "updated_at": {
             "type": "string",
@@ -4470,10 +4415,6 @@
         "type": "object",
         "description": "Authentication configuration for Notion",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "access-token": {
             "type": "string",
             "format": "password",
@@ -4487,7 +4428,6 @@
           }
         },
         "required": [
-          "name",
           "access-token"
         ]
       },
@@ -4528,12 +4468,11 @@
         "type": "object",
         "description": "Authentication configuration for Notion Multi-User (Vectorize)",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "authorized-users": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Authorized Users. Users who have authorized access to their Notion content"
           },
           "editedUsers": {
@@ -4544,19 +4483,12 @@
             "type": "object",
             "default": {}
           }
-        },
-        "required": [
-          "name"
-        ]
+        }
       },
       "NOTION_OAUTH_MULTI_CUSTOMAuthConfig": {
         "type": "object",
         "description": "Authentication configuration for Notion Multi-User (White Label)",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "client-id": {
             "type": "string",
             "format": "password",
@@ -4568,7 +4500,10 @@
             "description": "Notion Client Secret. Example: Enter Client Secret"
           },
           "authorized-users": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Authorized Users"
           },
           "editedUsers": {
@@ -4581,7 +4516,6 @@
           }
         },
         "required": [
-          "name",
           "client-id",
           "client-secret"
         ]
@@ -4590,10 +4524,6 @@
         "type": "object",
         "description": "Authentication configuration for OneDrive",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "ms-client-id": {
             "type": "string",
             "description": "Client Id. Example: Enter Client Id"
@@ -4608,12 +4538,14 @@
             "description": "Client Secret. Example: Enter Client Secret"
           },
           "users": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Users. Example: Enter users emails to import files from. Example: developer@vectorize.io"
           }
         },
         "required": [
-          "name",
           "ms-client-id",
           "ms-tenant-id",
           "ms-client-secret",
@@ -4637,9 +4569,9 @@
                 "txt",
                 "html,htm",
                 "md",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -4664,8 +4596,6 @@
               "html",
               "htm",
               "md",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -4682,9 +4612,9 @@
               "txt",
               "html,htm",
               "md",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "path-prefix": {
@@ -4700,10 +4630,6 @@
         "type": "object",
         "description": "Authentication configuration for SharePoint",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "ms-client-id": {
             "type": "string",
             "description": "Client Id. Example: Enter Client Id"
@@ -4719,7 +4645,6 @@
           }
         },
         "required": [
-          "name",
           "ms-client-id",
           "ms-tenant-id",
           "ms-client-secret"
@@ -4741,9 +4666,9 @@
                 "eml,msg",
                 "txt",
                 "html,htm",
+                "jpg,jpeg,png,webp,svg,gif",
                 "json",
-                "csv",
-                "jpg,jpeg,png,webp,svg,gif"
+                "csv"
               ]
             },
             "description": "File Extensions",
@@ -4767,8 +4692,6 @@
               "txt",
               "html",
               "htm",
-              "json",
-              "csv",
               "jpg",
               "jpeg",
               "png",
@@ -4784,13 +4707,16 @@
               "eml,msg",
               "txt",
               "html,htm",
+              "jpg,jpeg,png,webp,svg,gif",
               "json",
-              "csv",
-              "jpg,jpeg,png,webp,svg,gif"
+              "csv"
             ]
           },
           "sites": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Site Name(s). Example: Filter by site name. All sites if empty.",
             "pattern": "^(?!.*(https?:\\/\\/|www\\.))[\\w\\s\\-.]+$"
           },
@@ -4807,17 +4733,15 @@
         "type": "object",
         "description": "Authentication configuration for Web Crawler",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "seed-urls": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Seed URL(s). Add one or more seed URLs to crawl. The crawler will start from these URLs and follow links to other pages.. Example: (e.g. https://example.com)"
           }
         },
         "required": [
-          "name",
           "seed-urls"
         ]
       },
@@ -4826,11 +4750,17 @@
         "description": "Configuration for Web Crawler connector",
         "properties": {
           "allowed-domains-opt": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Additional Allowed URLs or prefix(es). Add one or more allowed URLs or URL prefixes. The crawler will read URLs that match these patterns in addition to the seed URL(s).. Example: (e.g. https://docs.example.com)"
           },
           "forbidden-paths": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Forbidden Paths. Example: Enter forbidden paths (e.g. /admin)",
             "pattern": "^\\/([a-zA-Z0-9-_]+(\\/)?)+$"
           },
@@ -4865,10 +4795,6 @@
         "type": "object",
         "description": "Authentication configuration for GitHub",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "oauth-token": {
             "type": "string",
             "format": "password",
@@ -4877,7 +4803,6 @@
           }
         },
         "required": [
-          "name",
           "oauth-token"
         ]
       },
@@ -4886,7 +4811,10 @@
         "description": "Configuration for GitHub connector",
         "properties": {
           "repositories": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Repositories. Example: Example: owner1/repo1",
             "pattern": "^[a-zA-Z0-9-]+\\/[a-zA-Z0-9-]+$"
           },
@@ -4907,7 +4835,10 @@
             ]
           },
           "pull-request-labels": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Pull Request Labels. Example: Optionally filter by label. E.g. fix"
           },
           "include-issues": {
@@ -4926,7 +4857,10 @@
             ]
           },
           "issue-labels": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "description": "Issue Labels. Example: Optionally filter by label. E.g. bug"
           },
           "max-items": {
@@ -4953,10 +4887,6 @@
         "type": "object",
         "description": "Authentication configuration for Fireflies.ai",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "api-key": {
             "type": "string",
             "format": "password",
@@ -4965,7 +4895,6 @@
           }
         },
         "required": [
-          "name",
           "api-key"
         ]
       },
@@ -4977,7 +4906,7 @@
             "type": "string",
             "format": "date",
             "description": "Start Date. Include meetings from this date forward. Example: Enter a date: Example 2023-12-31",
-            "default": "2025-07-03"
+            "default": "2025-07-08"
           },
           "end-date": {
             "type": "string",
@@ -5016,10 +4945,6 @@
         "type": "object",
         "description": "Authentication configuration for Gmail",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name"
-          },
           "refresh-token": {
             "type": "string",
             "format": "password",
@@ -5027,7 +4952,6 @@
           }
         },
         "required": [
-          "name",
           "refresh-token"
         ]
       },
@@ -5141,10 +5065,6 @@
         "type": "object",
         "description": "Authentication configuration for Couchbase Capella",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Capella integration"
-          },
           "username": {
             "type": "string",
             "description": "Cluster Access Name. Example: Enter your cluster access name"
@@ -5160,7 +5080,6 @@
           }
         },
         "required": [
-          "name",
           "username",
           "password",
           "connection-string"
@@ -5199,10 +5118,6 @@
         "type": "object",
         "description": "Authentication configuration for DataStax Astra",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your DataStax integration"
-          },
           "endpoint_secret": {
             "type": "string",
             "description": "API Endpoint. Example: Enter your API endpoint"
@@ -5215,7 +5130,6 @@
           }
         },
         "required": [
-          "name",
           "endpoint_secret",
           "token"
         ]
@@ -5238,10 +5152,6 @@
         "type": "object",
         "description": "Authentication configuration for Elasticsearch",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Elastic integration"
-          },
           "host": {
             "type": "string",
             "description": "Host. Example: Enter your host"
@@ -5258,7 +5168,6 @@
           }
         },
         "required": [
-          "name",
           "host",
           "port",
           "api-key"
@@ -5283,10 +5192,6 @@
         "type": "object",
         "description": "Authentication configuration for Pinecone",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Pinecone integration"
-          },
           "api-key": {
             "type": "string",
             "format": "password",
@@ -5295,7 +5200,6 @@
           }
         },
         "required": [
-          "name",
           "api-key"
         ]
       },
@@ -5324,10 +5228,6 @@
         "type": "object",
         "description": "Authentication configuration for SingleStore",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your SingleStore integration"
-          },
           "host": {
             "type": "string",
             "description": "Host. Example: Enter the host of the deployment"
@@ -5351,7 +5251,6 @@
           }
         },
         "required": [
-          "name",
           "host",
           "port",
           "database",
@@ -5378,10 +5277,6 @@
         "type": "object",
         "description": "Authentication configuration for Milvus",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Milvus integration"
-          },
           "url": {
             "type": "string",
             "description": "Public Endpoint. Example: Enter your public endpoint for your Milvus cluster"
@@ -5402,7 +5297,6 @@
           }
         },
         "required": [
-          "name",
           "url"
         ]
       },
@@ -5424,10 +5318,6 @@
         "type": "object",
         "description": "Authentication configuration for PostgreSQL",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your PostgreSQL integration"
-          },
           "host": {
             "type": "string",
             "description": "Host. Example: Enter the host of the deployment"
@@ -5452,7 +5342,6 @@
           }
         },
         "required": [
-          "name",
           "host",
           "database",
           "username",
@@ -5478,10 +5367,6 @@
         "type": "object",
         "description": "Authentication configuration for Qdrant",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Qdrant integration"
-          },
           "host": {
             "type": "string",
             "description": "Host. Example: Enter your host"
@@ -5494,7 +5379,6 @@
           }
         },
         "required": [
-          "name",
           "host",
           "api-key"
         ]
@@ -5517,10 +5401,6 @@
         "type": "object",
         "description": "Authentication configuration for Supabase",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Supabase integration"
-          },
           "host": {
             "type": "string",
             "description": "Host. Example: Enter the host of the deployment",
@@ -5546,7 +5426,6 @@
           }
         },
         "required": [
-          "name",
           "host",
           "database",
           "username",
@@ -5572,10 +5451,6 @@
         "type": "object",
         "description": "Authentication configuration for Weaviate",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Weaviate integration"
-          },
           "host": {
             "type": "string",
             "description": "Endpoint. Example: Enter your Weaviate Cluster REST Endpoint"
@@ -5588,7 +5463,6 @@
           }
         },
         "required": [
-          "name",
           "host",
           "api-key"
         ]
@@ -5611,10 +5485,6 @@
         "type": "object",
         "description": "Authentication configuration for Azure AI Search",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Azure AI Search integration"
-          },
           "service-name": {
             "type": "string",
             "description": "Azure AI Search Service Name. Example: Enter your Azure AI Search service name"
@@ -5627,7 +5497,6 @@
           }
         },
         "required": [
-          "name",
           "service-name",
           "api-key"
         ]
@@ -5650,10 +5519,6 @@
         "type": "object",
         "description": "Authentication configuration for Turbopuffer",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Turbopuffer integration"
-          },
           "api-key": {
             "type": "string",
             "format": "password",
@@ -5662,7 +5527,6 @@
           }
         },
         "required": [
-          "name",
           "api-key"
         ]
       },
@@ -5683,10 +5547,6 @@
         "type": "object",
         "description": "Authentication configuration for Amazon Bedrock",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Amazon Bedrock integration"
-          },
           "access-key": {
             "type": "string",
             "format": "password",
@@ -5705,7 +5565,6 @@
           }
         },
         "required": [
-          "name",
           "access-key",
           "key",
           "region"
@@ -5715,10 +5574,6 @@
         "type": "object",
         "description": "Authentication configuration for Google Vertex AI",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Google Vertex AI integration"
-          },
           "key": {
             "type": "string",
             "format": "password",
@@ -5730,7 +5585,6 @@
           }
         },
         "required": [
-          "name",
           "key",
           "region"
         ]
@@ -5739,10 +5593,6 @@
         "type": "object",
         "description": "Authentication configuration for OpenAI",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your OpenAI integration"
-          },
           "key": {
             "type": "string",
             "format": "password",
@@ -5751,7 +5601,6 @@
           }
         },
         "required": [
-          "name",
           "key"
         ]
       },
@@ -5759,10 +5608,6 @@
         "type": "object",
         "description": "Authentication configuration for Voyage AI",
         "properties": {
-          "name": {
-            "type": "string",
-            "description": "Name. Example: Enter a descriptive name for your Voyage AI integration"
-          },
           "key": {
             "type": "string",
             "format": "password",
@@ -5771,7 +5616,6 @@
           }
         },
         "required": [
-          "name",
           "key"
         ]
       },
@@ -6038,18 +5882,18 @@
               "example": {
                 "sourceConnectors": [
                   {
-                    "id": "63fa809d-a380-4642-918b-cda69c060a4a",
+                    "id": "1232dcc0-32d5-4193-a6f1-3af334a4e4b7",
                     "type": "AWS_S3",
                     "config": {}
                   }
                 ],
                 "destinationConnector": {
-                  "id": "fae78d69-6c7f-4147-bba5-9d4c18446a52",
+                  "id": "7b5c0959-733f-4dfc-9732-12b72af0ccb2",
                   "type": "CAPELLA",
                   "config": {}
                 },
-                "aiPlatform": {
-                  "id": "e016675f-8a2c-48f2-b206-38476dddbe5d",
+                "aiPlatformConnector": {
+                  "id": "6c7e3097-465b-4ebb-bd6f-60551b43e951",
                   "type": "BEDROCK",
                   "config": {
                     "embeddingModel": "VECTORIZE_OPEN_AI_TEXT_EMBEDDING_2",
@@ -6316,7 +6160,7 @@
                   "message": "Operation completed successfully",
                   "data": [
                     {
-                      "id": "069fc77c-affd-4a0d-97c8-e1cd408167ba",
+                      "id": "06d0d149-3fc9-4056-8ce1-d0a5ca08ca52",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -6570,7 +6414,7 @@
                 "example": {
                   "message": "Operation completed successfully",
                   "data": {
-                    "id": "6eeb28ce-f90a-46dd-9cc1-a64a3e845a63",
+                    "id": "cd4ef558-69df-4f62-b018-0ebc5d33e9e3",
                     "name": "My PipelineSummary",
                     "documentCount": 42,
                     "sourceConnectorAuthIds": [],
@@ -7090,7 +6934,7 @@
                   "nextToken": "token_example_123456",
                   "data": [
                     {
-                      "id": "f1166af6-aebe-4877-b742-3a3e829e2a86",
+                      "id": "34070554-7e46-441d-81d2-6c654b89d0e9",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -7345,7 +7189,7 @@
                   "message": "Operation completed successfully",
                   "data": [
                     {
-                      "id": "4236a4e7-1612-42d9-a6d7-a11a26fdecf4",
+                      "id": "13be51e7-8259-4ef5-82a2-b655419cda64",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -8387,7 +8231,7 @@
                   "$ref": "#/components/schemas/StartDeepResearchResponse"
                 },
                 "example": {
-                  "researchId": "2bd4ac5d-1eed-4da8-8247-78a6f856dae3"
+                  "researchId": "3ae63a29-7e0e-44e5-9c07-fcc2a7f37d85"
                 }
               }
             }
@@ -8900,7 +8744,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedSourceConnector",
-                    "id": "dceb80fd-6ec3-42ce-9819-8e97481e9537"
+                    "id": "d0cc6d80-ce20-4f41-9eca-599c73e92aa4"
                   }
                 }
               }
@@ -9149,17 +8993,17 @@
                 "example": {
                   "sourceConnectors": [
                     {
-                      "id": "a84f0d0e-141e-48e1-87ed-1c8aa8639ecb",
+                      "id": "223989b5-81ba-4833-b858-5614802dc830",
                       "type": "AWS_S3",
                       "name": "S3 Documents Bucket",
-                      "createdAt": "2025-07-03T20:44:29.277Z",
+                      "createdAt": "2025-07-08T19:10:21.970Z",
                       "verificationStatus": "verified"
                     },
                     {
-                      "id": "524c038d-f8b4-4ac7-8cbc-88e548c0250a",
+                      "id": "0f3b5bcc-7295-4301-a147-13d6c255edbf",
                       "type": "GOOGLE_DRIVE",
                       "name": "Team Shared Drive",
-                      "createdAt": "2025-07-03T20:44:29.277Z",
+                      "createdAt": "2025-07-08T19:10:21.970Z",
                       "verificationStatus": "verified"
                     }
                   ]
@@ -9409,13 +9253,13 @@
                   "$ref": "#/components/schemas/SourceConnector"
                 },
                 "example": {
-                  "id": "468f7065-235b-4240-9feb-34e3c58584dd",
+                  "id": "6981ec06-1482-4bbf-b47e-ddc2222943dd",
                   "type": "example-type",
                   "name": "My SourceConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "3324748e-4dfb-4982-a6eb-7facee7a0048",
-                  "lastUpdatedById": "d48e5bdf-f576-41e3-bf32-279f9c021449",
+                  "createdById": "4b8d2372-c7ea-4692-8eb8-fa07be7c2d3a",
+                  "lastUpdatedById": "c466521b-f78c-4713-9ccb-2698645804e4",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -9677,13 +9521,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "8b519593-6fb7-433d-9ca9-e6a0fe3cb545",
+                      "id": "c10c7b6c-dd13-4afe-a0ba-02e37060836d",
                       "type": "example-type",
                       "name": "My SourceConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "8495fb6a-6312-4a25-9d15-2d5386c9c9e5",
-                      "lastUpdatedById": "1876f29f-0d15-4044-8276-ae11471d8d06",
+                      "createdById": "365405c1-0a92-4ba6-8079-49bae45abc2a",
+                      "lastUpdatedById": "c24bb9e9-fb05-4e23-9c51-b8bd8b4cbdca",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -10185,7 +10029,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedDestinationConnector",
-                    "id": "6d5cab2b-e0dc-460b-a172-7159a0d36e27"
+                    "id": "3d3ff1ec-6c2c-487f-be44-c8274333c354"
                   }
                 }
               }
@@ -10679,13 +10523,13 @@
                   "$ref": "#/components/schemas/DestinationConnector"
                 },
                 "example": {
-                  "id": "ed9042f5-70d8-4b45-9cd4-fcf33a71d34e",
+                  "id": "c1ccc757-6841-4338-911c-d266b3e645a4",
                   "type": "example-type",
                   "name": "My DestinationConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "2f5a8b35-e098-4951-ac31-21ec94016a54",
-                  "lastUpdatedById": "8adb671e-006a-43d1-bd0b-d8651dddcb11",
+                  "createdById": "c186a263-97a0-4f8b-8bac-bba5cf2f0748",
+                  "lastUpdatedById": "6a0afe85-b82b-498c-b635-4fe2d4ab7b45",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -10947,13 +10791,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "d55b33d8-22b3-4a79-8aa3-b360777d2c5f",
+                      "id": "2f8d9fd8-7d6b-4e99-bc98-2723c824e7dd",
                       "type": "example-type",
                       "name": "My DestinationConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "9b5d456e-1061-4226-8f7b-07528ff52167",
-                      "lastUpdatedById": "8c5aa686-6147-4e52-81ed-202811f8af03",
+                      "createdById": "d6c8bc01-fae6-44e0-98ec-bd3a743e1bac",
+                      "lastUpdatedById": "6b2be19e-b98c-4450-99e1-b311ca3e7ba8",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -11455,7 +11299,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedAIPlatformConnector",
-                    "id": "27b5f4e4-ba84-4092-8547-35afadf2b44b"
+                    "id": "3f201fb0-329b-4e58-b964-761b8ac47823"
                   }
                 }
               }
@@ -11949,13 +11793,13 @@
                   "$ref": "#/components/schemas/AIPlatform"
                 },
                 "example": {
-                  "id": "3f10a091-9431-40e7-b57f-5bd056be9d42",
+                  "id": "3a660f36-8e8b-46f0-8c4f-4135129e7b2d",
                   "type": "example-type",
                   "name": "My AIPlatform",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "6f26019b-0665-450f-9030-cf1c4b2aaf66",
-                  "lastUpdatedById": "4de5e3a4-2cae-4032-8029-543bd0a7a35a",
+                  "createdById": "8a1c31aa-ef6b-44e5-bf2f-c7b11f343ea4",
+                  "lastUpdatedById": "f17bca8a-315c-48f4-9a23-ac3f31ed1836",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -12217,13 +12061,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "18e41420-b1d1-4b65-8b69-26d0318a6aa1",
+                      "id": "4e0e6309-d187-400d-b446-cefc87ec20c1",
                       "type": "example-type",
                       "name": "My AIPlatform",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "bacba87e-1ac7-42c7-8a2f-1c79baae8781",
-                      "lastUpdatedById": "38f138e9-77c5-4950-bb06-67e5f19f97bc",
+                      "createdById": "13de58a5-58f0-4060-9590-3e896e99aaf4",
+                      "lastUpdatedById": "aedc8bc8-07ae-449f-845f-401f8e72b74c",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -12433,7 +12277,7 @@
         }
       },
       "delete": {
-        "operationId": "deleteAIPlatform",
+        "operationId": "deleteAIPlatformConnector",
         "summary": "Delete an AI platform connector",
         "description": "Delete an AI platform connector",
         "tags": [
@@ -13477,7 +13321,7 @@
                 "$ref": "#/components/schemas/StartExtractionRequest"
               },
               "example": {
-                "fileId": "8e309a3e-d40c-42f2-bf5f-0b2b749a8a6d",
+                "fileId": "b243e168-c6c9-4703-bd49-6251b5c00a50",
                 "type": "iris",
                 "chunkingStrategy": "markdown",
                 "chunkSize": 20,
@@ -13499,7 +13343,7 @@
                 },
                 "example": {
                   "message": "Operation completed successfully",
-                  "extractionId": "d2251b25-5ad5-455b-8ec4-addee68f78af"
+                  "extractionId": "484e0687-7da3-40e2-8d37-f4ff0df362f4"
                 }
               }
             }
@@ -14006,7 +13850,7 @@
                   "$ref": "#/components/schemas/StartFileUploadResponse"
                 },
                 "example": {
-                  "fileId": "1805d09c-f8a7-4e45-9fa6-5aec7c01ac94",
+                  "fileId": "3fedab3c-4116-41d6-94d3-818a16f4ce93",
                   "uploadUrl": "https://api.example.com"
                 }
               }
@@ -14253,7 +14097,7 @@
                 "$ref": "#/components/schemas/AddUserToSourceConnectorRequest"
               },
               "example": {
-                "userId": "db8f51b8-e8b1-4694-bbe3-c54bcc1b2d87",
+                "userId": "b861f9a6-8674-4ead-8686-b16d162cdf1a",
                 "selectedFiles": {},
                 "refreshToken": "refresh_token_example_123456",
                 "accessToken": "access_token_example_123456"
@@ -14514,7 +14358,7 @@
                 "$ref": "#/components/schemas/UpdateUserInSourceConnectorRequest"
               },
               "example": {
-                "userId": "80945bc0-b9b0-4473-96a8-fc67831b7b23",
+                "userId": "6ccc57db-001c-4ebf-8c82-2f14e776de7c",
                 "selectedFiles": {},
                 "refreshToken": "refresh_token_example_123456",
                 "accessToken": "access_token_example_123456"
@@ -14775,7 +14619,7 @@
                 "$ref": "#/components/schemas/RemoveUserFromSourceConnectorRequest"
               },
               "example": {
-                "userId": "02913dc2-4f28-48dd-9bda-9da132ef75ca"
+                "userId": "5e1f47bf-eedf-43d4-86cf-d7075d841b61"
               }
             }
           }

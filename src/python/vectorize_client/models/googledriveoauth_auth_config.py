@@ -26,12 +26,11 @@ class GOOGLEDRIVEOAUTHAuthConfig(BaseModel):
     """
     Authentication configuration for Google Drive OAuth
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     authorized_user: Optional[StrictStr] = Field(default=None, description="Authorized User", alias="authorized-user")
     selection_details: StrictStr = Field(description="Connect Google Drive to Vectorize. Example: Authorize", alias="selection-details")
     edited_users: Optional[Dict[str, Any]] = Field(default=None, alias="editedUsers")
     reconnect_users: Optional[Dict[str, Any]] = Field(default=None, alias="reconnectUsers")
-    __properties: ClassVar[List[str]] = ["name", "authorized-user", "selection-details", "editedUsers", "reconnectUsers"]
+    __properties: ClassVar[List[str]] = ["authorized-user", "selection-details", "editedUsers", "reconnectUsers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +83,6 @@ class GOOGLEDRIVEOAUTHAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "authorized-user": obj.get("authorized-user"),
             "selection-details": obj.get("selection-details"),
             "editedUsers": obj.get("editedUsers"),

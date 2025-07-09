@@ -26,13 +26,12 @@ class GOOGLEDRIVEOAUTHMULTICUSTOMAuthConfig(BaseModel):
     """
     Authentication configuration for Google Drive Multi-User (White Label)
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     oauth2_client_id: SecretStr = Field(description="OAuth2 Client Id. Example: Enter Client Id", alias="oauth2-client-id")
     oauth2_client_secret: SecretStr = Field(description="OAuth2 Client Secret. Example: Enter Client Secret", alias="oauth2-client-secret")
-    authorized_users: Optional[StrictStr] = Field(default=None, description="Authorized Users", alias="authorized-users")
+    authorized_users: Optional[List[StrictStr]] = Field(default=None, description="Authorized Users", alias="authorized-users")
     edited_users: Optional[Dict[str, Any]] = Field(default=None, alias="editedUsers")
     deleted_users: Optional[Dict[str, Any]] = Field(default=None, alias="deletedUsers")
-    __properties: ClassVar[List[str]] = ["name", "oauth2-client-id", "oauth2-client-secret", "authorized-users", "editedUsers", "deletedUsers"]
+    __properties: ClassVar[List[str]] = ["oauth2-client-id", "oauth2-client-secret", "authorized-users", "editedUsers", "deletedUsers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +84,6 @@ class GOOGLEDRIVEOAUTHMULTICUSTOMAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "oauth2-client-id": obj.get("oauth2-client-id"),
             "oauth2-client-secret": obj.get("oauth2-client-secret"),
             "authorized-users": obj.get("authorized-users"),

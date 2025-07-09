@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.discord_config import DISCORDConfig
+from vectorize_client.models.discord_auth_config import DISCORDAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Discord1(BaseModel):
     """
     Discord1
     """ # noqa: E501
-    config: Optional[DISCORDConfig] = None
+    config: Optional[DISCORDAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Discord1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": DISCORDConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": DISCORDAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

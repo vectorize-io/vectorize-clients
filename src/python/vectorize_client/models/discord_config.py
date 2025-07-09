@@ -27,9 +27,9 @@ class DISCORDConfig(BaseModel):
     """
     Configuration for Discord connector
     """ # noqa: E501
-    emoji: Optional[StrictStr] = Field(default=None, description="Emoji Filter. Example: Enter custom emoji filter name")
-    author: Optional[StrictStr] = Field(default=None, description="Author Filter. Example: Enter author name")
-    ignore_author: Optional[StrictStr] = Field(default=None, description="Ignore Author Filter. Example: Enter ignore author name", alias="ignore-author")
+    emoji: Optional[List[StrictStr]] = Field(default=None, description="Emoji Filter. Example: Enter custom emoji filter name")
+    author: Optional[List[StrictStr]] = Field(default=None, description="Author Filter. Example: Enter author name")
+    ignore_author: Optional[List[StrictStr]] = Field(default=None, description="Ignore Author Filter. Example: Enter ignore author name", alias="ignore-author")
     limit: Optional[Union[Annotated[float, Field(strict=True, ge=1)], Annotated[int, Field(strict=True, ge=1)]]] = Field(default=10000, description="Limit. Example: Enter limit")
     thread_message_inclusion: Optional[StrictStr] = Field(default='ALL', description="Thread Message Inclusion", alias="thread-message-inclusion")
     filter_logic: Optional[StrictStr] = Field(default='AND', description="Filter Logic", alias="filter-logic")

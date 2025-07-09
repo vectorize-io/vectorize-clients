@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, SecretStr, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, SecretStr
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,9 +26,8 @@ class FIRECRAWLAuthConfig(BaseModel):
     """
     Authentication configuration for Firecrawl
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     api_key: SecretStr = Field(description="API Key. Example: Enter your Firecrawl API Key", alias="api-key")
-    __properties: ClassVar[List[str]] = ["name", "api-key"]
+    __properties: ClassVar[List[str]] = ["api-key"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -81,7 +80,6 @@ class FIRECRAWLAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "api-key": obj.get("api-key")
         })
         return _obj

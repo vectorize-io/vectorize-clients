@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.intercom_config import INTERCOMConfig
+from vectorize_client.models.intercom_auth_config import INTERCOMAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Intercom(BaseModel):
     """
     Intercom
     """ # noqa: E501
-    config: Optional[INTERCOMConfig] = None
+    config: Optional[INTERCOMAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Intercom(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": INTERCOMConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": INTERCOMAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

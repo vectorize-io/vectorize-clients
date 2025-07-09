@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.dropbox_config import DROPBOXConfig
+from vectorize_client.models.dropbox_auth_config import DROPBOXAuthConfig
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class Dropbox(BaseModel):
     """
     Dropbox
     """ # noqa: E501
-    config: Optional[DROPBOXConfig] = None
+    config: Optional[DROPBOXAuthConfig] = None
     __properties: ClassVar[List[str]] = ["config"]
 
     model_config = ConfigDict(
@@ -84,7 +84,7 @@ class Dropbox(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "config": DROPBOXConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
+            "config": DROPBOXAuthConfig.from_dict(obj["config"]) if obj.get("config") is not None else None
         })
         return _obj
 

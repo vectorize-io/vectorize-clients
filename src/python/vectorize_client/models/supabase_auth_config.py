@@ -26,13 +26,12 @@ class SUPABASEAuthConfig(BaseModel):
     """
     Authentication configuration for Supabase
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name for your Supabase integration")
     host: StrictStr = Field(description="Host. Example: Enter the host of the deployment")
     port: Optional[Union[StrictFloat, StrictInt]] = Field(default=5432, description="Port. Example: Enter the port of the deployment")
     database: StrictStr = Field(description="Database. Example: Enter the database name")
     username: StrictStr = Field(description="Username. Example: Enter the username")
     password: SecretStr = Field(description="Password. Example: Enter the username's password")
-    __properties: ClassVar[List[str]] = ["name", "host", "port", "database", "username", "password"]
+    __properties: ClassVar[List[str]] = ["host", "port", "database", "username", "password"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +84,6 @@ class SUPABASEAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "host": obj.get("host") if obj.get("host") is not None else 'aws-0-us-east-1.pooler.supabase.com',
             "port": obj.get("port") if obj.get("port") is not None else 5432,
             "database": obj.get("database"),

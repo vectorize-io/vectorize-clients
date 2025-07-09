@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -27,9 +27,8 @@ class DROPBOXAuthConfig(BaseModel):
     """
     Authentication configuration for Dropbox (Legacy)
     """ # noqa: E501
-    name: StrictStr = Field(description="Name. Example: Enter a descriptive name")
     refresh_token: Annotated[str, Field(strict=True)] = Field(description="Connect Dropbox to Vectorize. Example: Authorize", alias="refresh-token")
-    __properties: ClassVar[List[str]] = ["name", "refresh-token"]
+    __properties: ClassVar[List[str]] = ["refresh-token"]
 
     @field_validator('refresh_token')
     def refresh_token_validate_regular_expression(cls, value):
@@ -89,7 +88,6 @@ class DROPBOXAuthConfig(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "name": obj.get("name"),
             "refresh-token": obj.get("refresh-token")
         })
         return _obj
