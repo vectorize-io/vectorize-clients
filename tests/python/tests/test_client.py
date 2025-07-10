@@ -48,17 +48,23 @@ def test_get_pipelines(ctx: TestContext):
 
 def test_delete_system_connectors(ctx: TestContext):
     # Split the old ConnectorsApi into specific APIs
-    ai_platforms_api = v.AIPlatformConnectorsApi(ctx.api_client)
+    ai_platform_connectors_api = v.AIPlatformConnectorsApi(ctx.api_client)
     destination_connectors_api = v.DestinationConnectorsApi(ctx.api_client)
 
-    ai_platforms = ai_platforms_api.get_ai_platform_connectors(ctx.org_id)
+    ai_platforms = ai_platform_connectors_api.get_ai_platform_connectors(ctx.org_id)
+    print(f"Found {len(ai_platforms.ai_platform_connectors)} AI platform connectors:")
+    for c in ai_platforms.ai_platform_connectors:
+        print(f"  - {c.name} (type: {c.type}, id: {c.id})")
     builtin_ai_platform = [c.id for c in ai_platforms.ai_platform_connectors if c.type == "VECTORIZE"][0]
 
     destination_connectors = destination_connectors_api.get_destination_connectors(ctx.org_id)
+    print(f"Found {len(destination_connectors.destination_connectors)} destination connectors:")
+    for c in destination_connectors.destination_connectors:
+        print(f"  - {c.name} (type: {c.type}, id: {c.id})")
     builtin_vector_db = [c.id for c in destination_connectors.destination_connectors if c.type == "VECTORIZE"][0]
 
     try:
-        ai_platforms_api.delete_ai_platform(ctx.org_id, builtin_ai_platform)
+        ai_platform_connectors_api.delete_ai_platform_connector(ctx.org_id, builtin_ai_platform)
         raise ValueError("test should have failed")
     except Exception as e:
         logging.error(f"Failed to delete: {e}")
@@ -106,6 +112,9 @@ def test_upload_create_pipeline(ctx: TestContext):
     http = urllib3.PoolManager()
     this_dir = Path(__file__).parent
     file_path = this_dir / "research.pdf"
+    
+    original_debug = ctx.api_client.configuration.debug
+    ctx.api_client.configuration.debug = False
 
     with open(file_path, "rb") as f:
         response = http.request("PUT", upload_response.upload_url, body=f, headers={"Content-Type": "application/pdf", "Content-Length": str(os.path.getsize(file_path))})
@@ -114,11 +123,13 @@ def test_upload_create_pipeline(ctx: TestContext):
     else:
         logging.info("Upload successful")
 
+    ctx.api_client.configuration.debug = original_debug
+    
     # Get AI platform connector
     ai_platforms_api = v.AIPlatformConnectorsApi(ctx.api_client)
     ai_platforms = ai_platforms_api.get_ai_platform_connectors(ctx.org_id)
     builtin_ai_platform = [c.id for c in ai_platforms.ai_platform_connectors if c.type == "VECTORIZE"][0]
-    logging.info(f"Using AI platform {builtin_ai_platform}")
+    logging.info(f"Using AI platform connector {builtin_ai_platform}")
 
     # Get destination connector
     destination_connectors_api = v.DestinationConnectorsApi(ctx.api_client)
@@ -130,17 +141,17 @@ def test_upload_create_pipeline(ctx: TestContext):
     try:
         # Create pipeline with updated schema
         response = pipelines.create_pipeline(ctx.org_id, v.PipelineConfigurationSchema(
-            source_connectors=[v.SourceConnectorSchema(
+            source_connectors=[v.PipelineSourceConnectorSchema(
                 id=source_connector_id, 
                 type="FILE_UPLOAD",
                 config={}
             )],
-            destination_connector=v.DestinationConnectorSchema(
+            destination_connector=v.PipelineDestinationConnectorSchema(
                 id=builtin_vector_db, 
                 type="VECTORIZE",
                 config={}
             ),
-            aiPlatform=v.AIPlatformConnectorSchema(
+            ai_platform_connector=v.PipelineAIPlatformConnectorSchema(
                 id=builtin_ai_platform, 
                 type="VECTORIZE",
                 config={}
@@ -178,13 +189,18 @@ def test_upload_create_pipeline(ctx: TestContext):
                 logging.error(f"Failed to delete pipeline {created_pipeline_id}: {e}")
                 
 def _test_retrieval(ctx: TestContext, pipeline_id: str):
-    pipelines = v.PipelinesApi(ctx.api_client)
-    response = pipelines.retrieve_documents(ctx.org_id, pipeline_id, v.RetrieveDocumentsRequest(
-        question="What are you?",
-        num_results=5,
-    ))
-    logging.info(response.documents)
-
+    try:
+        pipelines = v.PipelinesApi(ctx.api_client)
+        response = pipelines.retrieve_documents(ctx.org_id, pipeline_id, v.RetrieveDocumentsRequest(
+            question="What are you?",
+            num_results=5,
+        ))
+        logging.info(response.documents)
+    except v.exceptions.ApiException as e:
+        if e.status == 405 and os.getenv("VECTORIZE_ENV") == "local":
+            logging.warning("Retrieval not supported on local environment - skipping")
+        else:
+            raise
 
 @pytest.mark.timeout(60)
 def test_extraction(ctx: TestContext):

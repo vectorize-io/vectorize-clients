@@ -2,13 +2,13 @@
   "openapi": "3.0.0",
   "info": {
     "title": "Vectorize API",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "API for Vectorize services (Beta)",
     "contact": {
       "name": "Vectorize",
       "url": "https://vectorize.io"
     },
-    "x-release-date": "2025-07-08"
+    "x-release-date": "2025-07-10"
   },
   "servers": [
     {
@@ -78,7 +78,7 @@
           "GMAIL"
         ]
       },
-      "SourceConnectorSchema": {
+      "PipelineSourceConnectorSchema": {
         "type": "object",
         "properties": {
           "id": {
@@ -120,7 +120,7 @@
           "VECTORIZE"
         ]
       },
-      "DestinationConnectorSchema": {
+      "PipelineDestinationConnectorSchema": {
         "type": "object",
         "properties": {
           "id": {
@@ -229,7 +229,7 @@
         },
         "additionalProperties": false
       },
-      "AIPlatformConnectorSchema": {
+      "PipelineAIPlatformConnectorSchema": {
         "type": "object",
         "properties": {
           "id": {
@@ -273,13 +273,17 @@
         "type": "object",
         "properties": {
           "sourceConnectors": {
-            "$ref": "#/components/schemas/PipelineSourceConnectorRequest"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PipelineSourceConnectorSchema"
+            },
+            "minItems": 1
           },
           "destinationConnector": {
-            "$ref": "#/components/schemas/PipelineDestinationConnectorRequest"
+            "$ref": "#/components/schemas/PipelineDestinationConnectorSchema"
           },
           "aiPlatformConnector": {
-            "$ref": "#/components/schemas/AIPlatformConnectorSchema"
+            "$ref": "#/components/schemas/PipelineAIPlatformConnectorSchema"
           },
           "pipelineName": {
             "type": "string",
@@ -489,7 +493,7 @@
           "name"
         ]
       },
-      "AIPlatform": {
+      "AIPlatformConnector": {
         "type": "object",
         "properties": {
           "id": {
@@ -615,7 +619,7 @@
           "aiPlatforms": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/AIPlatform"
+              "$ref": "#/components/schemas/AIPlatformConnector"
             }
           }
         },
@@ -2751,7 +2755,7 @@
         "type": "object",
         "properties": {
           "updatedConnector": {
-            "$ref": "#/components/schemas/AIPlatform"
+            "$ref": "#/components/schemas/AIPlatformConnector"
           },
           "pipelineIds": {
             "type": "array",
@@ -4377,7 +4381,7 @@
             "type": "string",
             "format": "date",
             "description": "Created After. Filter for conversations created after this date. Example: Enter a date: Example 2012-12-31",
-            "default": "2025-07-08"
+            "default": "2025-07-10"
           },
           "updated_at": {
             "type": "string",
@@ -4906,7 +4910,7 @@
             "type": "string",
             "format": "date",
             "description": "Start Date. Include meetings from this date forward. Example: Enter a date: Example 2023-12-31",
-            "default": "2025-07-08"
+            "default": "2025-07-10"
           },
           "end-date": {
             "type": "string",
@@ -5832,16 +5836,6 @@
           "type",
           "config"
         ]
-      },
-      "PipelineSourceConnectorRequest": {
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "$ref": "#/components/schemas/SourceConnectorSchema"
-        }
-      },
-      "PipelineDestinationConnectorRequest": {
-        "$ref": "#/components/schemas/DestinationConnectorSchema"
       }
     },
     "parameters": {}
@@ -5880,20 +5874,14 @@
                 "$ref": "#/components/schemas/PipelineConfigurationSchema"
               },
               "example": {
-                "sourceConnectors": [
-                  {
-                    "id": "1232dcc0-32d5-4193-a6f1-3af334a4e4b7",
-                    "type": "AWS_S3",
-                    "config": {}
-                  }
-                ],
+                "sourceConnectors": [],
                 "destinationConnector": {
-                  "id": "7b5c0959-733f-4dfc-9732-12b72af0ccb2",
+                  "id": "83f7d2d5-216c-4b89-a09f-30fdf603a641",
                   "type": "CAPELLA",
                   "config": {}
                 },
                 "aiPlatformConnector": {
-                  "id": "6c7e3097-465b-4ebb-bd6f-60551b43e951",
+                  "id": "ca028407-2684-4606-924c-57c1b3b3c534",
                   "type": "BEDROCK",
                   "config": {
                     "embeddingModel": "VECTORIZE_OPEN_AI_TEXT_EMBEDDING_2",
@@ -6160,7 +6148,7 @@
                   "message": "Operation completed successfully",
                   "data": [
                     {
-                      "id": "06d0d149-3fc9-4056-8ce1-d0a5ca08ca52",
+                      "id": "cbc588c9-8ba5-445e-a017-31ecf2d7e4af",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -6414,7 +6402,7 @@
                 "example": {
                   "message": "Operation completed successfully",
                   "data": {
-                    "id": "cd4ef558-69df-4f62-b018-0ebc5d33e9e3",
+                    "id": "3e2409df-0992-4158-b030-b2a4d020b0ae",
                     "name": "My PipelineSummary",
                     "documentCount": 42,
                     "sourceConnectorAuthIds": [],
@@ -6934,7 +6922,7 @@
                   "nextToken": "token_example_123456",
                   "data": [
                     {
-                      "id": "34070554-7e46-441d-81d2-6c654b89d0e9",
+                      "id": "6b1ed7a6-a064-4e91-b12e-29be44420b3e",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -7189,7 +7177,7 @@
                   "message": "Operation completed successfully",
                   "data": [
                     {
-                      "id": "13be51e7-8259-4ef5-82a2-b655419cda64",
+                      "id": "21a8e50b-3bdf-476f-a0ec-8ef29194e6b0",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -8231,7 +8219,7 @@
                   "$ref": "#/components/schemas/StartDeepResearchResponse"
                 },
                 "example": {
-                  "researchId": "3ae63a29-7e0e-44e5-9c07-fcc2a7f37d85"
+                  "researchId": "52dbc4c8-c9ff-4e48-aee9-b1f19be6cc4a"
                 }
               }
             }
@@ -8744,7 +8732,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedSourceConnector",
-                    "id": "d0cc6d80-ce20-4f41-9eca-599c73e92aa4"
+                    "id": "e2e316e1-63ab-40d5-b038-c6a2f7cb0488"
                   }
                 }
               }
@@ -8993,17 +8981,17 @@
                 "example": {
                   "sourceConnectors": [
                     {
-                      "id": "223989b5-81ba-4833-b858-5614802dc830",
+                      "id": "90ecce40-7941-4211-ace0-33d1cd563664",
                       "type": "AWS_S3",
                       "name": "S3 Documents Bucket",
-                      "createdAt": "2025-07-08T19:10:21.970Z",
+                      "createdAt": "2025-07-10T16:13:57.612Z",
                       "verificationStatus": "verified"
                     },
                     {
-                      "id": "0f3b5bcc-7295-4301-a147-13d6c255edbf",
+                      "id": "18aacfd0-7d25-46be-986e-efab612e3224",
                       "type": "GOOGLE_DRIVE",
                       "name": "Team Shared Drive",
-                      "createdAt": "2025-07-08T19:10:21.970Z",
+                      "createdAt": "2025-07-10T16:13:57.612Z",
                       "verificationStatus": "verified"
                     }
                   ]
@@ -9253,13 +9241,13 @@
                   "$ref": "#/components/schemas/SourceConnector"
                 },
                 "example": {
-                  "id": "6981ec06-1482-4bbf-b47e-ddc2222943dd",
+                  "id": "aded3d9b-d269-4698-85bf-c045ba339778",
                   "type": "example-type",
                   "name": "My SourceConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "4b8d2372-c7ea-4692-8eb8-fa07be7c2d3a",
-                  "lastUpdatedById": "c466521b-f78c-4713-9ccb-2698645804e4",
+                  "createdById": "2097fc76-fed2-4a9b-b578-47146171f4f2",
+                  "lastUpdatedById": "dc69f9d7-4057-4367-a3c8-42782f79e7fe",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -9521,13 +9509,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "c10c7b6c-dd13-4afe-a0ba-02e37060836d",
+                      "id": "2d13cd4d-dbc0-49e0-8094-1805962b1cd6",
                       "type": "example-type",
                       "name": "My SourceConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "365405c1-0a92-4ba6-8079-49bae45abc2a",
-                      "lastUpdatedById": "c24bb9e9-fb05-4e23-9c51-b8bd8b4cbdca",
+                      "createdById": "0e083136-ce24-433c-a752-d7f3fc2fbdc5",
+                      "lastUpdatedById": "e9a3ce70-9004-4fe7-b9b8-50afc982d968",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -10029,7 +10017,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedDestinationConnector",
-                    "id": "3d3ff1ec-6c2c-487f-be44-c8274333c354"
+                    "id": "0c209ce4-da3a-4e11-8545-14bb840a4112"
                   }
                 }
               }
@@ -10523,13 +10511,13 @@
                   "$ref": "#/components/schemas/DestinationConnector"
                 },
                 "example": {
-                  "id": "c1ccc757-6841-4338-911c-d266b3e645a4",
+                  "id": "38119016-11e1-4716-8c69-5fc60b266374",
                   "type": "example-type",
                   "name": "My DestinationConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "c186a263-97a0-4f8b-8bac-bba5cf2f0748",
-                  "lastUpdatedById": "6a0afe85-b82b-498c-b635-4fe2d4ab7b45",
+                  "createdById": "83109fc0-76ce-4c03-9376-1d1be79f6f24",
+                  "lastUpdatedById": "644d6627-f7f2-4d98-b3fd-960651980db0",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -10791,13 +10779,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "2f8d9fd8-7d6b-4e99-bc98-2723c824e7dd",
+                      "id": "e39bc6d4-1e1a-410e-9493-7a9ed216064d",
                       "type": "example-type",
                       "name": "My DestinationConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "d6c8bc01-fae6-44e0-98ec-bd3a743e1bac",
-                      "lastUpdatedById": "6b2be19e-b98c-4450-99e1-b311ca3e7ba8",
+                      "createdById": "0564b856-8be4-4c78-a250-232e3229ac21",
+                      "lastUpdatedById": "a8b9e8d9-68e7-4867-971a-fcc845a22049",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -11299,7 +11287,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedAIPlatformConnector",
-                    "id": "3f201fb0-329b-4e58-b964-761b8ac47823"
+                    "id": "0cf8dfa6-b99c-43ce-b366-51f369f538bd"
                   }
                 }
               }
@@ -11537,7 +11525,7 @@
                     "aiPlatformConnectors": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/AIPlatform"
+                        "$ref": "#/components/schemas/AIPlatformConnector"
                       }
                     }
                   },
@@ -11790,16 +11778,16 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AIPlatform"
+                  "$ref": "#/components/schemas/AIPlatformConnector"
                 },
                 "example": {
-                  "id": "3a660f36-8e8b-46f0-8c4f-4135129e7b2d",
+                  "id": "45b11ecc-5354-4029-ba78-bbe6502d9191",
                   "type": "example-type",
-                  "name": "My AIPlatform",
+                  "name": "My AIPlatformConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "8a1c31aa-ef6b-44e5-bf2f-c7b11f343ea4",
-                  "lastUpdatedById": "f17bca8a-315c-48f4-9a23-ac3f31ed1836",
+                  "createdById": "0dace4d0-39e5-4a65-a518-5084798be4fd",
+                  "lastUpdatedById": "6c5aeb52-e99e-41e3-91a3-487c8f04a17c",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -12061,13 +12049,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "4e0e6309-d187-400d-b446-cefc87ec20c1",
+                      "id": "db205e2c-70da-482f-b8fa-4c1839517351",
                       "type": "example-type",
-                      "name": "My AIPlatform",
+                      "name": "My AIPlatformConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "13de58a5-58f0-4060-9590-3e896e99aaf4",
-                      "lastUpdatedById": "aedc8bc8-07ae-449f-845f-401f8e72b74c",
+                      "createdById": "cadfaa1a-aa95-4a57-82c0-52609d33f4bd",
+                      "lastUpdatedById": "3e307fab-0c82-490c-9384-040a3453b07c",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -13321,7 +13309,7 @@
                 "$ref": "#/components/schemas/StartExtractionRequest"
               },
               "example": {
-                "fileId": "b243e168-c6c9-4703-bd49-6251b5c00a50",
+                "fileId": "f239b1fb-7aac-4cad-8566-8076435cd7b5",
                 "type": "iris",
                 "chunkingStrategy": "markdown",
                 "chunkSize": 20,
@@ -13343,7 +13331,7 @@
                 },
                 "example": {
                   "message": "Operation completed successfully",
-                  "extractionId": "484e0687-7da3-40e2-8d37-f4ff0df362f4"
+                  "extractionId": "ebb0ffb7-69e5-45d0-91a8-f43222243760"
                 }
               }
             }
@@ -13850,7 +13838,7 @@
                   "$ref": "#/components/schemas/StartFileUploadResponse"
                 },
                 "example": {
-                  "fileId": "3fedab3c-4116-41d6-94d3-818a16f4ce93",
+                  "fileId": "d9e38bd0-d2b0-4dca-b832-7a543e84f251",
                   "uploadUrl": "https://api.example.com"
                 }
               }
@@ -14097,7 +14085,7 @@
                 "$ref": "#/components/schemas/AddUserToSourceConnectorRequest"
               },
               "example": {
-                "userId": "b861f9a6-8674-4ead-8686-b16d162cdf1a",
+                "userId": "67ffccee-6574-4fda-8f9d-2cd4e2f9dcc7",
                 "selectedFiles": {},
                 "refreshToken": "refresh_token_example_123456",
                 "accessToken": "access_token_example_123456"
@@ -14358,7 +14346,7 @@
                 "$ref": "#/components/schemas/UpdateUserInSourceConnectorRequest"
               },
               "example": {
-                "userId": "6ccc57db-001c-4ebf-8c82-2f14e776de7c",
+                "userId": "2da2bdd2-80e5-4bd9-a97c-b4a074a9a709",
                 "selectedFiles": {},
                 "refreshToken": "refresh_token_example_123456",
                 "accessToken": "access_token_example_123456"
@@ -14619,7 +14607,7 @@
                 "$ref": "#/components/schemas/RemoveUserFromSourceConnectorRequest"
               },
               "example": {
-                "userId": "5e1f47bf-eedf-43d4-86cf-d7075d841b61"
+                "userId": "53a1dc3b-a072-4ff3-bc58-209c9f083f54"
               }
             }
           }
