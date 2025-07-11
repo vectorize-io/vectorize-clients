@@ -28,7 +28,7 @@ class Vertex(BaseModel):
     Vertex
     """ # noqa: E501
     name: StrictStr = Field(description="Name of the connector")
-    type: StrictStr = Field(description="Connector type (must be \"VERTEX\")")
+    type: StrictStr = Field(description="Must be \"VERTEX\"")
     config: VERTEXAuthConfig
     __properties: ClassVar[List[str]] = ["name", "type", "config"]
 

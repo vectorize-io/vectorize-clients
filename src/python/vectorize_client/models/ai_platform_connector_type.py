@@ -18,9 +18,9 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class AIPlatformType(str, Enum):
+class AIPlatformConnectorType(str, Enum):
     """
-    AIPlatformType
+    AIPlatformConnectorType
     """
 
     """
@@ -33,7 +33,7 @@ class AIPlatformType(str, Enum):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AIPlatformType from a JSON string"""
+        """Create an instance of AIPlatformConnectorType from a JSON string"""
         return cls(json.loads(json_str))
 
 

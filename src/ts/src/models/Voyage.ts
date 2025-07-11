@@ -34,7 +34,7 @@ export interface Voyage {
      */
     name: string;
     /**
-     * Connector type (must be "VOYAGE")
+     * Must be "VOYAGE"
      * @type {string}
      * @memberof Voyage
      */

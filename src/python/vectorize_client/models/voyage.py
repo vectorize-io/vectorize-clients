@@ -28,7 +28,7 @@ class Voyage(BaseModel):
     Voyage
     """ # noqa: E501
     name: StrictStr = Field(description="Name of the connector")
-    type: StrictStr = Field(description="Connector type (must be \"VOYAGE\")")
+    type: StrictStr = Field(description="Must be \"VOYAGE\"")
     config: VOYAGEAuthConfig
     __properties: ClassVar[List[str]] = ["name", "type", "config"]
 

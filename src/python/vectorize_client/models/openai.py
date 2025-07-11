@@ -28,7 +28,7 @@ class Openai(BaseModel):
     Openai
     """ # noqa: E501
     name: StrictStr = Field(description="Name of the connector")
-    type: StrictStr = Field(description="Connector type (must be \"OPENAI\")")
+    type: StrictStr = Field(description="Must be \"OPENAI\"")
     config: OPENAIAuthConfig
     __properties: ClassVar[List[str]] = ["name", "type", "config"]
 

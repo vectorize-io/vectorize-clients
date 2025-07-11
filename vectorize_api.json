@@ -2605,7 +2605,7 @@
           "connector"
         ]
       },
-      "AIPlatformType": {
+      "AIPlatformConnectorType": {
         "type": "string",
         "enum": [
           "BEDROCK",
@@ -2634,10 +2634,11 @@
                 "enum": [
                   "BEDROCK"
                 ],
-                "description": "Connector type (must be \"BEDROCK\")"
+                "description": "Must be \"BEDROCK\""
               },
               "config": {
-                "$ref": "#/components/schemas/BEDROCKAuthConfig"
+                "$ref": "#/components/schemas/BEDROCKAuthConfig",
+                "description": "Configuration for Amazon Bedrock"
               }
             },
             "example": {
@@ -2667,10 +2668,11 @@
                 "enum": [
                   "VERTEX"
                 ],
-                "description": "Connector type (must be \"VERTEX\")"
+                "description": "Must be \"VERTEX\""
               },
               "config": {
-                "$ref": "#/components/schemas/VERTEXAuthConfig"
+                "$ref": "#/components/schemas/VERTEXAuthConfig",
+                "description": "Configuration for Google Vertex AI"
               }
             },
             "example": {
@@ -2700,10 +2702,11 @@
                 "enum": [
                   "OPENAI"
                 ],
-                "description": "Connector type (must be \"OPENAI\")"
+                "description": "Must be \"OPENAI\""
               },
               "config": {
-                "$ref": "#/components/schemas/OPENAIAuthConfig"
+                "$ref": "#/components/schemas/OPENAIAuthConfig",
+                "description": "Configuration for OpenAI"
               }
             },
             "example": {
@@ -2732,10 +2735,11 @@
                 "enum": [
                   "VOYAGE"
                 ],
-                "description": "Connector type (must be \"VOYAGE\")"
+                "description": "Must be \"VOYAGE\""
               },
               "config": {
-                "$ref": "#/components/schemas/VOYAGEAuthConfig"
+                "$ref": "#/components/schemas/VOYAGEAuthConfig",
+                "description": "Configuration for Voyage AI"
               }
             },
             "example": {
@@ -5876,12 +5880,12 @@
               "example": {
                 "sourceConnectors": [],
                 "destinationConnector": {
-                  "id": "83f7d2d5-216c-4b89-a09f-30fdf603a641",
+                  "id": "ae4a7bcb-aaed-41bd-99b3-64c4a673343a",
                   "type": "CAPELLA",
                   "config": {}
                 },
                 "aiPlatformConnector": {
-                  "id": "ca028407-2684-4606-924c-57c1b3b3c534",
+                  "id": "3b696b69-7060-438d-9c7e-0f6be117367d",
                   "type": "BEDROCK",
                   "config": {
                     "embeddingModel": "VECTORIZE_OPEN_AI_TEXT_EMBEDDING_2",
@@ -6148,7 +6152,7 @@
                   "message": "Operation completed successfully",
                   "data": [
                     {
-                      "id": "cbc588c9-8ba5-445e-a017-31ecf2d7e4af",
+                      "id": "25b2a51b-c0cd-4d59-8c30-db344e836f2c",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -6402,7 +6406,7 @@
                 "example": {
                   "message": "Operation completed successfully",
                   "data": {
-                    "id": "3e2409df-0992-4158-b030-b2a4d020b0ae",
+                    "id": "91bd911a-94de-45a8-854b-ea97df2d7216",
                     "name": "My PipelineSummary",
                     "documentCount": 42,
                     "sourceConnectorAuthIds": [],
@@ -6922,7 +6926,7 @@
                   "nextToken": "token_example_123456",
                   "data": [
                     {
-                      "id": "6b1ed7a6-a064-4e91-b12e-29be44420b3e",
+                      "id": "1c2d2b11-9755-4434-90f0-803704032154",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -7177,7 +7181,7 @@
                   "message": "Operation completed successfully",
                   "data": [
                     {
-                      "id": "21a8e50b-3bdf-476f-a0ec-8ef29194e6b0",
+                      "id": "5148840a-b511-4bdc-babc-6b2fa73c5a2e",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -8219,7 +8223,7 @@
                   "$ref": "#/components/schemas/StartDeepResearchResponse"
                 },
                 "example": {
-                  "researchId": "52dbc4c8-c9ff-4e48-aee9-b1f19be6cc4a"
+                  "researchId": "a7853c29-5f98-4faa-ad5e-b466e071ea14"
                 }
               }
             }
@@ -8732,7 +8736,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedSourceConnector",
-                    "id": "e2e316e1-63ab-40d5-b038-c6a2f7cb0488"
+                    "id": "abc458c3-e72a-4397-9328-c0e1fd9a117d"
                   }
                 }
               }
@@ -8981,17 +8985,17 @@
                 "example": {
                   "sourceConnectors": [
                     {
-                      "id": "90ecce40-7941-4211-ace0-33d1cd563664",
+                      "id": "9bbf3fc9-a549-4808-a525-6f2219d2a5bc",
                       "type": "AWS_S3",
                       "name": "S3 Documents Bucket",
-                      "createdAt": "2025-07-10T16:13:57.612Z",
+                      "createdAt": "2025-07-10T19:29:03.499Z",
                       "verificationStatus": "verified"
                     },
                     {
-                      "id": "18aacfd0-7d25-46be-986e-efab612e3224",
+                      "id": "abccbb14-ead6-4e1f-93cb-367c434984fc",
                       "type": "GOOGLE_DRIVE",
                       "name": "Team Shared Drive",
-                      "createdAt": "2025-07-10T16:13:57.612Z",
+                      "createdAt": "2025-07-10T19:29:03.499Z",
                       "verificationStatus": "verified"
                     }
                   ]
@@ -9241,13 +9245,13 @@
                   "$ref": "#/components/schemas/SourceConnector"
                 },
                 "example": {
-                  "id": "aded3d9b-d269-4698-85bf-c045ba339778",
+                  "id": "9f5b95ed-69ac-462d-93c8-d6898ef069aa",
                   "type": "example-type",
                   "name": "My SourceConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "2097fc76-fed2-4a9b-b578-47146171f4f2",
-                  "lastUpdatedById": "dc69f9d7-4057-4367-a3c8-42782f79e7fe",
+                  "createdById": "ab55e680-3915-401a-aa46-0c2c26f1874a",
+                  "lastUpdatedById": "dde926ec-7186-4608-affb-0eb4ac01f180",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -9509,13 +9513,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "2d13cd4d-dbc0-49e0-8094-1805962b1cd6",
+                      "id": "0f4a7788-ea5b-4ff1-aa24-6258cea5e508",
                       "type": "example-type",
                       "name": "My SourceConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "0e083136-ce24-433c-a752-d7f3fc2fbdc5",
-                      "lastUpdatedById": "e9a3ce70-9004-4fe7-b9b8-50afc982d968",
+                      "createdById": "e368b137-7f81-40e3-824d-d67e7b844c88",
+                      "lastUpdatedById": "867255de-747a-4ae7-872d-d74c838b88c0",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -10017,7 +10021,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedDestinationConnector",
-                    "id": "0c209ce4-da3a-4e11-8545-14bb840a4112"
+                    "id": "828cab7e-5faf-45c6-b59b-4cd8c53542d2"
                   }
                 }
               }
@@ -10511,13 +10515,13 @@
                   "$ref": "#/components/schemas/DestinationConnector"
                 },
                 "example": {
-                  "id": "38119016-11e1-4716-8c69-5fc60b266374",
+                  "id": "c83e315e-c6e1-4b21-a82b-81ca4526da1e",
                   "type": "example-type",
                   "name": "My DestinationConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "83109fc0-76ce-4c03-9376-1d1be79f6f24",
-                  "lastUpdatedById": "644d6627-f7f2-4d98-b3fd-960651980db0",
+                  "createdById": "018fd9f4-18aa-4209-a581-8632e5417507",
+                  "lastUpdatedById": "58f2955d-ec6a-402a-b720-5a8520b4a222",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -10779,13 +10783,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "e39bc6d4-1e1a-410e-9493-7a9ed216064d",
+                      "id": "d5b5ff01-e065-409e-b32c-90256543b08c",
                       "type": "example-type",
                       "name": "My DestinationConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "0564b856-8be4-4c78-a250-232e3229ac21",
-                      "lastUpdatedById": "a8b9e8d9-68e7-4867-971a-fcc845a22049",
+                      "createdById": "6e46a0aa-1680-4a01-9af6-d10a98ceef57",
+                      "lastUpdatedById": "292140d8-d1d5-4627-829c-a4eed548ba03",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -11287,7 +11291,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedAIPlatformConnector",
-                    "id": "0cf8dfa6-b99c-43ce-b366-51f369f538bd"
+                    "id": "14695463-d363-4680-9a38-c9a6516cc37e"
                   }
                 }
               }
@@ -11781,13 +11785,13 @@
                   "$ref": "#/components/schemas/AIPlatformConnector"
                 },
                 "example": {
-                  "id": "45b11ecc-5354-4029-ba78-bbe6502d9191",
+                  "id": "b78bc048-e835-4e37-a2a0-958da1386938",
                   "type": "example-type",
                   "name": "My AIPlatformConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "0dace4d0-39e5-4a65-a518-5084798be4fd",
-                  "lastUpdatedById": "6c5aeb52-e99e-41e3-91a3-487c8f04a17c",
+                  "createdById": "9a688f77-3d46-4214-b631-8b7603be2739",
+                  "lastUpdatedById": "438b02cb-b855-4ac5-947c-13f1ae09b5aa",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -12049,13 +12053,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "db205e2c-70da-482f-b8fa-4c1839517351",
+                      "id": "b6131428-da01-4571-851c-58d1e6ff7632",
                       "type": "example-type",
                       "name": "My AIPlatformConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "cadfaa1a-aa95-4a57-82c0-52609d33f4bd",
-                      "lastUpdatedById": "3e307fab-0c82-490c-9384-040a3453b07c",
+                      "createdById": "0d52c026-0298-4293-832e-f9f2f7c75d20",
+                      "lastUpdatedById": "4f87d5b2-515e-4db9-9e97-1fdf388dd54d",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -13309,7 +13313,7 @@
                 "$ref": "#/components/schemas/StartExtractionRequest"
               },
               "example": {
-                "fileId": "f239b1fb-7aac-4cad-8566-8076435cd7b5",
+                "fileId": "b8aa3113-620d-4ad5-8aae-7effeada0c69",
                 "type": "iris",
                 "chunkingStrategy": "markdown",
                 "chunkSize": 20,
@@ -13331,7 +13335,7 @@
                 },
                 "example": {
                   "message": "Operation completed successfully",
-                  "extractionId": "ebb0ffb7-69e5-45d0-91a8-f43222243760"
+                  "extractionId": "0f7b162f-7ccd-4fdc-a237-7f49707c0df8"
                 }
               }
             }
@@ -13838,7 +13842,7 @@
                   "$ref": "#/components/schemas/StartFileUploadResponse"
                 },
                 "example": {
-                  "fileId": "d9e38bd0-d2b0-4dca-b832-7a543e84f251",
+                  "fileId": "cf9ee18e-d329-43f3-9e0f-737972715f20",
                   "uploadUrl": "https://api.example.com"
                 }
               }
@@ -14085,7 +14089,7 @@
                 "$ref": "#/components/schemas/AddUserToSourceConnectorRequest"
               },
               "example": {
-                "userId": "67ffccee-6574-4fda-8f9d-2cd4e2f9dcc7",
+                "userId": "1918f9f1-5f9c-43f4-ac5d-e58e043df684",
                 "selectedFiles": {},
                 "refreshToken": "refresh_token_example_123456",
                 "accessToken": "access_token_example_123456"
@@ -14346,7 +14350,7 @@
                 "$ref": "#/components/schemas/UpdateUserInSourceConnectorRequest"
               },
               "example": {
-                "userId": "2da2bdd2-80e5-4bd9-a97c-b4a074a9a709",
+                "userId": "8afb88ca-2a31-47fb-8c62-3d0f2f341e48",
                 "selectedFiles": {},
                 "refreshToken": "refresh_token_example_123456",
                 "accessToken": "access_token_example_123456"
@@ -14607,7 +14611,7 @@
                 "$ref": "#/components/schemas/RemoveUserFromSourceConnectorRequest"
               },
               "example": {
-                "userId": "53a1dc3b-a072-4ff3-bc58-209c9f083f54"
+                "userId": "a3efde95-0ff2-4f48-afdc-168b2ffdbf46"
               }
             }
           }

@@ -28,7 +28,7 @@ class Bedrock(BaseModel):
     Bedrock
     """ # noqa: E501
     name: StrictStr = Field(description="Name of the connector")
-    type: StrictStr = Field(description="Connector type (must be \"BEDROCK\")")
+    type: StrictStr = Field(description="Must be \"BEDROCK\"")
     config: BEDROCKAuthConfig
     __properties: ClassVar[List[str]] = ["name", "type", "config"]
 

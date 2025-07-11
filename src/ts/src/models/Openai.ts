@@ -34,7 +34,7 @@ export interface Openai {
      */
     name: string;
     /**
-     * Connector type (must be "OPENAI")
+     * Must be "OPENAI"
      * @type {string}
      * @memberof Openai
      */

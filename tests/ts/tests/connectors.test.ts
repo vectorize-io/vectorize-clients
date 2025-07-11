@@ -188,7 +188,7 @@ describe("connector", () => {
             expect(read.createdAt).toBeTruthy()
             
             // Delete AI platform connector
-            await aiPlatformConnectorsApi.deleteAIPlatform({
+            await aiPlatformConnectorsApi.deleteAIPlatformConnector({
                 organizationId: testContext.orgId,
                 aiPlatformConnectorId: connectorId
             })

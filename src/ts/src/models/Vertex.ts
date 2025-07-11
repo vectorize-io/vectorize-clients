@@ -34,7 +34,7 @@ export interface Vertex {
      */
     name: string;
     /**
-     * Connector type (must be "VERTEX")
+     * Must be "VERTEX"
      * @type {string}
      * @memberof Vertex
      */

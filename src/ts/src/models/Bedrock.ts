@@ -34,7 +34,7 @@ export interface Bedrock {
      */
     name: string;
     /**
-     * Connector type (must be "BEDROCK")
+     * Must be "BEDROCK"
      * @type {string}
      * @memberof Bedrock
      */
