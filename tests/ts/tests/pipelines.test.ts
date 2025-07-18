@@ -12,7 +12,7 @@ import {
 import {pipeline} from "stream";
 import * as os from "node:os";
 import exp from "node:constants";
-import {AIPlatformType, DestinationConnectorType} from "@vectorize-io/vectorize-client/src";
+import {AIPlatformConnectorType, DestinationConnectorType} from "@vectorize-io/vectorize-client/src";
 
 export let testContext: TestContext;
 
@@ -46,16 +46,15 @@ async function createWebCrawlerSource(sourceConnectorsApi: SourceConnectorsApi) 
         }
     });
     const sourceConnectorId = sourceResponse.connector.id;
-    /* ENG-2651
     await sourceConnectorsApi.updateSourceConnector({
-            organization: testContext.orgId,
+            organizationId: testContext.orgId,
         sourceConnectorId,
             updateSourceConnectorRequest: {
                 config: {"seed-urls": ["https://docs.vectorize.io", "https://vectorize.io"]}
             }
         }
     );
-    */
+
     return sourceConnectorId;
 }
 
@@ -67,12 +66,12 @@ async function deployPipeline(pipelinesApi: PipelinesApi, sourceConnectorId: str
             sourceConnectors: [{id: sourceConnectorId, type: SourceConnectorType.WebCrawler, config: {}}],
             destinationConnector: {
                 id: destinationConnectorId,
-                type: DestinationConnectorType.VECTORIZE,
+                type: "VECTORIZE" as any,
                 config: {}
             },
-            aiPlatform: {
+            aiPlatformConnector: {
                 id: aiPlatformId,
-                type: AIPlatformType.VECTORIZE,
+                type: "VECTORIZE" as any,
                 config: {}
             },
             schedule: {type: "manual"}

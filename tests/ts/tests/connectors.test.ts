@@ -7,8 +7,8 @@ import {
     PipelinesApi,
     ResponseError,
     SourceConnectorType,
-    AIPlatformType,
-    DestinationConnectorType
+    AIPlatformTypeForPipeline,
+    DestinationConnectorTypeForPipeline
 } from "@vectorize-io/vectorize-client";
 import {pipeline} from "stream";
 import * as os from "node:os";
@@ -64,12 +64,12 @@ async function deployPipeline(pipelinesApi: PipelinesApi, sourceConnectorId: str
             sourceConnectors: [{id: sourceConnectorId, type: SourceConnectorType.WebCrawler, config: {}}],
             destinationConnector: {
                 id: destinationConnectorId,
-                type: DestinationConnectorType.Vectorize,
+                type: DestinationConnectorTypeForPipeline.Vectorize,
                 config: {}
             },
-            aiPlatform: {
+            aiPlatformConnector: {
                 id: aiPlatformId,
-                type: AIPlatformType.Vectorize,
+                type: AIPlatformTypeForPipeline.Vectorize,
                 config: {}
             },
             schedule: {type: "manual"}
@@ -93,18 +93,14 @@ describe("connector", () => {
             const sourceConnectorId = sourceResponse.connector.id;
             
             // Update source connector
-            /* ENG-2651
             await sourceConnectorsApi.updateSourceConnector({
                 organizationId: testContext.orgId,
                 sourceConnectorId,
                 updateSourceConnectorRequest: {
                     config: {
-                        "max-urls": 100,
-                        "max-depth": 5
-                    }
+                        "seed-urls": ["https://docs.vectorize.io", "https://vectorize.io/pricing"]}
                 }
             });
-            */
             
             // Get all source connectors
             let connectors = await sourceConnectorsApi.getSourceConnectors({
@@ -159,15 +155,13 @@ describe("connector", () => {
             });
             const connectorId = sourceResponse.connector.id;
             
-            /* ENG-2651
             await aiPlatformConnectorsApi.updateAIPlatformConnector({
                 organizationId: testContext.orgId,
-                aiplatformId: connectorId,
+                aiPlatformConnectorId: connectorId,
                 updateAIPlatformConnectorRequest: {
                     config: {"key": "sk"}
                 }
             });
-            */
             
             // Get all AI platform connectors
             let connectors = await aiPlatformConnectorsApi.getAIPlatformConnectors({
@@ -220,15 +214,13 @@ describe("connector", () => {
             });
             const connectorId = sourceResponse.connector.id;
             
-            /* ENG-2651
             await destinationConnectorsApi.updateDestinationConnector({
                 organizationId: testContext.orgId,
                 destinationConnectorId: connectorId,
                 updateDestinationConnectorRequest: {
-                    config: {"api-key": "sk"}
+                    config: {"apiKey": "sk"}
                 }
             });
-            */
             
             // Get all destination connectors
             let connectors = await destinationConnectorsApi.getDestinationConnectors({
