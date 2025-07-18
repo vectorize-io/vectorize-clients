@@ -62,11 +62,11 @@ export interface GITHUBConfig {
      */
     issueLabels?: Array<string>;
     /**
-     * Max Items. Example: Enter maximum number of items to fetch
+     * Max Items. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of items to fetch (leave blank for no limit)
      * @type {number}
      * @memberof GITHUBConfig
      */
-    maxItems: number;
+    maxItems?: number;
     /**
      * Created After. Filter for items created after this date. Example: Enter a date: Example 2012-12-31
      * @type {Date}
@@ -107,7 +107,6 @@ export function instanceOfGITHUBConfig(value: object): value is GITHUBConfig {
     if (!('pullRequestStatus' in value) || value['pullRequestStatus'] === undefined) return false;
     if (!('includeIssues' in value) || value['includeIssues'] === undefined) return false;
     if (!('issueStatus' in value) || value['issueStatus'] === undefined) return false;
-    if (!('maxItems' in value) || value['maxItems'] === undefined) return false;
     return true;
 }
 
@@ -128,7 +127,7 @@ export function GITHUBConfigFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'includeIssues': json['include-issues'],
         'issueStatus': json['issue-status'],
         'issueLabels': json['issue-labels'] == null ? undefined : json['issue-labels'],
-        'maxItems': json['max-items'],
+        'maxItems': json['max-items'] == null ? undefined : json['max-items'],
         'createdAfter': json['created-after'] == null ? undefined : (new Date(json['created-after'])),
     };
 }

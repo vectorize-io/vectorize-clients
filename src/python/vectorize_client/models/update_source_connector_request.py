@@ -21,23 +21,12 @@ from vectorize_client.models.aws_s31 import AwsS31
 from vectorize_client.models.azure_blob1 import AzureBlob1
 from vectorize_client.models.confluence1 import Confluence1
 from vectorize_client.models.discord1 import Discord1
-from vectorize_client.models.dropbox import Dropbox
-from vectorize_client.models.dropbox_oauth import DropboxOauth
-from vectorize_client.models.dropbox_oauth_multi import DropboxOauthMulti
-from vectorize_client.models.dropbox_oauth_multi_custom import DropboxOauthMultiCustom
 from vectorize_client.models.file_upload1 import FileUpload1
 from vectorize_client.models.firecrawl1 import Firecrawl1
 from vectorize_client.models.fireflies1 import Fireflies1
 from vectorize_client.models.gcs1 import Gcs1
 from vectorize_client.models.github1 import Github1
 from vectorize_client.models.google_drive1 import GoogleDrive1
-from vectorize_client.models.google_drive_oauth import GoogleDriveOauth
-from vectorize_client.models.google_drive_oauth_multi import GoogleDriveOauthMulti
-from vectorize_client.models.google_drive_oauth_multi_custom import GoogleDriveOauthMultiCustom
-from vectorize_client.models.intercom import Intercom
-from vectorize_client.models.notion import Notion
-from vectorize_client.models.notion_oauth_multi import NotionOauthMulti
-from vectorize_client.models.notion_oauth_multi_custom import NotionOauthMultiCustom
 from vectorize_client.models.one_drive1 import OneDrive1
 from vectorize_client.models.sharepoint1 import Sharepoint1
 from vectorize_client.models.web_crawler1 import WebCrawler1
@@ -45,7 +34,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-UPDATESOURCECONNECTORREQUEST_ONE_OF_SCHEMAS = ["AwsS31", "AzureBlob1", "Confluence1", "Discord1", "Dropbox", "DropboxOauth", "DropboxOauthMulti", "DropboxOauthMultiCustom", "FileUpload1", "Firecrawl1", "Fireflies1", "Gcs1", "Github1", "GoogleDrive1", "GoogleDriveOauth", "GoogleDriveOauthMulti", "GoogleDriveOauthMultiCustom", "Intercom", "Notion", "NotionOauthMulti", "NotionOauthMultiCustom", "OneDrive1", "Sharepoint1", "WebCrawler1"]
+UPDATESOURCECONNECTORREQUEST_ONE_OF_SCHEMAS = ["AwsS31", "AzureBlob1", "Confluence1", "Discord1", "FileUpload1", "Firecrawl1", "Fireflies1", "Gcs1", "Github1", "GoogleDrive1", "OneDrive1", "Sharepoint1", "WebCrawler1"]
 
 class UpdateSourceConnectorRequest(BaseModel):
     """
@@ -59,48 +48,26 @@ class UpdateSourceConnectorRequest(BaseModel):
     oneof_schema_3_validator: Optional[Confluence1] = None
     # data type: Discord1
     oneof_schema_4_validator: Optional[Discord1] = None
-    # data type: Dropbox
-    oneof_schema_5_validator: Optional[Dropbox] = None
-    # data type: DropboxOauth
-    oneof_schema_6_validator: Optional[DropboxOauth] = None
-    # data type: DropboxOauthMulti
-    oneof_schema_7_validator: Optional[DropboxOauthMulti] = None
-    # data type: DropboxOauthMultiCustom
-    oneof_schema_8_validator: Optional[DropboxOauthMultiCustom] = None
     # data type: FileUpload1
-    oneof_schema_9_validator: Optional[FileUpload1] = None
-    # data type: GoogleDriveOauth
-    oneof_schema_10_validator: Optional[GoogleDriveOauth] = None
+    oneof_schema_5_validator: Optional[FileUpload1] = None
     # data type: GoogleDrive1
-    oneof_schema_11_validator: Optional[GoogleDrive1] = None
-    # data type: GoogleDriveOauthMulti
-    oneof_schema_12_validator: Optional[GoogleDriveOauthMulti] = None
-    # data type: GoogleDriveOauthMultiCustom
-    oneof_schema_13_validator: Optional[GoogleDriveOauthMultiCustom] = None
+    oneof_schema_6_validator: Optional[GoogleDrive1] = None
     # data type: Firecrawl1
-    oneof_schema_14_validator: Optional[Firecrawl1] = None
+    oneof_schema_7_validator: Optional[Firecrawl1] = None
     # data type: Gcs1
-    oneof_schema_15_validator: Optional[Gcs1] = None
-    # data type: Intercom
-    oneof_schema_16_validator: Optional[Intercom] = None
-    # data type: Notion
-    oneof_schema_17_validator: Optional[Notion] = None
-    # data type: NotionOauthMulti
-    oneof_schema_18_validator: Optional[NotionOauthMulti] = None
-    # data type: NotionOauthMultiCustom
-    oneof_schema_19_validator: Optional[NotionOauthMultiCustom] = None
+    oneof_schema_8_validator: Optional[Gcs1] = None
     # data type: OneDrive1
-    oneof_schema_20_validator: Optional[OneDrive1] = None
+    oneof_schema_9_validator: Optional[OneDrive1] = None
     # data type: Sharepoint1
-    oneof_schema_21_validator: Optional[Sharepoint1] = None
+    oneof_schema_10_validator: Optional[Sharepoint1] = None
     # data type: WebCrawler1
-    oneof_schema_22_validator: Optional[WebCrawler1] = None
+    oneof_schema_11_validator: Optional[WebCrawler1] = None
     # data type: Github1
-    oneof_schema_23_validator: Optional[Github1] = None
+    oneof_schema_12_validator: Optional[Github1] = None
     # data type: Fireflies1
-    oneof_schema_24_validator: Optional[Fireflies1] = None
-    actual_instance: Optional[Union[AwsS31, AzureBlob1, Confluence1, Discord1, Dropbox, DropboxOauth, DropboxOauthMulti, DropboxOauthMultiCustom, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, GoogleDriveOauth, GoogleDriveOauthMulti, GoogleDriveOauthMultiCustom, Intercom, Notion, NotionOauthMulti, NotionOauthMultiCustom, OneDrive1, Sharepoint1, WebCrawler1]] = None
-    one_of_schemas: Set[str] = { "AwsS31", "AzureBlob1", "Confluence1", "Discord1", "Dropbox", "DropboxOauth", "DropboxOauthMulti", "DropboxOauthMultiCustom", "FileUpload1", "Firecrawl1", "Fireflies1", "Gcs1", "Github1", "GoogleDrive1", "GoogleDriveOauth", "GoogleDriveOauthMulti", "GoogleDriveOauthMultiCustom", "Intercom", "Notion", "NotionOauthMulti", "NotionOauthMultiCustom", "OneDrive1", "Sharepoint1", "WebCrawler1" }
+    oneof_schema_13_validator: Optional[Fireflies1] = None
+    actual_instance: Optional[Union[AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1]] = None
+    one_of_schemas: Set[str] = { "AwsS31", "AzureBlob1", "Confluence1", "Discord1", "FileUpload1", "Firecrawl1", "Fireflies1", "Gcs1", "Github1", "GoogleDrive1", "OneDrive1", "Sharepoint1", "WebCrawler1" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -143,49 +110,14 @@ class UpdateSourceConnectorRequest(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Discord1`")
         else:
             match += 1
-        # validate data type: Dropbox
-        if not isinstance(v, Dropbox):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Dropbox`")
-        else:
-            match += 1
-        # validate data type: DropboxOauth
-        if not isinstance(v, DropboxOauth):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DropboxOauth`")
-        else:
-            match += 1
-        # validate data type: DropboxOauthMulti
-        if not isinstance(v, DropboxOauthMulti):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DropboxOauthMulti`")
-        else:
-            match += 1
-        # validate data type: DropboxOauthMultiCustom
-        if not isinstance(v, DropboxOauthMultiCustom):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `DropboxOauthMultiCustom`")
-        else:
-            match += 1
         # validate data type: FileUpload1
         if not isinstance(v, FileUpload1):
             error_messages.append(f"Error! Input type `{type(v)}` is not `FileUpload1`")
         else:
             match += 1
-        # validate data type: GoogleDriveOauth
-        if not isinstance(v, GoogleDriveOauth):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `GoogleDriveOauth`")
-        else:
-            match += 1
         # validate data type: GoogleDrive1
         if not isinstance(v, GoogleDrive1):
             error_messages.append(f"Error! Input type `{type(v)}` is not `GoogleDrive1`")
-        else:
-            match += 1
-        # validate data type: GoogleDriveOauthMulti
-        if not isinstance(v, GoogleDriveOauthMulti):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `GoogleDriveOauthMulti`")
-        else:
-            match += 1
-        # validate data type: GoogleDriveOauthMultiCustom
-        if not isinstance(v, GoogleDriveOauthMultiCustom):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `GoogleDriveOauthMultiCustom`")
         else:
             match += 1
         # validate data type: Firecrawl1
@@ -196,26 +128,6 @@ class UpdateSourceConnectorRequest(BaseModel):
         # validate data type: Gcs1
         if not isinstance(v, Gcs1):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Gcs1`")
-        else:
-            match += 1
-        # validate data type: Intercom
-        if not isinstance(v, Intercom):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Intercom`")
-        else:
-            match += 1
-        # validate data type: Notion
-        if not isinstance(v, Notion):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Notion`")
-        else:
-            match += 1
-        # validate data type: NotionOauthMulti
-        if not isinstance(v, NotionOauthMulti):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `NotionOauthMulti`")
-        else:
-            match += 1
-        # validate data type: NotionOauthMultiCustom
-        if not isinstance(v, NotionOauthMultiCustom):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `NotionOauthMultiCustom`")
         else:
             match += 1
         # validate data type: OneDrive1
@@ -245,10 +157,10 @@ class UpdateSourceConnectorRequest(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, Dropbox, DropboxOauth, DropboxOauthMulti, DropboxOauthMultiCustom, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, GoogleDriveOauth, GoogleDriveOauthMulti, GoogleDriveOauthMultiCustom, Intercom, Notion, NotionOauthMulti, NotionOauthMultiCustom, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, Dropbox, DropboxOauth, DropboxOauthMulti, DropboxOauthMultiCustom, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, GoogleDriveOauth, GoogleDriveOauthMulti, GoogleDriveOauthMultiCustom, Intercom, Notion, NotionOauthMulti, NotionOauthMultiCustom, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -287,57 +199,15 @@ class UpdateSourceConnectorRequest(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into Dropbox
-        try:
-            instance.actual_instance = Dropbox.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into DropboxOauth
-        try:
-            instance.actual_instance = DropboxOauth.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into DropboxOauthMulti
-        try:
-            instance.actual_instance = DropboxOauthMulti.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into DropboxOauthMultiCustom
-        try:
-            instance.actual_instance = DropboxOauthMultiCustom.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
         # deserialize data into FileUpload1
         try:
             instance.actual_instance = FileUpload1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into GoogleDriveOauth
-        try:
-            instance.actual_instance = GoogleDriveOauth.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
         # deserialize data into GoogleDrive1
         try:
             instance.actual_instance = GoogleDrive1.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into GoogleDriveOauthMulti
-        try:
-            instance.actual_instance = GoogleDriveOauthMulti.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into GoogleDriveOauthMultiCustom
-        try:
-            instance.actual_instance = GoogleDriveOauthMultiCustom.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -350,30 +220,6 @@ class UpdateSourceConnectorRequest(BaseModel):
         # deserialize data into Gcs1
         try:
             instance.actual_instance = Gcs1.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into Intercom
-        try:
-            instance.actual_instance = Intercom.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into Notion
-        try:
-            instance.actual_instance = Notion.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into NotionOauthMulti
-        try:
-            instance.actual_instance = NotionOauthMulti.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into NotionOauthMultiCustom
-        try:
-            instance.actual_instance = NotionOauthMultiCustom.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -410,10 +256,10 @@ class UpdateSourceConnectorRequest(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, Dropbox, DropboxOauth, DropboxOauthMulti, DropboxOauthMultiCustom, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, GoogleDriveOauth, GoogleDriveOauthMulti, GoogleDriveOauthMultiCustom, Intercom, Notion, NotionOauthMulti, NotionOauthMultiCustom, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, Dropbox, DropboxOauth, DropboxOauthMulti, DropboxOauthMultiCustom, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, GoogleDriveOauth, GoogleDriveOauthMulti, GoogleDriveOauthMultiCustom, Intercom, Notion, NotionOauthMulti, NotionOauthMultiCustom, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -427,7 +273,7 @@ class UpdateSourceConnectorRequest(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AwsS31, AzureBlob1, Confluence1, Discord1, Dropbox, DropboxOauth, DropboxOauthMulti, DropboxOauthMultiCustom, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, GoogleDriveOauth, GoogleDriveOauthMulti, GoogleDriveOauthMultiCustom, Intercom, Notion, NotionOauthMulti, NotionOauthMultiCustom, OneDrive1, Sharepoint1, WebCrawler1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

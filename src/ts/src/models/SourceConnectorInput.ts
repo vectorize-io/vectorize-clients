@@ -76,6 +76,7 @@ export const SourceConnectorInputTypeEnum = {
     WebCrawler: 'WEB_CRAWLER',
     Github: 'GITHUB',
     Fireflies: 'FIREFLIES',
+    Docusign: 'DOCUSIGN',
     Gmail: 'GMAIL'
 } as const;
 export type SourceConnectorInputTypeEnum = typeof SourceConnectorInputTypeEnum[keyof typeof SourceConnectorInputTypeEnum];

@@ -92,7 +92,7 @@ export interface GMAILConfig {
      */
     endDate?: Date;
     /**
-     * Maximum Results. Enter -1 for all available emails, or specify a limit. . Example: Enter maximum number of threads to retrieve
+     * Maximum Results. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of threads to retrieve (leave blank for no limit)
      * @type {number}
      * @memberof GMAILConfig
      */

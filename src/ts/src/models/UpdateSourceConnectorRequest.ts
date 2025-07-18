@@ -40,34 +40,6 @@ import {
     Discord1FromJSONTyped,
     Discord1ToJSON,
 } from './Discord1';
-import type { Dropbox } from './Dropbox';
-import {
-    instanceOfDropbox,
-    DropboxFromJSON,
-    DropboxFromJSONTyped,
-    DropboxToJSON,
-} from './Dropbox';
-import type { DropboxOauth } from './DropboxOauth';
-import {
-    instanceOfDropboxOauth,
-    DropboxOauthFromJSON,
-    DropboxOauthFromJSONTyped,
-    DropboxOauthToJSON,
-} from './DropboxOauth';
-import type { DropboxOauthMulti } from './DropboxOauthMulti';
-import {
-    instanceOfDropboxOauthMulti,
-    DropboxOauthMultiFromJSON,
-    DropboxOauthMultiFromJSONTyped,
-    DropboxOauthMultiToJSON,
-} from './DropboxOauthMulti';
-import type { DropboxOauthMultiCustom } from './DropboxOauthMultiCustom';
-import {
-    instanceOfDropboxOauthMultiCustom,
-    DropboxOauthMultiCustomFromJSON,
-    DropboxOauthMultiCustomFromJSONTyped,
-    DropboxOauthMultiCustomToJSON,
-} from './DropboxOauthMultiCustom';
 import type { FileUpload1 } from './FileUpload1';
 import {
     instanceOfFileUpload1,
@@ -110,55 +82,6 @@ import {
     GoogleDrive1FromJSONTyped,
     GoogleDrive1ToJSON,
 } from './GoogleDrive1';
-import type { GoogleDriveOauth } from './GoogleDriveOauth';
-import {
-    instanceOfGoogleDriveOauth,
-    GoogleDriveOauthFromJSON,
-    GoogleDriveOauthFromJSONTyped,
-    GoogleDriveOauthToJSON,
-} from './GoogleDriveOauth';
-import type { GoogleDriveOauthMulti } from './GoogleDriveOauthMulti';
-import {
-    instanceOfGoogleDriveOauthMulti,
-    GoogleDriveOauthMultiFromJSON,
-    GoogleDriveOauthMultiFromJSONTyped,
-    GoogleDriveOauthMultiToJSON,
-} from './GoogleDriveOauthMulti';
-import type { GoogleDriveOauthMultiCustom } from './GoogleDriveOauthMultiCustom';
-import {
-    instanceOfGoogleDriveOauthMultiCustom,
-    GoogleDriveOauthMultiCustomFromJSON,
-    GoogleDriveOauthMultiCustomFromJSONTyped,
-    GoogleDriveOauthMultiCustomToJSON,
-} from './GoogleDriveOauthMultiCustom';
-import type { Intercom } from './Intercom';
-import {
-    instanceOfIntercom,
-    IntercomFromJSON,
-    IntercomFromJSONTyped,
-    IntercomToJSON,
-} from './Intercom';
-import type { Notion } from './Notion';
-import {
-    instanceOfNotion,
-    NotionFromJSON,
-    NotionFromJSONTyped,
-    NotionToJSON,
-} from './Notion';
-import type { NotionOauthMulti } from './NotionOauthMulti';
-import {
-    instanceOfNotionOauthMulti,
-    NotionOauthMultiFromJSON,
-    NotionOauthMultiFromJSONTyped,
-    NotionOauthMultiToJSON,
-} from './NotionOauthMulti';
-import type { NotionOauthMultiCustom } from './NotionOauthMultiCustom';
-import {
-    instanceOfNotionOauthMultiCustom,
-    NotionOauthMultiCustomFromJSON,
-    NotionOauthMultiCustomFromJSONTyped,
-    NotionOauthMultiCustomToJSON,
-} from './NotionOauthMultiCustom';
 import type { OneDrive1 } from './OneDrive1';
 import {
     instanceOfOneDrive1,
@@ -186,7 +109,7 @@ import {
  * 
  * @export
  */
-export type UpdateSourceConnectorRequest = AwsS31 | AzureBlob1 | Confluence1 | Discord1 | Dropbox | DropboxOauth | DropboxOauthMulti | DropboxOauthMultiCustom | FileUpload1 | Firecrawl1 | Fireflies1 | Gcs1 | Github1 | GoogleDrive1 | GoogleDriveOauth | GoogleDriveOauthMulti | GoogleDriveOauthMultiCustom | Intercom | Notion | NotionOauthMulti | NotionOauthMultiCustom | OneDrive1 | Sharepoint1 | WebCrawler1;
+export type UpdateSourceConnectorRequest = AwsS31 | AzureBlob1 | Confluence1 | Discord1 | FileUpload1 | Firecrawl1 | Fireflies1 | Gcs1 | Github1 | GoogleDrive1 | OneDrive1 | Sharepoint1 | WebCrawler1;
 
 export function UpdateSourceConnectorRequestFromJSON(json: any): UpdateSourceConnectorRequest {
     return UpdateSourceConnectorRequestFromJSONTyped(json, false);
@@ -211,18 +134,6 @@ export function UpdateSourceConnectorRequestFromJSONTyped(json: any, ignoreDiscr
     if (instanceOfDiscord1(json)) {
         return Discord1FromJSONTyped(json, true);
     }
-    if (instanceOfDropbox(json)) {
-        return DropboxFromJSONTyped(json, true);
-    }
-    if (instanceOfDropboxOauth(json)) {
-        return DropboxOauthFromJSONTyped(json, true);
-    }
-    if (instanceOfDropboxOauthMulti(json)) {
-        return DropboxOauthMultiFromJSONTyped(json, true);
-    }
-    if (instanceOfDropboxOauthMultiCustom(json)) {
-        return DropboxOauthMultiCustomFromJSONTyped(json, true);
-    }
     if (instanceOfFileUpload1(json)) {
         return FileUpload1FromJSONTyped(json, true);
     }
@@ -240,27 +151,6 @@ export function UpdateSourceConnectorRequestFromJSONTyped(json: any, ignoreDiscr
     }
     if (instanceOfGoogleDrive1(json)) {
         return GoogleDrive1FromJSONTyped(json, true);
-    }
-    if (instanceOfGoogleDriveOauth(json)) {
-        return GoogleDriveOauthFromJSONTyped(json, true);
-    }
-    if (instanceOfGoogleDriveOauthMulti(json)) {
-        return GoogleDriveOauthMultiFromJSONTyped(json, true);
-    }
-    if (instanceOfGoogleDriveOauthMultiCustom(json)) {
-        return GoogleDriveOauthMultiCustomFromJSONTyped(json, true);
-    }
-    if (instanceOfIntercom(json)) {
-        return IntercomFromJSONTyped(json, true);
-    }
-    if (instanceOfNotion(json)) {
-        return NotionFromJSONTyped(json, true);
-    }
-    if (instanceOfNotionOauthMulti(json)) {
-        return NotionOauthMultiFromJSONTyped(json, true);
-    }
-    if (instanceOfNotionOauthMultiCustom(json)) {
-        return NotionOauthMultiCustomFromJSONTyped(json, true);
     }
     if (instanceOfOneDrive1(json)) {
         return OneDrive1FromJSONTyped(json, true);
@@ -298,18 +188,6 @@ export function UpdateSourceConnectorRequestToJSONTyped(value?: UpdateSourceConn
     if (instanceOfDiscord1(value)) {
         return Discord1ToJSON(value as Discord1);
     }
-    if (instanceOfDropbox(value)) {
-        return DropboxToJSON(value as Dropbox);
-    }
-    if (instanceOfDropboxOauth(value)) {
-        return DropboxOauthToJSON(value as DropboxOauth);
-    }
-    if (instanceOfDropboxOauthMulti(value)) {
-        return DropboxOauthMultiToJSON(value as DropboxOauthMulti);
-    }
-    if (instanceOfDropboxOauthMultiCustom(value)) {
-        return DropboxOauthMultiCustomToJSON(value as DropboxOauthMultiCustom);
-    }
     if (instanceOfFileUpload1(value)) {
         return FileUpload1ToJSON(value as FileUpload1);
     }
@@ -327,27 +205,6 @@ export function UpdateSourceConnectorRequestToJSONTyped(value?: UpdateSourceConn
     }
     if (instanceOfGoogleDrive1(value)) {
         return GoogleDrive1ToJSON(value as GoogleDrive1);
-    }
-    if (instanceOfGoogleDriveOauth(value)) {
-        return GoogleDriveOauthToJSON(value as GoogleDriveOauth);
-    }
-    if (instanceOfGoogleDriveOauthMulti(value)) {
-        return GoogleDriveOauthMultiToJSON(value as GoogleDriveOauthMulti);
-    }
-    if (instanceOfGoogleDriveOauthMultiCustom(value)) {
-        return GoogleDriveOauthMultiCustomToJSON(value as GoogleDriveOauthMultiCustom);
-    }
-    if (instanceOfIntercom(value)) {
-        return IntercomToJSON(value as Intercom);
-    }
-    if (instanceOfNotion(value)) {
-        return NotionToJSON(value as Notion);
-    }
-    if (instanceOfNotionOauthMulti(value)) {
-        return NotionOauthMultiToJSON(value as NotionOauthMulti);
-    }
-    if (instanceOfNotionOauthMultiCustom(value)) {
-        return NotionOauthMultiCustomToJSON(value as NotionOauthMultiCustom);
     }
     if (instanceOfOneDrive1(value)) {
         return OneDrive1ToJSON(value as OneDrive1);

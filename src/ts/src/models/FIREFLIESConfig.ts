@@ -56,7 +56,7 @@ export interface FIREFLIESConfig {
      */
     participantFilter?: string;
     /**
-     * Max Meetings. Enter -1 for all available meetings, or specify a limit. Example: Enter maximum number of meetings to retrieve. (-1 for all)
+     * Max Meetings. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of meetings to retrieve (leave blank for no limit)
      * @type {number}
      * @memberof FIREFLIESConfig
      */

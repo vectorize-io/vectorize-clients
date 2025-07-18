@@ -34,7 +34,7 @@ class GITHUBConfig(BaseModel):
     include_issues: StrictBool = Field(description="Include Issues", alias="include-issues")
     issue_status: StrictStr = Field(description="Issue Status", alias="issue-status")
     issue_labels: Optional[List[StrictStr]] = Field(default=None, description="Issue Labels. Example: Optionally filter by label. E.g. bug", alias="issue-labels")
-    max_items: Union[StrictFloat, StrictInt] = Field(description="Max Items. Example: Enter maximum number of items to fetch", alias="max-items")
+    max_items: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Max Items. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of items to fetch (leave blank for no limit)", alias="max-items")
     created_after: Optional[date] = Field(default=None, description="Created After. Filter for items created after this date. Example: Enter a date: Example 2012-12-31", alias="created-after")
     __properties: ClassVar[List[str]] = ["repositories", "include-pull-requests", "pull-request-status", "pull-request-labels", "include-issues", "issue-status", "issue-labels", "max-items", "created-after"]
 
@@ -110,7 +110,7 @@ class GITHUBConfig(BaseModel):
             "include-issues": obj.get("include-issues") if obj.get("include-issues") is not None else True,
             "issue-status": obj.get("issue-status") if obj.get("issue-status") is not None else 'all',
             "issue-labels": obj.get("issue-labels"),
-            "max-items": obj.get("max-items") if obj.get("max-items") is not None else 1000,
+            "max-items": obj.get("max-items"),
             "created-after": obj.get("created-after")
         })
         return _obj

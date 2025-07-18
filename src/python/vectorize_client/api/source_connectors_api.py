@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictStr
+from typing import Optional
 from vectorize_client.models.add_user_from_source_connector_response import AddUserFromSourceConnectorResponse
 from vectorize_client.models.add_user_to_source_connector_request import AddUserToSourceConnectorRequest
 from vectorize_client.models.create_source_connector_request import CreateSourceConnectorRequest
@@ -373,6 +374,7 @@ class SourceConnectorsApi:
         self,
         organization_id: StrictStr,
         create_source_connector_request: CreateSourceConnectorRequest,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -394,6 +396,8 @@ class SourceConnectorsApi:
         :type organization_id: str
         :param create_source_connector_request: (required)
         :type create_source_connector_request: CreateSourceConnectorRequest
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -419,6 +423,7 @@ class SourceConnectorsApi:
         _param = self._create_source_connector_serialize(
             organization_id=organization_id,
             create_source_connector_request=create_source_connector_request,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -449,6 +454,7 @@ class SourceConnectorsApi:
         self,
         organization_id: StrictStr,
         create_source_connector_request: CreateSourceConnectorRequest,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -470,6 +476,8 @@ class SourceConnectorsApi:
         :type organization_id: str
         :param create_source_connector_request: (required)
         :type create_source_connector_request: CreateSourceConnectorRequest
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -495,6 +503,7 @@ class SourceConnectorsApi:
         _param = self._create_source_connector_serialize(
             organization_id=organization_id,
             create_source_connector_request=create_source_connector_request,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -525,6 +534,7 @@ class SourceConnectorsApi:
         self,
         organization_id: StrictStr,
         create_source_connector_request: CreateSourceConnectorRequest,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -546,6 +556,8 @@ class SourceConnectorsApi:
         :type organization_id: str
         :param create_source_connector_request: (required)
         :type create_source_connector_request: CreateSourceConnectorRequest
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -571,6 +583,7 @@ class SourceConnectorsApi:
         _param = self._create_source_connector_serialize(
             organization_id=organization_id,
             create_source_connector_request=create_source_connector_request,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -596,6 +609,7 @@ class SourceConnectorsApi:
         self,
         organization_id,
         create_source_connector_request,
+        workspace_id,
         _request_auth,
         _content_type,
         _headers,
@@ -620,6 +634,10 @@ class SourceConnectorsApi:
         if organization_id is not None:
             _path_params['organizationId'] = organization_id
         # process the query parameters
+        if workspace_id is not None:
+            
+            _query_params.append(('workspaceId', workspace_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -1577,6 +1595,7 @@ class SourceConnectorsApi:
     def get_source_connectors(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1596,6 +1615,8 @@ class SourceConnectorsApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1620,6 +1641,7 @@ class SourceConnectorsApi:
 
         _param = self._get_source_connectors_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1649,6 +1671,7 @@ class SourceConnectorsApi:
     def get_source_connectors_with_http_info(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1668,6 +1691,8 @@ class SourceConnectorsApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1692,6 +1717,7 @@ class SourceConnectorsApi:
 
         _param = self._get_source_connectors_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1721,6 +1747,7 @@ class SourceConnectorsApi:
     def get_source_connectors_without_preload_content(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1740,6 +1767,8 @@ class SourceConnectorsApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1764,6 +1793,7 @@ class SourceConnectorsApi:
 
         _param = self._get_source_connectors_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1788,6 +1818,7 @@ class SourceConnectorsApi:
     def _get_source_connectors_serialize(
         self,
         organization_id,
+        workspace_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1812,6 +1843,10 @@ class SourceConnectorsApi:
         if organization_id is not None:
             _path_params['organizationId'] = organization_id
         # process the query parameters
+        if workspace_id is not None:
+            
+            _query_params.append(('workspaceId', workspace_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

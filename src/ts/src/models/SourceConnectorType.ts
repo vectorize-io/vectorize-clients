@@ -42,6 +42,7 @@ export const SourceConnectorType = {
     WebCrawler: 'WEB_CRAWLER',
     Github: 'GITHUB',
     Fireflies: 'FIREFLIES',
+    Docusign: 'DOCUSIGN',
     Gmail: 'GMAIL'
 } as const;
 export type SourceConnectorType = typeof SourceConnectorType[keyof typeof SourceConnectorType];

@@ -46,6 +46,7 @@ import {
 export interface CreateDestinationConnectorOperationRequest {
     organizationId: string;
     createDestinationConnectorRequest: CreateDestinationConnectorRequest;
+    workspaceId?: string;
 }
 
 export interface DeleteDestinationConnectorRequest {
@@ -60,6 +61,7 @@ export interface GetDestinationConnectorRequest {
 
 export interface GetDestinationConnectorsRequest {
     organizationId: string;
+    workspaceId?: string;
 }
 
 export interface UpdateDestinationConnectorOperationRequest {
@@ -93,6 +95,10 @@ export class DestinationConnectorsApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -239,6 +245,10 @@ export class DestinationConnectorsApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

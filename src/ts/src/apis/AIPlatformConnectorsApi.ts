@@ -46,6 +46,7 @@ import {
 export interface CreateAIPlatformConnectorOperationRequest {
     organizationId: string;
     createAIPlatformConnectorRequest: CreateAIPlatformConnectorRequest;
+    workspaceId?: string;
 }
 
 export interface DeleteAIPlatformConnectorRequest {
@@ -60,6 +61,7 @@ export interface GetAIPlatformConnectorRequest {
 
 export interface GetAIPlatformConnectorsRequest {
     organizationId: string;
+    workspaceId?: string;
 }
 
 export interface UpdateAIPlatformConnectorOperationRequest {
@@ -93,6 +95,10 @@ export class AIPlatformConnectorsApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -239,6 +245,10 @@ export class AIPlatformConnectorsApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

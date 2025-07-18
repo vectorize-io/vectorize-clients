@@ -40,7 +40,7 @@ class GMAILConfig(BaseModel):
     subject: Optional[StrictStr] = Field(default=None, description="Subject Filter. Include emails with these keywords in the subject line. Example: Add subject keywords")
     start_date: Optional[date] = Field(default=None, description="Start Date. Only include emails sent after this date (exclusive). Format: YYYY-MM-DD.. Example: e.g., 2024-01-01", alias="start-date")
     end_date: Optional[date] = Field(default=None, description="End Date. Only include emails sent before this date (exclusive). Format: YYYY-MM-DD.. Example: e.g., 2024-01-31", alias="end-date")
-    max_results: Optional[Union[StrictFloat, StrictInt]] = Field(default=-1, description="Maximum Results. Enter -1 for all available emails, or specify a limit. . Example: Enter maximum number of threads to retrieve", alias="max-results")
+    max_results: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Maximum Results. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of threads to retrieve (leave blank for no limit)", alias="max-results")
     messages_to_fetch: Optional[List[StrictStr]] = Field(default=None, description="Messages to Fetch. Select which categories of messages to include in the import.", alias="messages-to-fetch")
     label_ids: Optional[StrictStr] = Field(default=None, description="Label Filters. Include emails with these labels. Example: e.g., INBOX, IMPORTANT, CATEGORY_SOCIAL", alias="label-ids")
     __properties: ClassVar[List[str]] = ["from-filter-type", "to-filter-type", "cc-filter-type", "subject-filter-type", "label-filter-type", "from", "to", "cc", "include-attachments", "subject", "start-date", "end-date", "max-results", "messages-to-fetch", "label-ids"]
@@ -149,7 +149,7 @@ class GMAILConfig(BaseModel):
             "subject": obj.get("subject"),
             "start-date": obj.get("start-date"),
             "end-date": obj.get("end-date"),
-            "max-results": obj.get("max-results") if obj.get("max-results") is not None else -1,
+            "max-results": obj.get("max-results"),
             "messages-to-fetch": obj.get("messages-to-fetch"),
             "label-ids": obj.get("label-ids")
         })

@@ -56,6 +56,7 @@ class PipelinesApi:
         self,
         organization_id: StrictStr,
         pipeline_configuration_schema: PipelineConfigurationSchema,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -77,6 +78,8 @@ class PipelinesApi:
         :type organization_id: str
         :param pipeline_configuration_schema: (required)
         :type pipeline_configuration_schema: PipelineConfigurationSchema
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -102,6 +105,7 @@ class PipelinesApi:
         _param = self._create_pipeline_serialize(
             organization_id=organization_id,
             pipeline_configuration_schema=pipeline_configuration_schema,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -132,6 +136,7 @@ class PipelinesApi:
         self,
         organization_id: StrictStr,
         pipeline_configuration_schema: PipelineConfigurationSchema,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -153,6 +158,8 @@ class PipelinesApi:
         :type organization_id: str
         :param pipeline_configuration_schema: (required)
         :type pipeline_configuration_schema: PipelineConfigurationSchema
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -178,6 +185,7 @@ class PipelinesApi:
         _param = self._create_pipeline_serialize(
             organization_id=organization_id,
             pipeline_configuration_schema=pipeline_configuration_schema,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -208,6 +216,7 @@ class PipelinesApi:
         self,
         organization_id: StrictStr,
         pipeline_configuration_schema: PipelineConfigurationSchema,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -229,6 +238,8 @@ class PipelinesApi:
         :type organization_id: str
         :param pipeline_configuration_schema: (required)
         :type pipeline_configuration_schema: PipelineConfigurationSchema
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -254,6 +265,7 @@ class PipelinesApi:
         _param = self._create_pipeline_serialize(
             organization_id=organization_id,
             pipeline_configuration_schema=pipeline_configuration_schema,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -279,6 +291,7 @@ class PipelinesApi:
         self,
         organization_id,
         pipeline_configuration_schema,
+        workspace_id,
         _request_auth,
         _content_type,
         _headers,
@@ -303,6 +316,10 @@ class PipelinesApi:
         if organization_id is not None:
             _path_params['organizationId'] = organization_id
         # process the query parameters
+        if workspace_id is not None:
+            
+            _query_params.append(('workspaceId', workspace_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -1846,6 +1863,7 @@ class PipelinesApi:
     def get_pipelines(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1865,6 +1883,8 @@ class PipelinesApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1889,6 +1909,7 @@ class PipelinesApi:
 
         _param = self._get_pipelines_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1918,6 +1939,7 @@ class PipelinesApi:
     def get_pipelines_with_http_info(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1937,6 +1959,8 @@ class PipelinesApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1961,6 +1985,7 @@ class PipelinesApi:
 
         _param = self._get_pipelines_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1990,6 +2015,7 @@ class PipelinesApi:
     def get_pipelines_without_preload_content(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2009,6 +2035,8 @@ class PipelinesApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2033,6 +2061,7 @@ class PipelinesApi:
 
         _param = self._get_pipelines_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2057,6 +2086,7 @@ class PipelinesApi:
     def _get_pipelines_serialize(
         self,
         organization_id,
+        workspace_id,
         _request_auth,
         _content_type,
         _headers,
@@ -2081,6 +2111,10 @@ class PipelinesApi:
         if organization_id is not None:
             _path_params['organizationId'] = organization_id
         # process the query parameters
+        if workspace_id is not None:
+            
+            _query_params.append(('workspaceId', workspace_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

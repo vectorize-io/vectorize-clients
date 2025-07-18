@@ -67,6 +67,7 @@ import {
 export interface CreatePipelineRequest {
     organizationId: string;
     pipelineConfigurationSchema: PipelineConfigurationSchema;
+    workspaceId?: string;
 }
 
 export interface DeletePipelineRequest {
@@ -98,6 +99,7 @@ export interface GetPipelineMetricsRequest {
 
 export interface GetPipelinesRequest {
     organizationId: string;
+    workspaceId?: string;
 }
 
 export interface RetrieveDocumentsOperationRequest {
@@ -147,6 +149,10 @@ export class PipelinesApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -454,6 +460,10 @@ export class PipelinesApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

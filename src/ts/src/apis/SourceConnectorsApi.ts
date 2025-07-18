@@ -70,6 +70,7 @@ export interface AddUserToSourceConnectorOperationRequest {
 export interface CreateSourceConnectorOperationRequest {
     organizationId: string;
     createSourceConnectorRequest: CreateSourceConnectorRequest;
+    workspaceId?: string;
 }
 
 export interface DeleteSourceConnectorRequest {
@@ -90,6 +91,7 @@ export interface GetSourceConnectorRequest {
 
 export interface GetSourceConnectorsRequest {
     organizationId: string;
+    workspaceId?: string;
 }
 
 export interface UpdateSourceConnectorOperationRequest {
@@ -189,6 +191,10 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -395,6 +401,10 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

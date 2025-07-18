@@ -8,7 +8,7 @@
       "name": "Vectorize",
       "url": "https://vectorize.io"
     },
-    "x-release-date": "2025-07-10"
+    "x-release-date": "2025-07-16"
   },
   "servers": [
     {
@@ -75,6 +75,7 @@
           "WEB_CRAWLER",
           "GITHUB",
           "FIREFLIES",
+          "DOCUSIGN",
           "GMAIL"
         ]
       },
@@ -1624,54 +1625,6 @@
           },
           {
             "type": "object",
-            "title": "Dropbox",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/DROPBOXAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
-          },
-          {
-            "type": "object",
-            "title": "DropboxOauth",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/DROPBOX_OAUTHAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
-          },
-          {
-            "type": "object",
-            "title": "DropboxOauthMulti",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/DROPBOX_OAUTH_MULTIAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
-          },
-          {
-            "type": "object",
-            "title": "DropboxOauthMultiCustom",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/DROPBOX_OAUTH_MULTI_CUSTOMAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
-          },
-          {
-            "type": "object",
             "title": "FileUpload",
             "properties": {
               "config": {
@@ -1679,18 +1632,6 @@
               }
             },
             "example": {}
-          },
-          {
-            "type": "object",
-            "title": "GoogleDriveOauth",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTHAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
           },
           {
             "type": "object",
@@ -1704,30 +1645,6 @@
               "config": {
                 "service-account-json": "Enter the JSON key file for the service account"
               }
-            }
-          },
-          {
-            "type": "object",
-            "title": "GoogleDriveOauthMulti",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTH_MULTIAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
-          },
-          {
-            "type": "object",
-            "title": "GoogleDriveOauthMultiCustom",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/GOOGLE_DRIVE_OAUTH_MULTI_CUSTOMAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
             }
           },
           {
@@ -1757,54 +1674,6 @@
                 "service-account-json": "Enter the JSON key file for the service account",
                 "bucket-name": "Enter bucket name"
               }
-            }
-          },
-          {
-            "type": "object",
-            "title": "Intercom",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/INTERCOMAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
-          },
-          {
-            "type": "object",
-            "title": "Notion",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/NOTIONAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
-          },
-          {
-            "type": "object",
-            "title": "NotionOauthMulti",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/NOTION_OAUTH_MULTIAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
-            }
-          },
-          {
-            "type": "object",
-            "title": "NotionOauthMultiCustom",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/NOTION_OAUTH_MULTI_CUSTOMAuthConfig"
-              }
-            },
-            "example": {
-              "config": {}
             }
           },
           {
@@ -3671,21 +3540,6 @@
           }
         }
       },
-      "DROPBOXAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Dropbox (Legacy)",
-        "properties": {
-          "refresh-token": {
-            "type": "string",
-            "format": "password",
-            "description": "Connect Dropbox to Vectorize. Example: Authorize",
-            "pattern": "^\\S.*\\S$|^\\S$"
-          }
-        },
-        "required": [
-          "refresh-token"
-        ]
-      },
       "DROPBOXConfig": {
         "type": "object",
         "description": "Configuration for Dropbox (Legacy) connector",
@@ -3699,87 +3553,6 @@
             "pattern": "^\\/.*$"
           }
         }
-      },
-      "DROPBOX_OAUTHAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Dropbox OAuth",
-        "properties": {
-          "authorized-user": {
-            "type": "string",
-            "description": "Authorized User"
-          },
-          "selection-details": {
-            "type": "string",
-            "description": "Connect Dropbox to Vectorize. Example: Authorize"
-          },
-          "editedUsers": {
-            "type": "object",
-            "default": {}
-          },
-          "reconnectUsers": {
-            "type": "object",
-            "default": {}
-          }
-        },
-        "required": [
-          "selection-details"
-        ]
-      },
-      "DROPBOX_OAUTH_MULTIAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Dropbox Multi-User (Vectorize)",
-        "properties": {
-          "authorized-users": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Authorized Users"
-          },
-          "editedUsers": {
-            "type": "object",
-            "default": {}
-          },
-          "deletedUsers": {
-            "type": "object",
-            "default": {}
-          }
-        }
-      },
-      "DROPBOX_OAUTH_MULTI_CUSTOMAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Dropbox Multi-User (White Label)",
-        "properties": {
-          "app-key": {
-            "type": "string",
-            "format": "password",
-            "description": "Dropbox App Key. Example: Enter App Key"
-          },
-          "app-secret": {
-            "type": "string",
-            "format": "password",
-            "description": "Dropbox App Secret. Example: Enter App Secret"
-          },
-          "authorized-users": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Authorized Users"
-          },
-          "editedUsers": {
-            "type": "object",
-            "default": {}
-          },
-          "deletedUsers": {
-            "type": "object",
-            "default": {}
-          }
-        },
-        "required": [
-          "app-key",
-          "app-secret"
-        ]
       },
       "FILE_UPLOADAuthConfig": {
         "type": "object",
@@ -3802,31 +3575,6 @@
         "type": "object",
         "description": "Create configuration for File Upload",
         "properties": {}
-      },
-      "GOOGLE_DRIVE_OAUTHAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Google Drive OAuth",
-        "properties": {
-          "authorized-user": {
-            "type": "string",
-            "description": "Authorized User"
-          },
-          "selection-details": {
-            "type": "string",
-            "description": "Connect Google Drive to Vectorize. Example: Authorize"
-          },
-          "editedUsers": {
-            "type": "object",
-            "default": {}
-          },
-          "reconnectUsers": {
-            "type": "object",
-            "default": {}
-          }
-        },
-        "required": [
-          "selection-details"
-        ]
       },
       "GOOGLE_DRIVE_OAUTHConfig": {
         "type": "object",
@@ -4000,27 +3748,6 @@
           "file-extensions"
         ]
       },
-      "GOOGLE_DRIVE_OAUTH_MULTIAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Google Drive Multi-User (Vectorize)",
-        "properties": {
-          "authorized-users": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Authorized Users"
-          },
-          "editedUsers": {
-            "type": "object",
-            "default": {}
-          },
-          "deletedUsers": {
-            "type": "object",
-            "default": {}
-          }
-        }
-      },
       "GOOGLE_DRIVE_OAUTH_MULTIConfig": {
         "type": "object",
         "description": "Configuration for Google Drive Multi-User (Vectorize) connector",
@@ -4094,41 +3821,6 @@
         },
         "required": [
           "file-extensions"
-        ]
-      },
-      "GOOGLE_DRIVE_OAUTH_MULTI_CUSTOMAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Google Drive Multi-User (White Label)",
-        "properties": {
-          "oauth2-client-id": {
-            "type": "string",
-            "format": "password",
-            "description": "OAuth2 Client Id. Example: Enter Client Id"
-          },
-          "oauth2-client-secret": {
-            "type": "string",
-            "format": "password",
-            "description": "OAuth2 Client Secret. Example: Enter Client Secret"
-          },
-          "authorized-users": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Authorized Users"
-          },
-          "editedUsers": {
-            "type": "object",
-            "default": {}
-          },
-          "deletedUsers": {
-            "type": "object",
-            "default": {}
-          }
-        },
-        "required": [
-          "oauth2-client-id",
-          "oauth2-client-secret"
         ]
       },
       "GOOGLE_DRIVE_OAUTH_MULTI_CUSTOMConfig": {
@@ -4363,20 +4055,6 @@
           "idle-time"
         ]
       },
-      "INTERCOMAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Intercom",
-        "properties": {
-          "token": {
-            "type": "string",
-            "format": "password",
-            "description": "Access Token. Example: Authorize Intercom Access"
-          }
-        },
-        "required": [
-          "token"
-        ]
-      },
       "INTERCOMConfig": {
         "type": "object",
         "description": "Configuration for Intercom connector",
@@ -4385,7 +4063,7 @@
             "type": "string",
             "format": "date",
             "description": "Created After. Filter for conversations created after this date. Example: Enter a date: Example 2012-12-31",
-            "default": "2025-07-10"
+            "default": "2025-07-16"
           },
           "updated_at": {
             "type": "string",
@@ -4419,26 +4097,6 @@
           "created_at"
         ]
       },
-      "NOTIONAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Notion",
-        "properties": {
-          "access-token": {
-            "type": "string",
-            "format": "password",
-            "description": "Connect Notion to Vectorize - Note this will effect existing connections. test. Example: Authorize"
-          },
-          "s3id": {
-            "type": "string"
-          },
-          "editedToken": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "access-token"
-        ]
-      },
       "NOTIONConfig": {
         "type": "object",
         "description": "Configuration for Notion connector",
@@ -4470,62 +4128,6 @@
           "database-names",
           "page-ids",
           "page-names"
-        ]
-      },
-      "NOTION_OAUTH_MULTIAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Notion Multi-User (Vectorize)",
-        "properties": {
-          "authorized-users": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Authorized Users. Users who have authorized access to their Notion content"
-          },
-          "editedUsers": {
-            "type": "object",
-            "default": {}
-          },
-          "deletedUsers": {
-            "type": "object",
-            "default": {}
-          }
-        }
-      },
-      "NOTION_OAUTH_MULTI_CUSTOMAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Notion Multi-User (White Label)",
-        "properties": {
-          "client-id": {
-            "type": "string",
-            "format": "password",
-            "description": "Notion Client ID. Example: Enter Client ID"
-          },
-          "client-secret": {
-            "type": "string",
-            "format": "password",
-            "description": "Notion Client Secret. Example: Enter Client Secret"
-          },
-          "authorized-users": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Authorized Users"
-          },
-          "editedUsers": {
-            "type": "object",
-            "default": {}
-          },
-          "deletedUsers": {
-            "type": "object",
-            "default": {}
-          }
-        },
-        "required": [
-          "client-id",
-          "client-secret"
         ]
       },
       "ONE_DRIVEAuthConfig": {
@@ -4873,8 +4475,7 @@
           },
           "max-items": {
             "type": "number",
-            "description": "Max Items. Example: Enter maximum number of items to fetch",
-            "default": 1000
+            "description": "Max Items. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of items to fetch (leave blank for no limit)"
           },
           "created-after": {
             "type": "string",
@@ -4887,8 +4488,7 @@
           "include-pull-requests",
           "pull-request-status",
           "include-issues",
-          "issue-status",
-          "max-items"
+          "issue-status"
         ]
       },
       "FIREFLIESAuthConfig": {
@@ -4914,7 +4514,7 @@
             "type": "string",
             "format": "date",
             "description": "Start Date. Include meetings from this date forward. Example: Enter a date: Example 2023-12-31",
-            "default": "2025-07-10"
+            "default": "2025-07-16"
           },
           "end-date": {
             "type": "string",
@@ -4939,8 +4539,7 @@
           },
           "max-meetings": {
             "type": "number",
-            "description": "Max Meetings. Enter -1 for all available meetings, or specify a limit. Example: Enter maximum number of meetings to retrieve. (-1 for all)",
-            "default": -1
+            "description": "Max Meetings. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of meetings to retrieve (leave blank for no limit)"
           }
         },
         "required": [
@@ -4949,18 +4548,98 @@
           "participant-filter-type"
         ]
       },
-      "GMAILAuthConfig": {
+      "DOCUSIGNConfig": {
         "type": "object",
-        "description": "Authentication configuration for Gmail",
+        "description": "Configuration for DocuSign connector",
         "properties": {
-          "refresh-token": {
+          "envelope-statuses": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "completed",
+                "correct",
+                "created",
+                "declined",
+                "delivered",
+                "sent",
+                "signed",
+                "voided",
+                "all"
+              ]
+            },
+            "description": "Envelope Statuses. Filter envelopes by status",
+            "default": [
+              "all"
+            ],
+            "enum": [
+              "completed",
+              "correct",
+              "created",
+              "declined",
+              "delivered",
+              "sent",
+              "signed",
+              "voided",
+              "all"
+            ]
+          },
+          "from-date": {
             "type": "string",
-            "format": "password",
-            "description": "Connect Gmail to Vectorize. Example: Authorize"
+            "format": "date",
+            "description": "Created From Date. Include envelopes created on or after this date. Example: Enter start date (YYYY-MM-DD)",
+            "default": "2025-07-16"
+          },
+          "to-date": {
+            "type": "string",
+            "format": "date",
+            "description": "Created To Date. Include envelopes that were last updated up to this date. Example: Enter end date (YYYY-MM-DD)"
+          },
+          "folder_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "inbox",
+                "sentitems",
+                "draft",
+                "recyclebin",
+                "awaiting_my_signature",
+                "completed",
+                "out_for_signature",
+                "waiting_for_others",
+                "expiring_soon",
+                "all"
+              ]
+            },
+            "description": "Folder Names. Select which DocuSign folders to include in the import",
+            "default": [
+              "all"
+            ],
+            "enum": [
+              "inbox",
+              "sentitems",
+              "draft",
+              "recyclebin",
+              "awaiting_my_signature",
+              "completed",
+              "out_for_signature",
+              "waiting_for_others",
+              "expiring_soon",
+              "all"
+            ]
+          },
+          "max-documents": {
+            "type": "number",
+            "description": "Max Documents. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of documents to retrieve (leave blank for no limit)"
+          },
+          "search-text": {
+            "type": "string",
+            "description": "Search Text. Filter envelopes containing this text in their content. Example: Enter text to search within envelope content"
           }
         },
         "required": [
-          "refresh-token"
+          "from-date"
         ]
       },
       "GMAILConfig": {
@@ -5023,8 +4702,7 @@
           },
           "max-results": {
             "type": "number",
-            "description": "Maximum Results. Enter -1 for all available emails, or specify a limit. . Example: Enter maximum number of threads to retrieve",
-            "default": -1
+            "description": "Maximum Results. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of threads to retrieve (leave blank for no limit)"
           },
           "messages-to-fetch": {
             "type": "array",
@@ -5664,6 +5342,7 @@
               "WEB_CRAWLER",
               "GITHUB",
               "FIREFLIES",
+              "DOCUSIGN",
               "GMAIL"
             ]
           },
@@ -5722,6 +5401,9 @@
               },
               {
                 "$ref": "#/components/schemas/FIREFLIESConfig"
+              },
+              {
+                "$ref": "#/components/schemas/DOCUSIGNConfig"
               },
               {
                 "$ref": "#/components/schemas/GMAILConfig"
@@ -5868,6 +5550,16 @@
             "required": true,
             "name": "organizationId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
+              "example": "ws_789"
+            },
+            "required": false,
+            "name": "workspaceId",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -5880,12 +5572,12 @@
               "example": {
                 "sourceConnectors": [],
                 "destinationConnector": {
-                  "id": "ae4a7bcb-aaed-41bd-99b3-64c4a673343a",
+                  "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "type": "CAPELLA",
                   "config": {}
                 },
                 "aiPlatformConnector": {
-                  "id": "3b696b69-7060-438d-9c7e-0f6be117367d",
+                  "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "type": "BEDROCK",
                   "config": {
                     "embeddingModel": "VECTORIZE_OPEN_AI_TEXT_EMBEDDING_2",
@@ -6138,6 +5830,16 @@
             "required": true,
             "name": "organizationId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
+              "example": "ws_789"
+            },
+            "required": false,
+            "name": "workspaceId",
+            "in": "query"
           }
         ],
         "responses": {
@@ -6152,7 +5854,7 @@
                   "message": "Operation completed successfully",
                   "data": [
                     {
-                      "id": "25b2a51b-c0cd-4d59-8c30-db344e836f2c",
+                      "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -6406,7 +6108,7 @@
                 "example": {
                   "message": "Operation completed successfully",
                   "data": {
-                    "id": "91bd911a-94de-45a8-854b-ea97df2d7216",
+                    "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                     "name": "My PipelineSummary",
                     "documentCount": 42,
                     "sourceConnectorAuthIds": [],
@@ -6926,7 +6628,7 @@
                   "nextToken": "token_example_123456",
                   "data": [
                     {
-                      "id": "1c2d2b11-9755-4434-90f0-803704032154",
+                      "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -7181,7 +6883,7 @@
                   "message": "Operation completed successfully",
                   "data": [
                     {
-                      "id": "5148840a-b511-4bdc-babc-6b2fa73c5a2e",
+                      "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "name": "Example Item",
                       "type": "example-type",
                       "status": "active"
@@ -8223,7 +7925,7 @@
                   "$ref": "#/components/schemas/StartDeepResearchResponse"
                 },
                 "example": {
-                  "researchId": "a7853c29-5f98-4faa-ad5e-b466e071ea14"
+                  "researchId": "b843c74d-ef33-4138-82aa-6550622b3293"
                 }
               }
             }
@@ -8712,6 +8414,16 @@
             "required": true,
             "name": "organizationId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
+              "example": "ws_789"
+            },
+            "required": false,
+            "name": "workspaceId",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -8736,7 +8448,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedSourceConnector",
-                    "id": "abc458c3-e72a-4397-9328-c0e1fd9a117d"
+                    "id": "b843c74d-ef33-4138-82aa-6550622b3293"
                   }
                 }
               }
@@ -8961,6 +8673,16 @@
             "required": true,
             "name": "organizationId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
+              "example": "ws_789"
+            },
+            "required": false,
+            "name": "workspaceId",
+            "in": "query"
           }
         ],
         "responses": {
@@ -8985,18 +8707,40 @@
                 "example": {
                   "sourceConnectors": [
                     {
-                      "id": "9bbf3fc9-a549-4808-a525-6f2219d2a5bc",
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
                       "type": "AWS_S3",
                       "name": "S3 Documents Bucket",
-                      "createdAt": "2025-07-10T19:29:03.499Z",
-                      "verificationStatus": "verified"
+                      "createdAt": "2024-01-15T10:30:00.000Z",
+                      "verificationStatus": "verified",
+                      "configDoc": {
+                        "access-key": "AKIAIOSFODNN7EXAMPLE",
+                        "secret-key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+                        "bucket-name": "my-documents-bucket",
+                        "file-extensions": [
+                          "pdf",
+                          "docx",
+                          "txt"
+                        ],
+                        "idle-time": 300
+                      },
+                      "createdByEmail": "admin@example.com"
                     },
                     {
-                      "id": "abccbb14-ead6-4e1f-93cb-367c434984fc",
+                      "id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
                       "type": "GOOGLE_DRIVE",
                       "name": "Team Shared Drive",
-                      "createdAt": "2025-07-10T19:29:03.499Z",
-                      "verificationStatus": "verified"
+                      "createdAt": "2024-01-16T09:15:00.000Z",
+                      "verificationStatus": "verified",
+                      "configDoc": {
+                        "folder-id": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+                        "file-extensions": [
+                          "pdf",
+                          "docx",
+                          "txt"
+                        ],
+                        "idle-time": 600
+                      },
+                      "createdByEmail": "user@example.com"
                     }
                   ]
                 }
@@ -9245,13 +8989,13 @@
                   "$ref": "#/components/schemas/SourceConnector"
                 },
                 "example": {
-                  "id": "9f5b95ed-69ac-462d-93c8-d6898ef069aa",
+                  "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "type": "example-type",
                   "name": "My SourceConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "ab55e680-3915-401a-aa46-0c2c26f1874a",
-                  "lastUpdatedById": "dde926ec-7186-4608-affb-0eb4ac01f180",
+                  "createdById": "b843c74d-ef33-4138-82aa-6550622b3293",
+                  "lastUpdatedById": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -9513,13 +9257,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "0f4a7788-ea5b-4ff1-aa24-6258cea5e508",
+                      "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "type": "example-type",
                       "name": "My SourceConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "e368b137-7f81-40e3-824d-d67e7b844c88",
-                      "lastUpdatedById": "867255de-747a-4ae7-872d-d74c838b88c0",
+                      "createdById": "b843c74d-ef33-4138-82aa-6550622b3293",
+                      "lastUpdatedById": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -9997,6 +9741,16 @@
             "required": true,
             "name": "organizationId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
+              "example": "ws_789"
+            },
+            "required": false,
+            "name": "workspaceId",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -10021,7 +9775,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedDestinationConnector",
-                    "id": "828cab7e-5faf-45c6-b59b-4cd8c53542d2"
+                    "id": "b843c74d-ef33-4138-82aa-6550622b3293"
                   }
                 }
               }
@@ -10246,6 +10000,16 @@
             "required": true,
             "name": "organizationId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
+              "example": "ws_789"
+            },
+            "required": false,
+            "name": "workspaceId",
+            "in": "query"
           }
         ],
         "responses": {
@@ -10515,13 +10279,13 @@
                   "$ref": "#/components/schemas/DestinationConnector"
                 },
                 "example": {
-                  "id": "c83e315e-c6e1-4b21-a82b-81ca4526da1e",
+                  "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "type": "example-type",
                   "name": "My DestinationConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "018fd9f4-18aa-4209-a581-8632e5417507",
-                  "lastUpdatedById": "58f2955d-ec6a-402a-b720-5a8520b4a222",
+                  "createdById": "b843c74d-ef33-4138-82aa-6550622b3293",
+                  "lastUpdatedById": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -10783,13 +10547,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "d5b5ff01-e065-409e-b32c-90256543b08c",
+                      "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "type": "example-type",
                       "name": "My DestinationConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "6e46a0aa-1680-4a01-9af6-d10a98ceef57",
-                      "lastUpdatedById": "292140d8-d1d5-4627-829c-a4eed548ba03",
+                      "createdById": "b843c74d-ef33-4138-82aa-6550622b3293",
+                      "lastUpdatedById": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -11267,6 +11031,16 @@
             "required": true,
             "name": "organizationId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
+              "example": "ws_789"
+            },
+            "required": false,
+            "name": "workspaceId",
+            "in": "query"
           }
         ],
         "requestBody": {
@@ -11291,7 +11065,7 @@
                   "message": "Operation completed successfully",
                   "connector": {
                     "name": "My CreatedAIPlatformConnector",
-                    "id": "14695463-d363-4680-9a38-c9a6516cc37e"
+                    "id": "b843c74d-ef33-4138-82aa-6550622b3293"
                   }
                 }
               }
@@ -11516,6 +11290,16 @@
             "required": true,
             "name": "organizationId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
+              "example": "ws_789"
+            },
+            "required": false,
+            "name": "workspaceId",
+            "in": "query"
           }
         ],
         "responses": {
@@ -11785,13 +11569,13 @@
                   "$ref": "#/components/schemas/AIPlatformConnector"
                 },
                 "example": {
-                  "id": "b78bc048-e835-4e37-a2a0-958da1386938",
+                  "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "type": "example-type",
                   "name": "My AIPlatformConnector",
                   "configDoc": {},
                   "createdAt": "example-createdAt",
-                  "createdById": "9a688f77-3d46-4214-b631-8b7603be2739",
-                  "lastUpdatedById": "438b02cb-b855-4ac5-947c-13f1ae09b5aa",
+                  "createdById": "b843c74d-ef33-4138-82aa-6550622b3293",
+                  "lastUpdatedById": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "createdByEmail": "user@example.com",
                   "lastUpdatedByEmail": "user@example.com",
                   "errorMessage": "Operation completed successfully",
@@ -12053,13 +11837,13 @@
                   "message": "Operation completed successfully",
                   "data": {
                     "updatedConnector": {
-                      "id": "b6131428-da01-4571-851c-58d1e6ff7632",
+                      "id": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "type": "example-type",
                       "name": "My AIPlatformConnector",
                       "configDoc": {},
                       "createdAt": "example-createdAt",
-                      "createdById": "0d52c026-0298-4293-832e-f9f2f7c75d20",
-                      "lastUpdatedById": "4f87d5b2-515e-4db9-9e97-1fdf388dd54d",
+                      "createdById": "b843c74d-ef33-4138-82aa-6550622b3293",
+                      "lastUpdatedById": "b843c74d-ef33-4138-82aa-6550622b3293",
                       "createdByEmail": "user@example.com",
                       "lastUpdatedByEmail": "user@example.com",
                       "errorMessage": "Operation completed successfully",
@@ -13313,7 +13097,7 @@
                 "$ref": "#/components/schemas/StartExtractionRequest"
               },
               "example": {
-                "fileId": "b8aa3113-620d-4ad5-8aae-7effeada0c69",
+                "fileId": "b843c74d-ef33-4138-82aa-6550622b3293",
                 "type": "iris",
                 "chunkingStrategy": "markdown",
                 "chunkSize": 20,
@@ -13335,7 +13119,7 @@
                 },
                 "example": {
                   "message": "Operation completed successfully",
-                  "extractionId": "0f7b162f-7ccd-4fdc-a237-7f49707c0df8"
+                  "extractionId": "b843c74d-ef33-4138-82aa-6550622b3293"
                 }
               }
             }
@@ -13842,7 +13626,7 @@
                   "$ref": "#/components/schemas/StartFileUploadResponse"
                 },
                 "example": {
-                  "fileId": "cf9ee18e-d329-43f3-9e0f-737972715f20",
+                  "fileId": "b843c74d-ef33-4138-82aa-6550622b3293",
                   "uploadUrl": "https://api.example.com"
                 }
               }
@@ -14089,7 +13873,7 @@
                 "$ref": "#/components/schemas/AddUserToSourceConnectorRequest"
               },
               "example": {
-                "userId": "1918f9f1-5f9c-43f4-ac5d-e58e043df684",
+                "userId": "b843c74d-ef33-4138-82aa-6550622b3293",
                 "selectedFiles": {},
                 "refreshToken": "refresh_token_example_123456",
                 "accessToken": "access_token_example_123456"
@@ -14350,7 +14134,7 @@
                 "$ref": "#/components/schemas/UpdateUserInSourceConnectorRequest"
               },
               "example": {
-                "userId": "8afb88ca-2a31-47fb-8c62-3d0f2f341e48",
+                "userId": "b843c74d-ef33-4138-82aa-6550622b3293",
                 "selectedFiles": {},
                 "refreshToken": "refresh_token_example_123456",
                 "accessToken": "access_token_example_123456"
@@ -14611,7 +14395,7 @@
                 "$ref": "#/components/schemas/RemoveUserFromSourceConnectorRequest"
               },
               "example": {
-                "userId": "a3efde95-0ff2-4f48-afdc-168b2ffdbf46"
+                "userId": "b843c74d-ef33-4138-82aa-6550622b3293"
               }
             }
           }

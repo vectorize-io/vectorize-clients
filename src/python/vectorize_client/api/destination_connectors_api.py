@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictStr
+from typing import Optional
 from vectorize_client.models.create_destination_connector_request import CreateDestinationConnectorRequest
 from vectorize_client.models.create_destination_connector_response import CreateDestinationConnectorResponse
 from vectorize_client.models.delete_destination_connector_response import DeleteDestinationConnectorResponse
@@ -48,6 +49,7 @@ class DestinationConnectorsApi:
         self,
         organization_id: StrictStr,
         create_destination_connector_request: CreateDestinationConnectorRequest,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -69,6 +71,8 @@ class DestinationConnectorsApi:
         :type organization_id: str
         :param create_destination_connector_request: (required)
         :type create_destination_connector_request: CreateDestinationConnectorRequest
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -94,6 +98,7 @@ class DestinationConnectorsApi:
         _param = self._create_destination_connector_serialize(
             organization_id=organization_id,
             create_destination_connector_request=create_destination_connector_request,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -124,6 +129,7 @@ class DestinationConnectorsApi:
         self,
         organization_id: StrictStr,
         create_destination_connector_request: CreateDestinationConnectorRequest,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -145,6 +151,8 @@ class DestinationConnectorsApi:
         :type organization_id: str
         :param create_destination_connector_request: (required)
         :type create_destination_connector_request: CreateDestinationConnectorRequest
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -170,6 +178,7 @@ class DestinationConnectorsApi:
         _param = self._create_destination_connector_serialize(
             organization_id=organization_id,
             create_destination_connector_request=create_destination_connector_request,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -200,6 +209,7 @@ class DestinationConnectorsApi:
         self,
         organization_id: StrictStr,
         create_destination_connector_request: CreateDestinationConnectorRequest,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -221,6 +231,8 @@ class DestinationConnectorsApi:
         :type organization_id: str
         :param create_destination_connector_request: (required)
         :type create_destination_connector_request: CreateDestinationConnectorRequest
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -246,6 +258,7 @@ class DestinationConnectorsApi:
         _param = self._create_destination_connector_serialize(
             organization_id=organization_id,
             create_destination_connector_request=create_destination_connector_request,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -271,6 +284,7 @@ class DestinationConnectorsApi:
         self,
         organization_id,
         create_destination_connector_request,
+        workspace_id,
         _request_auth,
         _content_type,
         _headers,
@@ -295,6 +309,10 @@ class DestinationConnectorsApi:
         if organization_id is not None:
             _path_params['organizationId'] = organization_id
         # process the query parameters
+        if workspace_id is not None:
+            
+            _query_params.append(('workspaceId', workspace_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -933,6 +951,7 @@ class DestinationConnectorsApi:
     def get_destination_connectors(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -952,6 +971,8 @@ class DestinationConnectorsApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -976,6 +997,7 @@ class DestinationConnectorsApi:
 
         _param = self._get_destination_connectors_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1005,6 +1027,7 @@ class DestinationConnectorsApi:
     def get_destination_connectors_with_http_info(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1024,6 +1047,8 @@ class DestinationConnectorsApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1048,6 +1073,7 @@ class DestinationConnectorsApi:
 
         _param = self._get_destination_connectors_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1077,6 +1103,7 @@ class DestinationConnectorsApi:
     def get_destination_connectors_without_preload_content(
         self,
         organization_id: StrictStr,
+        workspace_id: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1096,6 +1123,8 @@ class DestinationConnectorsApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param workspace_id:
+        :type workspace_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1120,6 +1149,7 @@ class DestinationConnectorsApi:
 
         _param = self._get_destination_connectors_serialize(
             organization_id=organization_id,
+            workspace_id=workspace_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1144,6 +1174,7 @@ class DestinationConnectorsApi:
     def _get_destination_connectors_serialize(
         self,
         organization_id,
+        workspace_id,
         _request_auth,
         _content_type,
         _headers,
@@ -1168,6 +1199,10 @@ class DestinationConnectorsApi:
         if organization_id is not None:
             _path_params['organizationId'] = organization_id
         # process the query parameters
+        if workspace_id is not None:
+            
+            _query_params.append(('workspaceId', workspace_id))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter

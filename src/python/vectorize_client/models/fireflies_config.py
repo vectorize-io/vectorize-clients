@@ -33,7 +33,7 @@ class FIREFLIESConfig(BaseModel):
     title_filter: Optional[StrictStr] = Field(default=None, description="Title Filter. Only include meetings with this text in the title. Example: Enter meeting title", alias="title-filter")
     participant_filter_type: StrictStr = Field(alias="participant-filter-type")
     participant_filter: Optional[StrictStr] = Field(default=None, description="Participant's Email Filter. Include meetings where these participants were invited. Example: Enter participant email", alias="participant-filter")
-    max_meetings: Optional[Union[StrictFloat, StrictInt]] = Field(default=-1, description="Max Meetings. Enter -1 for all available meetings, or specify a limit. Example: Enter maximum number of meetings to retrieve. (-1 for all)", alias="max-meetings")
+    max_meetings: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Max Meetings. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of meetings to retrieve (leave blank for no limit)", alias="max-meetings")
     __properties: ClassVar[List[str]] = ["start-date", "end-date", "title-filter-type", "title-filter", "participant-filter-type", "participant-filter", "max-meetings"]
 
     model_config = ConfigDict(
@@ -93,7 +93,7 @@ class FIREFLIESConfig(BaseModel):
             "title-filter": obj.get("title-filter"),
             "participant-filter-type": obj.get("participant-filter-type") if obj.get("participant-filter-type") is not None else 'AND',
             "participant-filter": obj.get("participant-filter"),
-            "max-meetings": obj.get("max-meetings") if obj.get("max-meetings") is not None else -1
+            "max-meetings": obj.get("max-meetings")
         })
         return _obj
 

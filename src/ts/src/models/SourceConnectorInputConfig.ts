@@ -40,6 +40,13 @@ import {
     DISCORDConfigFromJSONTyped,
     DISCORDConfigToJSON,
 } from './DISCORDConfig';
+import type { DOCUSIGNConfig } from './DOCUSIGNConfig';
+import {
+    instanceOfDOCUSIGNConfig,
+    DOCUSIGNConfigFromJSON,
+    DOCUSIGNConfigFromJSONTyped,
+    DOCUSIGNConfigToJSON,
+} from './DOCUSIGNConfig';
 import type { DROPBOXConfig } from './DROPBOXConfig';
 import {
     instanceOfDROPBOXConfig,
@@ -151,7 +158,7 @@ import {
  * Configuration specific to the connector type
  * @export
  */
-export type SourceConnectorInputConfig = AWSS3Config | AZUREBLOBConfig | CONFLUENCEConfig | DISCORDConfig | DROPBOXConfig | FIRECRAWLConfig | FIREFLIESConfig | GCSConfig | GITHUBConfig | GMAILConfig | GOOGLEDRIVEConfig | GOOGLEDRIVEOAUTHConfig | GOOGLEDRIVEOAUTHMULTICUSTOMConfig | GOOGLEDRIVEOAUTHMULTIConfig | INTERCOMConfig | NOTIONConfig | ONEDRIVEConfig | SHAREPOINTConfig | WEBCRAWLERConfig;
+export type SourceConnectorInputConfig = AWSS3Config | AZUREBLOBConfig | CONFLUENCEConfig | DISCORDConfig | DOCUSIGNConfig | DROPBOXConfig | FIRECRAWLConfig | FIREFLIESConfig | GCSConfig | GITHUBConfig | GMAILConfig | GOOGLEDRIVEConfig | GOOGLEDRIVEOAUTHConfig | GOOGLEDRIVEOAUTHMULTICUSTOMConfig | GOOGLEDRIVEOAUTHMULTIConfig | INTERCOMConfig | NOTIONConfig | ONEDRIVEConfig | SHAREPOINTConfig | WEBCRAWLERConfig;
 
 export function SourceConnectorInputConfigFromJSON(json: any): SourceConnectorInputConfig {
     return SourceConnectorInputConfigFromJSONTyped(json, false);
@@ -175,6 +182,9 @@ export function SourceConnectorInputConfigFromJSONTyped(json: any, ignoreDiscrim
     }
     if (instanceOfDISCORDConfig(json)) {
         return DISCORDConfigFromJSONTyped(json, true);
+    }
+    if (instanceOfDOCUSIGNConfig(json)) {
+        return DOCUSIGNConfigFromJSONTyped(json, true);
     }
     if (instanceOfDROPBOXConfig(json)) {
         return DROPBOXConfigFromJSONTyped(json, true);
@@ -247,6 +257,9 @@ export function SourceConnectorInputConfigToJSONTyped(value?: SourceConnectorInp
     }
     if (instanceOfDISCORDConfig(value)) {
         return DISCORDConfigToJSON(value as DISCORDConfig);
+    }
+    if (instanceOfDOCUSIGNConfig(value)) {
+        return DOCUSIGNConfigToJSON(value as DOCUSIGNConfig);
     }
     if (instanceOfDROPBOXConfig(value)) {
         return DROPBOXConfigToJSON(value as DROPBOXConfig);

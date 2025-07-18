@@ -50,6 +50,7 @@ class SourceConnectorType(str, Enum):
     WEB_CRAWLER = 'WEB_CRAWLER'
     GITHUB = 'GITHUB'
     FIREFLIES = 'FIREFLIES'
+    DOCUSIGN = 'DOCUSIGN'
     GMAIL = 'GMAIL'
 
     @classmethod
