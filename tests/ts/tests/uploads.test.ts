@@ -1,7 +1,7 @@
 import {beforeEach, describe, it, expect} from "vitest";
 import {createTestContext, TestContext} from "./testContext";
 import {
-    ConnectorsApi,
+    SourceConnectorsApi,
     PipelinesApi,
     ResponseError,
     SourceConnectorType,
@@ -17,32 +17,31 @@ beforeEach(() => {
     testContext = createTestContext();
 });
 
-async function createFileUploadSource(connectorsApi: ConnectorsApi) {
-    let sourceResponse = await connectorsApi.createSourceConnector({
-        organization: testContext.orgId,
-        createSourceConnector: [{
+async function createFileUploadSource(sourceConnectorsApi: SourceConnectorsApi) {
+    let sourceResponse = await sourceConnectorsApi.createSourceConnector({
+        organizationId: testContext.orgId,
+        createSourceConnectorRequest: {
             type: SourceConnectorType.FileUpload,
             name: "from api",
-            config: {}
-        }]
+        }
     });
-    const sourceConnectorId = sourceResponse.connectors[0].id;
+    const sourceConnectorId = sourceResponse.connector.id;
     return sourceConnectorId;
 }
 
 describe("uploads", () => {
     it("verify uploads lifecycle", async () => {
-        let connectorsApi = new ConnectorsApi(testContext.configuration);
+        let sourceConnectorsApi = new SourceConnectorsApi(testContext.configuration);
         let uploadsApi = new UploadsApi(testContext.configuration);
         try {
 
-            const sourceConnectorId = await createFileUploadSource(connectorsApi);
+            const sourceConnectorId = await createFileUploadSource(sourceConnectorsApi);
             console.log("created source", sourceConnectorId);
 
             const fileBuffer = fs.readFileSync("tests/research.pdf");
 
             const uploadResponse = await uploadsApi.startFileUploadToConnector({
-                organization: testContext.orgId,
+                organizationId: testContext.orgId,
                 connectorId: sourceConnectorId,
                 startFileUploadToConnectorRequest: {
                     name: "research.pdf",
@@ -63,7 +62,7 @@ describe("uploads", () => {
             }
 
             let files = await uploadsApi.getUploadFilesFromConnector({
-                organization: testContext.orgId,
+                organizationId: testContext.orgId,
                 connectorId: sourceConnectorId
             });
             console.log(files.files)
