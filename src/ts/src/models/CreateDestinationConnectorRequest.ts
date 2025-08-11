@@ -114,7 +114,7 @@ export function CreateDestinationConnectorRequestFromJSONTyped(json: any, ignore
     }
     switch (json['type']) {
         default:
-            return json;
+            throw new Error(`No variant of CreateDestinationConnectorRequest exists with 'type=${json['type']}'`);
     }
 }
 
@@ -128,7 +128,8 @@ export function CreateDestinationConnectorRequestToJSONTyped(value?: CreateDesti
     }
     switch (value['type']) {
         default:
-            return value;
+            throw new Error(`No variant of CreateDestinationConnectorRequest exists with 'type=${value['type']}'`);
     }
+
 }
 

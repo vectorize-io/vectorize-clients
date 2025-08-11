@@ -16,15 +16,15 @@
 import * as runtime from '../runtime';
 import type {
   ExtractionResultResponse,
-  GetPipelines400Response,
+  GetWorkspaces400Response,
   StartExtractionRequest,
   StartExtractionResponse,
 } from '../models/index';
 import {
     ExtractionResultResponseFromJSON,
     ExtractionResultResponseToJSON,
-    GetPipelines400ResponseFromJSON,
-    GetPipelines400ResponseToJSON,
+    GetWorkspaces400ResponseFromJSON,
+    GetWorkspaces400ResponseToJSON,
     StartExtractionRequestFromJSON,
     StartExtractionRequestToJSON,
     StartExtractionResponseFromJSON,

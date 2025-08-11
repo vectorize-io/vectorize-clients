@@ -32,17 +32,11 @@ export interface FIREFLIESConfig {
      */
     endDate?: Date;
     /**
-     * 
-     * @type {string}
+     * Title Filter. Only include meetings containing any of these keywords in the title. Example: Enter meeting title keywords
+     * @type {Array<string>}
      * @memberof FIREFLIESConfig
      */
-    titleFilterType: string;
-    /**
-     * Title Filter. Only include meetings with this text in the title. Example: Enter meeting title
-     * @type {string}
-     * @memberof FIREFLIESConfig
-     */
-    titleFilter?: string;
+    titleFilter?: Array<string>;
     /**
      * 
      * @type {string}
@@ -68,7 +62,6 @@ export interface FIREFLIESConfig {
  */
 export function instanceOfFIREFLIESConfig(value: object): value is FIREFLIESConfig {
     if (!('startDate' in value) || value['startDate'] === undefined) return false;
-    if (!('titleFilterType' in value) || value['titleFilterType'] === undefined) return false;
     if (!('participantFilterType' in value) || value['participantFilterType'] === undefined) return false;
     return true;
 }
@@ -85,7 +78,6 @@ export function FIREFLIESConfigFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'startDate': (new Date(json['start-date'])),
         'endDate': json['end-date'] == null ? undefined : (new Date(json['end-date'])),
-        'titleFilterType': json['title-filter-type'],
         'titleFilter': json['title-filter'] == null ? undefined : json['title-filter'],
         'participantFilterType': json['participant-filter-type'],
         'participantFilter': json['participant-filter'] == null ? undefined : json['participant-filter'],
@@ -106,7 +98,6 @@ export function FIREFLIESConfigToJSONTyped(value?: FIREFLIESConfig | null, ignor
         
         'start-date': ((value['startDate']).toISOString().substring(0,10)),
         'end-date': value['endDate'] == null ? undefined : ((value['endDate']).toISOString().substring(0,10)),
-        'title-filter-type': value['titleFilterType'],
         'title-filter': value['titleFilter'],
         'participant-filter-type': value['participantFilterType'],
         'participant-filter': value['participantFilter'],

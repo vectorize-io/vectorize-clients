@@ -15,13 +15,13 @@
 
 import * as runtime from '../runtime';
 import type {
-  GetPipelines400Response,
+  GetWorkspaces400Response,
   StartFileUploadRequest,
   StartFileUploadResponse,
 } from '../models/index';
 import {
-    GetPipelines400ResponseFromJSON,
-    GetPipelines400ResponseToJSON,
+    GetWorkspaces400ResponseFromJSON,
+    GetWorkspaces400ResponseToJSON,
     StartFileUploadRequestFromJSON,
     StartFileUploadRequestToJSON,
     StartFileUploadResponseFromJSON,

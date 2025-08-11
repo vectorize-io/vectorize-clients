@@ -152,13 +152,27 @@ import {
     WEBCRAWLERConfigFromJSONTyped,
     WEBCRAWLERConfigToJSON,
 } from './WEBCRAWLERConfig';
+import type { ZOOMADMINConfig } from './ZOOMADMINConfig';
+import {
+    instanceOfZOOMADMINConfig,
+    ZOOMADMINConfigFromJSON,
+    ZOOMADMINConfigFromJSONTyped,
+    ZOOMADMINConfigToJSON,
+} from './ZOOMADMINConfig';
+import type { ZOOMConfig } from './ZOOMConfig';
+import {
+    instanceOfZOOMConfig,
+    ZOOMConfigFromJSON,
+    ZOOMConfigFromJSONTyped,
+    ZOOMConfigToJSON,
+} from './ZOOMConfig';
 
 /**
  * @type SourceConnectorInputConfig
  * Configuration specific to the connector type
  * @export
  */
-export type SourceConnectorInputConfig = AWSS3Config | AZUREBLOBConfig | CONFLUENCEConfig | DISCORDConfig | DOCUSIGNConfig | DROPBOXConfig | FIRECRAWLConfig | FIREFLIESConfig | GCSConfig | GITHUBConfig | GMAILConfig | GOOGLEDRIVEConfig | GOOGLEDRIVEOAUTHConfig | GOOGLEDRIVEOAUTHMULTICUSTOMConfig | GOOGLEDRIVEOAUTHMULTIConfig | INTERCOMConfig | NOTIONConfig | ONEDRIVEConfig | SHAREPOINTConfig | WEBCRAWLERConfig;
+export type SourceConnectorInputConfig = AWSS3Config | AZUREBLOBConfig | CONFLUENCEConfig | DISCORDConfig | DOCUSIGNConfig | DROPBOXConfig | FIRECRAWLConfig | FIREFLIESConfig | GCSConfig | GITHUBConfig | GMAILConfig | GOOGLEDRIVEConfig | GOOGLEDRIVEOAUTHConfig | GOOGLEDRIVEOAUTHMULTICUSTOMConfig | GOOGLEDRIVEOAUTHMULTIConfig | INTERCOMConfig | NOTIONConfig | ONEDRIVEConfig | SHAREPOINTConfig | WEBCRAWLERConfig | ZOOMADMINConfig | ZOOMConfig;
 
 export function SourceConnectorInputConfigFromJSON(json: any): SourceConnectorInputConfig {
     return SourceConnectorInputConfigFromJSONTyped(json, false);
@@ -166,9 +180,6 @@ export function SourceConnectorInputConfigFromJSON(json: any): SourceConnectorIn
 
 export function SourceConnectorInputConfigFromJSONTyped(json: any, ignoreDiscriminator: boolean): SourceConnectorInputConfig {
     if (json == null) {
-        return json;
-    }
-    if (typeof json !== 'object') {
         return json;
     }
     if (instanceOfAWSS3Config(json)) {
@@ -231,6 +242,12 @@ export function SourceConnectorInputConfigFromJSONTyped(json: any, ignoreDiscrim
     if (instanceOfWEBCRAWLERConfig(json)) {
         return WEBCRAWLERConfigFromJSONTyped(json, true);
     }
+    if (instanceOfZOOMADMINConfig(json)) {
+        return ZOOMADMINConfigFromJSONTyped(json, true);
+    }
+    if (instanceOfZOOMConfig(json)) {
+        return ZOOMConfigFromJSONTyped(json, true);
+    }
 
     return {} as any;
 }
@@ -243,9 +260,7 @@ export function SourceConnectorInputConfigToJSONTyped(value?: SourceConnectorInp
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
-    }
+
     if (instanceOfAWSS3Config(value)) {
         return AWSS3ConfigToJSON(value as AWSS3Config);
     }
@@ -305,6 +320,12 @@ export function SourceConnectorInputConfigToJSONTyped(value?: SourceConnectorInp
     }
     if (instanceOfWEBCRAWLERConfig(value)) {
         return WEBCRAWLERConfigToJSON(value as WEBCRAWLERConfig);
+    }
+    if (instanceOfZOOMADMINConfig(value)) {
+        return ZOOMADMINConfigToJSON(value as ZOOMADMINConfig);
+    }
+    if (instanceOfZOOMConfig(value)) {
+        return ZOOMConfigToJSON(value as ZOOMConfig);
     }
 
     return {};

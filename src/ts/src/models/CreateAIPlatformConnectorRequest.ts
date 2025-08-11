@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 
+import type { Anthropic } from './Anthropic';
+import {
+    instanceOfAnthropic,
+    AnthropicFromJSON,
+    AnthropicFromJSONTyped,
+    AnthropicToJSON,
+} from './Anthropic';
 import type { Bedrock } from './Bedrock';
 import {
     instanceOfBedrock,
@@ -19,6 +26,13 @@ import {
     BedrockFromJSONTyped,
     BedrockToJSON,
 } from './Bedrock';
+import type { Groq } from './Groq';
+import {
+    instanceOfGroq,
+    GroqFromJSON,
+    GroqFromJSONTyped,
+    GroqToJSON,
+} from './Groq';
 import type { Openai } from './Openai';
 import {
     instanceOfOpenai,
@@ -46,7 +60,7 @@ import {
  * 
  * @export
  */
-export type CreateAIPlatformConnectorRequest = Bedrock | Openai | Vertex | Voyage;
+export type CreateAIPlatformConnectorRequest = Anthropic | Bedrock | Groq | Openai | Vertex | Voyage;
 
 export function CreateAIPlatformConnectorRequestFromJSON(json: any): CreateAIPlatformConnectorRequest {
     return CreateAIPlatformConnectorRequestFromJSONTyped(json, false);
@@ -58,7 +72,7 @@ export function CreateAIPlatformConnectorRequestFromJSONTyped(json: any, ignoreD
     }
     switch (json['type']) {
         default:
-            return json;
+            throw new Error(`No variant of CreateAIPlatformConnectorRequest exists with 'type=${json['type']}'`);
     }
 }
 
@@ -72,7 +86,8 @@ export function CreateAIPlatformConnectorRequestToJSONTyped(value?: CreateAIPlat
     }
     switch (value['type']) {
         default:
-            return value;
+            throw new Error(`No variant of CreateAIPlatformConnectorRequest exists with 'type=${value['type']}'`);
     }
+
 }
 

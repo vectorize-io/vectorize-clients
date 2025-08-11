@@ -103,13 +103,27 @@ import {
     WebCrawlerFromJSONTyped,
     WebCrawlerToJSON,
 } from './WebCrawler';
+import type { Zoom } from './Zoom';
+import {
+    instanceOfZoom,
+    ZoomFromJSON,
+    ZoomFromJSONTyped,
+    ZoomToJSON,
+} from './Zoom';
+import type { ZoomAdmin } from './ZoomAdmin';
+import {
+    instanceOfZoomAdmin,
+    ZoomAdminFromJSON,
+    ZoomAdminFromJSONTyped,
+    ZoomAdminToJSON,
+} from './ZoomAdmin';
 
 /**
  * @type CreateSourceConnectorRequest
  * 
  * @export
  */
-export type CreateSourceConnectorRequest = AwsS3 | AzureBlob | Confluence | Discord | FileUpload | Firecrawl | Fireflies | Gcs | Github | GoogleDrive | OneDrive | Sharepoint | WebCrawler;
+export type CreateSourceConnectorRequest = AwsS3 | AzureBlob | Confluence | Discord | FileUpload | Firecrawl | Fireflies | Gcs | Github | GoogleDrive | OneDrive | Sharepoint | WebCrawler | Zoom | ZoomAdmin;
 
 export function CreateSourceConnectorRequestFromJSON(json: any): CreateSourceConnectorRequest {
     return CreateSourceConnectorRequestFromJSONTyped(json, false);
@@ -121,7 +135,7 @@ export function CreateSourceConnectorRequestFromJSONTyped(json: any, ignoreDiscr
     }
     switch (json['type']) {
         default:
-            return json;
+            throw new Error(`No variant of CreateSourceConnectorRequest exists with 'type=${json['type']}'`);
     }
 }
 
@@ -135,7 +149,8 @@ export function CreateSourceConnectorRequestToJSONTyped(value?: CreateSourceConn
     }
     switch (value['type']) {
         default:
-            return value;
+            throw new Error(`No variant of CreateSourceConnectorRequest exists with 'type=${value['type']}'`);
     }
+
 }
 

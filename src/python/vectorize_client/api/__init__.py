@@ -8,4 +8,5 @@ from vectorize_client.api.files_api import FilesApi
 from vectorize_client.api.pipelines_api import PipelinesApi
 from vectorize_client.api.source_connectors_api import SourceConnectorsApi
 from vectorize_client.api.uploads_api import UploadsApi
+from vectorize_client.api.workspaces_api import WorkspacesApi
 

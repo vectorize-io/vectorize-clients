@@ -112,9 +112,6 @@ export function UpdateDestinationConnectorRequestFromJSONTyped(json: any, ignore
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
-    }
     if (instanceOfAzureaisearch1(json)) {
         return Azureaisearch1FromJSONTyped(json, true);
     }
@@ -163,9 +160,7 @@ export function UpdateDestinationConnectorRequestToJSONTyped(value?: UpdateDesti
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
-    }
+
     if (instanceOfAzureaisearch1(value)) {
         return Azureaisearch1ToJSON(value as Azureaisearch1);
     }

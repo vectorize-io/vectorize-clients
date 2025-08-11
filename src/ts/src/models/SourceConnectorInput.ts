@@ -67,6 +67,8 @@ export const SourceConnectorInputTypeEnum = {
     GoogleDriveOauthMultiCustom: 'GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM',
     Firecrawl: 'FIRECRAWL',
     Gcs: 'GCS',
+    Zoom: 'ZOOM',
+    ZoomAdmin: 'ZOOM_ADMIN',
     Intercom: 'INTERCOM',
     Notion: 'NOTION',
     NotionOauthMulti: 'NOTION_OAUTH_MULTI',

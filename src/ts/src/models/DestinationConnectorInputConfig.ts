@@ -112,9 +112,6 @@ export function DestinationConnectorInputConfigFromJSONTyped(json: any, ignoreDi
     if (json == null) {
         return json;
     }
-    if (typeof json !== 'object') {
-        return json;
-    }
     if (instanceOfAZUREAISEARCHConfig(json)) {
         return AZUREAISEARCHConfigFromJSONTyped(json, true);
     }
@@ -163,9 +160,7 @@ export function DestinationConnectorInputConfigToJSONTyped(value?: DestinationCo
     if (value == null) {
         return value;
     }
-    if (typeof value !== 'object') {
-        return value;
-    }
+
     if (instanceOfAZUREAISEARCHConfig(value)) {
         return AZUREAISEARCHConfigToJSON(value as AZUREAISEARCHConfig);
     }

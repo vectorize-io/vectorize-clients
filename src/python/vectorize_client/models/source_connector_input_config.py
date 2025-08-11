@@ -37,11 +37,13 @@ from vectorize_client.models.notion_config import NOTIONConfig
 from vectorize_client.models.onedrive_config import ONEDRIVEConfig
 from vectorize_client.models.sharepoint_config import SHAREPOINTConfig
 from vectorize_client.models.webcrawler_config import WEBCRAWLERConfig
+from vectorize_client.models.zoom_config import ZOOMConfig
+from vectorize_client.models.zoomadmin_config import ZOOMADMINConfig
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-SOURCECONNECTORINPUTCONFIG_ONE_OF_SCHEMAS = ["AWSS3Config", "AZUREBLOBConfig", "CONFLUENCEConfig", "DISCORDConfig", "DOCUSIGNConfig", "DROPBOXConfig", "FIRECRAWLConfig", "FIREFLIESConfig", "GCSConfig", "GITHUBConfig", "GMAILConfig", "GOOGLEDRIVEConfig", "GOOGLEDRIVEOAUTHConfig", "GOOGLEDRIVEOAUTHMULTICUSTOMConfig", "GOOGLEDRIVEOAUTHMULTIConfig", "INTERCOMConfig", "NOTIONConfig", "ONEDRIVEConfig", "SHAREPOINTConfig", "WEBCRAWLERConfig"]
+SOURCECONNECTORINPUTCONFIG_ONE_OF_SCHEMAS = ["AWSS3Config", "AZUREBLOBConfig", "CONFLUENCEConfig", "DISCORDConfig", "DOCUSIGNConfig", "DROPBOXConfig", "FIRECRAWLConfig", "FIREFLIESConfig", "GCSConfig", "GITHUBConfig", "GMAILConfig", "GOOGLEDRIVEConfig", "GOOGLEDRIVEOAUTHConfig", "GOOGLEDRIVEOAUTHMULTICUSTOMConfig", "GOOGLEDRIVEOAUTHMULTIConfig", "INTERCOMConfig", "NOTIONConfig", "ONEDRIVEConfig", "SHAREPOINTConfig", "WEBCRAWLERConfig", "ZOOMADMINConfig", "ZOOMConfig"]
 
 class SourceConnectorInputConfig(BaseModel):
     """
@@ -69,26 +71,30 @@ class SourceConnectorInputConfig(BaseModel):
     oneof_schema_10_validator: Optional[FIRECRAWLConfig] = None
     # data type: GCSConfig
     oneof_schema_11_validator: Optional[GCSConfig] = None
+    # data type: ZOOMConfig
+    oneof_schema_12_validator: Optional[ZOOMConfig] = None
+    # data type: ZOOMADMINConfig
+    oneof_schema_13_validator: Optional[ZOOMADMINConfig] = None
     # data type: INTERCOMConfig
-    oneof_schema_12_validator: Optional[INTERCOMConfig] = None
+    oneof_schema_14_validator: Optional[INTERCOMConfig] = None
     # data type: NOTIONConfig
-    oneof_schema_13_validator: Optional[NOTIONConfig] = None
+    oneof_schema_15_validator: Optional[NOTIONConfig] = None
     # data type: ONEDRIVEConfig
-    oneof_schema_14_validator: Optional[ONEDRIVEConfig] = None
+    oneof_schema_16_validator: Optional[ONEDRIVEConfig] = None
     # data type: SHAREPOINTConfig
-    oneof_schema_15_validator: Optional[SHAREPOINTConfig] = None
+    oneof_schema_17_validator: Optional[SHAREPOINTConfig] = None
     # data type: WEBCRAWLERConfig
-    oneof_schema_16_validator: Optional[WEBCRAWLERConfig] = None
+    oneof_schema_18_validator: Optional[WEBCRAWLERConfig] = None
     # data type: GITHUBConfig
-    oneof_schema_17_validator: Optional[GITHUBConfig] = None
+    oneof_schema_19_validator: Optional[GITHUBConfig] = None
     # data type: FIREFLIESConfig
-    oneof_schema_18_validator: Optional[FIREFLIESConfig] = None
+    oneof_schema_20_validator: Optional[FIREFLIESConfig] = None
     # data type: DOCUSIGNConfig
-    oneof_schema_19_validator: Optional[DOCUSIGNConfig] = None
+    oneof_schema_21_validator: Optional[DOCUSIGNConfig] = None
     # data type: GMAILConfig
-    oneof_schema_20_validator: Optional[GMAILConfig] = None
-    actual_instance: Optional[Union[AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig]] = None
-    one_of_schemas: Set[str] = { "AWSS3Config", "AZUREBLOBConfig", "CONFLUENCEConfig", "DISCORDConfig", "DOCUSIGNConfig", "DROPBOXConfig", "FIRECRAWLConfig", "FIREFLIESConfig", "GCSConfig", "GITHUBConfig", "GMAILConfig", "GOOGLEDRIVEConfig", "GOOGLEDRIVEOAUTHConfig", "GOOGLEDRIVEOAUTHMULTICUSTOMConfig", "GOOGLEDRIVEOAUTHMULTIConfig", "INTERCOMConfig", "NOTIONConfig", "ONEDRIVEConfig", "SHAREPOINTConfig", "WEBCRAWLERConfig" }
+    oneof_schema_22_validator: Optional[GMAILConfig] = None
+    actual_instance: Optional[Union[AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig, ZOOMADMINConfig, ZOOMConfig]] = None
+    one_of_schemas: Set[str] = { "AWSS3Config", "AZUREBLOBConfig", "CONFLUENCEConfig", "DISCORDConfig", "DOCUSIGNConfig", "DROPBOXConfig", "FIRECRAWLConfig", "FIREFLIESConfig", "GCSConfig", "GITHUBConfig", "GMAILConfig", "GOOGLEDRIVEConfig", "GOOGLEDRIVEOAUTHConfig", "GOOGLEDRIVEOAUTHMULTICUSTOMConfig", "GOOGLEDRIVEOAUTHMULTIConfig", "INTERCOMConfig", "NOTIONConfig", "ONEDRIVEConfig", "SHAREPOINTConfig", "WEBCRAWLERConfig", "ZOOMADMINConfig", "ZOOMConfig" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -166,6 +172,16 @@ class SourceConnectorInputConfig(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `GCSConfig`")
         else:
             match += 1
+        # validate data type: ZOOMConfig
+        if not isinstance(v, ZOOMConfig):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ZOOMConfig`")
+        else:
+            match += 1
+        # validate data type: ZOOMADMINConfig
+        if not isinstance(v, ZOOMADMINConfig):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ZOOMADMINConfig`")
+        else:
+            match += 1
         # validate data type: INTERCOMConfig
         if not isinstance(v, INTERCOMConfig):
             error_messages.append(f"Error! Input type `{type(v)}` is not `INTERCOMConfig`")
@@ -213,10 +229,10 @@ class SourceConnectorInputConfig(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in SourceConnectorInputConfig with oneOf schemas: AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in SourceConnectorInputConfig with oneOf schemas: AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig, ZOOMADMINConfig, ZOOMConfig. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in SourceConnectorInputConfig with oneOf schemas: AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in SourceConnectorInputConfig with oneOf schemas: AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig, ZOOMADMINConfig, ZOOMConfig. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -297,6 +313,18 @@ class SourceConnectorInputConfig(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into ZOOMConfig
+        try:
+            instance.actual_instance = ZOOMConfig.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into ZOOMADMINConfig
+        try:
+            instance.actual_instance = ZOOMADMINConfig.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into INTERCOMConfig
         try:
             instance.actual_instance = INTERCOMConfig.from_json(json_str)
@@ -354,10 +382,10 @@ class SourceConnectorInputConfig(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into SourceConnectorInputConfig with oneOf schemas: AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into SourceConnectorInputConfig with oneOf schemas: AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig, ZOOMADMINConfig, ZOOMConfig. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into SourceConnectorInputConfig with oneOf schemas: AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into SourceConnectorInputConfig with oneOf schemas: AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig, ZOOMADMINConfig, ZOOMConfig. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -371,7 +399,7 @@ class SourceConnectorInputConfig(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AWSS3Config, AZUREBLOBConfig, CONFLUENCEConfig, DISCORDConfig, DOCUSIGNConfig, DROPBOXConfig, FIRECRAWLConfig, FIREFLIESConfig, GCSConfig, GITHUBConfig, GMAILConfig, GOOGLEDRIVEConfig, GOOGLEDRIVEOAUTHConfig, GOOGLEDRIVEOAUTHMULTICUSTOMConfig, GOOGLEDRIVEOAUTHMULTIConfig, INTERCOMConfig, NOTIONConfig, ONEDRIVEConfig, SHAREPOINTConfig, WEBCRAWLERConfig, ZOOMADMINConfig, ZOOMConfig]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

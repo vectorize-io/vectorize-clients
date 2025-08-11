@@ -30,10 +30,9 @@ class DOCUSIGNConfig(BaseModel):
     envelope_statuses: Optional[List[StrictStr]] = Field(default=None, description="Envelope Statuses. Filter envelopes by status", alias="envelope-statuses")
     from_date: date = Field(description="Created From Date. Include envelopes created on or after this date. Example: Enter start date (YYYY-MM-DD)", alias="from-date")
     to_date: Optional[date] = Field(default=None, description="Created To Date. Include envelopes that were last updated up to this date. Example: Enter end date (YYYY-MM-DD)", alias="to-date")
-    folder_ids: Optional[List[StrictStr]] = Field(default=None, description="Folder Names. Select which DocuSign folders to include in the import")
-    max_documents: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Max Documents. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of documents to retrieve (leave blank for no limit)", alias="max-documents")
-    search_text: Optional[StrictStr] = Field(default=None, description="Search Text. Filter envelopes containing this text in their content. Example: Enter text to search within envelope content", alias="search-text")
-    __properties: ClassVar[List[str]] = ["envelope-statuses", "from-date", "to-date", "folder_ids", "max-documents", "search-text"]
+    max_documents: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Max Envelopes. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of documents to retrieve (leave blank for no limit)", alias="max-documents")
+    search_text: Optional[StrictStr] = Field(default=None, description="Search Text. Filter envelopes containing this text in the email subject, sender, body, or custom fields. Example: Enter text to search within envelope content", alias="search-text")
+    __properties: ClassVar[List[str]] = ["envelope-statuses", "from-date", "to-date", "max-documents", "search-text"]
 
     @field_validator('envelope_statuses')
     def envelope_statuses_validate_enum(cls, value):
@@ -44,17 +43,6 @@ class DOCUSIGNConfig(BaseModel):
         for i in value:
             if i not in set(['completed', 'correct', 'created', 'declined', 'delivered', 'sent', 'signed', 'voided', 'all']):
                 raise ValueError("each list item must be one of ('completed', 'correct', 'created', 'declined', 'delivered', 'sent', 'signed', 'voided', 'all')")
-        return value
-
-    @field_validator('folder_ids')
-    def folder_ids_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        for i in value:
-            if i not in set(['inbox', 'sentitems', 'draft', 'recyclebin', 'awaiting_my_signature', 'completed', 'out_for_signature', 'waiting_for_others', 'expiring_soon', 'all']):
-                raise ValueError("each list item must be one of ('inbox', 'sentitems', 'draft', 'recyclebin', 'awaiting_my_signature', 'completed', 'out_for_signature', 'waiting_for_others', 'expiring_soon', 'all')")
         return value
 
     model_config = ConfigDict(
@@ -111,7 +99,6 @@ class DOCUSIGNConfig(BaseModel):
             "envelope-statuses": obj.get("envelope-statuses"),
             "from-date": obj.get("from-date"),
             "to-date": obj.get("to-date"),
-            "folder_ids": obj.get("folder_ids"),
             "max-documents": obj.get("max-documents"),
             "search-text": obj.get("search-text")
         })

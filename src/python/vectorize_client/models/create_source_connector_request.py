@@ -30,11 +30,13 @@ from vectorize_client.models.google_drive import GoogleDrive
 from vectorize_client.models.one_drive import OneDrive
 from vectorize_client.models.sharepoint import Sharepoint
 from vectorize_client.models.web_crawler import WebCrawler
+from vectorize_client.models.zoom import Zoom
+from vectorize_client.models.zoom_admin import ZoomAdmin
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-CREATESOURCECONNECTORREQUEST_ONE_OF_SCHEMAS = ["AwsS3", "AzureBlob", "Confluence", "Discord", "FileUpload", "Firecrawl", "Fireflies", "Gcs", "Github", "GoogleDrive", "OneDrive", "Sharepoint", "WebCrawler"]
+CREATESOURCECONNECTORREQUEST_ONE_OF_SCHEMAS = ["AwsS3", "AzureBlob", "Confluence", "Discord", "FileUpload", "Firecrawl", "Fireflies", "Gcs", "Github", "GoogleDrive", "OneDrive", "Sharepoint", "WebCrawler", "Zoom", "ZoomAdmin"]
 
 class CreateSourceConnectorRequest(BaseModel):
     """
@@ -56,18 +58,22 @@ class CreateSourceConnectorRequest(BaseModel):
     oneof_schema_7_validator: Optional[Firecrawl] = None
     # data type: Gcs
     oneof_schema_8_validator: Optional[Gcs] = None
+    # data type: Zoom
+    oneof_schema_9_validator: Optional[Zoom] = None
+    # data type: ZoomAdmin
+    oneof_schema_10_validator: Optional[ZoomAdmin] = None
     # data type: OneDrive
-    oneof_schema_9_validator: Optional[OneDrive] = None
+    oneof_schema_11_validator: Optional[OneDrive] = None
     # data type: Sharepoint
-    oneof_schema_10_validator: Optional[Sharepoint] = None
+    oneof_schema_12_validator: Optional[Sharepoint] = None
     # data type: WebCrawler
-    oneof_schema_11_validator: Optional[WebCrawler] = None
+    oneof_schema_13_validator: Optional[WebCrawler] = None
     # data type: Github
-    oneof_schema_12_validator: Optional[Github] = None
+    oneof_schema_14_validator: Optional[Github] = None
     # data type: Fireflies
-    oneof_schema_13_validator: Optional[Fireflies] = None
-    actual_instance: Optional[Union[AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler]] = None
-    one_of_schemas: Set[str] = { "AwsS3", "AzureBlob", "Confluence", "Discord", "FileUpload", "Firecrawl", "Fireflies", "Gcs", "Github", "GoogleDrive", "OneDrive", "Sharepoint", "WebCrawler" }
+    oneof_schema_15_validator: Optional[Fireflies] = None
+    actual_instance: Optional[Union[AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler, Zoom, ZoomAdmin]] = None
+    one_of_schemas: Set[str] = { "AwsS3", "AzureBlob", "Confluence", "Discord", "FileUpload", "Firecrawl", "Fireflies", "Gcs", "Github", "GoogleDrive", "OneDrive", "Sharepoint", "WebCrawler", "Zoom", "ZoomAdmin" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -133,6 +139,16 @@ class CreateSourceConnectorRequest(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Gcs`")
         else:
             match += 1
+        # validate data type: Zoom
+        if not isinstance(v, Zoom):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Zoom`")
+        else:
+            match += 1
+        # validate data type: ZoomAdmin
+        if not isinstance(v, ZoomAdmin):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ZoomAdmin`")
+        else:
+            match += 1
         # validate data type: OneDrive
         if not isinstance(v, OneDrive):
             error_messages.append(f"Error! Input type `{type(v)}` is not `OneDrive`")
@@ -160,10 +176,10 @@ class CreateSourceConnectorRequest(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CreateSourceConnectorRequest with oneOf schemas: AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CreateSourceConnectorRequest with oneOf schemas: AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler, Zoom, ZoomAdmin. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CreateSourceConnectorRequest with oneOf schemas: AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CreateSourceConnectorRequest with oneOf schemas: AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler, Zoom, ZoomAdmin. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -226,6 +242,18 @@ class CreateSourceConnectorRequest(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into Zoom
+        try:
+            instance.actual_instance = Zoom.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into ZoomAdmin
+        try:
+            instance.actual_instance = ZoomAdmin.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into OneDrive
         try:
             instance.actual_instance = OneDrive.from_json(json_str)
@@ -259,10 +287,10 @@ class CreateSourceConnectorRequest(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CreateSourceConnectorRequest with oneOf schemas: AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CreateSourceConnectorRequest with oneOf schemas: AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler, Zoom, ZoomAdmin. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CreateSourceConnectorRequest with oneOf schemas: AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CreateSourceConnectorRequest with oneOf schemas: AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler, Zoom, ZoomAdmin. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -276,7 +304,7 @@ class CreateSourceConnectorRequest(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AwsS3, AzureBlob, Confluence, Discord, FileUpload, Firecrawl, Fireflies, Gcs, Github, GoogleDrive, OneDrive, Sharepoint, WebCrawler, Zoom, ZoomAdmin]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

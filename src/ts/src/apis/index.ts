@@ -7,3 +7,4 @@ export * from './FilesApi';
 export * from './PipelinesApi';
 export * from './SourceConnectorsApi';
 export * from './UploadsApi';
+export * from './WorkspacesApi';
