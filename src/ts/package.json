@@ -1,6 +1,6 @@
 {
   "name": "@vectorize-io/vectorize-client",
-  "version": "0.0.1-SNAPSHOT.202507021445",
+  "version": "0.3.0",
   "description": "Client for the Vectorize API",
   "author": "Vectorize <contact@vectorize.io>",
   "repository": {
