@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AddUserToSourceConnectorRequestSelectedFiles } from './AddUserToSourceConnectorRequestSelectedFiles';
+import type { UpdateUserInSourceConnectorRequestSelectedFiles } from './UpdateUserInSourceConnectorRequestSelectedFiles';
 import {
-    AddUserToSourceConnectorRequestSelectedFilesFromJSON,
-    AddUserToSourceConnectorRequestSelectedFilesFromJSONTyped,
-    AddUserToSourceConnectorRequestSelectedFilesToJSON,
-    AddUserToSourceConnectorRequestSelectedFilesToJSONTyped,
-} from './AddUserToSourceConnectorRequestSelectedFiles';
+    UpdateUserInSourceConnectorRequestSelectedFilesFromJSON,
+    UpdateUserInSourceConnectorRequestSelectedFilesFromJSONTyped,
+    UpdateUserInSourceConnectorRequestSelectedFilesToJSON,
+    UpdateUserInSourceConnectorRequestSelectedFilesToJSONTyped,
+} from './UpdateUserInSourceConnectorRequestSelectedFiles';
 
 /**
  * 
@@ -28,25 +28,25 @@ import {
  */
 export interface UpdateUserInSourceConnectorRequest {
     /**
-     * 
+     * Your application's unique identifier for the user to update. This should match the userId that was used when adding the user
      * @type {string}
      * @memberof UpdateUserInSourceConnectorRequest
      */
     userId: string;
     /**
      * 
-     * @type {AddUserToSourceConnectorRequestSelectedFiles}
+     * @type {UpdateUserInSourceConnectorRequestSelectedFiles}
      * @memberof UpdateUserInSourceConnectorRequest
      */
-    selectedFiles?: AddUserToSourceConnectorRequestSelectedFiles;
+    selectedFiles?: UpdateUserInSourceConnectorRequestSelectedFiles;
     /**
-     * 
+     * New OAuth refresh token if the user has reauthorized. For Google Drive and Dropbox only
      * @type {string}
      * @memberof UpdateUserInSourceConnectorRequest
      */
     refreshToken?: string;
     /**
-     * 
+     * New OAuth access token if the user has reauthorized. For Notion only
      * @type {string}
      * @memberof UpdateUserInSourceConnectorRequest
      */
@@ -72,7 +72,7 @@ export function UpdateUserInSourceConnectorRequestFromJSONTyped(json: any, ignor
     return {
         
         'userId': json['userId'],
-        'selectedFiles': json['selectedFiles'] == null ? undefined : AddUserToSourceConnectorRequestSelectedFilesFromJSON(json['selectedFiles']),
+        'selectedFiles': json['selectedFiles'] == null ? undefined : UpdateUserInSourceConnectorRequestSelectedFilesFromJSON(json['selectedFiles']),
         'refreshToken': json['refreshToken'] == null ? undefined : json['refreshToken'],
         'accessToken': json['accessToken'] == null ? undefined : json['accessToken'],
     };
@@ -90,7 +90,7 @@ export function UpdateUserInSourceConnectorRequestToJSONTyped(value?: UpdateUser
     return {
         
         'userId': value['userId'],
-        'selectedFiles': AddUserToSourceConnectorRequestSelectedFilesToJSON(value['selectedFiles']),
+        'selectedFiles': UpdateUserInSourceConnectorRequestSelectedFilesToJSON(value['selectedFiles']),
         'refreshToken': value['refreshToken'],
         'accessToken': value['accessToken'],
     };

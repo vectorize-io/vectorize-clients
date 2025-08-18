@@ -56,14 +56,15 @@ export const DestinationConnectorInputTypeEnum = {
     Datastax: 'DATASTAX',
     Elastic: 'ELASTIC',
     Pinecone: 'PINECONE',
-    Singlestore: 'SINGLESTORE',
+    Azureaisearch: 'AZUREAISEARCH',
     Milvus: 'MILVUS',
+    Neo4J: 'NEO4J',
     Postgresql: 'POSTGRESQL',
     Qdrant: 'QDRANT',
+    Singlestore: 'SINGLESTORE',
     Supabase: 'SUPABASE',
-    Weaviate: 'WEAVIATE',
-    Azureaisearch: 'AZUREAISEARCH',
-    Turbopuffer: 'TURBOPUFFER'
+    Turbopuffer: 'TURBOPUFFER',
+    Weaviate: 'WEAVIATE'
 } as const;
 export type DestinationConnectorInputTypeEnum = typeof DestinationConnectorInputTypeEnum[keyof typeof DestinationConnectorInputTypeEnum];
 

@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from vectorize_client.models.destination_connector import DestinationConnector
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,8 @@ class GetDestinationConnectors200Response(BaseModel):
     GetDestinationConnectors200Response
     """ # noqa: E501
     destination_connectors: List[DestinationConnector] = Field(alias="destinationConnectors")
-    __properties: ClassVar[List[str]] = ["destinationConnectors"]
+    next_token: Optional[StrictStr] = Field(default=None, alias="nextToken")
+    __properties: ClassVar[List[str]] = ["destinationConnectors", "nextToken"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +89,8 @@ class GetDestinationConnectors200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "destinationConnectors": [DestinationConnector.from_dict(_item) for _item in obj["destinationConnectors"]] if obj.get("destinationConnectors") is not None else None
+            "destinationConnectors": [DestinationConnector.from_dict(_item) for _item in obj["destinationConnectors"]] if obj.get("destinationConnectors") is not None else None,
+            "nextToken": obj.get("nextToken")
         })
         return _obj
 

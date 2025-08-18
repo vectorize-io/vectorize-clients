@@ -17,20 +17,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, SecretStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class GetPipelines400Response(BaseModel):
+class ZOOMADMINAuthConfig(BaseModel):
     """
-    GetPipelines400Response
+    Authentication configuration for Zoom Admin
     """ # noqa: E501
-    error: StrictStr
-    details: Optional[StrictStr] = None
-    failed_updates: Optional[List[StrictStr]] = Field(default=None, alias="failedUpdates")
-    successful_updates: Optional[List[StrictStr]] = Field(default=None, alias="successfulUpdates")
-    __properties: ClassVar[List[str]] = ["error", "details", "failedUpdates", "successfulUpdates"]
+    refresh_token: SecretStr = Field(description="Connect Admin Zoom to Vectorize. Note: Authorizing a new Zoom Admin account will disconnect any existing Zoom Admin connectors using the same account.. Example: Authorize", alias="refresh-token")
+    __properties: ClassVar[List[str]] = ["refresh-token"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +47,7 @@ class GetPipelines400Response(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of GetPipelines400Response from a JSON string"""
+        """Create an instance of ZOOMADMINAuthConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +72,7 @@ class GetPipelines400Response(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of GetPipelines400Response from a dict"""
+        """Create an instance of ZOOMADMINAuthConfig from a dict"""
         if obj is None:
             return None
 
@@ -83,10 +80,7 @@ class GetPipelines400Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "error": obj.get("error"),
-            "details": obj.get("details"),
-            "failedUpdates": obj.get("failedUpdates"),
-            "successfulUpdates": obj.get("successfulUpdates")
+            "refresh-token": obj.get("refresh-token")
         })
         return _obj
 

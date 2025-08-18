@@ -8,7 +8,7 @@
       "name": "Vectorize",
       "url": "https://vectorize.io"
     },
-    "x-release-date": "2025-07-16"
+    "x-release-date": "2025-08-17"
   },
   "servers": [
     {
@@ -25,6 +25,69 @@
       }
     },
     "schemas": {
+      "WorkspaceSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "GetWorkspacesResponse": {
+        "type": "object",
+        "properties": {
+          "workspaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkspaceSchema"
+            }
+          },
+          "nextToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "workspaces"
+        ]
+      },
+      "GetWorkspaceByIdResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
       "CreatePipelineResponse": {
         "type": "object",
         "properties": {
@@ -66,6 +129,8 @@
           "GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM",
           "FIRECRAWL",
           "GCS",
+          "ZOOM",
+          "ZOOM_ADMIN",
           "INTERCOM",
           "NOTION",
           "NOTION_OAUTH_MULTI",
@@ -110,14 +175,15 @@
           "DATASTAX",
           "ELASTIC",
           "PINECONE",
-          "SINGLESTORE",
+          "AZUREAISEARCH",
           "MILVUS",
+          "NEO4J",
           "POSTGRESQL",
           "QDRANT",
+          "SINGLESTORE",
           "SUPABASE",
-          "WEAVIATE",
-          "AZUREAISEARCH",
           "TURBOPUFFER",
+          "WEAVIATE",
           "VECTORIZE"
         ]
       },
@@ -151,7 +217,9 @@
           "VERTEX",
           "OPENAI",
           "VOYAGE",
-          "VECTORIZE"
+          "VECTORIZE",
+          "ANTHROPIC",
+          "GROQ"
         ]
       },
       "AIPlatformConfigSchema": {
@@ -393,6 +461,9 @@
             "items": {
               "$ref": "#/components/schemas/PipelineListSummary"
             }
+          },
+          "nextToken": {
+            "type": "string"
           }
         },
         "required": [
@@ -1355,6 +1426,66 @@
           },
           {
             "type": "object",
+            "title": "Zoom",
+            "required": [
+              "name",
+              "type",
+              "config"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the connector"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ZOOM"
+                ],
+                "description": "Connector type (must be \"ZOOM\")"
+              },
+              "config": {
+                "$ref": "#/components/schemas/ZOOMAuthConfig"
+              }
+            },
+            "example": {
+              "name": "Zoom Example",
+              "type": "ZOOM",
+              "config": {}
+            }
+          },
+          {
+            "type": "object",
+            "title": "ZoomAdmin",
+            "required": [
+              "name",
+              "type",
+              "config"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the connector"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ZOOM_ADMIN"
+                ],
+                "description": "Connector type (must be \"ZOOM_ADMIN\")"
+              },
+              "config": {
+                "$ref": "#/components/schemas/ZOOM_ADMINAuthConfig"
+              }
+            },
+            "example": {
+              "name": "Zoom Admin Example",
+              "type": "ZOOM_ADMIN",
+              "config": {}
+            }
+          },
+          {
+            "type": "object",
             "title": "OneDrive",
             "required": [
               "name",
@@ -1678,6 +1809,34 @@
           },
           {
             "type": "object",
+            "title": "Zoom",
+            "properties": {
+              "config": {
+                "$ref": "#/components/schemas/ZOOMAuthConfig"
+              }
+            },
+            "example": {
+              "config": {
+                "refresh-token": "example-refresh-token"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "ZoomAdmin",
+            "properties": {
+              "config": {
+                "$ref": "#/components/schemas/ZOOM_ADMINAuthConfig"
+              }
+            },
+            "example": {
+              "config": {
+                "refresh-token": "example-refresh-token"
+              }
+            }
+          },
+          {
+            "type": "object",
             "title": "OneDrive",
             "properties": {
               "config": {
@@ -1801,14 +1960,15 @@
           "DATASTAX",
           "ELASTIC",
           "PINECONE",
-          "SINGLESTORE",
+          "AZUREAISEARCH",
           "MILVUS",
+          "NEO4J",
           "POSTGRESQL",
           "QDRANT",
+          "SINGLESTORE",
           "SUPABASE",
-          "WEAVIATE",
-          "AZUREAISEARCH",
-          "TURBOPUFFER"
+          "TURBOPUFFER",
+          "WEAVIATE"
         ]
       },
       "CreateDestinationConnectorRequest": {
@@ -1947,7 +2107,7 @@
           },
           {
             "type": "object",
-            "title": "Singlestore",
+            "title": "Azureaisearch",
             "required": [
               "name",
               "type",
@@ -1961,19 +2121,19 @@
               "type": {
                 "type": "string",
                 "enum": [
-                  "SINGLESTORE"
+                  "AZUREAISEARCH"
                 ],
-                "description": "Connector type (must be \"SINGLESTORE\")"
+                "description": "Connector type (must be \"AZUREAISEARCH\")"
               },
               "config": {
-                "$ref": "#/components/schemas/SINGLESTOREAuthConfig"
+                "$ref": "#/components/schemas/AZUREAISEARCHAuthConfig"
               }
             },
             "example": {
-              "name": "SingleStore Example",
-              "type": "SINGLESTORE",
+              "name": "Azure AI Search Example",
+              "type": "AZUREAISEARCH",
               "config": {
-                "table": "example-table"
+                "index": "example-index"
               }
             }
           },
@@ -2006,6 +2166,38 @@
               "type": "MILVUS",
               "config": {
                 "collection": "example-collection"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "Neo4j",
+            "required": [
+              "name",
+              "type",
+              "config"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the connector"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "NEO4J"
+                ],
+                "description": "Connector type (must be \"NEO4J\")"
+              },
+              "config": {
+                "$ref": "#/components/schemas/NEO4JAuthConfig"
+              }
+            },
+            "example": {
+              "name": "Neo4j Example",
+              "type": "NEO4J",
+              "config": {
+                "index": "example-index"
               }
             }
           },
@@ -2075,6 +2267,38 @@
           },
           {
             "type": "object",
+            "title": "Singlestore",
+            "required": [
+              "name",
+              "type",
+              "config"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the connector"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "SINGLESTORE"
+                ],
+                "description": "Connector type (must be \"SINGLESTORE\")"
+              },
+              "config": {
+                "$ref": "#/components/schemas/SINGLESTOREAuthConfig"
+              }
+            },
+            "example": {
+              "name": "SingleStore Example",
+              "type": "SINGLESTORE",
+              "config": {
+                "table": "example-table"
+              }
+            }
+          },
+          {
+            "type": "object",
             "title": "Supabase",
             "required": [
               "name",
@@ -2107,70 +2331,6 @@
           },
           {
             "type": "object",
-            "title": "Weaviate",
-            "required": [
-              "name",
-              "type",
-              "config"
-            ],
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "Name of the connector"
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "WEAVIATE"
-                ],
-                "description": "Connector type (must be \"WEAVIATE\")"
-              },
-              "config": {
-                "$ref": "#/components/schemas/WEAVIATEAuthConfig"
-              }
-            },
-            "example": {
-              "name": "Weaviate Example",
-              "type": "WEAVIATE",
-              "config": {
-                "collection": "example-collection"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "title": "Azureaisearch",
-            "required": [
-              "name",
-              "type",
-              "config"
-            ],
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "Name of the connector"
-              },
-              "type": {
-                "type": "string",
-                "enum": [
-                  "AZUREAISEARCH"
-                ],
-                "description": "Connector type (must be \"AZUREAISEARCH\")"
-              },
-              "config": {
-                "$ref": "#/components/schemas/AZUREAISEARCHAuthConfig"
-              }
-            },
-            "example": {
-              "name": "Azure AI Search Example",
-              "type": "AZUREAISEARCH",
-              "config": {
-                "index": "example-index"
-              }
-            }
-          },
-          {
-            "type": "object",
             "title": "Turbopuffer",
             "required": [
               "name",
@@ -2198,6 +2358,38 @@
               "type": "TURBOPUFFER",
               "config": {
                 "namespace": "example-namespace"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "Weaviate",
+            "required": [
+              "name",
+              "type",
+              "config"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the connector"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "WEAVIATE"
+                ],
+                "description": "Connector type (must be \"WEAVIATE\")"
+              },
+              "config": {
+                "$ref": "#/components/schemas/WEAVIATEAuthConfig"
+              }
+            },
+            "example": {
+              "name": "Weaviate Example",
+              "type": "WEAVIATE",
+              "config": {
+                "collection": "example-collection"
               }
             }
           }
@@ -2303,19 +2495,16 @@
           },
           {
             "type": "object",
-            "title": "Singlestore",
+            "title": "Azureaisearch",
             "properties": {
               "config": {
-                "$ref": "#/components/schemas/SINGLESTOREAuthConfig"
+                "$ref": "#/components/schemas/AZUREAISEARCHAuthConfig"
               }
             },
             "example": {
               "config": {
-                "host": "Enter the host of the deployment",
-                "port": 100,
-                "database": "Enter the database name",
-                "username": "Enter the username",
-                "password": "Enter the username's password"
+                "service-name": "Enter your Azure AI Search service name",
+                "api-key": "Enter your API key"
               }
             }
           },
@@ -2333,6 +2522,22 @@
                 "token": "Enter your cluster token or Username/Password",
                 "username": "Enter your cluster Username",
                 "password": "Enter your cluster Password"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "Neo4j",
+            "properties": {
+              "config": {
+                "$ref": "#/components/schemas/NEO4JAuthConfig"
+              }
+            },
+            "example": {
+              "config": {
+                "host": "neo4j://localhost:7687",
+                "username": "neo4j",
+                "password": "Enter password"
               }
             }
           },
@@ -2371,6 +2576,24 @@
           },
           {
             "type": "object",
+            "title": "Singlestore",
+            "properties": {
+              "config": {
+                "$ref": "#/components/schemas/SINGLESTOREAuthConfig"
+              }
+            },
+            "example": {
+              "config": {
+                "host": "Enter the host of the deployment",
+                "port": 100,
+                "database": "Enter the database name",
+                "username": "Enter the username",
+                "password": "Enter the username's password"
+              }
+            }
+          },
+          {
+            "type": "object",
             "title": "Supabase",
             "properties": {
               "config": {
@@ -2389,6 +2612,20 @@
           },
           {
             "type": "object",
+            "title": "Turbopuffer",
+            "properties": {
+              "config": {
+                "$ref": "#/components/schemas/TURBOPUFFERAuthConfig"
+              }
+            },
+            "example": {
+              "config": {
+                "api-key": "Enter your API key"
+              }
+            }
+          },
+          {
+            "type": "object",
             "title": "Weaviate",
             "properties": {
               "config": {
@@ -2398,35 +2635,6 @@
             "example": {
               "config": {
                 "host": "Enter your Weaviate Cluster REST Endpoint",
-                "api-key": "Enter your API key"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "title": "Azureaisearch",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/AZUREAISEARCHAuthConfig"
-              }
-            },
-            "example": {
-              "config": {
-                "service-name": "Enter your Azure AI Search service name",
-                "api-key": "Enter your API key"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "title": "Turbopuffer",
-            "properties": {
-              "config": {
-                "$ref": "#/components/schemas/TURBOPUFFERAuthConfig"
-              }
-            },
-            "example": {
-              "config": {
                 "api-key": "Enter your API key"
               }
             }
@@ -2480,7 +2688,9 @@
           "BEDROCK",
           "VERTEX",
           "OPENAI",
-          "VOYAGE"
+          "VOYAGE",
+          "ANTHROPIC",
+          "GROQ"
         ]
       },
       "CreateAIPlatformConnectorRequest": {
@@ -2618,6 +2828,72 @@
                 "key": "example-key"
               }
             }
+          },
+          {
+            "type": "object",
+            "title": "Anthropic",
+            "required": [
+              "name",
+              "type",
+              "config"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the connector"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "ANTHROPIC"
+                ],
+                "description": "Must be \"ANTHROPIC\""
+              },
+              "config": {
+                "$ref": "#/components/schemas/ANTHROPICAuthConfig",
+                "description": "Configuration for Anthropic"
+              }
+            },
+            "example": {
+              "name": "Anthropic Example",
+              "type": "ANTHROPIC",
+              "config": {
+                "key": "example-key"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "title": "Groq",
+            "required": [
+              "name",
+              "type",
+              "config"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the connector"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "GROQ"
+                ],
+                "description": "Must be \"GROQ\""
+              },
+              "config": {
+                "$ref": "#/components/schemas/GROQAuthConfig",
+                "description": "Configuration for Groq"
+              }
+            },
+            "example": {
+              "name": "Groq Example",
+              "type": "GROQ",
+              "config": {
+                "key": "example-key"
+              }
+            }
           }
         ],
         "discriminator": {
@@ -2709,6 +2985,32 @@
             "example": {
               "config": {}
             }
+          },
+          {
+            "type": "object",
+            "title": "Anthropic",
+            "properties": {
+              "config": {
+                "type": "object",
+                "description": "Configuration updates"
+              }
+            },
+            "example": {
+              "config": {}
+            }
+          },
+          {
+            "type": "object",
+            "title": "Groq",
+            "properties": {
+              "config": {
+                "type": "object",
+                "description": "Configuration updates"
+              }
+            },
+            "example": {
+              "config": {}
+            }
           }
         ]
       },
@@ -2768,6 +3070,9 @@
             "items": {
               "$ref": "#/components/schemas/UploadFile"
             }
+          },
+          "nextToken": {
+            "type": "string"
           }
         },
         "required": [
@@ -3001,7 +3306,9 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string"
+            "type": "string",
+            "description": "Your application's unique identifier for this user. This is not a Dropbox/Google/Notion user ID, but rather an ID from your system to track which of your users has connected their account",
+            "example": "user_123456"
           },
           "selectedFiles": {
             "anyOf": [
@@ -3040,13 +3347,18 @@
                   }
                 }
               }
-            ]
+            ],
+            "description": "Files and folders selected by the user during the OAuth flow. This is automatically populated from the OAuth callback and should be passed as received. For Google Drive/Dropbox: object with file paths. For Notion: object with pageIds and databaseIds"
           },
           "refreshToken": {
-            "type": "string"
+            "type": "string",
+            "description": "OAuth refresh token obtained from the provider's OAuth callback. Required for Google Drive and Dropbox. This token is returned after the user completes the OAuth authorization flow and is used to obtain new access tokens when they expire",
+            "example": "sl.example_refresh_token_string"
           },
           "accessToken": {
-            "type": "string"
+            "type": "string",
+            "description": "OAuth access token obtained from the provider's OAuth callback. Required for Notion (which doesn't use refresh tokens). This token is returned after the user completes the OAuth authorization flow",
+            "example": "secret_example_access_token_string"
           }
         },
         "required": [
@@ -3069,7 +3381,9 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string"
+            "type": "string",
+            "description": "Your application's unique identifier for the user to update. This should match the userId that was used when adding the user",
+            "example": "user_123456"
           },
           "selectedFiles": {
             "anyOf": [
@@ -3108,13 +3422,18 @@
                   }
                 }
               }
-            ]
+            ],
+            "description": "Updated file selection from a new OAuth flow. Only include if the user has reauthorized and selected different files"
           },
           "refreshToken": {
-            "type": "string"
+            "type": "string",
+            "description": "New OAuth refresh token if the user has reauthorized. For Google Drive and Dropbox only",
+            "example": "sl.updated_refresh_token_string"
           },
           "accessToken": {
-            "type": "string"
+            "type": "string",
+            "description": "New OAuth access token if the user has reauthorized. For Notion only",
+            "example": "secret_updated_access_token_string"
           }
         },
         "required": [
@@ -3136,7 +3455,9 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "string"
+            "type": "string",
+            "description": "Your application's unique identifier for the user to remove. This should match the userId that was used when adding the user",
+            "example": "user_123456"
           }
         },
         "required": [
@@ -4055,6 +4376,116 @@
           "idle-time"
         ]
       },
+      "ZOOMAuthConfig": {
+        "type": "object",
+        "description": "Authentication configuration for Zoom",
+        "properties": {
+          "refresh-token": {
+            "type": "string",
+            "format": "password",
+            "description": "Connect Zoom to Vectorize. Note: Authorizing a new Zoom account will disconnect any existing Zoom connectors using the same account.. Example: Authorize"
+          }
+        },
+        "required": [
+          "refresh-token"
+        ]
+      },
+      "ZOOMConfig": {
+        "type": "object",
+        "description": "Configuration for Zoom connector",
+        "properties": {
+          "start-date": {
+            "type": "string",
+            "format": "date",
+            "description": "Start Date. Include meetings from this date forward. Example: Enter a date: Example 2023-12-31",
+            "default": "2025-08-07"
+          },
+          "end-date": {
+            "type": "string",
+            "format": "date",
+            "description": "End Date. Include meetings up to this date only. Example: Enter a date: Example 2023-12-31"
+          },
+          "title-filter": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Title Filter. Only include meetings containing any of these keywords in the title. Example: Enter meeting title keywords",
+            "default": []
+          },
+          "max-meetings": {
+            "type": "number",
+            "description": "Maximum Meetings. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of meetings to retrieve (leave blank for no limit)"
+          }
+        },
+        "required": [
+          "start-date"
+        ]
+      },
+      "ZOOM_ADMINAuthConfig": {
+        "type": "object",
+        "description": "Authentication configuration for Zoom Admin",
+        "properties": {
+          "refresh-token": {
+            "type": "string",
+            "format": "password",
+            "description": "Connect Admin Zoom to Vectorize. Note: Authorizing a new Zoom Admin account will disconnect any existing Zoom Admin connectors using the same account.. Example: Authorize"
+          }
+        },
+        "required": [
+          "refresh-token"
+        ]
+      },
+      "ZOOM_ADMINConfig": {
+        "type": "object",
+        "description": "Configuration for Zoom Admin connector",
+        "properties": {
+          "start-date": {
+            "type": "string",
+            "format": "date",
+            "description": "Start Date. Include meetings from this date forward. Example: Enter a date: Example 2023-12-31",
+            "default": "2025-08-07"
+          },
+          "end-date": {
+            "type": "string",
+            "format": "date",
+            "description": "End Date. Include meetings up to this date only. Example: Enter a date: Example 2023-12-31"
+          },
+          "user-emails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Recording hosts. Specify user emails to automatically fetch their meeting recordings. When not provided, all users in the account will be processed.. Example: Enter user email addresses",
+            "default": [],
+            "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
+          },
+          "title-filter": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Title Filter. Only include meetings containing any of these keywords in the title. Example: Enter meeting title keywords",
+            "default": []
+          },
+          "max-meetings": {
+            "type": "number",
+            "description": "Maximum Meetings. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of meetings to retrieve (leave blank for no limit)"
+          },
+          "participant-filter-type": {
+            "type": "string",
+            "default": "OR"
+          },
+          "participant-filter": {
+            "type": "string",
+            "description": "Participant Filter (Admin Only). Only include meetings with these participants (requires admin permissions). Example: Enter participant email or name"
+          }
+        },
+        "required": [
+          "start-date",
+          "participant-filter-type"
+        ]
+      },
       "INTERCOMConfig": {
         "type": "object",
         "description": "Configuration for Intercom connector",
@@ -4063,7 +4494,7 @@
             "type": "string",
             "format": "date",
             "description": "Created After. Filter for conversations created after this date. Example: Enter a date: Example 2012-12-31",
-            "default": "2025-07-16"
+            "default": "2025-08-07"
           },
           "updated_at": {
             "type": "string",
@@ -4514,20 +4945,20 @@
             "type": "string",
             "format": "date",
             "description": "Start Date. Include meetings from this date forward. Example: Enter a date: Example 2023-12-31",
-            "default": "2025-07-16"
+            "default": "2025-08-07"
           },
           "end-date": {
             "type": "string",
             "format": "date",
             "description": "End Date. Include meetings up to this date only. Example: Enter a date: Example 2023-12-31"
           },
-          "title-filter-type": {
-            "type": "string",
-            "default": "AND"
-          },
           "title-filter": {
-            "type": "string",
-            "description": "Title Filter. Only include meetings with this text in the title. Example: Enter meeting title"
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Title Filter. Only include meetings containing any of these keywords in the title. Example: Enter meeting title keywords",
+            "default": []
           },
           "participant-filter-type": {
             "type": "string",
@@ -4544,7 +4975,6 @@
         },
         "required": [
           "start-date",
-          "title-filter-type",
           "participant-filter-type"
         ]
       },
@@ -4570,7 +5000,7 @@
             },
             "description": "Envelope Statuses. Filter envelopes by status",
             "default": [
-              "all"
+              "completed"
             ],
             "enum": [
               "completed",
@@ -4588,54 +5018,20 @@
             "type": "string",
             "format": "date",
             "description": "Created From Date. Include envelopes created on or after this date. Example: Enter start date (YYYY-MM-DD)",
-            "default": "2025-07-16"
+            "default": "2025-08-07"
           },
           "to-date": {
             "type": "string",
             "format": "date",
             "description": "Created To Date. Include envelopes that were last updated up to this date. Example: Enter end date (YYYY-MM-DD)"
           },
-          "folder_ids": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "inbox",
-                "sentitems",
-                "draft",
-                "recyclebin",
-                "awaiting_my_signature",
-                "completed",
-                "out_for_signature",
-                "waiting_for_others",
-                "expiring_soon",
-                "all"
-              ]
-            },
-            "description": "Folder Names. Select which DocuSign folders to include in the import",
-            "default": [
-              "all"
-            ],
-            "enum": [
-              "inbox",
-              "sentitems",
-              "draft",
-              "recyclebin",
-              "awaiting_my_signature",
-              "completed",
-              "out_for_signature",
-              "waiting_for_others",
-              "expiring_soon",
-              "all"
-            ]
-          },
           "max-documents": {
             "type": "number",
-            "description": "Max Documents. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of documents to retrieve (leave blank for no limit)"
+            "description": "Max Envelopes. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of documents to retrieve (leave blank for no limit)"
           },
           "search-text": {
             "type": "string",
-            "description": "Search Text. Filter envelopes containing this text in their content. Example: Enter text to search within envelope content"
+            "description": "Search Text. Filter envelopes containing this text in the email subject, sender, body, or custom fields. Example: Enter text to search within envelope content"
           }
         },
         "required": [
@@ -4910,53 +5306,38 @@
           "index"
         ]
       },
-      "SINGLESTOREAuthConfig": {
+      "AZUREAISEARCHAuthConfig": {
         "type": "object",
-        "description": "Authentication configuration for SingleStore",
+        "description": "Authentication configuration for Azure AI Search",
         "properties": {
-          "host": {
+          "service-name": {
             "type": "string",
-            "description": "Host. Example: Enter the host of the deployment"
+            "description": "Azure AI Search Service Name. Example: Enter your Azure AI Search service name"
           },
-          "port": {
-            "type": "number",
-            "description": "Port. Example: Enter the port of the deployment"
-          },
-          "database": {
-            "type": "string",
-            "description": "Database. Example: Enter the database name"
-          },
-          "username": {
-            "type": "string",
-            "description": "Username. Example: Enter the username"
-          },
-          "password": {
+          "api-key": {
             "type": "string",
             "format": "password",
-            "description": "Password. Example: Enter the username's password"
+            "description": "API Key. Example: Enter your API key",
+            "pattern": "^\\S.*\\S$|^\\S$"
           }
         },
         "required": [
-          "host",
-          "port",
-          "database",
-          "username",
-          "password"
+          "service-name",
+          "api-key"
         ]
       },
-      "SINGLESTOREConfig": {
+      "AZUREAISEARCHConfig": {
         "type": "object",
-        "description": "Configuration for SingleStore connector",
+        "description": "Configuration for Azure AI Search connector",
         "properties": {
-          "table": {
+          "index": {
             "type": "string",
-            "description": "Table Name. Example: Enter table name",
-            "maxLength": 45,
-            "pattern": "^(?!\\b(add|alter|all|and|any|as|asc|avg|between|case|check|column|commit|constraint|create|cross|database|default|delete|desc|distinct|drop|else|exists|false|from|full|group|having|in|index|inner|insert|is|join|key|left|like|limit|max|min|not|null|on|or|order|outer|primary|right|rollback|select|set|sum|table|true|union|unique|update|values|view|where)\\b$)(?!.*--)(?!.*[-])[a-z][a-z0-9_]{0,44}$"
+            "description": "Index Name. Example: Enter index name",
+            "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$"
           }
         },
         "required": [
-          "table"
+          "index"
         ]
       },
       "MILVUSAuthConfig": {
@@ -4998,6 +5379,44 @@
         },
         "required": [
           "collection"
+        ]
+      },
+      "NEO4JAuthConfig": {
+        "type": "object",
+        "description": "Authentication configuration for Neo4j",
+        "properties": {
+          "host": {
+            "type": "string",
+            "format": "password",
+            "description": "Connection URI. Example: neo4j://localhost:7687"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username. Example: neo4j"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "description": "Password. Example: Enter password"
+          }
+        },
+        "required": [
+          "host",
+          "username",
+          "password"
+        ]
+      },
+      "NEO4JConfig": {
+        "type": "object",
+        "description": "Configuration for Neo4j connector",
+        "properties": {
+          "index": {
+            "type": "string",
+            "description": "Label name. Example: Enter a unique label for this pipeline's data"
+          }
+        },
+        "required": [
+          "index"
         ]
       },
       "POSTGRESQLAuthConfig": {
@@ -5083,6 +5502,55 @@
           "collection"
         ]
       },
+      "SINGLESTOREAuthConfig": {
+        "type": "object",
+        "description": "Authentication configuration for SingleStore",
+        "properties": {
+          "host": {
+            "type": "string",
+            "description": "Host. Example: Enter the host of the deployment"
+          },
+          "port": {
+            "type": "number",
+            "description": "Port. Example: Enter the port of the deployment"
+          },
+          "database": {
+            "type": "string",
+            "description": "Database. Example: Enter the database name"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username. Example: Enter the username"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "description": "Password. Example: Enter the username's password"
+          }
+        },
+        "required": [
+          "host",
+          "port",
+          "database",
+          "username",
+          "password"
+        ]
+      },
+      "SINGLESTOREConfig": {
+        "type": "object",
+        "description": "Configuration for SingleStore connector",
+        "properties": {
+          "table": {
+            "type": "string",
+            "description": "Table Name. Example: Enter table name",
+            "maxLength": 45,
+            "pattern": "^(?!\\b(add|alter|all|and|any|as|asc|avg|between|case|check|column|commit|constraint|create|cross|database|default|delete|desc|distinct|drop|else|exists|false|from|full|group|having|in|index|inner|insert|is|join|key|left|like|limit|max|min|not|null|on|or|order|outer|primary|right|rollback|select|set|sum|table|true|union|unique|update|values|view|where)\\b$)(?!.*--)(?!.*[-])[a-z][a-z0-9_]{0,44}$"
+          }
+        },
+        "required": [
+          "table"
+        ]
+      },
       "SUPABASEAuthConfig": {
         "type": "object",
         "description": "Authentication configuration for Supabase",
@@ -5133,6 +5601,34 @@
           "table"
         ]
       },
+      "TURBOPUFFERAuthConfig": {
+        "type": "object",
+        "description": "Authentication configuration for Turbopuffer",
+        "properties": {
+          "api-key": {
+            "type": "string",
+            "format": "password",
+            "description": "API Key. Example: Enter your API key",
+            "pattern": "^\\S.*\\S$|^\\S$"
+          }
+        },
+        "required": [
+          "api-key"
+        ]
+      },
+      "TURBOPUFFERConfig": {
+        "type": "object",
+        "description": "Configuration for Turbopuffer connector",
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "description": "Namespace. Example: Enter namespace name"
+          }
+        },
+        "required": [
+          "namespace"
+        ]
+      },
       "WEAVIATEAuthConfig": {
         "type": "object",
         "description": "Authentication configuration for Weaviate",
@@ -5165,68 +5661,6 @@
         },
         "required": [
           "collection"
-        ]
-      },
-      "AZUREAISEARCHAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Azure AI Search",
-        "properties": {
-          "service-name": {
-            "type": "string",
-            "description": "Azure AI Search Service Name. Example: Enter your Azure AI Search service name"
-          },
-          "api-key": {
-            "type": "string",
-            "format": "password",
-            "description": "API Key. Example: Enter your API key",
-            "pattern": "^\\S.*\\S$|^\\S$"
-          }
-        },
-        "required": [
-          "service-name",
-          "api-key"
-        ]
-      },
-      "AZUREAISEARCHConfig": {
-        "type": "object",
-        "description": "Configuration for Azure AI Search connector",
-        "properties": {
-          "index": {
-            "type": "string",
-            "description": "Index Name. Example: Enter index name",
-            "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$"
-          }
-        },
-        "required": [
-          "index"
-        ]
-      },
-      "TURBOPUFFERAuthConfig": {
-        "type": "object",
-        "description": "Authentication configuration for Turbopuffer",
-        "properties": {
-          "api-key": {
-            "type": "string",
-            "format": "password",
-            "description": "API Key. Example: Enter your API key",
-            "pattern": "^\\S.*\\S$|^\\S$"
-          }
-        },
-        "required": [
-          "api-key"
-        ]
-      },
-      "TURBOPUFFERConfig": {
-        "type": "object",
-        "description": "Configuration for Turbopuffer connector",
-        "properties": {
-          "namespace": {
-            "type": "string",
-            "description": "Namespace. Example: Enter namespace name"
-          }
-        },
-        "required": [
-          "namespace"
         ]
       },
       "BEDROCKAuthConfig": {
@@ -5305,6 +5739,36 @@
           "key"
         ]
       },
+      "ANTHROPICAuthConfig": {
+        "type": "object",
+        "description": "Authentication configuration for Anthropic",
+        "properties": {
+          "key": {
+            "type": "string",
+            "format": "password",
+            "description": "API Key. Example: Enter your Anthropic API Key",
+            "pattern": "^\\S.*\\S$|^\\S$"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
+      "GROQAuthConfig": {
+        "type": "object",
+        "description": "Authentication configuration for Groq",
+        "properties": {
+          "key": {
+            "type": "string",
+            "format": "password",
+            "description": "API Key. Example: Enter your Groq API Key",
+            "pattern": "^\\S.*\\S$|^\\S$"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      },
       "SourceConnectorInput": {
         "type": "object",
         "description": "Source connector configuration",
@@ -5333,6 +5797,8 @@
               "GOOGLE_DRIVE_OAUTH_MULTI_CUSTOM",
               "FIRECRAWL",
               "GCS",
+              "ZOOM",
+              "ZOOM_ADMIN",
               "INTERCOM",
               "NOTION",
               "NOTION_OAUTH_MULTI",
@@ -5380,6 +5846,12 @@
               },
               {
                 "$ref": "#/components/schemas/GCSConfig"
+              },
+              {
+                "$ref": "#/components/schemas/ZOOMConfig"
+              },
+              {
+                "$ref": "#/components/schemas/ZOOM_ADMINConfig"
               },
               {
                 "$ref": "#/components/schemas/INTERCOMConfig"
@@ -5435,14 +5907,15 @@
               "DATASTAX",
               "ELASTIC",
               "PINECONE",
-              "SINGLESTORE",
+              "AZUREAISEARCH",
               "MILVUS",
+              "NEO4J",
               "POSTGRESQL",
               "QDRANT",
+              "SINGLESTORE",
               "SUPABASE",
-              "WEAVIATE",
-              "AZUREAISEARCH",
-              "TURBOPUFFER"
+              "TURBOPUFFER",
+              "WEAVIATE"
             ]
           },
           "config": {
@@ -5460,10 +5933,13 @@
                 "$ref": "#/components/schemas/PINECONEConfig"
               },
               {
-                "$ref": "#/components/schemas/SINGLESTOREConfig"
+                "$ref": "#/components/schemas/AZUREAISEARCHConfig"
               },
               {
                 "$ref": "#/components/schemas/MILVUSConfig"
+              },
+              {
+                "$ref": "#/components/schemas/NEO4JConfig"
               },
               {
                 "$ref": "#/components/schemas/POSTGRESQLConfig"
@@ -5472,16 +5948,16 @@
                 "$ref": "#/components/schemas/QDRANTConfig"
               },
               {
+                "$ref": "#/components/schemas/SINGLESTOREConfig"
+              },
+              {
                 "$ref": "#/components/schemas/SUPABASEConfig"
               },
               {
-                "$ref": "#/components/schemas/WEAVIATEConfig"
-              },
-              {
-                "$ref": "#/components/schemas/AZUREAISEARCHConfig"
-              },
-              {
                 "$ref": "#/components/schemas/TURBOPUFFERConfig"
+              },
+              {
+                "$ref": "#/components/schemas/WEAVIATEConfig"
               }
             ],
             "description": "Configuration specific to the connector type"
@@ -5509,7 +5985,9 @@
               "BEDROCK",
               "VERTEX",
               "OPENAI",
-              "VOYAGE"
+              "VOYAGE",
+              "ANTHROPIC",
+              "GROQ"
             ]
           },
           "config": {
@@ -5527,6 +6005,524 @@
     "parameters": {}
   },
   "paths": {
+    "/org/{organizationId}/workspaces": {
+      "get": {
+        "operationId": "getWorkspaces",
+        "summary": "Get all workspaces in an organization",
+        "description": "Returns all workspaces that belong to the specified organization with pagination support",
+        "tags": [
+          "Workspaces"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "The unique identifier of the organization",
+              "example": "org_123"
+            },
+            "required": true,
+            "name": "organizationId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "nextToken",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of workspaces",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWorkspacesResponse"
+                },
+                "example": {
+                  "workspaces": [
+                    {
+                      "id": "c4d5e6f7-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+                      "type": "workspace",
+                      "name": "Default Workspace"
+                    },
+                    {
+                      "id": "d5e6f7a8-8b9c-0d1e-2f3a-4b5c6d7e8f9a",
+                      "type": "workspace",
+                      "name": "Development Workspace"
+                    }
+                  ],
+                  "nextToken": "token_example_123456"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{organizationId}/workspaces/{workspaceId}": {
+      "get": {
+        "operationId": "getWorkspaceById",
+        "summary": "Get a specific workspace by ID",
+        "description": "Returns details of a specific workspace within the organization",
+        "tags": [
+          "Workspaces"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "The unique identifier of the organization",
+              "example": "org_123"
+            },
+            "required": true,
+            "name": "organizationId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "The unique identifier of the workspace",
+              "example": "ws_123"
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workspace details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWorkspaceByIdResponse"
+                },
+                "example": {
+                  "id": "b843c74d-ef33-4138-82aa-6550622b3293",
+                  "name": "My GetWorkspaceByIdResponse",
+                  "createdAt": "example-createdAt",
+                  "updatedAt": "example-updatedAt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "details": {
+                      "type": "string"
+                    },
+                    "failedUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "successfulUpdates": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "An error occurred",
+                  "details": "example-details",
+                  "failedUpdates": [],
+                  "successfulUpdates": []
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/org/{organizationId}/pipelines": {
       "post": {
         "operationId": "createPipeline",
@@ -5811,7 +6807,7 @@
       "get": {
         "operationId": "getPipelines",
         "summary": "Get all pipelines",
-        "description": "Returns a list of all pipelines in the organization",
+        "description": "Returns a list of all pipelines in the organization with pagination support",
         "tags": [
           "Pipelines"
         ],
@@ -5834,11 +6830,31 @@
           {
             "schema": {
               "type": "string",
-              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
-              "example": "ws_789"
+              "description": "Filter results to a specific workspace",
+              "example": "ws_12345"
             },
             "required": false,
             "name": "workspaceId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Maximum number of items to return (1-100)",
+              "example": "20"
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Token for fetching the next page of results",
+              "example": "eyJsYXN0S2V5IjoiMTIzNDU2In0="
+            },
+            "required": false,
+            "name": "nextToken",
             "in": "query"
           }
         ],
@@ -5859,7 +6875,8 @@
                       "type": "example-type",
                       "status": "active"
                     }
-                  ]
+                  ],
+                  "nextToken": "token_example_123456"
                 }
               }
             }
@@ -8654,7 +9671,7 @@
       "get": {
         "operationId": "getSourceConnectors",
         "summary": "Get all existing source connectors",
-        "description": "Get all existing source connectors",
+        "description": "Get all existing source connectors with pagination support",
         "tags": [
           "Source Connectors"
         ],
@@ -8677,11 +9694,31 @@
           {
             "schema": {
               "type": "string",
-              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
-              "example": "ws_789"
+              "description": "Filter results to a specific workspace",
+              "example": "ws_12345"
             },
             "required": false,
             "name": "workspaceId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Maximum number of items to return (1-100)",
+              "example": "20"
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Token for fetching the next page of results",
+              "example": "eyJsYXN0S2V5IjoiMTIzNDU2In0="
+            },
+            "required": false,
+            "name": "nextToken",
             "in": "query"
           }
         ],
@@ -8698,6 +9735,9 @@
                       "items": {
                         "$ref": "#/components/schemas/SourceConnector"
                       }
+                    },
+                    "nextToken": {
+                      "type": "string"
                     }
                   },
                   "required": [
@@ -8742,7 +9782,8 @@
                       },
                       "createdByEmail": "user@example.com"
                     }
-                  ]
+                  ],
+                  "nextToken": "token_example_123456"
                 }
               }
             }
@@ -9981,7 +11022,7 @@
       "get": {
         "operationId": "getDestinationConnectors",
         "summary": "Get all existing destination connectors",
-        "description": "Get all existing destination connectors",
+        "description": "Get all existing destination connectors with pagination support",
         "tags": [
           "Destination Connectors"
         ],
@@ -10004,11 +11045,31 @@
           {
             "schema": {
               "type": "string",
-              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
-              "example": "ws_789"
+              "description": "Filter results to a specific workspace",
+              "example": "ws_12345"
             },
             "required": false,
             "name": "workspaceId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Maximum number of items to return (1-100)",
+              "example": "20"
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Token for fetching the next page of results",
+              "example": "eyJsYXN0S2V5IjoiMTIzNDU2In0="
+            },
+            "required": false,
+            "name": "nextToken",
             "in": "query"
           }
         ],
@@ -10025,6 +11086,9 @@
                       "items": {
                         "$ref": "#/components/schemas/DestinationConnector"
                       }
+                    },
+                    "nextToken": {
+                      "type": "string"
                     }
                   },
                   "required": [
@@ -10032,7 +11096,8 @@
                   ]
                 },
                 "example": {
-                  "destinationConnectors": []
+                  "destinationConnectors": [],
+                  "nextToken": "token_example_123456"
                 }
               }
             }
@@ -11271,7 +12336,7 @@
       "get": {
         "operationId": "getAIPlatformConnectors",
         "summary": "Get all existing AI Platform connectors",
-        "description": "Get all existing AI Platform connectors",
+        "description": "Get all existing AI Platform connectors with pagination support",
         "tags": [
           "AI Platform Connectors"
         ],
@@ -11294,11 +12359,31 @@
           {
             "schema": {
               "type": "string",
-              "description": "The workspace ID within the organization. If not provided, defaults to the first workspace.",
-              "example": "ws_789"
+              "description": "Filter results to a specific workspace",
+              "example": "ws_12345"
             },
             "required": false,
             "name": "workspaceId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Maximum number of items to return (1-100)",
+              "example": "20"
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Token for fetching the next page of results",
+              "example": "eyJsYXN0S2V5IjoiMTIzNDU2In0="
+            },
+            "required": false,
+            "name": "nextToken",
             "in": "query"
           }
         ],
@@ -11315,6 +12400,9 @@
                       "items": {
                         "$ref": "#/components/schemas/AIPlatformConnector"
                       }
+                    },
+                    "nextToken": {
+                      "type": "string"
                     }
                   },
                   "required": [
@@ -11322,7 +12410,8 @@
                   ]
                 },
                 "example": {
-                  "aiPlatformConnectors": []
+                  "aiPlatformConnectors": [],
+                  "nextToken": "token_example_123456"
                 }
               }
             }
@@ -12302,7 +13391,7 @@
       "get": {
         "operationId": "getUploadFilesFromConnector",
         "summary": "Get uploaded files from a file upload connector",
-        "description": "Get uploaded files from a file upload connector",
+        "description": "Get uploaded files from a file upload connector with pagination support",
         "tags": [
           "Uploads"
         ],
@@ -12331,6 +13420,26 @@
             "required": true,
             "name": "connectorId",
             "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Maximum number of items to return (1-100)",
+              "example": "20"
+            },
+            "required": false,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Token for fetching the next page of results",
+              "example": "eyJsYXN0S2V5IjoiMTIzNDU2In0="
+            },
+            "required": false,
+            "name": "nextToken",
+            "in": "query"
           }
         ],
         "responses": {
@@ -12343,7 +13452,8 @@
                 },
                 "example": {
                   "message": "Operation completed successfully",
-                  "files": []
+                  "files": [],
+                  "nextToken": "token_example_123456"
                 }
               }
             }
@@ -13833,8 +14943,8 @@
     "/org/{organizationId}/connectors/sources/{sourceConnectorId}/users": {
       "post": {
         "operationId": "addUserToSourceConnector",
-        "summary": "Add a user to a source connector",
-        "description": "Add a user to a source connector",
+        "summary": "Add a user to a multi-user OAuth source connector",
+        "description": "**⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.\n\nThis endpoint adds a user to a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').\n\n**Direct API usage is only recommended if:**\n- Your programming language doesn't have SDK support (e.g., PHP, Ruby)\n- You have existing OAuth infrastructure\n- You need custom OAuth flow control\n\n**Requirements:**\n- Valid OAuth tokens from the provider's OAuth flow\n- For Dropbox/Google Drive: Refresh token from OAuth callback\n- For Notion: Access token from OAuth callback\n- The selectedFiles object from the OAuth callback response\n\n**Note:** The userId should be YOUR application's user identifier, not the provider's user ID.",
         "tags": [
           "Source Connectors"
         ],
@@ -14094,8 +15204,8 @@
       },
       "patch": {
         "operationId": "updateUserInSourceConnector",
-        "summary": "Update a source connector user",
-        "description": "Update a source connector user",
+        "summary": "Update a user in a multi-user OAuth source connector",
+        "description": "**⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.\n\nThis endpoint updates a user's configuration in a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').\n\n**Direct API usage is only recommended if:**\n- Your programming language doesn't have SDK support (e.g., PHP, Ruby)\n- You have existing OAuth infrastructure\n- You need custom OAuth flow control\n\n**Requirements when updating tokens/files:**\n- Valid OAuth tokens from a fresh OAuth flow\n- For Dropbox/Google Drive: New refresh token\n- For Notion: New access token\n- Updated selectedFiles from the new OAuth callback\n\n**Note:** The userId should match the one used when adding the user.",
         "tags": [
           "Source Connectors"
         ],
@@ -14355,8 +15465,8 @@
       },
       "delete": {
         "operationId": "deleteUserFromSourceConnector",
-        "summary": "Delete a source connector user",
-        "description": "Delete a source connector user",
+        "summary": "Remove a user from a multi-user OAuth source connector",
+        "description": "Remove a user from a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').\n\nThis endpoint is simpler than add/update as it doesn't require OAuth tokens - only the userId that was used when adding the user.\n\n**Note:** While the Vectorize Connect SDK is recommended for consistency, this endpoint can be easily used directly since it doesn't require OAuth token management.",
         "tags": [
           "Source Connectors"
         ],
@@ -14614,6 +15724,11 @@
     }
   },
   "tags": [
+    {
+      "name": "Workspaces",
+      "description": "Operations related to workspaces",
+      "x-category": "Workspaces"
+    },
     {
       "name": "Source Connectors",
       "description": "Operations related to source connectors",

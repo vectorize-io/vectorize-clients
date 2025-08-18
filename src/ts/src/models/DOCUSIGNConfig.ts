@@ -38,19 +38,13 @@ export interface DOCUSIGNConfig {
      */
     toDate?: Date;
     /**
-     * Folder Names. Select which DocuSign folders to include in the import
-     * @type {Array<string>}
-     * @memberof DOCUSIGNConfig
-     */
-    folderIds?: DOCUSIGNConfigFolderIdsEnum;
-    /**
-     * Max Documents. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of documents to retrieve (leave blank for no limit)
+     * Max Envelopes. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of documents to retrieve (leave blank for no limit)
      * @type {number}
      * @memberof DOCUSIGNConfig
      */
     maxDocuments?: number;
     /**
-     * Search Text. Filter envelopes containing this text in their content. Example: Enter text to search within envelope content
+     * Search Text. Filter envelopes containing this text in the email subject, sender, body, or custom fields. Example: Enter text to search within envelope content
      * @type {string}
      * @memberof DOCUSIGNConfig
      */
@@ -74,23 +68,6 @@ export const DOCUSIGNConfigEnvelopeStatusesEnum = {
 } as const;
 export type DOCUSIGNConfigEnvelopeStatusesEnum = typeof DOCUSIGNConfigEnvelopeStatusesEnum[keyof typeof DOCUSIGNConfigEnvelopeStatusesEnum];
 
-/**
- * @export
- */
-export const DOCUSIGNConfigFolderIdsEnum = {
-    Inbox: 'inbox',
-    Sentitems: 'sentitems',
-    Draft: 'draft',
-    Recyclebin: 'recyclebin',
-    AwaitingMySignature: 'awaiting_my_signature',
-    Completed: 'completed',
-    OutForSignature: 'out_for_signature',
-    WaitingForOthers: 'waiting_for_others',
-    ExpiringSoon: 'expiring_soon',
-    All: 'all'
-} as const;
-export type DOCUSIGNConfigFolderIdsEnum = typeof DOCUSIGNConfigFolderIdsEnum[keyof typeof DOCUSIGNConfigFolderIdsEnum];
-
 
 /**
  * Check if a given object implements the DOCUSIGNConfig interface.
@@ -113,7 +90,6 @@ export function DOCUSIGNConfigFromJSONTyped(json: any, ignoreDiscriminator: bool
         'envelopeStatuses': json['envelope-statuses'] == null ? undefined : json['envelope-statuses'],
         'fromDate': (new Date(json['from-date'])),
         'toDate': json['to-date'] == null ? undefined : (new Date(json['to-date'])),
-        'folderIds': json['folder_ids'] == null ? undefined : json['folder_ids'],
         'maxDocuments': json['max-documents'] == null ? undefined : json['max-documents'],
         'searchText': json['search-text'] == null ? undefined : json['search-text'],
     };
@@ -133,7 +109,6 @@ export function DOCUSIGNConfigToJSONTyped(value?: DOCUSIGNConfig | null, ignoreD
         'envelope-statuses': value['envelopeStatuses'],
         'from-date': ((value['fromDate']).toISOString().substring(0,10)),
         'to-date': value['toDate'] == null ? undefined : ((value['toDate']).toISOString().substring(0,10)),
-        'folder_ids': value['folderIds'],
         'max-documents': value['maxDocuments'],
         'search-text': value['searchText'],
     };

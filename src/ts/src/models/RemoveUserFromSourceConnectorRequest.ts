@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface RemoveUserFromSourceConnectorRequest {
     /**
-     * 
+     * Your application's unique identifier for the user to remove. This should match the userId that was used when adding the user
      * @type {string}
      * @memberof RemoveUserFromSourceConnectorRequest
      */

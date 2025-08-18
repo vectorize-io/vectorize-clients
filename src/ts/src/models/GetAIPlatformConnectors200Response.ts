@@ -33,6 +33,12 @@ export interface GetAIPlatformConnectors200Response {
      * @memberof GetAIPlatformConnectors200Response
      */
     aiPlatformConnectors: Array<AIPlatformConnector>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAIPlatformConnectors200Response
+     */
+    nextToken?: string;
 }
 
 /**
@@ -54,6 +60,7 @@ export function GetAIPlatformConnectors200ResponseFromJSONTyped(json: any, ignor
     return {
         
         'aiPlatformConnectors': ((json['aiPlatformConnectors'] as Array<any>).map(AIPlatformConnectorFromJSON)),
+        'nextToken': json['nextToken'] == null ? undefined : json['nextToken'],
     };
 }
 
@@ -69,6 +76,7 @@ export function GetAIPlatformConnectors200ResponseToJSONTyped(value?: GetAIPlatf
     return {
         
         'aiPlatformConnectors': ((value['aiPlatformConnectors'] as Array<any>).map(AIPlatformConnectorToJSON)),
+        'nextToken': value['nextToken'],
     };
 }
 

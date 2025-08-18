@@ -26,7 +26,7 @@ class RemoveUserFromSourceConnectorRequest(BaseModel):
     """
     RemoveUserFromSourceConnectorRequest
     """ # noqa: E501
-    user_id: StrictStr = Field(alias="userId")
+    user_id: StrictStr = Field(description="Your application's unique identifier for the user to remove. This should match the userId that was used when adding the user", alias="userId")
     __properties: ClassVar[List[str]] = ["userId"]
 
     model_config = ConfigDict(

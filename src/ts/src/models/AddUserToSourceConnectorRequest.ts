@@ -28,7 +28,7 @@ import {
  */
 export interface AddUserToSourceConnectorRequest {
     /**
-     * 
+     * Your application's unique identifier for this user. This is not a Dropbox/Google/Notion user ID, but rather an ID from your system to track which of your users has connected their account
      * @type {string}
      * @memberof AddUserToSourceConnectorRequest
      */
@@ -40,13 +40,13 @@ export interface AddUserToSourceConnectorRequest {
      */
     selectedFiles: AddUserToSourceConnectorRequestSelectedFiles;
     /**
-     * 
+     * OAuth refresh token obtained from the provider's OAuth callback. Required for Google Drive and Dropbox. This token is returned after the user completes the OAuth authorization flow and is used to obtain new access tokens when they expire
      * @type {string}
      * @memberof AddUserToSourceConnectorRequest
      */
     refreshToken?: string;
     /**
-     * 
+     * OAuth access token obtained from the provider's OAuth callback. Required for Notion (which doesn't use refresh tokens). This token is returned after the user completes the OAuth authorization flow
      * @type {string}
      * @memberof AddUserToSourceConnectorRequest
      */

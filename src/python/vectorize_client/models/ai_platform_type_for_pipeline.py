@@ -31,6 +31,8 @@ class AIPlatformTypeForPipeline(str, Enum):
     OPENAI = 'OPENAI'
     VOYAGE = 'VOYAGE'
     VECTORIZE = 'VECTORIZE'
+    ANTHROPIC = 'ANTHROPIC'
+    GROQ = 'GROQ'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

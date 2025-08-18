@@ -22,14 +22,15 @@ export const DestinationConnectorTypeForPipeline = {
     Datastax: 'DATASTAX',
     Elastic: 'ELASTIC',
     Pinecone: 'PINECONE',
-    Singlestore: 'SINGLESTORE',
+    Azureaisearch: 'AZUREAISEARCH',
     Milvus: 'MILVUS',
+    Neo4J: 'NEO4J',
     Postgresql: 'POSTGRESQL',
     Qdrant: 'QDRANT',
+    Singlestore: 'SINGLESTORE',
     Supabase: 'SUPABASE',
-    Weaviate: 'WEAVIATE',
-    Azureaisearch: 'AZUREAISEARCH',
     Turbopuffer: 'TURBOPUFFER',
+    Weaviate: 'WEAVIATE',
     Vectorize: 'VECTORIZE'
 } as const;
 export type DestinationConnectorTypeForPipeline = typeof DestinationConnectorTypeForPipeline[keyof typeof DestinationConnectorTypeForPipeline];

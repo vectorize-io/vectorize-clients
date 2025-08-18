@@ -17,7 +17,9 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
+from vectorize_client.models.anthropic1 import Anthropic1
 from vectorize_client.models.bedrock1 import Bedrock1
+from vectorize_client.models.groq1 import Groq1
 from vectorize_client.models.openai1 import Openai1
 from vectorize_client.models.vertex1 import Vertex1
 from vectorize_client.models.voyage1 import Voyage1
@@ -25,7 +27,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-UPDATEAIPLATFORMCONNECTORREQUEST_ONE_OF_SCHEMAS = ["Bedrock1", "Openai1", "Vertex1", "Voyage1"]
+UPDATEAIPLATFORMCONNECTORREQUEST_ONE_OF_SCHEMAS = ["Anthropic1", "Bedrock1", "Groq1", "Openai1", "Vertex1", "Voyage1"]
 
 class UpdateAIPlatformConnectorRequest(BaseModel):
     """
@@ -39,8 +41,12 @@ class UpdateAIPlatformConnectorRequest(BaseModel):
     oneof_schema_3_validator: Optional[Openai1] = None
     # data type: Voyage1
     oneof_schema_4_validator: Optional[Voyage1] = None
-    actual_instance: Optional[Union[Bedrock1, Openai1, Vertex1, Voyage1]] = None
-    one_of_schemas: Set[str] = { "Bedrock1", "Openai1", "Vertex1", "Voyage1" }
+    # data type: Anthropic1
+    oneof_schema_5_validator: Optional[Anthropic1] = None
+    # data type: Groq1
+    oneof_schema_6_validator: Optional[Groq1] = None
+    actual_instance: Optional[Union[Anthropic1, Bedrock1, Groq1, Openai1, Vertex1, Voyage1]] = None
+    one_of_schemas: Set[str] = { "Anthropic1", "Bedrock1", "Groq1", "Openai1", "Vertex1", "Voyage1" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -83,12 +89,22 @@ class UpdateAIPlatformConnectorRequest(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Voyage1`")
         else:
             match += 1
+        # validate data type: Anthropic1
+        if not isinstance(v, Anthropic1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Anthropic1`")
+        else:
+            match += 1
+        # validate data type: Groq1
+        if not isinstance(v, Groq1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Groq1`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in UpdateAIPlatformConnectorRequest with oneOf schemas: Bedrock1, Openai1, Vertex1, Voyage1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in UpdateAIPlatformConnectorRequest with oneOf schemas: Anthropic1, Bedrock1, Groq1, Openai1, Vertex1, Voyage1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in UpdateAIPlatformConnectorRequest with oneOf schemas: Bedrock1, Openai1, Vertex1, Voyage1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in UpdateAIPlatformConnectorRequest with oneOf schemas: Anthropic1, Bedrock1, Groq1, Openai1, Vertex1, Voyage1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -127,13 +143,25 @@ class UpdateAIPlatformConnectorRequest(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into Anthropic1
+        try:
+            instance.actual_instance = Anthropic1.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into Groq1
+        try:
+            instance.actual_instance = Groq1.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into UpdateAIPlatformConnectorRequest with oneOf schemas: Bedrock1, Openai1, Vertex1, Voyage1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into UpdateAIPlatformConnectorRequest with oneOf schemas: Anthropic1, Bedrock1, Groq1, Openai1, Vertex1, Voyage1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into UpdateAIPlatformConnectorRequest with oneOf schemas: Bedrock1, Openai1, Vertex1, Voyage1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into UpdateAIPlatformConnectorRequest with oneOf schemas: Anthropic1, Bedrock1, Groq1, Openai1, Vertex1, Voyage1. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -147,7 +175,7 @@ class UpdateAIPlatformConnectorRequest(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], Bedrock1, Openai1, Vertex1, Voyage1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], Anthropic1, Bedrock1, Groq1, Openai1, Vertex1, Voyage1]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

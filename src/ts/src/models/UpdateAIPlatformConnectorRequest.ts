@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 
+import type { Anthropic1 } from './Anthropic1';
+import {
+    instanceOfAnthropic1,
+    Anthropic1FromJSON,
+    Anthropic1FromJSONTyped,
+    Anthropic1ToJSON,
+} from './Anthropic1';
 import type { Bedrock1 } from './Bedrock1';
 import {
     instanceOfBedrock1,
@@ -19,6 +26,13 @@ import {
     Bedrock1FromJSONTyped,
     Bedrock1ToJSON,
 } from './Bedrock1';
+import type { Groq1 } from './Groq1';
+import {
+    instanceOfGroq1,
+    Groq1FromJSON,
+    Groq1FromJSONTyped,
+    Groq1ToJSON,
+} from './Groq1';
 import type { Openai1 } from './Openai1';
 import {
     instanceOfOpenai1,
@@ -46,7 +60,7 @@ import {
  * 
  * @export
  */
-export type UpdateAIPlatformConnectorRequest = Bedrock1 | Openai1 | Vertex1 | Voyage1;
+export type UpdateAIPlatformConnectorRequest = Anthropic1 | Bedrock1 | Groq1 | Openai1 | Vertex1 | Voyage1;
 
 export function UpdateAIPlatformConnectorRequestFromJSON(json: any): UpdateAIPlatformConnectorRequest {
     return UpdateAIPlatformConnectorRequestFromJSONTyped(json, false);
@@ -59,8 +73,14 @@ export function UpdateAIPlatformConnectorRequestFromJSONTyped(json: any, ignoreD
     if (typeof json !== 'object') {
         return json;
     }
+    if (instanceOfAnthropic1(json)) {
+        return Anthropic1FromJSONTyped(json, true);
+    }
     if (instanceOfBedrock1(json)) {
         return Bedrock1FromJSONTyped(json, true);
+    }
+    if (instanceOfGroq1(json)) {
+        return Groq1FromJSONTyped(json, true);
     }
     if (instanceOfOpenai1(json)) {
         return Openai1FromJSONTyped(json, true);
@@ -86,8 +106,14 @@ export function UpdateAIPlatformConnectorRequestToJSONTyped(value?: UpdateAIPlat
     if (typeof value !== 'object') {
         return value;
     }
+    if (instanceOfAnthropic1(value)) {
+        return Anthropic1ToJSON(value as Anthropic1);
+    }
     if (instanceOfBedrock1(value)) {
         return Bedrock1ToJSON(value as Bedrock1);
+    }
+    if (instanceOfGroq1(value)) {
+        return Groq1ToJSON(value as Groq1);
     }
     if (instanceOfOpenai1(value)) {
         return Openai1ToJSON(value as Openai1);

@@ -21,7 +21,9 @@ export const AIPlatformConnectorType = {
     Bedrock: 'BEDROCK',
     Vertex: 'VERTEX',
     Openai: 'OPENAI',
-    Voyage: 'VOYAGE'
+    Voyage: 'VOYAGE',
+    Anthropic: 'ANTHROPIC',
+    Groq: 'GROQ'
 } as const;
 export type AIPlatformConnectorType = typeof AIPlatformConnectorType[keyof typeof AIPlatformConnectorType];
 

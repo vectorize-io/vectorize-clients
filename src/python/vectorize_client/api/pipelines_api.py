@@ -114,11 +114,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -194,11 +194,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -274,11 +274,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreatePipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -431,11 +431,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeletePipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -507,11 +507,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeletePipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -583,11 +583,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeletePipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -726,11 +726,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetDeepResearchResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -806,11 +806,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetDeepResearchResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -886,11 +886,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetDeepResearchResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1028,11 +1028,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1104,11 +1104,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1180,11 +1180,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1323,11 +1323,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineEventsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1403,11 +1403,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineEventsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1483,11 +1483,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineEventsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1627,11 +1627,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineMetricsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1703,11 +1703,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineMetricsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1779,11 +1779,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelineMetricsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1864,6 +1864,8 @@ class PipelinesApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1879,12 +1881,16 @@ class PipelinesApi:
     ) -> GetPipelinesResponse:
         """Get all pipelines
 
-        Returns a list of all pipelines in the organization
+        Returns a list of all pipelines in the organization with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1910,6 +1916,8 @@ class PipelinesApi:
         _param = self._get_pipelines_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1918,11 +1926,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelinesResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1940,6 +1948,8 @@ class PipelinesApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1955,12 +1965,16 @@ class PipelinesApi:
     ) -> ApiResponse[GetPipelinesResponse]:
         """Get all pipelines
 
-        Returns a list of all pipelines in the organization
+        Returns a list of all pipelines in the organization with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1986,6 +2000,8 @@ class PipelinesApi:
         _param = self._get_pipelines_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1994,11 +2010,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelinesResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2016,6 +2032,8 @@ class PipelinesApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2031,12 +2049,16 @@ class PipelinesApi:
     ) -> RESTResponseType:
         """Get all pipelines
 
-        Returns a list of all pipelines in the organization
+        Returns a list of all pipelines in the organization with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2062,6 +2084,8 @@ class PipelinesApi:
         _param = self._get_pipelines_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2070,11 +2094,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetPipelinesResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2087,6 +2111,8 @@ class PipelinesApi:
         self,
         organization_id,
         workspace_id,
+        limit,
+        next_token,
         _request_auth,
         _content_type,
         _headers,
@@ -2114,6 +2140,14 @@ class PipelinesApi:
         if workspace_id is not None:
             
             _query_params.append(('workspaceId', workspace_id))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if next_token is not None:
+            
+            _query_params.append(('nextToken', next_token))
             
         # process the header parameters
         # process the form parameters
@@ -2215,11 +2249,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RetrieveDocumentsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2295,11 +2329,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RetrieveDocumentsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2375,11 +2409,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RetrieveDocumentsResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2534,11 +2568,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartDeepResearchResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2614,11 +2648,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartDeepResearchResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2694,11 +2728,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartDeepResearchResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2849,11 +2883,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2925,11 +2959,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3001,11 +3035,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3140,11 +3174,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StopPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3216,11 +3250,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StopPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3292,11 +3326,11 @@ class PipelinesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StopPipelineResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,

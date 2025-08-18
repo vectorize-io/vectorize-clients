@@ -30,11 +30,13 @@ from vectorize_client.models.google_drive1 import GoogleDrive1
 from vectorize_client.models.one_drive1 import OneDrive1
 from vectorize_client.models.sharepoint1 import Sharepoint1
 from vectorize_client.models.web_crawler1 import WebCrawler1
+from vectorize_client.models.zoom1 import Zoom1
+from vectorize_client.models.zoom_admin1 import ZoomAdmin1
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-UPDATESOURCECONNECTORREQUEST_ONE_OF_SCHEMAS = ["AwsS31", "AzureBlob1", "Confluence1", "Discord1", "FileUpload1", "Firecrawl1", "Fireflies1", "Gcs1", "Github1", "GoogleDrive1", "OneDrive1", "Sharepoint1", "WebCrawler1"]
+UPDATESOURCECONNECTORREQUEST_ONE_OF_SCHEMAS = ["AwsS31", "AzureBlob1", "Confluence1", "Discord1", "FileUpload1", "Firecrawl1", "Fireflies1", "Gcs1", "Github1", "GoogleDrive1", "OneDrive1", "Sharepoint1", "WebCrawler1", "Zoom1", "ZoomAdmin1"]
 
 class UpdateSourceConnectorRequest(BaseModel):
     """
@@ -56,18 +58,22 @@ class UpdateSourceConnectorRequest(BaseModel):
     oneof_schema_7_validator: Optional[Firecrawl1] = None
     # data type: Gcs1
     oneof_schema_8_validator: Optional[Gcs1] = None
+    # data type: Zoom1
+    oneof_schema_9_validator: Optional[Zoom1] = None
+    # data type: ZoomAdmin1
+    oneof_schema_10_validator: Optional[ZoomAdmin1] = None
     # data type: OneDrive1
-    oneof_schema_9_validator: Optional[OneDrive1] = None
+    oneof_schema_11_validator: Optional[OneDrive1] = None
     # data type: Sharepoint1
-    oneof_schema_10_validator: Optional[Sharepoint1] = None
+    oneof_schema_12_validator: Optional[Sharepoint1] = None
     # data type: WebCrawler1
-    oneof_schema_11_validator: Optional[WebCrawler1] = None
+    oneof_schema_13_validator: Optional[WebCrawler1] = None
     # data type: Github1
-    oneof_schema_12_validator: Optional[Github1] = None
+    oneof_schema_14_validator: Optional[Github1] = None
     # data type: Fireflies1
-    oneof_schema_13_validator: Optional[Fireflies1] = None
-    actual_instance: Optional[Union[AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1]] = None
-    one_of_schemas: Set[str] = { "AwsS31", "AzureBlob1", "Confluence1", "Discord1", "FileUpload1", "Firecrawl1", "Fireflies1", "Gcs1", "Github1", "GoogleDrive1", "OneDrive1", "Sharepoint1", "WebCrawler1" }
+    oneof_schema_15_validator: Optional[Fireflies1] = None
+    actual_instance: Optional[Union[AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1, Zoom1, ZoomAdmin1]] = None
+    one_of_schemas: Set[str] = { "AwsS31", "AzureBlob1", "Confluence1", "Discord1", "FileUpload1", "Firecrawl1", "Fireflies1", "Gcs1", "Github1", "GoogleDrive1", "OneDrive1", "Sharepoint1", "WebCrawler1", "Zoom1", "ZoomAdmin1" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -130,6 +136,16 @@ class UpdateSourceConnectorRequest(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Gcs1`")
         else:
             match += 1
+        # validate data type: Zoom1
+        if not isinstance(v, Zoom1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Zoom1`")
+        else:
+            match += 1
+        # validate data type: ZoomAdmin1
+        if not isinstance(v, ZoomAdmin1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ZoomAdmin1`")
+        else:
+            match += 1
         # validate data type: OneDrive1
         if not isinstance(v, OneDrive1):
             error_messages.append(f"Error! Input type `{type(v)}` is not `OneDrive1`")
@@ -157,10 +173,10 @@ class UpdateSourceConnectorRequest(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1, Zoom1, ZoomAdmin1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1, Zoom1, ZoomAdmin1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -223,6 +239,18 @@ class UpdateSourceConnectorRequest(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into Zoom1
+        try:
+            instance.actual_instance = Zoom1.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into ZoomAdmin1
+        try:
+            instance.actual_instance = ZoomAdmin1.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into OneDrive1
         try:
             instance.actual_instance = OneDrive1.from_json(json_str)
@@ -256,10 +284,10 @@ class UpdateSourceConnectorRequest(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1, Zoom1, ZoomAdmin1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into UpdateSourceConnectorRequest with oneOf schemas: AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1, Zoom1, ZoomAdmin1. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -273,7 +301,7 @@ class UpdateSourceConnectorRequest(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AwsS31, AzureBlob1, Confluence1, Discord1, FileUpload1, Firecrawl1, Fireflies1, Gcs1, Github1, GoogleDrive1, OneDrive1, Sharepoint1, WebCrawler1, Zoom1, ZoomAdmin1]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

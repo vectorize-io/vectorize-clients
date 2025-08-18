@@ -22,14 +22,15 @@ export const DestinationConnectorType = {
     Datastax: 'DATASTAX',
     Elastic: 'ELASTIC',
     Pinecone: 'PINECONE',
-    Singlestore: 'SINGLESTORE',
+    Azureaisearch: 'AZUREAISEARCH',
     Milvus: 'MILVUS',
+    Neo4J: 'NEO4J',
     Postgresql: 'POSTGRESQL',
     Qdrant: 'QDRANT',
+    Singlestore: 'SINGLESTORE',
     Supabase: 'SUPABASE',
-    Weaviate: 'WEAVIATE',
-    Azureaisearch: 'AZUREAISEARCH',
-    Turbopuffer: 'TURBOPUFFER'
+    Turbopuffer: 'TURBOPUFFER',
+    Weaviate: 'WEAVIATE'
 } as const;
 export type DestinationConnectorType = typeof DestinationConnectorType[keyof typeof DestinationConnectorType];
 

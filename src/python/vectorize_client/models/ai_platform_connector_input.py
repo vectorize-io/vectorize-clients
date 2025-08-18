@@ -34,8 +34,8 @@ class AIPlatformConnectorInput(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['BEDROCK', 'VERTEX', 'OPENAI', 'VOYAGE']):
-            raise ValueError("must be one of enum values ('BEDROCK', 'VERTEX', 'OPENAI', 'VOYAGE')")
+        if value not in set(['BEDROCK', 'VERTEX', 'OPENAI', 'VOYAGE', 'ANTHROPIC', 'GROQ']):
+            raise ValueError("must be one of enum values ('BEDROCK', 'VERTEX', 'OPENAI', 'VOYAGE', 'ANTHROPIC', 'GROQ')")
         return value
 
     model_config = ConfigDict(

@@ -16,48 +16,48 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface GetPipelines400Response
+ * @interface GetWorkspaces400Response
  */
-export interface GetPipelines400Response {
+export interface GetWorkspaces400Response {
     /**
      * 
      * @type {string}
-     * @memberof GetPipelines400Response
+     * @memberof GetWorkspaces400Response
      */
     error: string;
     /**
      * 
      * @type {string}
-     * @memberof GetPipelines400Response
+     * @memberof GetWorkspaces400Response
      */
     details?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof GetPipelines400Response
+     * @memberof GetWorkspaces400Response
      */
     failedUpdates?: Array<string>;
     /**
      * 
      * @type {Array<string>}
-     * @memberof GetPipelines400Response
+     * @memberof GetWorkspaces400Response
      */
     successfulUpdates?: Array<string>;
 }
 
 /**
- * Check if a given object implements the GetPipelines400Response interface.
+ * Check if a given object implements the GetWorkspaces400Response interface.
  */
-export function instanceOfGetPipelines400Response(value: object): value is GetPipelines400Response {
+export function instanceOfGetWorkspaces400Response(value: object): value is GetWorkspaces400Response {
     if (!('error' in value) || value['error'] === undefined) return false;
     return true;
 }
 
-export function GetPipelines400ResponseFromJSON(json: any): GetPipelines400Response {
-    return GetPipelines400ResponseFromJSONTyped(json, false);
+export function GetWorkspaces400ResponseFromJSON(json: any): GetWorkspaces400Response {
+    return GetWorkspaces400ResponseFromJSONTyped(json, false);
 }
 
-export function GetPipelines400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetPipelines400Response {
+export function GetWorkspaces400ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetWorkspaces400Response {
     if (json == null) {
         return json;
     }
@@ -70,11 +70,11 @@ export function GetPipelines400ResponseFromJSONTyped(json: any, ignoreDiscrimina
     };
 }
 
-export function GetPipelines400ResponseToJSON(json: any): GetPipelines400Response {
-    return GetPipelines400ResponseToJSONTyped(json, false);
+export function GetWorkspaces400ResponseToJSON(json: any): GetWorkspaces400Response {
+    return GetWorkspaces400ResponseToJSONTyped(json, false);
 }
 
-export function GetPipelines400ResponseToJSONTyped(value?: GetPipelines400Response | null, ignoreDiscriminator: boolean = false): any {
+export function GetWorkspaces400ResponseToJSONTyped(value?: GetWorkspaces400Response | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

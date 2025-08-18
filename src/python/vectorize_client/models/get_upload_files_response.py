@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from vectorize_client.models.upload_file import UploadFile
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,8 @@ class GetUploadFilesResponse(BaseModel):
     """ # noqa: E501
     message: StrictStr
     files: List[UploadFile]
-    __properties: ClassVar[List[str]] = ["message", "files"]
+    next_token: Optional[StrictStr] = Field(default=None, alias="nextToken")
+    __properties: ClassVar[List[str]] = ["message", "files", "nextToken"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,7 +91,8 @@ class GetUploadFilesResponse(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "files": [UploadFile.from_dict(_item) for _item in obj["files"]] if obj.get("files") is not None else None
+            "files": [UploadFile.from_dict(_item) for _item in obj["files"]] if obj.get("files") is not None else None,
+            "nextToken": obj.get("nextToken")
         })
         return _obj
 

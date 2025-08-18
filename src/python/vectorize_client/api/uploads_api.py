@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import StrictStr
+from typing import Optional
 from vectorize_client.models.delete_file_response import DeleteFileResponse
 from vectorize_client.models.get_upload_files_response import GetUploadFilesResponse
 from vectorize_client.models.start_file_upload_to_connector_request import StartFileUploadToConnectorRequest
@@ -103,11 +104,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteFileResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -183,11 +184,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteFileResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -263,11 +264,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteFileResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -351,6 +352,8 @@ class UploadsApi:
         self,
         organization_id: StrictStr,
         connector_id: StrictStr,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -366,12 +369,16 @@ class UploadsApi:
     ) -> GetUploadFilesResponse:
         """Get uploaded files from a file upload connector
 
-        Get uploaded files from a file upload connector
+        Get uploaded files from a file upload connector with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param connector_id: (required)
         :type connector_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -397,6 +404,8 @@ class UploadsApi:
         _param = self._get_upload_files_from_connector_serialize(
             organization_id=organization_id,
             connector_id=connector_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -405,11 +414,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetUploadFilesResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -427,6 +436,8 @@ class UploadsApi:
         self,
         organization_id: StrictStr,
         connector_id: StrictStr,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -442,12 +453,16 @@ class UploadsApi:
     ) -> ApiResponse[GetUploadFilesResponse]:
         """Get uploaded files from a file upload connector
 
-        Get uploaded files from a file upload connector
+        Get uploaded files from a file upload connector with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param connector_id: (required)
         :type connector_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -473,6 +488,8 @@ class UploadsApi:
         _param = self._get_upload_files_from_connector_serialize(
             organization_id=organization_id,
             connector_id=connector_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -481,11 +498,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetUploadFilesResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -503,6 +520,8 @@ class UploadsApi:
         self,
         organization_id: StrictStr,
         connector_id: StrictStr,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -518,12 +537,16 @@ class UploadsApi:
     ) -> RESTResponseType:
         """Get uploaded files from a file upload connector
 
-        Get uploaded files from a file upload connector
+        Get uploaded files from a file upload connector with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param connector_id: (required)
         :type connector_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -549,6 +572,8 @@ class UploadsApi:
         _param = self._get_upload_files_from_connector_serialize(
             organization_id=organization_id,
             connector_id=connector_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -557,11 +582,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetUploadFilesResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -574,6 +599,8 @@ class UploadsApi:
         self,
         organization_id,
         connector_id,
+        limit,
+        next_token,
         _request_auth,
         _content_type,
         _headers,
@@ -600,6 +627,14 @@ class UploadsApi:
         if connector_id is not None:
             _path_params['connectorId'] = connector_id
         # process the query parameters
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if next_token is not None:
+            
+            _query_params.append(('nextToken', next_token))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -700,11 +735,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartFileUploadToConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -780,11 +815,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartFileUploadToConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -860,11 +895,11 @@ class UploadsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "StartFileUploadToConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,

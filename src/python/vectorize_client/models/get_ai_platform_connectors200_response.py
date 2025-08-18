@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from vectorize_client.models.ai_platform_connector import AIPlatformConnector
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,8 @@ class GetAIPlatformConnectors200Response(BaseModel):
     GetAIPlatformConnectors200Response
     """ # noqa: E501
     ai_platform_connectors: List[AIPlatformConnector] = Field(alias="aiPlatformConnectors")
-    __properties: ClassVar[List[str]] = ["aiPlatformConnectors"]
+    next_token: Optional[StrictStr] = Field(default=None, alias="nextToken")
+    __properties: ClassVar[List[str]] = ["aiPlatformConnectors", "nextToken"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,7 +89,8 @@ class GetAIPlatformConnectors200Response(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "aiPlatformConnectors": [AIPlatformConnector.from_dict(_item) for _item in obj["aiPlatformConnectors"]] if obj.get("aiPlatformConnectors") is not None else None
+            "aiPlatformConnectors": [AIPlatformConnector.from_dict(_item) for _item in obj["aiPlatformConnectors"]] if obj.get("aiPlatformConnectors") is not None else None,
+            "nextToken": obj.get("nextToken")
         })
         return _obj
 

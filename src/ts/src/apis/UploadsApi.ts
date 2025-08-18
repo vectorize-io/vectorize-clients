@@ -16,18 +16,18 @@
 import * as runtime from '../runtime';
 import type {
   DeleteFileResponse,
-  GetPipelines400Response,
   GetUploadFilesResponse,
+  GetWorkspaces400Response,
   StartFileUploadToConnectorRequest,
   StartFileUploadToConnectorResponse,
 } from '../models/index';
 import {
     DeleteFileResponseFromJSON,
     DeleteFileResponseToJSON,
-    GetPipelines400ResponseFromJSON,
-    GetPipelines400ResponseToJSON,
     GetUploadFilesResponseFromJSON,
     GetUploadFilesResponseToJSON,
+    GetWorkspaces400ResponseFromJSON,
+    GetWorkspaces400ResponseToJSON,
     StartFileUploadToConnectorRequestFromJSON,
     StartFileUploadToConnectorRequestToJSON,
     StartFileUploadToConnectorResponseFromJSON,
@@ -43,6 +43,8 @@ export interface DeleteFileFromConnectorRequest {
 export interface GetUploadFilesFromConnectorRequest {
     organizationId: string;
     connectorId: string;
+    limit?: string;
+    nextToken?: string;
 }
 
 export interface StartFileUploadToConnectorOperationRequest {
@@ -114,7 +116,7 @@ export class UploadsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get uploaded files from a file upload connector
+     * Get uploaded files from a file upload connector with pagination support
      * Get uploaded files from a file upload connector
      */
     async getUploadFilesFromConnectorRaw(requestParameters: GetUploadFilesFromConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUploadFilesResponse>> {
@@ -133,6 +135,14 @@ export class UploadsApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -155,7 +165,7 @@ export class UploadsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get uploaded files from a file upload connector
+     * Get uploaded files from a file upload connector with pagination support
      * Get uploaded files from a file upload connector
      */
     async getUploadFilesFromConnector(requestParameters: GetUploadFilesFromConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUploadFilesResponse> {

@@ -21,8 +21,8 @@ import type {
   GetPipelineEventsResponse,
   GetPipelineMetricsResponse,
   GetPipelineResponse,
-  GetPipelines400Response,
   GetPipelinesResponse,
+  GetWorkspaces400Response,
   PipelineConfigurationSchema,
   RetrieveDocumentsRequest,
   RetrieveDocumentsResponse,
@@ -44,10 +44,10 @@ import {
     GetPipelineMetricsResponseToJSON,
     GetPipelineResponseFromJSON,
     GetPipelineResponseToJSON,
-    GetPipelines400ResponseFromJSON,
-    GetPipelines400ResponseToJSON,
     GetPipelinesResponseFromJSON,
     GetPipelinesResponseToJSON,
+    GetWorkspaces400ResponseFromJSON,
+    GetWorkspaces400ResponseToJSON,
     PipelineConfigurationSchemaFromJSON,
     PipelineConfigurationSchemaToJSON,
     RetrieveDocumentsRequestFromJSON,
@@ -100,6 +100,8 @@ export interface GetPipelineMetricsRequest {
 export interface GetPipelinesRequest {
     organizationId: string;
     workspaceId?: string;
+    limit?: string;
+    nextToken?: string;
 }
 
 export interface RetrieveDocumentsOperationRequest {
@@ -448,7 +450,7 @@ export class PipelinesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of all pipelines in the organization
+     * Returns a list of all pipelines in the organization with pagination support
      * Get all pipelines
      */
     async getPipelinesRaw(requestParameters: GetPipelinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPipelinesResponse>> {
@@ -463,6 +465,14 @@ export class PipelinesApi extends runtime.BaseAPI {
 
         if (requestParameters['workspaceId'] != null) {
             queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -486,7 +496,7 @@ export class PipelinesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a list of all pipelines in the organization
+     * Returns a list of all pipelines in the organization with pagination support
      * Get all pipelines
      */
     async getPipelines(requestParameters: GetPipelinesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPipelinesResponse> {

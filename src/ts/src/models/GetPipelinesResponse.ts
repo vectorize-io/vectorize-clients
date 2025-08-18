@@ -39,6 +39,12 @@ export interface GetPipelinesResponse {
      * @memberof GetPipelinesResponse
      */
     data: Array<PipelineListSummary>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPipelinesResponse
+     */
+    nextToken?: string;
 }
 
 /**
@@ -62,6 +68,7 @@ export function GetPipelinesResponseFromJSONTyped(json: any, ignoreDiscriminator
         
         'message': json['message'],
         'data': ((json['data'] as Array<any>).map(PipelineListSummaryFromJSON)),
+        'nextToken': json['nextToken'] == null ? undefined : json['nextToken'],
     };
 }
 
@@ -78,6 +85,7 @@ export function GetPipelinesResponseToJSONTyped(value?: GetPipelinesResponse | n
         
         'message': value['message'],
         'data': ((value['data'] as Array<any>).map(PipelineListSummaryToJSON)),
+        'nextToken': value['nextToken'],
     };
 }
 

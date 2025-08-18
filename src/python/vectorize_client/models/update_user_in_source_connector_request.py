@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from vectorize_client.models.add_user_to_source_connector_request_selected_files import AddUserToSourceConnectorRequestSelectedFiles
+from vectorize_client.models.update_user_in_source_connector_request_selected_files import UpdateUserInSourceConnectorRequestSelectedFiles
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,10 +27,10 @@ class UpdateUserInSourceConnectorRequest(BaseModel):
     """
     UpdateUserInSourceConnectorRequest
     """ # noqa: E501
-    user_id: StrictStr = Field(alias="userId")
-    selected_files: Optional[AddUserToSourceConnectorRequestSelectedFiles] = Field(default=None, alias="selectedFiles")
-    refresh_token: Optional[StrictStr] = Field(default=None, alias="refreshToken")
-    access_token: Optional[StrictStr] = Field(default=None, alias="accessToken")
+    user_id: StrictStr = Field(description="Your application's unique identifier for the user to update. This should match the userId that was used when adding the user", alias="userId")
+    selected_files: Optional[UpdateUserInSourceConnectorRequestSelectedFiles] = Field(default=None, alias="selectedFiles")
+    refresh_token: Optional[StrictStr] = Field(default=None, description="New OAuth refresh token if the user has reauthorized. For Google Drive and Dropbox only", alias="refreshToken")
+    access_token: Optional[StrictStr] = Field(default=None, description="New OAuth access token if the user has reauthorized. For Notion only", alias="accessToken")
     __properties: ClassVar[List[str]] = ["userId", "selectedFiles", "refreshToken", "accessToken"]
 
     model_config = ConfigDict(
@@ -88,7 +88,7 @@ class UpdateUserInSourceConnectorRequest(BaseModel):
 
         _obj = cls.model_validate({
             "userId": obj.get("userId"),
-            "selectedFiles": AddUserToSourceConnectorRequestSelectedFiles.from_dict(obj["selectedFiles"]) if obj.get("selectedFiles") is not None else None,
+            "selectedFiles": UpdateUserInSourceConnectorRequestSelectedFiles.from_dict(obj["selectedFiles"]) if obj.get("selectedFiles") is not None else None,
             "refreshToken": obj.get("refreshToken"),
             "accessToken": obj.get("accessToken")
         })

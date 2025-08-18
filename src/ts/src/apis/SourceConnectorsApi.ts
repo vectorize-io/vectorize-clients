@@ -20,8 +20,8 @@ import type {
   CreateSourceConnectorRequest,
   CreateSourceConnectorResponse,
   DeleteSourceConnectorResponse,
-  GetPipelines400Response,
   GetSourceConnectors200Response,
+  GetWorkspaces400Response,
   RemoveUserFromSourceConnectorRequest,
   RemoveUserFromSourceConnectorResponse,
   SourceConnector,
@@ -41,10 +41,10 @@ import {
     CreateSourceConnectorResponseToJSON,
     DeleteSourceConnectorResponseFromJSON,
     DeleteSourceConnectorResponseToJSON,
-    GetPipelines400ResponseFromJSON,
-    GetPipelines400ResponseToJSON,
     GetSourceConnectors200ResponseFromJSON,
     GetSourceConnectors200ResponseToJSON,
+    GetWorkspaces400ResponseFromJSON,
+    GetWorkspaces400ResponseToJSON,
     RemoveUserFromSourceConnectorRequestFromJSON,
     RemoveUserFromSourceConnectorRequestToJSON,
     RemoveUserFromSourceConnectorResponseFromJSON,
@@ -92,6 +92,8 @@ export interface GetSourceConnectorRequest {
 export interface GetSourceConnectorsRequest {
     organizationId: string;
     workspaceId?: string;
+    limit?: string;
+    nextToken?: string;
 }
 
 export interface UpdateSourceConnectorOperationRequest {
@@ -112,8 +114,8 @@ export interface UpdateUserInSourceConnectorOperationRequest {
 export class SourceConnectorsApi extends runtime.BaseAPI {
 
     /**
-     * Add a user to a source connector
-     * Add a user to a source connector
+     * **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint adds a user to a multi-user OAuth connector (types ending with \'_OAUTH_MULTI\' or \'_OAUTH_MULTI_CUSTOM\').  **Direct API usage is only recommended if:** - Your programming language doesn\'t have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements:** - Valid OAuth tokens from the provider\'s OAuth flow - For Dropbox/Google Drive: Refresh token from OAuth callback - For Notion: Access token from OAuth callback - The selectedFiles object from the OAuth callback response  **Note:** The userId should be YOUR application\'s user identifier, not the provider\'s user ID.
+     * Add a user to a multi-user OAuth source connector
      */
     async addUserToSourceConnectorRaw(requestParameters: AddUserToSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddUserFromSourceConnectorResponse>> {
         if (requestParameters['organizationId'] == null) {
@@ -163,8 +165,8 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Add a user to a source connector
-     * Add a user to a source connector
+     * **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint adds a user to a multi-user OAuth connector (types ending with \'_OAUTH_MULTI\' or \'_OAUTH_MULTI_CUSTOM\').  **Direct API usage is only recommended if:** - Your programming language doesn\'t have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements:** - Valid OAuth tokens from the provider\'s OAuth flow - For Dropbox/Google Drive: Refresh token from OAuth callback - For Notion: Access token from OAuth callback - The selectedFiles object from the OAuth callback response  **Note:** The userId should be YOUR application\'s user identifier, not the provider\'s user ID.
+     * Add a user to a multi-user OAuth source connector
      */
     async addUserToSourceConnector(requestParameters: AddUserToSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddUserFromSourceConnectorResponse> {
         const response = await this.addUserToSourceConnectorRaw(requestParameters, initOverrides);
@@ -279,8 +281,8 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a source connector user
-     * Delete a source connector user
+     * Remove a user from a multi-user OAuth connector (types ending with \'_OAUTH_MULTI\' or \'_OAUTH_MULTI_CUSTOM\').  This endpoint is simpler than add/update as it doesn\'t require OAuth tokens - only the userId that was used when adding the user.  **Note:** While the Vectorize Connect SDK is recommended for consistency, this endpoint can be easily used directly since it doesn\'t require OAuth token management.
+     * Remove a user from a multi-user OAuth source connector
      */
     async deleteUserFromSourceConnectorRaw(requestParameters: DeleteUserFromSourceConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RemoveUserFromSourceConnectorResponse>> {
         if (requestParameters['organizationId'] == null) {
@@ -330,8 +332,8 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a source connector user
-     * Delete a source connector user
+     * Remove a user from a multi-user OAuth connector (types ending with \'_OAUTH_MULTI\' or \'_OAUTH_MULTI_CUSTOM\').  This endpoint is simpler than add/update as it doesn\'t require OAuth tokens - only the userId that was used when adding the user.  **Note:** While the Vectorize Connect SDK is recommended for consistency, this endpoint can be easily used directly since it doesn\'t require OAuth token management.
+     * Remove a user from a multi-user OAuth source connector
      */
     async deleteUserFromSourceConnector(requestParameters: DeleteUserFromSourceConnectorRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RemoveUserFromSourceConnectorResponse> {
         const response = await this.deleteUserFromSourceConnectorRaw(requestParameters, initOverrides);
@@ -389,7 +391,7 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all existing source connectors
+     * Get all existing source connectors with pagination support
      * Get all existing source connectors
      */
     async getSourceConnectorsRaw(requestParameters: GetSourceConnectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSourceConnectors200Response>> {
@@ -404,6 +406,14 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
 
         if (requestParameters['workspaceId'] != null) {
             queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -427,7 +437,7 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all existing source connectors
+     * Get all existing source connectors with pagination support
      * Get all existing source connectors
      */
     async getSourceConnectors(requestParameters: GetSourceConnectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSourceConnectors200Response> {
@@ -496,8 +506,8 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a source connector user
-     * Update a source connector user
+     * **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint updates a user\'s configuration in a multi-user OAuth connector (types ending with \'_OAUTH_MULTI\' or \'_OAUTH_MULTI_CUSTOM\').  **Direct API usage is only recommended if:** - Your programming language doesn\'t have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements when updating tokens/files:** - Valid OAuth tokens from a fresh OAuth flow - For Dropbox/Google Drive: New refresh token - For Notion: New access token - Updated selectedFiles from the new OAuth callback  **Note:** The userId should match the one used when adding the user.
+     * Update a user in a multi-user OAuth source connector
      */
     async updateUserInSourceConnectorRaw(requestParameters: UpdateUserInSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUserInSourceConnectorResponse>> {
         if (requestParameters['organizationId'] == null) {
@@ -547,8 +557,8 @@ export class SourceConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Update a source connector user
-     * Update a source connector user
+     * **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint updates a user\'s configuration in a multi-user OAuth connector (types ending with \'_OAUTH_MULTI\' or \'_OAUTH_MULTI_CUSTOM\').  **Direct API usage is only recommended if:** - Your programming language doesn\'t have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements when updating tokens/files:** - Valid OAuth tokens from a fresh OAuth flow - For Dropbox/Google Drive: New refresh token - For Notion: New access token - Updated selectedFiles from the new OAuth callback  **Note:** The userId should match the one used when adding the user.
+     * Update a user in a multi-user OAuth source connector
      */
     async updateUserInSourceConnector(requestParameters: UpdateUserInSourceConnectorOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateUserInSourceConnectorResponse> {
         const response = await this.updateUserInSourceConnectorRaw(requestParameters, initOverrides);

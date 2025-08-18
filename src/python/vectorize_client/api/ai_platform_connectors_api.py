@@ -107,11 +107,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -187,11 +187,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -267,11 +267,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -424,11 +424,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -500,11 +500,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -576,11 +576,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -715,11 +715,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AIPlatformConnector",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -791,11 +791,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AIPlatformConnector",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -867,11 +867,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AIPlatformConnector",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -952,6 +952,8 @@ class AIPlatformConnectorsApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -967,12 +969,16 @@ class AIPlatformConnectorsApi:
     ) -> GetAIPlatformConnectors200Response:
         """Get all existing AI Platform connectors
 
-        Get all existing AI Platform connectors
+        Get all existing AI Platform connectors with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -998,6 +1004,8 @@ class AIPlatformConnectorsApi:
         _param = self._get_ai_platform_connectors_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1006,11 +1014,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAIPlatformConnectors200Response",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1028,6 +1036,8 @@ class AIPlatformConnectorsApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1043,12 +1053,16 @@ class AIPlatformConnectorsApi:
     ) -> ApiResponse[GetAIPlatformConnectors200Response]:
         """Get all existing AI Platform connectors
 
-        Get all existing AI Platform connectors
+        Get all existing AI Platform connectors with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1074,6 +1088,8 @@ class AIPlatformConnectorsApi:
         _param = self._get_ai_platform_connectors_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1082,11 +1098,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAIPlatformConnectors200Response",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1104,6 +1120,8 @@ class AIPlatformConnectorsApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1119,12 +1137,16 @@ class AIPlatformConnectorsApi:
     ) -> RESTResponseType:
         """Get all existing AI Platform connectors
 
-        Get all existing AI Platform connectors
+        Get all existing AI Platform connectors with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1150,6 +1172,8 @@ class AIPlatformConnectorsApi:
         _param = self._get_ai_platform_connectors_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1158,11 +1182,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetAIPlatformConnectors200Response",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1175,6 +1199,8 @@ class AIPlatformConnectorsApi:
         self,
         organization_id,
         workspace_id,
+        limit,
+        next_token,
         _request_auth,
         _content_type,
         _headers,
@@ -1202,6 +1228,14 @@ class AIPlatformConnectorsApi:
         if workspace_id is not None:
             
             _query_params.append(('workspaceId', workspace_id))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if next_token is not None:
+            
+            _query_params.append(('nextToken', next_token))
             
         # process the header parameters
         # process the form parameters
@@ -1303,11 +1337,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1383,11 +1417,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1463,11 +1497,11 @@ class AIPlatformConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateAIPlatformConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,

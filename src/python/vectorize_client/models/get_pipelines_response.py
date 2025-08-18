@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from vectorize_client.models.pipeline_list_summary import PipelineListSummary
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,8 @@ class GetPipelinesResponse(BaseModel):
     """ # noqa: E501
     message: StrictStr
     data: List[PipelineListSummary]
-    __properties: ClassVar[List[str]] = ["message", "data"]
+    next_token: Optional[StrictStr] = Field(default=None, alias="nextToken")
+    __properties: ClassVar[List[str]] = ["message", "data", "nextToken"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,7 +91,8 @@ class GetPipelinesResponse(BaseModel):
 
         _obj = cls.model_validate({
             "message": obj.get("message"),
-            "data": [PipelineListSummary.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None
+            "data": [PipelineListSummary.from_dict(_item) for _item in obj["data"]] if obj.get("data") is not None else None,
+            "nextToken": obj.get("nextToken")
         })
         return _obj
 

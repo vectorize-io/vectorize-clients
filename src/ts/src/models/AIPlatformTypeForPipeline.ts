@@ -22,7 +22,9 @@ export const AIPlatformTypeForPipeline = {
     Vertex: 'VERTEX',
     Openai: 'OPENAI',
     Voyage: 'VOYAGE',
-    Vectorize: 'VECTORIZE'
+    Vectorize: 'VECTORIZE',
+    Anthropic: 'ANTHROPIC',
+    Groq: 'GROQ'
 } as const;
 export type AIPlatformTypeForPipeline = typeof AIPlatformTypeForPipeline[keyof typeof AIPlatformTypeForPipeline];
 

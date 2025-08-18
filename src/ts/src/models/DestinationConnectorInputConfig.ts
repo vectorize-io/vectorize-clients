@@ -47,6 +47,13 @@ import {
     MILVUSConfigFromJSONTyped,
     MILVUSConfigToJSON,
 } from './MILVUSConfig';
+import type { NEO4JConfig } from './NEO4JConfig';
+import {
+    instanceOfNEO4JConfig,
+    NEO4JConfigFromJSON,
+    NEO4JConfigFromJSONTyped,
+    NEO4JConfigToJSON,
+} from './NEO4JConfig';
 import type { PINECONEConfig } from './PINECONEConfig';
 import {
     instanceOfPINECONEConfig,
@@ -102,7 +109,7 @@ import {
  * Configuration specific to the connector type
  * @export
  */
-export type DestinationConnectorInputConfig = AZUREAISEARCHConfig | CAPELLAConfig | DATASTAXConfig | ELASTICConfig | MILVUSConfig | PINECONEConfig | POSTGRESQLConfig | QDRANTConfig | SINGLESTOREConfig | SUPABASEConfig | TURBOPUFFERConfig | WEAVIATEConfig;
+export type DestinationConnectorInputConfig = AZUREAISEARCHConfig | CAPELLAConfig | DATASTAXConfig | ELASTICConfig | MILVUSConfig | NEO4JConfig | PINECONEConfig | POSTGRESQLConfig | QDRANTConfig | SINGLESTOREConfig | SUPABASEConfig | TURBOPUFFERConfig | WEAVIATEConfig;
 
 export function DestinationConnectorInputConfigFromJSON(json: any): DestinationConnectorInputConfig {
     return DestinationConnectorInputConfigFromJSONTyped(json, false);
@@ -129,6 +136,9 @@ export function DestinationConnectorInputConfigFromJSONTyped(json: any, ignoreDi
     }
     if (instanceOfMILVUSConfig(json)) {
         return MILVUSConfigFromJSONTyped(json, true);
+    }
+    if (instanceOfNEO4JConfig(json)) {
+        return NEO4JConfigFromJSONTyped(json, true);
     }
     if (instanceOfPINECONEConfig(json)) {
         return PINECONEConfigFromJSONTyped(json, true);
@@ -180,6 +190,9 @@ export function DestinationConnectorInputConfigToJSONTyped(value?: DestinationCo
     }
     if (instanceOfMILVUSConfig(value)) {
         return MILVUSConfigToJSON(value as MILVUSConfig);
+    }
+    if (instanceOfNEO4JConfig(value)) {
+        return NEO4JConfigToJSON(value as NEO4JConfig);
     }
     if (instanceOfPINECONEConfig(value)) {
         return PINECONEConfigToJSON(value as PINECONEConfig);

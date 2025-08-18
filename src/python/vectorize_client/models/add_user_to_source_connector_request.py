@@ -27,10 +27,10 @@ class AddUserToSourceConnectorRequest(BaseModel):
     """
     AddUserToSourceConnectorRequest
     """ # noqa: E501
-    user_id: StrictStr = Field(alias="userId")
+    user_id: StrictStr = Field(description="Your application's unique identifier for this user. This is not a Dropbox/Google/Notion user ID, but rather an ID from your system to track which of your users has connected their account", alias="userId")
     selected_files: AddUserToSourceConnectorRequestSelectedFiles = Field(alias="selectedFiles")
-    refresh_token: Optional[StrictStr] = Field(default=None, alias="refreshToken")
-    access_token: Optional[StrictStr] = Field(default=None, alias="accessToken")
+    refresh_token: Optional[StrictStr] = Field(default=None, description="OAuth refresh token obtained from the provider's OAuth callback. Required for Google Drive and Dropbox. This token is returned after the user completes the OAuth authorization flow and is used to obtain new access tokens when they expire", alias="refreshToken")
+    access_token: Optional[StrictStr] = Field(default=None, description="OAuth access token obtained from the provider's OAuth callback. Required for Notion (which doesn't use refresh tokens). This token is returned after the user completes the OAuth authorization flow", alias="accessToken")
     __properties: ClassVar[List[str]] = ["userId", "selectedFiles", "refreshToken", "accessToken"]
 
     model_config = ConfigDict(

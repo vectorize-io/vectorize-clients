@@ -69,9 +69,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AddUserFromSourceConnectorResponse:
-        """Add a user to a source connector
+        """Add a user to a multi-user OAuth source connector
 
-        Add a user to a source connector
+        **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint adds a user to a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  **Direct API usage is only recommended if:** - Your programming language doesn't have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements:** - Valid OAuth tokens from the provider's OAuth flow - For Dropbox/Google Drive: Refresh token from OAuth callback - For Notion: Access token from OAuth callback - The selectedFiles object from the OAuth callback response  **Note:** The userId should be YOUR application's user identifier, not the provider's user ID.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -113,11 +113,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AddUserFromSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -149,9 +149,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AddUserFromSourceConnectorResponse]:
-        """Add a user to a source connector
+        """Add a user to a multi-user OAuth source connector
 
-        Add a user to a source connector
+        **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint adds a user to a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  **Direct API usage is only recommended if:** - Your programming language doesn't have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements:** - Valid OAuth tokens from the provider's OAuth flow - For Dropbox/Google Drive: Refresh token from OAuth callback - For Notion: Access token from OAuth callback - The selectedFiles object from the OAuth callback response  **Note:** The userId should be YOUR application's user identifier, not the provider's user ID.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -193,11 +193,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AddUserFromSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -229,9 +229,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Add a user to a source connector
+        """Add a user to a multi-user OAuth source connector
 
-        Add a user to a source connector
+        **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint adds a user to a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  **Direct API usage is only recommended if:** - Your programming language doesn't have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements:** - Valid OAuth tokens from the provider's OAuth flow - For Dropbox/Google Drive: Refresh token from OAuth callback - For Notion: Access token from OAuth callback - The selectedFiles object from the OAuth callback response  **Note:** The userId should be YOUR application's user identifier, not the provider's user ID.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -273,11 +273,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "AddUserFromSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -432,11 +432,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -512,11 +512,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -592,11 +592,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "CreateSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -749,11 +749,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -825,11 +825,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -901,11 +901,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "DeleteSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1000,9 +1000,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RemoveUserFromSourceConnectorResponse:
-        """Delete a source connector user
+        """Remove a user from a multi-user OAuth source connector
 
-        Delete a source connector user
+        Remove a user from a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  This endpoint is simpler than add/update as it doesn't require OAuth tokens - only the userId that was used when adding the user.  **Note:** While the Vectorize Connect SDK is recommended for consistency, this endpoint can be easily used directly since it doesn't require OAuth token management.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -1044,11 +1044,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RemoveUserFromSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1080,9 +1080,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[RemoveUserFromSourceConnectorResponse]:
-        """Delete a source connector user
+        """Remove a user from a multi-user OAuth source connector
 
-        Delete a source connector user
+        Remove a user from a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  This endpoint is simpler than add/update as it doesn't require OAuth tokens - only the userId that was used when adding the user.  **Note:** While the Vectorize Connect SDK is recommended for consistency, this endpoint can be easily used directly since it doesn't require OAuth token management.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -1124,11 +1124,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RemoveUserFromSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1160,9 +1160,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Delete a source connector user
+        """Remove a user from a multi-user OAuth source connector
 
-        Delete a source connector user
+        Remove a user from a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  This endpoint is simpler than add/update as it doesn't require OAuth tokens - only the userId that was used when adding the user.  **Note:** While the Vectorize Connect SDK is recommended for consistency, this endpoint can be easily used directly since it doesn't require OAuth token management.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -1204,11 +1204,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "RemoveUserFromSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1359,11 +1359,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SourceConnector",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1435,11 +1435,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SourceConnector",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1511,11 +1511,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SourceConnector",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1596,6 +1596,8 @@ class SourceConnectorsApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1611,12 +1613,16 @@ class SourceConnectorsApi:
     ) -> GetSourceConnectors200Response:
         """Get all existing source connectors
 
-        Get all existing source connectors
+        Get all existing source connectors with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1642,6 +1648,8 @@ class SourceConnectorsApi:
         _param = self._get_source_connectors_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1650,11 +1658,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetSourceConnectors200Response",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1672,6 +1680,8 @@ class SourceConnectorsApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1687,12 +1697,16 @@ class SourceConnectorsApi:
     ) -> ApiResponse[GetSourceConnectors200Response]:
         """Get all existing source connectors
 
-        Get all existing source connectors
+        Get all existing source connectors with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1718,6 +1732,8 @@ class SourceConnectorsApi:
         _param = self._get_source_connectors_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1726,11 +1742,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetSourceConnectors200Response",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1748,6 +1764,8 @@ class SourceConnectorsApi:
         self,
         organization_id: StrictStr,
         workspace_id: Optional[StrictStr] = None,
+        limit: Optional[StrictStr] = None,
+        next_token: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1763,12 +1781,16 @@ class SourceConnectorsApi:
     ) -> RESTResponseType:
         """Get all existing source connectors
 
-        Get all existing source connectors
+        Get all existing source connectors with pagination support
 
         :param organization_id: (required)
         :type organization_id: str
         :param workspace_id:
         :type workspace_id: str
+        :param limit:
+        :type limit: str
+        :param next_token:
+        :type next_token: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1794,6 +1816,8 @@ class SourceConnectorsApi:
         _param = self._get_source_connectors_serialize(
             organization_id=organization_id,
             workspace_id=workspace_id,
+            limit=limit,
+            next_token=next_token,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1802,11 +1826,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "GetSourceConnectors200Response",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1819,6 +1843,8 @@ class SourceConnectorsApi:
         self,
         organization_id,
         workspace_id,
+        limit,
+        next_token,
         _request_auth,
         _content_type,
         _headers,
@@ -1846,6 +1872,14 @@ class SourceConnectorsApi:
         if workspace_id is not None:
             
             _query_params.append(('workspaceId', workspace_id))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if next_token is not None:
+            
+            _query_params.append(('nextToken', next_token))
             
         # process the header parameters
         # process the form parameters
@@ -1947,11 +1981,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2027,11 +2061,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2107,11 +2141,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2222,9 +2256,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> UpdateUserInSourceConnectorResponse:
-        """Update a source connector user
+        """Update a user in a multi-user OAuth source connector
 
-        Update a source connector user
+        **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint updates a user's configuration in a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  **Direct API usage is only recommended if:** - Your programming language doesn't have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements when updating tokens/files:** - Valid OAuth tokens from a fresh OAuth flow - For Dropbox/Google Drive: New refresh token - For Notion: New access token - Updated selectedFiles from the new OAuth callback  **Note:** The userId should match the one used when adding the user.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -2266,11 +2300,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateUserInSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2302,9 +2336,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[UpdateUserInSourceConnectorResponse]:
-        """Update a source connector user
+        """Update a user in a multi-user OAuth source connector
 
-        Update a source connector user
+        **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint updates a user's configuration in a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  **Direct API usage is only recommended if:** - Your programming language doesn't have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements when updating tokens/files:** - Valid OAuth tokens from a fresh OAuth flow - For Dropbox/Google Drive: New refresh token - For Notion: New access token - Updated selectedFiles from the new OAuth callback  **Note:** The userId should match the one used when adding the user.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -2346,11 +2380,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateUserInSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2382,9 +2416,9 @@ class SourceConnectorsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Update a source connector user
+        """Update a user in a multi-user OAuth source connector
 
-        Update a source connector user
+        **⚠️ SDK Recommended**: We strongly recommend using the Vectorize Connect SDK which handles OAuth flows and token management for you.  This endpoint updates a user's configuration in a multi-user OAuth connector (types ending with '_OAUTH_MULTI' or '_OAUTH_MULTI_CUSTOM').  **Direct API usage is only recommended if:** - Your programming language doesn't have SDK support (e.g., PHP, Ruby) - You have existing OAuth infrastructure - You need custom OAuth flow control  **Requirements when updating tokens/files:** - Valid OAuth tokens from a fresh OAuth flow - For Dropbox/Google Drive: New refresh token - For Notion: New access token - Updated selectedFiles from the new OAuth callback  **Note:** The userId should match the one used when adding the user.
 
         :param organization_id: (required)
         :type organization_id: str
@@ -2426,11 +2460,11 @@ class SourceConnectorsApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "UpdateUserInSourceConnectorResponse",
-            '400': "GetPipelines400Response",
-            '401': "GetPipelines400Response",
-            '403': "GetPipelines400Response",
-            '404': "GetPipelines400Response",
-            '500': "GetPipelines400Response",
+            '400': "GetWorkspaces400Response",
+            '401': "GetWorkspaces400Response",
+            '403': "GetWorkspaces400Response",
+            '404': "GetWorkspaces400Response",
+            '500': "GetWorkspaces400Response",
         }
         response_data = self.api_client.call_api(
             *_param,

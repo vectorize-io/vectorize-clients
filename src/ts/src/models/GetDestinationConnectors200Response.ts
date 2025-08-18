@@ -33,6 +33,12 @@ export interface GetDestinationConnectors200Response {
      * @memberof GetDestinationConnectors200Response
      */
     destinationConnectors: Array<DestinationConnector>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetDestinationConnectors200Response
+     */
+    nextToken?: string;
 }
 
 /**
@@ -54,6 +60,7 @@ export function GetDestinationConnectors200ResponseFromJSONTyped(json: any, igno
     return {
         
         'destinationConnectors': ((json['destinationConnectors'] as Array<any>).map(DestinationConnectorFromJSON)),
+        'nextToken': json['nextToken'] == null ? undefined : json['nextToken'],
     };
 }
 
@@ -69,6 +76,7 @@ export function GetDestinationConnectors200ResponseToJSONTyped(value?: GetDestin
     return {
         
         'destinationConnectors': ((value['destinationConnectors'] as Array<any>).map(DestinationConnectorToJSON)),
+        'nextToken': value['nextToken'],
     };
 }
 

@@ -22,6 +22,7 @@ from vectorize_client.models.capella1 import Capella1
 from vectorize_client.models.datastax1 import Datastax1
 from vectorize_client.models.elastic1 import Elastic1
 from vectorize_client.models.milvus1 import Milvus1
+from vectorize_client.models.neo4j1 import Neo4j1
 from vectorize_client.models.pinecone1 import Pinecone1
 from vectorize_client.models.postgresql1 import Postgresql1
 from vectorize_client.models.qdrant1 import Qdrant1
@@ -33,7 +34,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-UPDATEDESTINATIONCONNECTORREQUEST_ONE_OF_SCHEMAS = ["Azureaisearch1", "Capella1", "Datastax1", "Elastic1", "Milvus1", "Pinecone1", "Postgresql1", "Qdrant1", "Singlestore1", "Supabase1", "Turbopuffer1", "Weaviate1"]
+UPDATEDESTINATIONCONNECTORREQUEST_ONE_OF_SCHEMAS = ["Azureaisearch1", "Capella1", "Datastax1", "Elastic1", "Milvus1", "Neo4j1", "Pinecone1", "Postgresql1", "Qdrant1", "Singlestore1", "Supabase1", "Turbopuffer1", "Weaviate1"]
 
 class UpdateDestinationConnectorRequest(BaseModel):
     """
@@ -47,24 +48,26 @@ class UpdateDestinationConnectorRequest(BaseModel):
     oneof_schema_3_validator: Optional[Elastic1] = None
     # data type: Pinecone1
     oneof_schema_4_validator: Optional[Pinecone1] = None
-    # data type: Singlestore1
-    oneof_schema_5_validator: Optional[Singlestore1] = None
+    # data type: Azureaisearch1
+    oneof_schema_5_validator: Optional[Azureaisearch1] = None
     # data type: Milvus1
     oneof_schema_6_validator: Optional[Milvus1] = None
+    # data type: Neo4j1
+    oneof_schema_7_validator: Optional[Neo4j1] = None
     # data type: Postgresql1
-    oneof_schema_7_validator: Optional[Postgresql1] = None
+    oneof_schema_8_validator: Optional[Postgresql1] = None
     # data type: Qdrant1
-    oneof_schema_8_validator: Optional[Qdrant1] = None
+    oneof_schema_9_validator: Optional[Qdrant1] = None
+    # data type: Singlestore1
+    oneof_schema_10_validator: Optional[Singlestore1] = None
     # data type: Supabase1
-    oneof_schema_9_validator: Optional[Supabase1] = None
-    # data type: Weaviate1
-    oneof_schema_10_validator: Optional[Weaviate1] = None
-    # data type: Azureaisearch1
-    oneof_schema_11_validator: Optional[Azureaisearch1] = None
+    oneof_schema_11_validator: Optional[Supabase1] = None
     # data type: Turbopuffer1
     oneof_schema_12_validator: Optional[Turbopuffer1] = None
-    actual_instance: Optional[Union[Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1]] = None
-    one_of_schemas: Set[str] = { "Azureaisearch1", "Capella1", "Datastax1", "Elastic1", "Milvus1", "Pinecone1", "Postgresql1", "Qdrant1", "Singlestore1", "Supabase1", "Turbopuffer1", "Weaviate1" }
+    # data type: Weaviate1
+    oneof_schema_13_validator: Optional[Weaviate1] = None
+    actual_instance: Optional[Union[Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Neo4j1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1]] = None
+    one_of_schemas: Set[str] = { "Azureaisearch1", "Capella1", "Datastax1", "Elastic1", "Milvus1", "Neo4j1", "Pinecone1", "Postgresql1", "Qdrant1", "Singlestore1", "Supabase1", "Turbopuffer1", "Weaviate1" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -107,14 +110,19 @@ class UpdateDestinationConnectorRequest(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Pinecone1`")
         else:
             match += 1
-        # validate data type: Singlestore1
-        if not isinstance(v, Singlestore1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Singlestore1`")
+        # validate data type: Azureaisearch1
+        if not isinstance(v, Azureaisearch1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Azureaisearch1`")
         else:
             match += 1
         # validate data type: Milvus1
         if not isinstance(v, Milvus1):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Milvus1`")
+        else:
+            match += 1
+        # validate data type: Neo4j1
+        if not isinstance(v, Neo4j1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Neo4j1`")
         else:
             match += 1
         # validate data type: Postgresql1
@@ -127,19 +135,14 @@ class UpdateDestinationConnectorRequest(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Qdrant1`")
         else:
             match += 1
+        # validate data type: Singlestore1
+        if not isinstance(v, Singlestore1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Singlestore1`")
+        else:
+            match += 1
         # validate data type: Supabase1
         if not isinstance(v, Supabase1):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Supabase1`")
-        else:
-            match += 1
-        # validate data type: Weaviate1
-        if not isinstance(v, Weaviate1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Weaviate1`")
-        else:
-            match += 1
-        # validate data type: Azureaisearch1
-        if not isinstance(v, Azureaisearch1):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Azureaisearch1`")
         else:
             match += 1
         # validate data type: Turbopuffer1
@@ -147,12 +150,17 @@ class UpdateDestinationConnectorRequest(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `Turbopuffer1`")
         else:
             match += 1
+        # validate data type: Weaviate1
+        if not isinstance(v, Weaviate1):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `Weaviate1`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in UpdateDestinationConnectorRequest with oneOf schemas: Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in UpdateDestinationConnectorRequest with oneOf schemas: Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Neo4j1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in UpdateDestinationConnectorRequest with oneOf schemas: Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in UpdateDestinationConnectorRequest with oneOf schemas: Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Neo4j1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -191,15 +199,21 @@ class UpdateDestinationConnectorRequest(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into Singlestore1
+        # deserialize data into Azureaisearch1
         try:
-            instance.actual_instance = Singlestore1.from_json(json_str)
+            instance.actual_instance = Azureaisearch1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
         # deserialize data into Milvus1
         try:
             instance.actual_instance = Milvus1.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into Neo4j1
+        try:
+            instance.actual_instance = Neo4j1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -215,21 +229,15 @@ class UpdateDestinationConnectorRequest(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into Singlestore1
+        try:
+            instance.actual_instance = Singlestore1.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into Supabase1
         try:
             instance.actual_instance = Supabase1.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into Weaviate1
-        try:
-            instance.actual_instance = Weaviate1.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into Azureaisearch1
-        try:
-            instance.actual_instance = Azureaisearch1.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -239,13 +247,19 @@ class UpdateDestinationConnectorRequest(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into Weaviate1
+        try:
+            instance.actual_instance = Weaviate1.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into UpdateDestinationConnectorRequest with oneOf schemas: Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into UpdateDestinationConnectorRequest with oneOf schemas: Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Neo4j1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into UpdateDestinationConnectorRequest with oneOf schemas: Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into UpdateDestinationConnectorRequest with oneOf schemas: Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Neo4j1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -259,7 +273,7 @@ class UpdateDestinationConnectorRequest(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], Azureaisearch1, Capella1, Datastax1, Elastic1, Milvus1, Neo4j1, Pinecone1, Postgresql1, Qdrant1, Singlestore1, Supabase1, Turbopuffer1, Weaviate1]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

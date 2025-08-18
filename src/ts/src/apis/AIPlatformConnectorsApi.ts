@@ -20,7 +20,7 @@ import type {
   CreateAIPlatformConnectorResponse,
   DeleteAIPlatformConnectorResponse,
   GetAIPlatformConnectors200Response,
-  GetPipelines400Response,
+  GetWorkspaces400Response,
   UpdateAIPlatformConnectorRequest,
   UpdateAIPlatformConnectorResponse,
 } from '../models/index';
@@ -35,8 +35,8 @@ import {
     DeleteAIPlatformConnectorResponseToJSON,
     GetAIPlatformConnectors200ResponseFromJSON,
     GetAIPlatformConnectors200ResponseToJSON,
-    GetPipelines400ResponseFromJSON,
-    GetPipelines400ResponseToJSON,
+    GetWorkspaces400ResponseFromJSON,
+    GetWorkspaces400ResponseToJSON,
     UpdateAIPlatformConnectorRequestFromJSON,
     UpdateAIPlatformConnectorRequestToJSON,
     UpdateAIPlatformConnectorResponseFromJSON,
@@ -62,6 +62,8 @@ export interface GetAIPlatformConnectorRequest {
 export interface GetAIPlatformConnectorsRequest {
     organizationId: string;
     workspaceId?: string;
+    limit?: string;
+    nextToken?: string;
 }
 
 export interface UpdateAIPlatformConnectorOperationRequest {
@@ -233,7 +235,7 @@ export class AIPlatformConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all existing AI Platform connectors
+     * Get all existing AI Platform connectors with pagination support
      * Get all existing AI Platform connectors
      */
     async getAIPlatformConnectorsRaw(requestParameters: GetAIPlatformConnectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAIPlatformConnectors200Response>> {
@@ -248,6 +250,14 @@ export class AIPlatformConnectorsApi extends runtime.BaseAPI {
 
         if (requestParameters['workspaceId'] != null) {
             queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -271,7 +281,7 @@ export class AIPlatformConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all existing AI Platform connectors
+     * Get all existing AI Platform connectors with pagination support
      * Get all existing AI Platform connectors
      */
     async getAIPlatformConnectors(requestParameters: GetAIPlatformConnectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAIPlatformConnectors200Response> {

@@ -48,7 +48,9 @@ export const AIPlatformConnectorInputTypeEnum = {
     Bedrock: 'BEDROCK',
     Vertex: 'VERTEX',
     Openai: 'OPENAI',
-    Voyage: 'VOYAGE'
+    Voyage: 'VOYAGE',
+    Anthropic: 'ANTHROPIC',
+    Groq: 'GROQ'
 } as const;
 export type AIPlatformConnectorInputTypeEnum = typeof AIPlatformConnectorInputTypeEnum[keyof typeof AIPlatformConnectorInputTypeEnum];
 

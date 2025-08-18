@@ -29,12 +29,11 @@ class FIREFLIESConfig(BaseModel):
     """ # noqa: E501
     start_date: date = Field(description="Start Date. Include meetings from this date forward. Example: Enter a date: Example 2023-12-31", alias="start-date")
     end_date: Optional[date] = Field(default=None, description="End Date. Include meetings up to this date only. Example: Enter a date: Example 2023-12-31", alias="end-date")
-    title_filter_type: StrictStr = Field(alias="title-filter-type")
-    title_filter: Optional[StrictStr] = Field(default=None, description="Title Filter. Only include meetings with this text in the title. Example: Enter meeting title", alias="title-filter")
+    title_filter: Optional[List[StrictStr]] = Field(default=None, description="Title Filter. Only include meetings containing any of these keywords in the title. Example: Enter meeting title keywords", alias="title-filter")
     participant_filter_type: StrictStr = Field(alias="participant-filter-type")
     participant_filter: Optional[StrictStr] = Field(default=None, description="Participant's Email Filter. Include meetings where these participants were invited. Example: Enter participant email", alias="participant-filter")
     max_meetings: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Max Meetings. Leave blank for no limit, or specify a maximum number. Example: Enter maximum number of meetings to retrieve (leave blank for no limit)", alias="max-meetings")
-    __properties: ClassVar[List[str]] = ["start-date", "end-date", "title-filter-type", "title-filter", "participant-filter-type", "participant-filter", "max-meetings"]
+    __properties: ClassVar[List[str]] = ["start-date", "end-date", "title-filter", "participant-filter-type", "participant-filter", "max-meetings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +88,6 @@ class FIREFLIESConfig(BaseModel):
         _obj = cls.model_validate({
             "start-date": obj.get("start-date"),
             "end-date": obj.get("end-date"),
-            "title-filter-type": obj.get("title-filter-type") if obj.get("title-filter-type") is not None else 'AND',
             "title-filter": obj.get("title-filter"),
             "participant-filter-type": obj.get("participant-filter-type") if obj.get("participant-filter-type") is not None else 'AND',
             "participant-filter": obj.get("participant-filter"),

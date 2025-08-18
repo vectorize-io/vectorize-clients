@@ -20,7 +20,7 @@ import type {
   DeleteDestinationConnectorResponse,
   DestinationConnector,
   GetDestinationConnectors200Response,
-  GetPipelines400Response,
+  GetWorkspaces400Response,
   UpdateDestinationConnectorRequest,
   UpdateDestinationConnectorResponse,
 } from '../models/index';
@@ -35,8 +35,8 @@ import {
     DestinationConnectorToJSON,
     GetDestinationConnectors200ResponseFromJSON,
     GetDestinationConnectors200ResponseToJSON,
-    GetPipelines400ResponseFromJSON,
-    GetPipelines400ResponseToJSON,
+    GetWorkspaces400ResponseFromJSON,
+    GetWorkspaces400ResponseToJSON,
     UpdateDestinationConnectorRequestFromJSON,
     UpdateDestinationConnectorRequestToJSON,
     UpdateDestinationConnectorResponseFromJSON,
@@ -62,6 +62,8 @@ export interface GetDestinationConnectorRequest {
 export interface GetDestinationConnectorsRequest {
     organizationId: string;
     workspaceId?: string;
+    limit?: string;
+    nextToken?: string;
 }
 
 export interface UpdateDestinationConnectorOperationRequest {
@@ -233,7 +235,7 @@ export class DestinationConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all existing destination connectors
+     * Get all existing destination connectors with pagination support
      * Get all existing destination connectors
      */
     async getDestinationConnectorsRaw(requestParameters: GetDestinationConnectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDestinationConnectors200Response>> {
@@ -248,6 +250,14 @@ export class DestinationConnectorsApi extends runtime.BaseAPI {
 
         if (requestParameters['workspaceId'] != null) {
             queryParameters['workspaceId'] = requestParameters['workspaceId'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['nextToken'] != null) {
+            queryParameters['nextToken'] = requestParameters['nextToken'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -271,7 +281,7 @@ export class DestinationConnectorsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get all existing destination connectors
+     * Get all existing destination connectors with pagination support
      * Get all existing destination connectors
      */
     async getDestinationConnectors(requestParameters: GetDestinationConnectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetDestinationConnectors200Response> {

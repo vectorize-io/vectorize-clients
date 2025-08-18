@@ -33,6 +33,12 @@ export interface GetSourceConnectors200Response {
      * @memberof GetSourceConnectors200Response
      */
     sourceConnectors: Array<SourceConnector>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetSourceConnectors200Response
+     */
+    nextToken?: string;
 }
 
 /**
@@ -54,6 +60,7 @@ export function GetSourceConnectors200ResponseFromJSONTyped(json: any, ignoreDis
     return {
         
         'sourceConnectors': ((json['sourceConnectors'] as Array<any>).map(SourceConnectorFromJSON)),
+        'nextToken': json['nextToken'] == null ? undefined : json['nextToken'],
     };
 }
 
@@ -69,6 +76,7 @@ export function GetSourceConnectors200ResponseToJSONTyped(value?: GetSourceConne
     return {
         
         'sourceConnectors': ((value['sourceConnectors'] as Array<any>).map(SourceConnectorToJSON)),
+        'nextToken': value['nextToken'],
     };
 }
 

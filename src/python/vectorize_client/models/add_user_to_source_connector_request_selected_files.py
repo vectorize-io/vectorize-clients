@@ -29,7 +29,7 @@ ADDUSERTOSOURCECONNECTORREQUESTSELECTEDFILES_ANY_OF_SCHEMAS = ["AddUserToSourceC
 
 class AddUserToSourceConnectorRequestSelectedFiles(BaseModel):
     """
-    AddUserToSourceConnectorRequestSelectedFiles
+    Files and folders selected by the user during the OAuth flow. This is automatically populated from the OAuth callback and should be passed as received. For Google Drive/Dropbox: object with file paths. For Notion: object with pageIds and databaseIds
     """
 
     # data type: Dict[str, AddUserToSourceConnectorRequestSelectedFilesAnyOfValue]

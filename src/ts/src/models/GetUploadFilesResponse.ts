@@ -39,6 +39,12 @@ export interface GetUploadFilesResponse {
      * @memberof GetUploadFilesResponse
      */
     files: Array<UploadFile>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetUploadFilesResponse
+     */
+    nextToken?: string;
 }
 
 /**
@@ -62,6 +68,7 @@ export function GetUploadFilesResponseFromJSONTyped(json: any, ignoreDiscriminat
         
         'message': json['message'],
         'files': ((json['files'] as Array<any>).map(UploadFileFromJSON)),
+        'nextToken': json['nextToken'] == null ? undefined : json['nextToken'],
     };
 }
 
@@ -78,6 +85,7 @@ export function GetUploadFilesResponseToJSONTyped(value?: GetUploadFilesResponse
         
         'message': value['message'],
         'files': ((value['files'] as Array<any>).map(UploadFileToJSON)),
+        'nextToken': value['nextToken'],
     };
 }
 

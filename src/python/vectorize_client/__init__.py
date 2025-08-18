@@ -24,6 +24,7 @@ from vectorize_client.api.files_api import FilesApi
 from vectorize_client.api.pipelines_api import PipelinesApi
 from vectorize_client.api.source_connectors_api import SourceConnectorsApi
 from vectorize_client.api.uploads_api import UploadsApi
+from vectorize_client.api.workspaces_api import WorkspacesApi
 
 # import ApiClient
 from vectorize_client.api_response import ApiResponse
@@ -42,6 +43,7 @@ from vectorize_client.models.ai_platform_connector import AIPlatformConnector
 from vectorize_client.models.ai_platform_connector_input import AIPlatformConnectorInput
 from vectorize_client.models.ai_platform_connector_type import AIPlatformConnectorType
 from vectorize_client.models.ai_platform_type_for_pipeline import AIPlatformTypeForPipeline
+from vectorize_client.models.anthropic_auth_config import ANTHROPICAuthConfig
 from vectorize_client.models.awss3_auth_config import AWSS3AuthConfig
 from vectorize_client.models.awss3_config import AWSS3Config
 from vectorize_client.models.azureaisearch_auth_config import AZUREAISEARCHAuthConfig
@@ -54,6 +56,8 @@ from vectorize_client.models.add_user_to_source_connector_request_selected_files
 from vectorize_client.models.add_user_to_source_connector_request_selected_files_any_of import AddUserToSourceConnectorRequestSelectedFilesAnyOf
 from vectorize_client.models.add_user_to_source_connector_request_selected_files_any_of_value import AddUserToSourceConnectorRequestSelectedFilesAnyOfValue
 from vectorize_client.models.advanced_query import AdvancedQuery
+from vectorize_client.models.anthropic import Anthropic
+from vectorize_client.models.anthropic1 import Anthropic1
 from vectorize_client.models.aws_s3 import AwsS3
 from vectorize_client.models.aws_s31 import AwsS31
 from vectorize_client.models.azure_blob import AzureBlob
@@ -133,6 +137,7 @@ from vectorize_client.models.googledrive_config import GOOGLEDRIVEConfig
 from vectorize_client.models.googledriveoauth_config import GOOGLEDRIVEOAUTHConfig
 from vectorize_client.models.googledriveoauthmulticustom_config import GOOGLEDRIVEOAUTHMULTICUSTOMConfig
 from vectorize_client.models.googledriveoauthmulti_config import GOOGLEDRIVEOAUTHMULTIConfig
+from vectorize_client.models.groq_auth_config import GROQAuthConfig
 from vectorize_client.models.gcs import Gcs
 from vectorize_client.models.gcs1 import Gcs1
 from vectorize_client.models.get_ai_platform_connectors200_response import GetAIPlatformConnectors200Response
@@ -141,14 +146,18 @@ from vectorize_client.models.get_destination_connectors200_response import GetDe
 from vectorize_client.models.get_pipeline_events_response import GetPipelineEventsResponse
 from vectorize_client.models.get_pipeline_metrics_response import GetPipelineMetricsResponse
 from vectorize_client.models.get_pipeline_response import GetPipelineResponse
-from vectorize_client.models.get_pipelines400_response import GetPipelines400Response
 from vectorize_client.models.get_pipelines_response import GetPipelinesResponse
 from vectorize_client.models.get_source_connectors200_response import GetSourceConnectors200Response
 from vectorize_client.models.get_upload_files_response import GetUploadFilesResponse
+from vectorize_client.models.get_workspace_by_id_response import GetWorkspaceByIdResponse
+from vectorize_client.models.get_workspaces400_response import GetWorkspaces400Response
+from vectorize_client.models.get_workspaces_response import GetWorkspacesResponse
 from vectorize_client.models.github import Github
 from vectorize_client.models.github1 import Github1
 from vectorize_client.models.google_drive import GoogleDrive
 from vectorize_client.models.google_drive1 import GoogleDrive1
+from vectorize_client.models.groq import Groq
+from vectorize_client.models.groq1 import Groq1
 from vectorize_client.models.intercom_config import INTERCOMConfig
 from vectorize_client.models.milvus_auth_config import MILVUSAuthConfig
 from vectorize_client.models.milvus_config import MILVUSConfig
@@ -157,7 +166,11 @@ from vectorize_client.models.metadata_extraction_strategy_schema import Metadata
 from vectorize_client.models.milvus import Milvus
 from vectorize_client.models.milvus1 import Milvus1
 from vectorize_client.models.n8_n_config import N8NConfig
+from vectorize_client.models.neo4_j_auth_config import NEO4JAuthConfig
+from vectorize_client.models.neo4_j_config import NEO4JConfig
 from vectorize_client.models.notion_config import NOTIONConfig
+from vectorize_client.models.neo4j import Neo4j
+from vectorize_client.models.neo4j1 import Neo4j1
 from vectorize_client.models.onedrive_auth_config import ONEDRIVEAuthConfig
 from vectorize_client.models.onedrive_config import ONEDRIVEConfig
 from vectorize_client.models.openai_auth_config import OPENAIAuthConfig
@@ -231,6 +244,7 @@ from vectorize_client.models.update_source_connector_request import UpdateSource
 from vectorize_client.models.update_source_connector_response import UpdateSourceConnectorResponse
 from vectorize_client.models.update_source_connector_response_data import UpdateSourceConnectorResponseData
 from vectorize_client.models.update_user_in_source_connector_request import UpdateUserInSourceConnectorRequest
+from vectorize_client.models.update_user_in_source_connector_request_selected_files import UpdateUserInSourceConnectorRequestSelectedFiles
 from vectorize_client.models.update_user_in_source_connector_response import UpdateUserInSourceConnectorResponse
 from vectorize_client.models.updated_ai_platform_connector_data import UpdatedAIPlatformConnectorData
 from vectorize_client.models.updated_destination_connector_data import UpdatedDestinationConnectorData
@@ -249,3 +263,12 @@ from vectorize_client.models.weaviate import Weaviate
 from vectorize_client.models.weaviate1 import Weaviate1
 from vectorize_client.models.web_crawler import WebCrawler
 from vectorize_client.models.web_crawler1 import WebCrawler1
+from vectorize_client.models.workspace_schema import WorkspaceSchema
+from vectorize_client.models.zoomadmin_auth_config import ZOOMADMINAuthConfig
+from vectorize_client.models.zoomadmin_config import ZOOMADMINConfig
+from vectorize_client.models.zoom_auth_config import ZOOMAuthConfig
+from vectorize_client.models.zoom_config import ZOOMConfig
+from vectorize_client.models.zoom import Zoom
+from vectorize_client.models.zoom1 import Zoom1
+from vectorize_client.models.zoom_admin import ZoomAdmin
+from vectorize_client.models.zoom_admin1 import ZoomAdmin1

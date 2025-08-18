@@ -22,6 +22,7 @@ from vectorize_client.models.capella_config import CAPELLAConfig
 from vectorize_client.models.datastax_config import DATASTAXConfig
 from vectorize_client.models.elastic_config import ELASTICConfig
 from vectorize_client.models.milvus_config import MILVUSConfig
+from vectorize_client.models.neo4_j_config import NEO4JConfig
 from vectorize_client.models.pinecone_config import PINECONEConfig
 from vectorize_client.models.postgresql_config import POSTGRESQLConfig
 from vectorize_client.models.qdrant_config import QDRANTConfig
@@ -33,7 +34,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-DESTINATIONCONNECTORINPUTCONFIG_ONE_OF_SCHEMAS = ["AZUREAISEARCHConfig", "CAPELLAConfig", "DATASTAXConfig", "ELASTICConfig", "MILVUSConfig", "PINECONEConfig", "POSTGRESQLConfig", "QDRANTConfig", "SINGLESTOREConfig", "SUPABASEConfig", "TURBOPUFFERConfig", "WEAVIATEConfig"]
+DESTINATIONCONNECTORINPUTCONFIG_ONE_OF_SCHEMAS = ["AZUREAISEARCHConfig", "CAPELLAConfig", "DATASTAXConfig", "ELASTICConfig", "MILVUSConfig", "NEO4JConfig", "PINECONEConfig", "POSTGRESQLConfig", "QDRANTConfig", "SINGLESTOREConfig", "SUPABASEConfig", "TURBOPUFFERConfig", "WEAVIATEConfig"]
 
 class DestinationConnectorInputConfig(BaseModel):
     """
@@ -47,24 +48,26 @@ class DestinationConnectorInputConfig(BaseModel):
     oneof_schema_3_validator: Optional[ELASTICConfig] = None
     # data type: PINECONEConfig
     oneof_schema_4_validator: Optional[PINECONEConfig] = None
-    # data type: SINGLESTOREConfig
-    oneof_schema_5_validator: Optional[SINGLESTOREConfig] = None
+    # data type: AZUREAISEARCHConfig
+    oneof_schema_5_validator: Optional[AZUREAISEARCHConfig] = None
     # data type: MILVUSConfig
     oneof_schema_6_validator: Optional[MILVUSConfig] = None
+    # data type: NEO4JConfig
+    oneof_schema_7_validator: Optional[NEO4JConfig] = None
     # data type: POSTGRESQLConfig
-    oneof_schema_7_validator: Optional[POSTGRESQLConfig] = None
+    oneof_schema_8_validator: Optional[POSTGRESQLConfig] = None
     # data type: QDRANTConfig
-    oneof_schema_8_validator: Optional[QDRANTConfig] = None
+    oneof_schema_9_validator: Optional[QDRANTConfig] = None
+    # data type: SINGLESTOREConfig
+    oneof_schema_10_validator: Optional[SINGLESTOREConfig] = None
     # data type: SUPABASEConfig
-    oneof_schema_9_validator: Optional[SUPABASEConfig] = None
-    # data type: WEAVIATEConfig
-    oneof_schema_10_validator: Optional[WEAVIATEConfig] = None
-    # data type: AZUREAISEARCHConfig
-    oneof_schema_11_validator: Optional[AZUREAISEARCHConfig] = None
+    oneof_schema_11_validator: Optional[SUPABASEConfig] = None
     # data type: TURBOPUFFERConfig
     oneof_schema_12_validator: Optional[TURBOPUFFERConfig] = None
-    actual_instance: Optional[Union[AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig]] = None
-    one_of_schemas: Set[str] = { "AZUREAISEARCHConfig", "CAPELLAConfig", "DATASTAXConfig", "ELASTICConfig", "MILVUSConfig", "PINECONEConfig", "POSTGRESQLConfig", "QDRANTConfig", "SINGLESTOREConfig", "SUPABASEConfig", "TURBOPUFFERConfig", "WEAVIATEConfig" }
+    # data type: WEAVIATEConfig
+    oneof_schema_13_validator: Optional[WEAVIATEConfig] = None
+    actual_instance: Optional[Union[AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, NEO4JConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig]] = None
+    one_of_schemas: Set[str] = { "AZUREAISEARCHConfig", "CAPELLAConfig", "DATASTAXConfig", "ELASTICConfig", "MILVUSConfig", "NEO4JConfig", "PINECONEConfig", "POSTGRESQLConfig", "QDRANTConfig", "SINGLESTOREConfig", "SUPABASEConfig", "TURBOPUFFERConfig", "WEAVIATEConfig" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -107,14 +110,19 @@ class DestinationConnectorInputConfig(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `PINECONEConfig`")
         else:
             match += 1
-        # validate data type: SINGLESTOREConfig
-        if not isinstance(v, SINGLESTOREConfig):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `SINGLESTOREConfig`")
+        # validate data type: AZUREAISEARCHConfig
+        if not isinstance(v, AZUREAISEARCHConfig):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AZUREAISEARCHConfig`")
         else:
             match += 1
         # validate data type: MILVUSConfig
         if not isinstance(v, MILVUSConfig):
             error_messages.append(f"Error! Input type `{type(v)}` is not `MILVUSConfig`")
+        else:
+            match += 1
+        # validate data type: NEO4JConfig
+        if not isinstance(v, NEO4JConfig):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `NEO4JConfig`")
         else:
             match += 1
         # validate data type: POSTGRESQLConfig
@@ -127,19 +135,14 @@ class DestinationConnectorInputConfig(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `QDRANTConfig`")
         else:
             match += 1
+        # validate data type: SINGLESTOREConfig
+        if not isinstance(v, SINGLESTOREConfig):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `SINGLESTOREConfig`")
+        else:
+            match += 1
         # validate data type: SUPABASEConfig
         if not isinstance(v, SUPABASEConfig):
             error_messages.append(f"Error! Input type `{type(v)}` is not `SUPABASEConfig`")
-        else:
-            match += 1
-        # validate data type: WEAVIATEConfig
-        if not isinstance(v, WEAVIATEConfig):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `WEAVIATEConfig`")
-        else:
-            match += 1
-        # validate data type: AZUREAISEARCHConfig
-        if not isinstance(v, AZUREAISEARCHConfig):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `AZUREAISEARCHConfig`")
         else:
             match += 1
         # validate data type: TURBOPUFFERConfig
@@ -147,12 +150,17 @@ class DestinationConnectorInputConfig(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `TURBOPUFFERConfig`")
         else:
             match += 1
+        # validate data type: WEAVIATEConfig
+        if not isinstance(v, WEAVIATEConfig):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `WEAVIATEConfig`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in DestinationConnectorInputConfig with oneOf schemas: AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in DestinationConnectorInputConfig with oneOf schemas: AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, NEO4JConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in DestinationConnectorInputConfig with oneOf schemas: AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in DestinationConnectorInputConfig with oneOf schemas: AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, NEO4JConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -191,15 +199,21 @@ class DestinationConnectorInputConfig(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into SINGLESTOREConfig
+        # deserialize data into AZUREAISEARCHConfig
         try:
-            instance.actual_instance = SINGLESTOREConfig.from_json(json_str)
+            instance.actual_instance = AZUREAISEARCHConfig.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
         # deserialize data into MILVUSConfig
         try:
             instance.actual_instance = MILVUSConfig.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into NEO4JConfig
+        try:
+            instance.actual_instance = NEO4JConfig.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -215,21 +229,15 @@ class DestinationConnectorInputConfig(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into SINGLESTOREConfig
+        try:
+            instance.actual_instance = SINGLESTOREConfig.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into SUPABASEConfig
         try:
             instance.actual_instance = SUPABASEConfig.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into WEAVIATEConfig
-        try:
-            instance.actual_instance = WEAVIATEConfig.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into AZUREAISEARCHConfig
-        try:
-            instance.actual_instance = AZUREAISEARCHConfig.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
@@ -239,13 +247,19 @@ class DestinationConnectorInputConfig(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into WEAVIATEConfig
+        try:
+            instance.actual_instance = WEAVIATEConfig.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into DestinationConnectorInputConfig with oneOf schemas: AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into DestinationConnectorInputConfig with oneOf schemas: AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, NEO4JConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into DestinationConnectorInputConfig with oneOf schemas: AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into DestinationConnectorInputConfig with oneOf schemas: AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, NEO4JConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -259,7 +273,7 @@ class DestinationConnectorInputConfig(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AZUREAISEARCHConfig, CAPELLAConfig, DATASTAXConfig, ELASTICConfig, MILVUSConfig, NEO4JConfig, PINECONEConfig, POSTGRESQLConfig, QDRANTConfig, SINGLESTOREConfig, SUPABASEConfig, TURBOPUFFERConfig, WEAVIATEConfig]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

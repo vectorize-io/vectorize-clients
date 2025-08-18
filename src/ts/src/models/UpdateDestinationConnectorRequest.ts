@@ -47,6 +47,13 @@ import {
     Milvus1FromJSONTyped,
     Milvus1ToJSON,
 } from './Milvus1';
+import type { Neo4j1 } from './Neo4j1';
+import {
+    instanceOfNeo4j1,
+    Neo4j1FromJSON,
+    Neo4j1FromJSONTyped,
+    Neo4j1ToJSON,
+} from './Neo4j1';
 import type { Pinecone1 } from './Pinecone1';
 import {
     instanceOfPinecone1,
@@ -102,7 +109,7 @@ import {
  * 
  * @export
  */
-export type UpdateDestinationConnectorRequest = Azureaisearch1 | Capella1 | Datastax1 | Elastic1 | Milvus1 | Pinecone1 | Postgresql1 | Qdrant1 | Singlestore1 | Supabase1 | Turbopuffer1 | Weaviate1;
+export type UpdateDestinationConnectorRequest = Azureaisearch1 | Capella1 | Datastax1 | Elastic1 | Milvus1 | Neo4j1 | Pinecone1 | Postgresql1 | Qdrant1 | Singlestore1 | Supabase1 | Turbopuffer1 | Weaviate1;
 
 export function UpdateDestinationConnectorRequestFromJSON(json: any): UpdateDestinationConnectorRequest {
     return UpdateDestinationConnectorRequestFromJSONTyped(json, false);
@@ -129,6 +136,9 @@ export function UpdateDestinationConnectorRequestFromJSONTyped(json: any, ignore
     }
     if (instanceOfMilvus1(json)) {
         return Milvus1FromJSONTyped(json, true);
+    }
+    if (instanceOfNeo4j1(json)) {
+        return Neo4j1FromJSONTyped(json, true);
     }
     if (instanceOfPinecone1(json)) {
         return Pinecone1FromJSONTyped(json, true);
@@ -180,6 +190,9 @@ export function UpdateDestinationConnectorRequestToJSONTyped(value?: UpdateDesti
     }
     if (instanceOfMilvus1(value)) {
         return Milvus1ToJSON(value as Milvus1);
+    }
+    if (instanceOfNeo4j1(value)) {
+        return Neo4j1ToJSON(value as Neo4j1);
     }
     if (instanceOfPinecone1(value)) {
         return Pinecone1ToJSON(value as Pinecone1);

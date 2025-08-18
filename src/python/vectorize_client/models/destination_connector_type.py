@@ -30,14 +30,15 @@ class DestinationConnectorType(str, Enum):
     DATASTAX = 'DATASTAX'
     ELASTIC = 'ELASTIC'
     PINECONE = 'PINECONE'
-    SINGLESTORE = 'SINGLESTORE'
+    AZUREAISEARCH = 'AZUREAISEARCH'
     MILVUS = 'MILVUS'
+    NEO4J = 'NEO4J'
     POSTGRESQL = 'POSTGRESQL'
     QDRANT = 'QDRANT'
+    SINGLESTORE = 'SINGLESTORE'
     SUPABASE = 'SUPABASE'
-    WEAVIATE = 'WEAVIATE'
-    AZUREAISEARCH = 'AZUREAISEARCH'
     TURBOPUFFER = 'TURBOPUFFER'
+    WEAVIATE = 'WEAVIATE'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

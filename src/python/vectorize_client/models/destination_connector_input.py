@@ -35,8 +35,8 @@ class DestinationConnectorInput(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['CAPELLA', 'DATASTAX', 'ELASTIC', 'PINECONE', 'SINGLESTORE', 'MILVUS', 'POSTGRESQL', 'QDRANT', 'SUPABASE', 'WEAVIATE', 'AZUREAISEARCH', 'TURBOPUFFER']):
-            raise ValueError("must be one of enum values ('CAPELLA', 'DATASTAX', 'ELASTIC', 'PINECONE', 'SINGLESTORE', 'MILVUS', 'POSTGRESQL', 'QDRANT', 'SUPABASE', 'WEAVIATE', 'AZUREAISEARCH', 'TURBOPUFFER')")
+        if value not in set(['CAPELLA', 'DATASTAX', 'ELASTIC', 'PINECONE', 'AZUREAISEARCH', 'MILVUS', 'NEO4J', 'POSTGRESQL', 'QDRANT', 'SINGLESTORE', 'SUPABASE', 'TURBOPUFFER', 'WEAVIATE']):
+            raise ValueError("must be one of enum values ('CAPELLA', 'DATASTAX', 'ELASTIC', 'PINECONE', 'AZUREAISEARCH', 'MILVUS', 'NEO4J', 'POSTGRESQL', 'QDRANT', 'SINGLESTORE', 'SUPABASE', 'TURBOPUFFER', 'WEAVIATE')")
         return value
 
     model_config = ConfigDict(

@@ -47,6 +47,13 @@ import {
     MilvusFromJSONTyped,
     MilvusToJSON,
 } from './Milvus';
+import type { Neo4j } from './Neo4j';
+import {
+    instanceOfNeo4j,
+    Neo4jFromJSON,
+    Neo4jFromJSONTyped,
+    Neo4jToJSON,
+} from './Neo4j';
 import type { Pinecone } from './Pinecone';
 import {
     instanceOfPinecone,
@@ -102,7 +109,7 @@ import {
  * 
  * @export
  */
-export type CreateDestinationConnectorRequest = Azureaisearch | Capella | Datastax | Elastic | Milvus | Pinecone | Postgresql | Qdrant | Singlestore | Supabase | Turbopuffer | Weaviate;
+export type CreateDestinationConnectorRequest = Azureaisearch | Capella | Datastax | Elastic | Milvus | Neo4j | Pinecone | Postgresql | Qdrant | Singlestore | Supabase | Turbopuffer | Weaviate;
 
 export function CreateDestinationConnectorRequestFromJSON(json: any): CreateDestinationConnectorRequest {
     return CreateDestinationConnectorRequestFromJSONTyped(json, false);

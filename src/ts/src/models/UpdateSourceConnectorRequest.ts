@@ -103,13 +103,27 @@ import {
     WebCrawler1FromJSONTyped,
     WebCrawler1ToJSON,
 } from './WebCrawler1';
+import type { Zoom1 } from './Zoom1';
+import {
+    instanceOfZoom1,
+    Zoom1FromJSON,
+    Zoom1FromJSONTyped,
+    Zoom1ToJSON,
+} from './Zoom1';
+import type { ZoomAdmin1 } from './ZoomAdmin1';
+import {
+    instanceOfZoomAdmin1,
+    ZoomAdmin1FromJSON,
+    ZoomAdmin1FromJSONTyped,
+    ZoomAdmin1ToJSON,
+} from './ZoomAdmin1';
 
 /**
  * @type UpdateSourceConnectorRequest
  * 
  * @export
  */
-export type UpdateSourceConnectorRequest = AwsS31 | AzureBlob1 | Confluence1 | Discord1 | FileUpload1 | Firecrawl1 | Fireflies1 | Gcs1 | Github1 | GoogleDrive1 | OneDrive1 | Sharepoint1 | WebCrawler1;
+export type UpdateSourceConnectorRequest = AwsS31 | AzureBlob1 | Confluence1 | Discord1 | FileUpload1 | Firecrawl1 | Fireflies1 | Gcs1 | Github1 | GoogleDrive1 | OneDrive1 | Sharepoint1 | WebCrawler1 | Zoom1 | ZoomAdmin1;
 
 export function UpdateSourceConnectorRequestFromJSON(json: any): UpdateSourceConnectorRequest {
     return UpdateSourceConnectorRequestFromJSONTyped(json, false);
@@ -160,6 +174,12 @@ export function UpdateSourceConnectorRequestFromJSONTyped(json: any, ignoreDiscr
     }
     if (instanceOfWebCrawler1(json)) {
         return WebCrawler1FromJSONTyped(json, true);
+    }
+    if (instanceOfZoom1(json)) {
+        return Zoom1FromJSONTyped(json, true);
+    }
+    if (instanceOfZoomAdmin1(json)) {
+        return ZoomAdmin1FromJSONTyped(json, true);
     }
 
     return {} as any;
@@ -214,6 +234,12 @@ export function UpdateSourceConnectorRequestToJSONTyped(value?: UpdateSourceConn
     }
     if (instanceOfWebCrawler1(value)) {
         return WebCrawler1ToJSON(value as WebCrawler1);
+    }
+    if (instanceOfZoom1(value)) {
+        return Zoom1ToJSON(value as Zoom1);
+    }
+    if (instanceOfZoomAdmin1(value)) {
+        return ZoomAdmin1ToJSON(value as ZoomAdmin1);
     }
 
     return {};
