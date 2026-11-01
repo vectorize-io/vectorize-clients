@@ -26,5 +26,8 @@
   },
   "devDependencies": {
     "typedoc": "^0.27.8"
+  },
+  "overrides": {
+    "markdown-it": "^14.3.3"
   }
 }
